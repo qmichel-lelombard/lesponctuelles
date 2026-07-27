@@ -134,6 +134,23 @@ python3 import_products.py --dest https://lesponctuelles.be \
 ne sont pas repris — seuls la fiche produit, les prix, le stock, les
 catégories/tags, les images et les déclinaisons le sont.
 
+## 5. Publier en masse les articles/produits importés
+
+Une fois la relecture faite, plutôt que de publier un par un dans wp-admin,
+`publish_from_log.py` republie en masse tout ce qui est listé dans un
+`import_log.json` (généré par `import_posts.py` ou `import_products.py`) :
+
+```bash
+python3 publish_from_log.py --dest https://lesponctuelles.be \
+    --log ./export/import_log.json --type post
+
+python3 publish_from_log.py --dest https://lesponctuelles.be \
+    --log ./export-products/import_log.json --type product
+```
+
+`--status` accepte aussi `draft`/`pending`/`private` si vous voulez repasser
+en arrière.
+
 ## Points d'attention SEO / légaux
 
 - Publier le même contenu sur deux domaines crée du contenu dupliqué. Pensez
