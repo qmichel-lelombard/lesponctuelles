@@ -22,9 +22,16 @@ import json
 import mimetypes
 import os
 import sys
+import unicodedata
 
 import requests
 from requests.auth import HTTPBasicAuth
+
+
+def _ascii_filename(filename):
+    normalized = unicodedata.normalize("NFKD", filename)
+    ascii_name = normalized.encode("ascii", "ignore").decode("ascii")
+    return ascii_name or "image"
 
 
 def get_auth():
@@ -63,7 +70,7 @@ def upload_media(base_url, auth, session, file_path):
         resp = session.post(
             f"{base_url}/wp-json/wp/v2/media",
             headers={
-                "Content-Disposition": f'attachment; filename="{filename}"',
+                "Content-Disposition": f'attachment; filename="{_ascii_filename(filename)}"',
                 "Content-Type": content_type,
             },
             data=f.read(),
