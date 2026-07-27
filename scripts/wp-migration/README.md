@@ -23,7 +23,16 @@ votre poste ou un serveur ayant accès aux deux domaines.
   authentification n'est nécessaire côté source puisqu'on ne lit que du
   contenu déjà public.
 - Pour l'étape WooCommerce : accès SSH au serveur de `lesponctuelles.be` avec
-  [WP-CLI](https://wp-cli.org/) installé.
+  [WP-CLI](https://wp-cli.org/) installé. Si le SSH n'est pas disponible
+  (hébergement mutualisé sans cette option), installez et configurez
+  WooCommerce manuellement depuis wp-admin (Extensions > Ajouter >
+  WooCommerce > Activer, puis suivre l'assistant de configuration) — le
+  script `setup_woocommerce.sh` reste utile comme aide-mémoire des réglages
+  à vérifier.
+- Pour l'export/import des **produits** (étape 4) : l'API WooCommerce exige
+  une authentification même en lecture, donc un Application Password est
+  aussi nécessaire côté `lesponctuelles.com`, pour un compte ayant la
+  capacité `manage_woocommerce`.
 
 ## 1. Exporter une sélection d'articles depuis lesponctuelles.com
 
@@ -86,6 +95,44 @@ devise: EUR, séparateurs de prix). Il affiche ensuite la liste des étapes à
 finaliser manuellement dans wp-admin (paiement, livraison, TVA, pages
 légales obligatoires, thème, produits) — voir la sortie du script pour le
 détail.
+
+## 4. Copier des produits WooCommerce de lesponctuelles.com vers lesponctuelles.be
+
+À faire une fois WooCommerce actif sur `lesponctuelles.be` (étape 3).
+
+```bash
+export WP_SOURCE_USER="votre-identifiant-sur-.com"
+export WP_SOURCE_APP_PASSWORD="xxxx xxxx xxxx xxxx xxxx xxxx"
+
+python3 export_products.py --source https://lesponctuelles.com \
+    --output-dir ./export-products
+```
+
+Filtres disponibles : `--category <slug>` (catégorie de produit),
+`--skus a,b,c` (liste précise de références). Sans filtre, tous les produits
+publiés sont exportés. Le résultat inclut les images, les catégories/tags,
+et pour les produits variables (déclinaisons) leurs attributs et variations.
+
+Puis import (réutilise les mêmes `WP_DEST_USER` / `WP_DEST_APP_PASSWORD` que
+pour les articles, à condition que ce compte ait la capacité
+`manage_woocommerce`) :
+
+```bash
+python3 import_products.py --dest https://lesponctuelles.be \
+    --input-dir ./export-products --status draft
+```
+
+- Comme pour les articles, les produits sont créés en **brouillon** par
+  défaut : vérifiez prix, stock, images et déclinaisons dans wp-admin avant
+  de passer en `publish`.
+- Un produit dont le SKU (ou, à défaut, le slug) existe déjà sur la
+  destination est ignoré, sauf `--overwrite`.
+- Un `import_log.json` est généré dans `./export-products/` avec la
+  correspondance ancien lien -> nouveau lien.
+
+**Limite connue** : les avis produits (reviews) et l'historique des ventes
+ne sont pas repris — seuls la fiche produit, les prix, le stock, les
+catégories/tags, les images et les déclinaisons le sont.
 
 ## Points d'attention SEO / légaux
 
