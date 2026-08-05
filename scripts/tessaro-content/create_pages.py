@@ -52,9 +52,17 @@ def get_auth():
     return HTTPBasicAuth(user, password)
 
 
+def _raise_for_status_verbose(resp):
+    if resp.status_code >= 400:
+        raise SystemExit(
+            f"HTTP {resp.status_code} sur {resp.url}\n"
+            f"Reponse du serveur : {resp.text[:1000]}"
+        )
+
+
 def find_page_id_by_slug(base_url, auth, session, slug):
     resp = session.get(f"{base_url}/wp-json/wp/v2/pages", params={"slug": slug, "status": "any"}, auth=auth)
-    resp.raise_for_status()
+    _raise_for_status_verbose(resp)
     data = resp.json()
     return data[0]["id"] if data else None
 
