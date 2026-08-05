@@ -4,6 +4,12 @@
    sur fond de photos de chantier. Variables modifiables ci-dessous. */
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Quicksand:wght@500;700&display=swap');
 
+/* Evite le decalage horizontal cause par les sections plein ecran (100vw)
+   quand la barre de defilement verticale reduit la largeur reelle de la
+   page. Limite a cette page (ce style n'est charge que sur les pages qui
+   l'incluent), donc sans impact ailleurs sur le site. */
+body { overflow-x: hidden; }
+
 .gt-page {
   --gt-black: #111111;
   --gt-white: #ffffff;
