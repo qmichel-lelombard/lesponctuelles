@@ -22,12 +22,20 @@ import argparse
 import os
 import re
 import sys
+import urllib.parse
 
 import requests
 from requests.auth import HTTPBasicAuth
 
 from generate_placeholders import ensure_images
-from pages_config import CONTACT_FORM_SHORTCODE, CONTACT_INFO, PAGES
+from pages_config import (
+    CONTACT_FORM_SHORTCODE,
+    CONTACT_INFO,
+    FOOTER_LOGO_URL,
+    FOOTER_MAP_QUERY,
+    FOOTER_PARTIAL,
+    PAGES,
+)
 
 IMG_URL_TOKEN_RE = re.compile(r"<!--IMGURL:([a-z0-9-]+)-->")
 CSS_PATH = os.path.join(os.path.dirname(__file__), "assets", "tessaro-pages.css")
@@ -39,6 +47,45 @@ FORM_MISSING_HTML = (
     "<code>--form-shortcode '[contact-form-7 id=\"...\" title=\"...\"]'</code> "
     "-- voir README.md.</div>"
 )
+
+FACEBOOK_ICON_SVG = (
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+    '<path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845'
+    "c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.462h-1.26c-1.243 0-1.63.771-1.63 1.562v1.878h2.773"
+    'l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z"/></svg>'
+)
+
+
+def render_footer(logo_url):
+    with open(FOOTER_PARTIAL, encoding="utf-8") as f:
+        footer_html = f.read()
+
+    if logo_url:
+        logo_html = f'<img src="{logo_url}" alt="Guillaume Tessaro" class="gt-footer-logo-img">'
+    else:
+        logo_html = '<div class="gt-footer-logo">Guillaume<br>Tessaro</div>'
+
+    if CONTACT_INFO["facebook_url"]:
+        facebook_html = (
+            f'<a class="gt-footer-fb" href="{CONTACT_INFO["facebook_url"]}" '
+            'target="_blank" rel="noopener" aria-label="Facebook">'
+            f"{FACEBOOK_ICON_SVG}</a>"
+        )
+    else:
+        facebook_html = ""
+
+    tokens = {
+        "<!--FOOTER_LOGO_HTML-->": logo_html,
+        "<!--FOOTER_FACEBOOK_HTML-->": facebook_html,
+        "<!--FOOTER_MAP_QUERY-->": urllib.parse.quote(FOOTER_MAP_QUERY),
+        "<!--CONTACT_PHONE_TEL-->": CONTACT_INFO["phone_tel"],
+        "<!--CONTACT_PHONE_DISPLAY-->": CONTACT_INFO["phone_display"],
+        "<!--CONTACT_ADDRESS_SHORT-->": CONTACT_INFO["address_short"],
+        "<!--CONTACT_HOURS_SHORT-->": CONTACT_INFO["hours_short"],
+    }
+    for token, value in tokens.items():
+        footer_html = footer_html.replace(token, value)
+    return footer_html
 
 
 def get_auth():
@@ -152,6 +199,7 @@ def main():
     parser.add_argument("--parent-slug", default=None, help="Slug d'une page existante sous laquelle rattacher ces pages (ex: 'services'), si besoin")
     parser.add_argument("--overwrite", action="store_true", help="Met a jour la page si une page du meme slug existe deja, au lieu de l'ignorer")
     parser.add_argument("--form-shortcode", default=None, help="Shortcode du formulaire de contact (ex: Contact Form 7) a inserer sur la page Contact ; surcharge CONTACT_FORM_SHORTCODE de pages_config.py")
+    parser.add_argument("--logo-url", default=None, help="URL du fichier logo a utiliser dans le pied de page ; surcharge FOOTER_LOGO_URL de pages_config.py")
     args = parser.parse_args()
 
     base_url = args.dest.rstrip("/")
@@ -166,6 +214,7 @@ def main():
         css = f.read()
 
     form_shortcode = args.form_shortcode or CONTACT_FORM_SHORTCODE or FORM_MISSING_HTML
+    logo_url = args.logo_url or FOOTER_LOGO_URL
     extra_tokens = {
         "<!--FORMSHORTCODE-->": form_shortcode,
         "<!--CONTACT_PHONE_TEL-->": CONTACT_INFO["phone_tel"],
@@ -173,6 +222,7 @@ def main():
         "<!--CONTACT_EMAIL-->": CONTACT_INFO["email"],
         "<!--CONTACT_ADDRESS-->": CONTACT_INFO["address"],
         "<!--CONTACT_HOURS-->": CONTACT_INFO["hours"],
+        "<!--SITE_FOOTER-->": render_footer(logo_url),
     }
 
     parent_id = None

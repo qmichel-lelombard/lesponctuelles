@@ -66,14 +66,31 @@ PAGES = [
     },
 ]
 
-# Coordonnees affichees sur la page Contact -- ajustez si elles changent.
+# Coordonnees affichees sur la page Contact et dans le pied de page commun
+# -- ajustez si elles changent.
 CONTACT_INFO = {
     "phone_display": "0475 30 84 49",
     "phone_tel": "+32475308449",
     "email": "tessaro.guillaume@hotmail.com",
     "address": "7850 Enghien, Belgique",
     "hours": "Lundi - Samedi : 8h00 - 17h00",
+    # Versions courtes utilisees dans le pied de page (comme sur la page d'accueil)
+    "address_short": "7850 Enghien",
+    "hours_short": "Lu-Sa 8:00 - 17:00",
+    "facebook_url": "https://www.facebook.com/tessaro.guillaume/",
 }
+
+# Adresse utilisee pour centrer la carte du pied de page (repere approximatif,
+# sans numero de rue -- coherent avec la carte de la page d'accueil).
+FOOTER_MAP_QUERY = "Chaussée d'Ath, 7850 Enghien"
+
+FOOTER_PARTIAL = os.path.join(BASE_DIR, "content", "_footer.html")
+
+# URL du fichier logo (une fois televerse dans wp-admin > Medias) a utiliser
+# dans le pied de page. Laissez vide pour afficher "Guillaume Tessaro" en
+# texte a la place (pas de pictogramme). Peut aussi etre fourni via
+# --logo-url.
+FOOTER_LOGO_URL = "https://guillaumetessaro.be/wp-content/uploads/2025/08/logo-guillaume.png"
 
 # Shortcode du formulaire de contact (ex: Contact Form 7) a inserer sur la
 # page Contact, une fois le plugin installe et le formulaire cree dans

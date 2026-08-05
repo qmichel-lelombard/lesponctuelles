@@ -98,8 +98,10 @@ python3 create_pages.py --dest https://guillaumetessaro.be --parent-slug service
 ## Page Contact et formulaire
 
 La page `/contact/` affiche les coordonnees (telephone, email, adresse,
-horaires -- modifiables dans `CONTACT_INFO` en haut de `pages_config.py`),
-un plan Google Maps, et un emplacement pour un vrai formulaire de contact.
+horaires -- modifiables dans `CONTACT_INFO` en haut de `pages_config.py`)
+et un emplacement pour un vrai formulaire de contact. La carte Google Maps
+est fournie par le pied de page commun (voir section suivante), affiche en
+bas de cette page comme des deux autres.
 
 Ce depot ne peut pas creer le formulaire lui-meme (aucun plugin de formulaire
 n'installe de point d'entree API par defaut). Marche a suivre recommandee,
@@ -133,6 +135,29 @@ Contact Form 7 (bordures arrondies, bouton noir assorti au reste du site) ;
 si vous utilisez WPForms ou le formulaire natif d'Elementor Pro a la place,
 l'apparence de base restera correcte mais un ajustement fin du CSS peut etre
 necessaire selon les classes HTML propres a ce plugin.
+
+## Pied de page commun (carte + logo + coordonnees + Facebook)
+
+Les trois pages se terminent par le meme pied de page, reproduit de celui
+de la page d'accueil : une carte Google Maps plein ecran, puis une barre
+avec le logo a gauche, telephone/adresse/horaires au centre, et un lien
+Facebook a droite. Il est defini une seule fois dans `content/_footer.html`
+et ajoute automatiquement en bas de chaque page par `create_pages.py`
+(token `<!--SITE_FOOTER-->`) -- pas besoin de le dupliquer si vous ajoutez
+une nouvelle page.
+
+- **Logo** : `FOOTER_LOGO_URL` dans `pages_config.py` pointe vers
+  `https://guillaumetessaro.be/wp-content/uploads/2025/08/logo-guillaume.png`.
+  Si vous changez de logo, televersez le nouveau fichier dans wp-admin >
+  Medias et mettez a jour cette URL (ou passez `--logo-url` en ligne de
+  commande). Laissez `FOOTER_LOGO_URL = ""` pour afficher "Guillaume Tessaro"
+  en texte a la place, si le fichier n'est pas disponible.
+- **Facebook** : `CONTACT_INFO["facebook_url"]` (actuellement
+  `https://www.facebook.com/tessaro.guillaume/`). Laissez vide pour ne pas
+  afficher l'icone.
+- **Carte** : centree sur `FOOTER_MAP_QUERY` (`Chaussée d'Ath, 7850 Enghien`,
+  memes reperes que la carte de la page d'accueil), modifiable dans
+  `pages_config.py`.
 
 ## Remplacer les photos placeholder par les vraies photos
 
