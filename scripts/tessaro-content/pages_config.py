@@ -54,4 +54,29 @@ PAGES = [
              "alt": "Pose de robinetterie", "color": (52, 112, 140)},
         ],
     },
+    {
+        "slug": "contact",
+        "title": "Contact",
+        "content_file": os.path.join(BASE_DIR, "content", "contact.html"),
+        "excerpt": (
+            "Contactez Guillaume Tessaro, plombier-chauffagiste independant a "
+            "Enghien : telephone, adresse, horaires et formulaire de contact."
+        ),
+        "images": [],
+    },
 ]
+
+# Coordonnees affichees sur la page Contact -- ajustez si elles changent.
+CONTACT_INFO = {
+    "phone_display": "0475 30 84 49",
+    "phone_tel": "+32475308449",
+    "email": "tessaro.guillaume@hotmail.com",
+    "address": "7850 Enghien, Belgique",
+    "hours": "Lundi - Samedi : 8h00 - 17h00",
+}
+
+# Shortcode du formulaire de contact (ex: Contact Form 7) a inserer sur la
+# page Contact, une fois le plugin installe et le formulaire cree dans
+# wp-admin. Laissez vide pour afficher un message d'attente a la place.
+# Peut aussi etre fourni via l'option --form-shortcode de create_pages.py.
+CONTACT_FORM_SHORTCODE = ""

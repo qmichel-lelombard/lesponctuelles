@@ -1,10 +1,11 @@
-# Contenu "Chauffage" et "Sanitaire" -- guillaumetessaro.be
+# Contenu "Chauffage", "Sanitaire" et "Contact" -- guillaumetessaro.be
 
-Boite a outils pour ajouter deux pages dediees (Chauffage, Sanitaire) au site
-one-page WordPress de Guillaume Tessaro, avec du texte redige, une mise en
-page moderne (hero plein ecran, sections alternees photo/texte, bandeau zone
-d'intervention, CTA avec le numero de telephone) inspiree du logo et de la
-page d'accueil, et des photos placeholder faciles a remplacer ensuite.
+Boite a outils pour ajouter trois pages dediees (Chauffage, Sanitaire,
+Contact) au site one-page WordPress de Guillaume Tessaro, avec du texte
+redige, une mise en page moderne (hero plein ecran, sections alternees
+photo/texte, bandeau zone d'intervention, CTA avec le numero de telephone)
+inspiree du logo et de la page d'accueil, et des photos placeholder faciles
+a remplacer ensuite.
 
 ## Design
 
@@ -59,12 +60,13 @@ python3 create_pages.py --dest https://guillaumetessaro.be --status draft
 ```
 
 Le script :
-1. Genere dans `media/` six photos placeholder par page (visuels simples,
-   avec le sujet ecrit dessus -- pas de vraies photos) si elles n'existent
-   pas deja.
+1. Genere dans `media/` six photos placeholder par page Chauffage/Sanitaire
+   (visuels simples, avec le sujet ecrit dessus -- pas de vraies photos) si
+   elles n'existent pas deja. La page Contact n'a pas de photo.
 2. Televerse ces images dans la mediatheque WordPress.
-3. Cree les pages `/chauffage/` et `/sanitaire/` en **brouillon** avec le
-   texte de `content/chauffage.html` et `content/sanitaire.html`.
+3. Cree les pages `/chauffage/`, `/sanitaire/` et `/contact/` en
+   **brouillon** avec le texte de `content/chauffage.html`,
+   `content/sanitaire.html` et `content/contact.html`.
 
 Une page dont le slug existe deja est **ignoree** par defaut. Ajoutez
 `--overwrite` pour la mettre a jour (utile si vous relancez le script apres
@@ -86,13 +88,51 @@ python3 create_pages.py --dest https://guillaumetessaro.be --parent-slug service
 - Les pages sont creees en **brouillon** : relisez-les dans wp-admin avant de
   passer en `publish`.
 - Le script ne touche pas au menu de navigation : ajoutez manuellement des
-  liens vers `/chauffage/` et `/sanitaire/` dans Apparence > Menus, et/ou des
-  liens "En savoir plus" depuis les sections Chauffage / Sanitaire de la page
-  d'accueil actuelle.
+  liens vers `/chauffage/`, `/sanitaire/` et `/contact/` dans Apparence >
+  Menus, et/ou des liens "En savoir plus" depuis les sections correspondantes
+  de la page d'accueil actuelle.
 - Les boutons "Appeler" utilisent le numero `tel:+32475308449` ; le bouton
-  "Nous contacter" renvoie vers la page d'accueil. Adaptez ces liens dans
-  `content/chauffage.html` et `content/sanitaire.html` si besoin (ex: vers
-  une ancre `#contact` precise ou une page de contact dediee).
+  "Nous contacter" des pages Chauffage/Sanitaire renvoie vers `/contact/`.
+  Adaptez ces liens dans les fichiers `content/*.html` si besoin.
+
+## Page Contact et formulaire
+
+La page `/contact/` affiche les coordonnees (telephone, email, adresse,
+horaires -- modifiables dans `CONTACT_INFO` en haut de `pages_config.py`),
+un plan Google Maps, et un emplacement pour un vrai formulaire de contact.
+
+Ce depot ne peut pas creer le formulaire lui-meme (aucun plugin de formulaire
+n'installe de point d'entree API par defaut). Marche a suivre recommandee,
+avec **Contact Form 7** (gratuit, le plus repandu, compatible OceanWP) :
+
+1. Dans wp-admin : Extensions > Ajouter > rechercher "Contact Form 7" >
+   Installer > Activer.
+2. Un premier formulaire est cree automatiquement (menu "Contact" dans la
+   barre laterale). Ouvrez-le et adaptez les champs si besoin (Nom, Email,
+   Telephone, Message).
+3. Dans l'onglet **"Mail"** du formulaire, verifiez/renseignez le champ
+   "To:" avec `tessaro.guillaume@hotmail.com` (l'adresse qui doit recevoir
+   les messages).
+4. Copiez le shortcode affiche en haut de la page (ex:
+   `[contact-form-7 id="12" title="Contact form 1"]`).
+5. Relancez le script en passant ce shortcode :
+   ```bash
+   python3 create_pages.py --dest https://guillaumetessaro.be --status draft \
+     --overwrite --form-shortcode '[contact-form-7 id="12" title="Contact form 1"]'
+   ```
+   Vous pouvez aussi coller ce shortcode une fois pour toutes dans
+   `CONTACT_FORM_SHORTCODE` (`pages_config.py`) pour ne plus avoir a le
+   repasser en argument.
+
+Tant qu'aucun shortcode n'est renseigne, la page Contact affiche un encadre
+jaune expliquant que le formulaire n'est pas encore configure -- pas
+d'erreur, juste un rappel visuel.
+
+Le CSS de `assets/tessaro-pages.css` habille deja les champs generes par
+Contact Form 7 (bordures arrondies, bouton noir assorti au reste du site) ;
+si vous utilisez WPForms ou le formulaire natif d'Elementor Pro a la place,
+l'apparence de base restera correcte mais un ajustement fin du CSS peut etre
+necessaire selon les classes HTML propres a ce plugin.
 
 ## Remplacer les photos placeholder par les vraies photos
 
@@ -166,7 +206,15 @@ visuel commun (couleurs, typo, mise en page) est dans
   controle periodique en Belgique sans donner de frequence precise (les regles
   different selon combustible et region/organisme agree) -- completez avec
   votre situation exacte si vous le souhaitez.
-- **Numero de telephone** : `0475 30 84 49`, repris du pied de page du site --
-  verifiez qu'il est toujours exact avant publication.
+- **Numero de telephone / email** : `0475 30 84 49` et
+  `tessaro.guillaume@hotmail.com` -- verifiez qu'ils sont toujours exacts
+  avant publication.
+- **Adresse** : seule la ville "7850 Enghien, Belgique" est affichee (pas de
+  numero de rue), pour rester coherent avec le pied de page actuel du site.
+  Completez `CONTACT_INFO["address"]` dans `pages_config.py` si vous voulez
+  une adresse plus precise sur la carte.
+- **Formulaire de contact** : installez et configurez Contact Form 7 (voir
+  section ci-dessus) avant de publier la page Contact, sinon elle affichera
+  un encadre "formulaire non configure" a la place.
 - **Photos** : si vous utilisez `fetch_stock_photos.py`, pensez a les
   remplacer par de vraies photos de chantier avant de publier durablement.

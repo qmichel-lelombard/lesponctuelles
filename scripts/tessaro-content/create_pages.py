@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cree (ou met a jour) les pages "Chauffage" et "Sanitaire" sur un site WordPress.
+"""Cree (ou met a jour) les pages "Chauffage", "Sanitaire" et "Contact" sur un site WordPress.
 
 S'authentifie avec un Application Password WordPress (wp-admin > Utilisateurs
 > Profil > Mots de passe d'application), envoye en HTTP Basic Auth sur HTTPS.
@@ -8,8 +8,10 @@ d'environnement WP_DEST_APP_PASSWORD.
 
 Genere localement de simples photos placeholder (voir
 generate_placeholders.py), les televerse dans la mediatheque WordPress, puis
-cree les deux pages en statut "draft" (brouillon) par defaut afin de les
-relire dans wp-admin avant publication.
+cree les pages en statut "draft" (brouillon) par defaut afin de les relire
+dans wp-admin avant publication. La page Contact affiche les coordonnees
+(pages_config.py > CONTACT_INFO) et un emplacement pour le shortcode d'un
+formulaire de contact (voir --form-shortcode).
 
 Exemple :
   export WP_DEST_USER=admin
@@ -25,10 +27,18 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 from generate_placeholders import ensure_images
-from pages_config import PAGES
+from pages_config import CONTACT_FORM_SHORTCODE, CONTACT_INFO, PAGES
 
 IMG_URL_TOKEN_RE = re.compile(r"<!--IMGURL:([a-z0-9-]+)-->")
 CSS_PATH = os.path.join(os.path.dirname(__file__), "assets", "tessaro-pages.css")
+
+FORM_MISSING_HTML = (
+    '<div class="gt-form-missing">Formulaire de contact non configure pour le '
+    "moment. Installez Contact Form 7 (ou un autre plugin de formulaire), "
+    "creez le formulaire dans wp-admin, puis relancez ce script avec "
+    "<code>--form-shortcode '[contact-form-7 id=\"...\" title=\"...\"]'</code> "
+    "-- voir README.md.</div>"
+)
 
 
 def get_auth():
@@ -73,7 +83,7 @@ def upload_media(base_url, auth, session, file_path, alt_text):
     return media
 
 
-def render_content(page, media_by_key, css):
+def render_content(page, media_by_key, css, extra_tokens=None):
     with open(page["content_file"], encoding="utf-8") as f:
         template = f.read()
 
@@ -81,11 +91,13 @@ def render_content(page, media_by_key, css):
         return media_by_key[match.group(1)]["source_url"]
 
     html = IMG_URL_TOKEN_RE.sub(replace, template)
+    for token, value in (extra_tokens or {}).items():
+        html = html.replace(token, value)
     style_block = f"<style>\n{css}\n</style>\n"
     return html.replace("<!-- wp:html -->", "<!-- wp:html -->\n" + style_block, 1)
 
 
-def create_or_update_page(base_url, auth, session, page, parent_id, status, overwrite, media_dir, css):
+def create_or_update_page(base_url, auth, session, page, parent_id, status, overwrite, media_dir, css, extra_tokens):
     existing_id = find_page_id_by_slug(base_url, auth, session, page["slug"])
     if existing_id and not overwrite:
         print(f"  skip (already exists, id={existing_id}): /{page['slug']}/ -- use --overwrite to update")
@@ -96,8 +108,7 @@ def create_or_update_page(base_url, auth, session, page, parent_id, status, over
         path = os.path.join(media_dir, image["filename"])
         media_by_key[image["key"]] = upload_media(base_url, auth, session, path, image["alt"])
 
-    content = render_content(page, media_by_key, css)
-    featured_media_id = media_by_key[page["images"][0]["key"]]["id"]
+    content = render_content(page, media_by_key, css, extra_tokens)
 
     payload = {
         "title": page["title"],
@@ -105,8 +116,9 @@ def create_or_update_page(base_url, auth, session, page, parent_id, status, over
         "content": content,
         "excerpt": page["excerpt"],
         "status": status,
-        "featured_media": featured_media_id,
     }
+    if page["images"]:
+        payload["featured_media"] = media_by_key[page["images"][0]["key"]]["id"]
     if parent_id:
         payload["parent"] = parent_id
 
@@ -131,6 +143,7 @@ def main():
     parser.add_argument("--status", default="draft", choices=["draft", "publish", "pending"], help="Statut de creation (defaut: draft, a relire avant publication)")
     parser.add_argument("--parent-slug", default=None, help="Slug d'une page existante sous laquelle rattacher ces pages (ex: 'services'), si besoin")
     parser.add_argument("--overwrite", action="store_true", help="Met a jour la page si une page du meme slug existe deja, au lieu de l'ignorer")
+    parser.add_argument("--form-shortcode", default=None, help="Shortcode du formulaire de contact (ex: Contact Form 7) a inserer sur la page Contact ; surcharge CONTACT_FORM_SHORTCODE de pages_config.py")
     args = parser.parse_args()
 
     base_url = args.dest.rstrip("/")
@@ -144,6 +157,16 @@ def main():
     with open(CSS_PATH, encoding="utf-8") as f:
         css = f.read()
 
+    form_shortcode = args.form_shortcode or CONTACT_FORM_SHORTCODE or FORM_MISSING_HTML
+    extra_tokens = {
+        "<!--FORMSHORTCODE-->": form_shortcode,
+        "<!--CONTACT_PHONE_TEL-->": CONTACT_INFO["phone_tel"],
+        "<!--CONTACT_PHONE_DISPLAY-->": CONTACT_INFO["phone_display"],
+        "<!--CONTACT_EMAIL-->": CONTACT_INFO["email"],
+        "<!--CONTACT_ADDRESS-->": CONTACT_INFO["address"],
+        "<!--CONTACT_HOURS-->": CONTACT_INFO["hours"],
+    }
+
     parent_id = None
     if args.parent_slug:
         parent_id = find_page_id_by_slug(base_url, auth, session, args.parent_slug)
@@ -152,7 +175,7 @@ def main():
 
     print(f"Creation/mise a jour de {len(PAGES)} page(s) sur {base_url} en '{args.status}' ...")
     for page in PAGES:
-        create_or_update_page(base_url, auth, session, page, parent_id, args.status, args.overwrite, media_dir, css)
+        create_or_update_page(base_url, auth, session, page, parent_id, args.status, args.overwrite, media_dir, css, extra_tokens)
 
     print("Termine. Relisez les pages dans wp-admin avant de passer en 'publish', et ajoutez-les a votre menu.")
 
