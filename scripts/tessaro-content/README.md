@@ -136,6 +136,58 @@ si vous utilisez WPForms ou le formulaire natif d'Elementor Pro a la place,
 l'apparence de base restera correcte mais un ajustement fin du CSS peut etre
 necessaire selon les classes HTML propres a ce plugin.
 
+## Ajouter les pages au menu de navigation
+
+`add_menu_links.py` ajoute Chauffage, Sanitaire et Contact au menu de
+navigation existant via l'API REST des menus WordPress (natif depuis
+WP 5.9) -- pas besoin d'y toucher a la main dans Apparence > Menus.
+
+```bash
+python3 add_menu_links.py --dest https://guillaumetessaro.be
+```
+
+Sans `--menu-id`, le script liste les menus existants (s'il n'y en a qu'un,
+il l'utilise automatiquement). S'il y en a plusieurs, relancez avec l'id
+affiche :
+
+```bash
+python3 add_menu_links.py --dest https://guillaumetessaro.be --menu-id 3
+```
+
+Les pages deja presentes dans le menu sont ignorees (pas de doublon si vous
+relancez). Les elements sont ajoutes a la fin : reordonnez-les ensuite dans
+Apparence > Menus par glisser-deposer si besoin.
+
+## Page d'accueil (Elementor) -- liens et bords arrondis
+
+La page d'accueil est construite avec **Elementor**, qui stocke son contenu
+dans un format different (JSON prive `_elementor_data`) des pages classiques
+creees par `create_pages.py`. Ce depot ne modifie donc pas la page d'accueil
+automatiquement -- ce serait trop risque de le faire a l'aveugle par API
+sans jamais avoir vu la structure reelle de la page. Ces reglages se font a
+la main dans l'editeur Elementor (rapide, quelques clics) :
+
+**Liens vers les pages** : ouvrez la page d'accueil avec Elementor
+("Modifier avec Elementor"), cliquez sur chaque bouton/bloc concerne
+(section Chauffage du hero, section Sanitaire du hero, bouton "Contact" de
+la section a propos), onglet **Contenu > Lien**, et collez l'URL
+correspondante :
+- `https://guillaumetessaro.be/chauffage/`
+- `https://guillaumetessaro.be/sanitaire/`
+- `https://guillaumetessaro.be/contact/`
+
+**Bords arrondis** (pour matcher le style des nouvelles pages) : les
+boutons utilisent `border-radius: 8px`, les images `border-radius: 10px`
+(voir `assets/tessaro-pages.css`). Le plus rapide pour un reglage
+coherent sur tout le site : menu hamburger Elementor (en haut a gauche) >
+**Parametres du site > Style du theme** :
+- Section **Boutons** : Bordure > Rayon = `8px` (tous les cotes).
+- Section **Images** (si presente) : Rayon = `10px`.
+
+Si vous preferez ajuster uniquement la page d'accueil sans toucher au style
+global : cliquez sur chaque widget Bouton ou Image individuellement, onglet
+**Style > Bordure > Rayon**, et entrez la meme valeur.
+
 ## Pied de page commun (carte + logo + coordonnees + Facebook)
 
 Les trois pages se terminent par le meme pied de page, reproduit de celui
