@@ -41,7 +41,18 @@ _RESAMPLE = getattr(getattr(Image, "Resampling", None), "LANCZOS", None) or Imag
 #   hero-sanitaire, installation-sanitaire, renovation-sdb, chauffe-eau,
 #   depannage-plomberie, robinetterie
 STOCK_PHOTO_URLS = {
-    # "hero-chauffage": "https://images.unsplash.com/photo-xxxxxxxx",
+    "hero-chauffage": "https://images.pexels.com/photos/29226620/pexels-photo-29226620.jpeg",
+    "chaudiere-condensation": "https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg",
+    "pompe-a-chaleur": "https://images.pexels.com/photos/20046692/pexels-photo-20046692.jpeg",
+    "entretien-chaudiere": "https://images.pexels.com/photos/34054464/pexels-photo-34054464.jpeg",
+    "radiateurs": "https://images.pexels.com/photos/5691521/pexels-photo-5691521.jpeg",
+    "depannage-chauffage": "https://images.pexels.com/photos/33531820/pexels-photo-33531820.jpeg",
+    "hero-sanitaire": "https://images.pexels.com/photos/7587731/pexels-photo-7587731.jpeg",
+    "installation-sanitaire": "https://images.pexels.com/photos/5691486/pexels-photo-5691486.jpeg",
+    "renovation-sdb": "https://images.pexels.com/photos/8146338/pexels-photo-8146338.jpeg",
+    "chauffe-eau": "https://images.pexels.com/photos/29206492/pexels-photo-29206492.jpeg",
+    "depannage-plomberie": "https://images.pexels.com/photos/16509869/pexels-photo-16509869.jpeg",
+    "robinetterie": "https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg",
 }
 
 
