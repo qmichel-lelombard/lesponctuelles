@@ -1,8 +1,41 @@
 # Contenu "Chauffage" et "Sanitaire" -- guillaumetessaro.be
 
 Boite a outils pour ajouter deux pages dediees (Chauffage, Sanitaire) au site
-one-page WordPress de Guillaume Tessaro, avec du texte redige et des photos
-placeholder faciles a remplacer ensuite.
+one-page WordPress de Guillaume Tessaro, avec du texte redige, une mise en
+page moderne (hero plein ecran, sections alternees photo/texte, bandeau zone
+d'intervention, CTA avec le numero de telephone) inspiree du logo et de la
+page d'accueil, et des photos placeholder faciles a remplacer ensuite.
+
+## Design
+
+- **Typo** : titres en Oswald (condensee, gras, majuscules -- comme le logo
+  "GUILLAUME TESSARO"), texte courant en Quicksand (arrondie), chargees
+  depuis Google Fonts.
+- **Couleurs** : noir / blanc / gris, comme la page d'accueil -- variables
+  CSS modifiables en haut de `assets/tessaro-pages.css` (`--gt-black`,
+  `--gt-white`, `--gt-gray-bg`, `--gt-gray-text`).
+- **Structure** : hero plein ecran avec photo + titre, sections alternees
+  photo/texte par theme (installation, entretien, depannage...), bandeau
+  noir "Zone d'intervention", bandeau final d'appel a l'action.
+- Le CSS est integre directement dans le contenu de chaque page (un seul
+  bloc `<style>` embarque) : aucune etape manuelle supplementaire, tout est
+  pousse par le script.
+- Le vrai numero de telephone (0475 30 84 49, releve sur le pied de page du
+  site) est utilise dans les boutons d'appel -- verifiez qu'il est toujours
+  exact avant publication.
+
+### Important -- Elementor / OceanWP
+
+Le site utilise le theme OceanWP avec la page d'accueil construite sous
+Elementor. Ces deux pages sont creees comme des pages WordPress classiques
+(le HTML/CSS ci-dessus est mis directement dans le contenu de la page) : ca
+fonctionne tres bien tant que vous les editez avec l'editeur natif
+(Gutenberg) ou que vous ne touchez pas au contenu. **N'ouvrez pas ces pages
+avec "Modifier avec Elementor"** sans le vouloir : Elementor prendrait alors
+le controle de l'affichage et remplacerait ce contenu par une page vide a
+reconstruire depuis zero. Si vous voulez a terme les reconstruire dans
+Elementor pour les editer visuellement, le meme code HTML/CSS peut etre
+colle tel quel dans un widget "HTML" Elementor.
 
 Ces scripts ne s'executent pas depuis cet environnement (pas d'acces reseau
 vers guillaumetessaro.be depuis ici) : lancez-les depuis votre poste ou un
@@ -56,10 +89,10 @@ python3 create_pages.py --dest https://guillaumetessaro.be --parent-slug service
   liens vers `/chauffage/` et `/sanitaire/` dans Apparence > Menus, et/ou des
   liens "En savoir plus" depuis les sections Chauffage / Sanitaire de la page
   d'accueil actuelle.
-- Le bouton de contact en bas de chaque page pointe vers `/#contact` (l'ancre
-  de la section contact de la page d'accueil one-page). Adaptez ce lien si
-  votre section contact utilise une autre ancre, ou si vous creez une page de
-  contact dediee.
+- Les boutons "Appeler" utilisent le numero `tel:+32475308449` ; le bouton
+  "Nous contacter" renvoie vers la page d'accueil. Adaptez ces liens dans
+  `content/chauffage.html` et `content/sanitaire.html` si besoin (ex: vers
+  une ancre `#contact` precise ou une page de contact dediee).
 
 ## Remplacer les photos placeholder par les vraies photos
 
@@ -77,12 +110,15 @@ Deux options :
 
 ## Adapter le texte
 
-Le texte de chaque page est dans `content/chauffage.html` et
-`content/sanitaire.html`, au format blocs Gutenberg (les commentaires
-`<!-- wp:... -->` sont conserves pour rester editables normalement dans
-l'editeur WordPress). Les lignes `<!--IMG:cle-->` marquent l'emplacement des
-photos et sont remplacees automatiquement par le script -- ne les supprimez
-pas, deplacez-les si besoin.
+Le contenu de chaque page est dans `content/chauffage.html` et
+`content/sanitaire.html` : un unique bloc Gutenberg "Custom HTML"
+(`<!-- wp:html -->`) contenant la structure de la page (hero, sections,
+zone d'intervention, CTA). Les jetons `<!--IMGURL:cle-->` marquent
+l'emplacement des photos (dans un `src=` ou un `background-image:url(...)`)
+et sont remplaces automatiquement par le script avec l'URL reelle de
+l'image televersee -- ne les supprimez pas, deplacez-les si besoin. Le style
+visuel commun (couleurs, typo, mise en page) est dans
+`assets/tessaro-pages.css` et s'applique aux deux pages.
 
 ## A verifier avant publication
 

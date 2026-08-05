@@ -1,0 +1,155 @@
+/* Design des pages Chauffage / Sanitaire -- inspire du logo et de la page
+   d'accueil : typo condensee bold pour les titres (comme le logo "GUILLAUME
+   TESSARO"), typo arrondie pour le texte courant, palette noir/blanc/gris
+   sur fond de photos de chantier. Variables modifiables ci-dessous. */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Quicksand:wght@500;700&display=swap');
+
+.gt-page {
+  --gt-black: #111111;
+  --gt-white: #ffffff;
+  --gt-gray-bg: #f4f4f4;
+  --gt-gray-text: #4a4a4a;
+  font-family: 'Quicksand', sans-serif;
+  color: #333;
+}
+.gt-page *, .gt-page *::before, .gt-page *::after { box-sizing: border-box; }
+
+.gt-hero {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+}
+.gt-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.78));
+}
+.gt-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 60px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  color: var(--gt-white);
+}
+.gt-eyebrow {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 14px;
+  opacity: .85;
+  margin-bottom: 10px;
+}
+.gt-hero h1 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 72px);
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+  color: var(--gt-white);
+}
+.gt-hero p {
+  font-size: 19px;
+  max-width: 640px;
+  margin: 0 auto 28px;
+}
+.gt-hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+.gt-btn {
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform .15s ease;
+}
+.gt-btn:hover { transform: translateY(-2px); }
+.gt-btn--dark  { background: var(--gt-black); color: var(--gt-white) !important; }
+.gt-btn--light { background: var(--gt-white); color: var(--gt-black) !important; }
+
+.gt-section { padding: 70px 20px; }
+.gt-section--alt { background: var(--gt-gray-bg); }
+
+.gt-feature {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.gt-feature.reverse { flex-direction: row-reverse; }
+.gt-feature img {
+  width: 50%;
+  border-radius: 10px;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+.gt-feature-text { flex: 1; }
+.gt-feature-text h2 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin: 0 0 14px;
+  letter-spacing: .5px;
+  color: var(--gt-black);
+}
+.gt-feature-text p { font-size: 17px; line-height: 1.6; color: var(--gt-gray-text); }
+
+.gt-zone {
+  background: var(--gt-black);
+  color: var(--gt-white);
+  padding: 60px 20px;
+  text-align: center;
+}
+.gt-zone h2 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: var(--gt-white);
+}
+.gt-zone-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.gt-zone-list li {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.25);
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 15px;
+}
+
+.gt-cta-band { background: var(--gt-white); border-top: 1px solid #eee; padding: 70px 20px; text-align: center; }
+.gt-cta-band h2 {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 34px;
+  margin-bottom: 10px;
+  color: var(--gt-black);
+}
+.gt-cta-band p { font-size: 17px; color: #555; margin-bottom: 26px; }
+
+@media (max-width: 820px) {
+  .gt-feature, .gt-feature.reverse { flex-direction: column; }
+  .gt-feature img { width: 100%; }
+  .gt-hero { min-height: 55vh; }
+}

@@ -27,7 +27,8 @@ from requests.auth import HTTPBasicAuth
 from generate_placeholders import ensure_images
 from pages_config import PAGES
 
-IMG_TOKEN_RE = re.compile(r"<!--IMG:([a-z0-9-]+)-->")
+IMG_URL_TOKEN_RE = re.compile(r"<!--IMGURL:([a-z0-9-]+)-->")
+CSS_PATH = os.path.join(os.path.dirname(__file__), "assets", "tessaro-pages.css")
 
 
 def get_auth():
@@ -72,29 +73,19 @@ def upload_media(base_url, auth, session, file_path, alt_text):
     return media
 
 
-def build_image_block(media, alt_text):
-    escaped_alt = alt_text.replace('"', "&quot;")
-    return (
-        '<!-- wp:image {"id":%d,"sizeSlug":"large","linkDestination":"none"} -->\n'
-        '<figure class="wp-block-image size-large"><img src="%s" alt="%s" class="wp-image-%d"/></figure>\n'
-        "<!-- /wp:image -->"
-    ) % (media["id"], media["source_url"], escaped_alt, media["id"])
-
-
-def render_content(page, media_by_key):
+def render_content(page, media_by_key, css):
     with open(page["content_file"], encoding="utf-8") as f:
         template = f.read()
 
     def replace(match):
-        key = match.group(1)
-        media = media_by_key[key]
-        image_spec = next(i for i in page["images"] if i["key"] == key)
-        return build_image_block(media, image_spec["alt"])
+        return media_by_key[match.group(1)]["source_url"]
 
-    return IMG_TOKEN_RE.sub(replace, template)
+    html = IMG_URL_TOKEN_RE.sub(replace, template)
+    style_block = f"<style>\n{css}\n</style>\n"
+    return html.replace("<!-- wp:html -->", "<!-- wp:html -->\n" + style_block, 1)
 
 
-def create_or_update_page(base_url, auth, session, page, parent_id, status, overwrite, media_dir):
+def create_or_update_page(base_url, auth, session, page, parent_id, status, overwrite, media_dir, css):
     existing_id = find_page_id_by_slug(base_url, auth, session, page["slug"])
     if existing_id and not overwrite:
         print(f"  skip (already exists, id={existing_id}): /{page['slug']}/ -- use --overwrite to update")
@@ -105,7 +96,7 @@ def create_or_update_page(base_url, auth, session, page, parent_id, status, over
         path = os.path.join(media_dir, image["filename"])
         media_by_key[image["key"]] = upload_media(base_url, auth, session, path, image["alt"])
 
-    content = render_content(page, media_by_key)
+    content = render_content(page, media_by_key, css)
     featured_media_id = media_by_key[page["images"][0]["key"]]["id"]
 
     payload = {
@@ -150,6 +141,9 @@ def main():
     media_dir = os.path.join(os.path.dirname(__file__), "media")
     ensure_images(media_dir)
 
+    with open(CSS_PATH, encoding="utf-8") as f:
+        css = f.read()
+
     parent_id = None
     if args.parent_slug:
         parent_id = find_page_id_by_slug(base_url, auth, session, args.parent_slug)
@@ -158,7 +152,7 @@ def main():
 
     print(f"Creation/mise a jour de {len(PAGES)} page(s) sur {base_url} en '{args.status}' ...")
     for page in PAGES:
-        create_or_update_page(base_url, auth, session, page, parent_id, args.status, args.overwrite, media_dir)
+        create_or_update_page(base_url, auth, session, page, parent_id, args.status, args.overwrite, media_dir, css)
 
     print("Termine. Relisez les pages dans wp-admin avant de passer en 'publish', et ajoutez-les a votre menu.")
 
