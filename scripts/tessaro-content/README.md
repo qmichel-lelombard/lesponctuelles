@@ -108,6 +108,42 @@ Deux options :
    `create_pages.py --overwrite`. Le script ne regenere jamais un fichier deja
    present dans `media/`, donc vos vraies photos ne seront pas ecrasees.
 
+## Utiliser des photos libres de droit en attendant les vraies photos
+
+`fetch_stock_photos.py` telecharge des photos depuis des URLs que vous
+choisissez (Unsplash, Pexels, Pixabay -- gratuites, usage commercial
+autorise, sans attribution obligatoire), les recadre automatiquement en
+1200x800 et les depose dans `media/` sous le bon nom de fichier.
+
+1. Ouvrez `fetch_stock_photos.py` et completez le dictionnaire
+   `STOCK_PHOTO_URLS` avec l'URL directe du fichier image (pas l'URL de la
+   page) pour chaque cle qui vous interesse. Suggestions de recherche :
+
+   | Cle | Fichier | Recherche suggeree |
+   |---|---|---|
+   | hero-chauffage | hero-chauffage.jpg | "heating technician", "chauffagiste" |
+   | chaudiere-condensation | chaudiere-condensation.jpg | "gas boiler installation", "chaudiere murale" |
+   | pompe-a-chaleur | pompe-a-chaleur.jpg | "heat pump outdoor unit" |
+   | entretien-chaudiere | entretien-chaudiere.jpg | "boiler maintenance technician" |
+   | radiateurs | radiateurs.jpg | "radiator installation plumber" |
+   | depannage-chauffage | depannage-chauffage.jpg | "emergency heating repair" |
+   | hero-sanitaire | hero-sanitaire.jpg | "plumber bathroom", "plombier sanitaire" |
+   | installation-sanitaire | installation-sanitaire.jpg | "bathroom plumbing installation" |
+   | renovation-sdb | renovation-sdb.jpg | "bathroom renovation" |
+   | chauffe-eau | chauffe-eau.jpg | "water heater installation" |
+   | depannage-plomberie | depannage-plomberie.jpg | "plumber fixing leak" |
+   | robinetterie | robinetterie.jpg | "faucet installation bathroom" |
+
+2. Lancez :
+   ```bash
+   python3 fetch_stock_photos.py
+   python3 create_pages.py --dest https://guillaumetessaro.be --status draft --overwrite
+   ```
+
+Ce sont des photos temporaires (pas les vrais chantiers de Guillaume) : a
+remplacer par de vraies photos des que possible, avec l'une des deux
+methodes ci-dessus.
+
 ## Adapter le texte
 
 Le contenu de chaque page est dans `content/chauffage.html` et
@@ -130,6 +166,7 @@ visuel commun (couleurs, typo, mise en page) est dans
   controle periodique en Belgique sans donner de frequence precise (les regles
   different selon combustible et region/organisme agree) -- completez avec
   votre situation exacte si vous le souhaitez.
-- **Lien de contact** (`/#contact`) et **coordonnees** (telephone, email) :
-  aucune coordonnee n'est inventee dans ce contenu ; verifiez que le bouton de
-  contact pointe bien vers la bonne section/page.
+- **Numero de telephone** : `0475 30 84 49`, repris du pied de page du site --
+  verifiez qu'il est toujours exact avant publication.
+- **Photos** : si vous utilisez `fetch_stock_photos.py`, pensez a les
+  remplacer par de vraies photos de chantier avant de publier durablement.
