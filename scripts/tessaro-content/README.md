@@ -139,6 +139,20 @@ si vous utilisez WPForms ou le formulaire natif d'Elementor Pro a la place,
 l'apparence de base restera correcte mais un ajustement fin du CSS peut etre
 necessaire selon les classes HTML propres a ce plugin.
 
+**Pourquoi le shortcode peut "se perdre" apres une modification manuelle**
+dans wp-admin : WordPress "texturise" le contenu (convertit les guillemets
+droits `"` en guillemets courbes `" "`) lors de certains passages dans
+l'editeur. Si le shortcode `[contact-form-7 id="..." ...]` se retrouve avec
+des guillemets courbes, Contact Form 7 ne reconnait plus l'id et affiche
+"Erreur : Formulaire de contact non trouve". Pour l'eviter, `create_pages.py`
+place desormais le shortcode dans son propre bloc Gutenberg
+`<!-- wp:shortcode -->...<!-- /wp:shortcode -->`, le format que WordPress
+utilise justement pour proteger un shortcode de ce type de alteration. Si le
+probleme revient malgre tout apres une edition manuelle dans wp-admin,
+relancez `create_pages.py --overwrite` avec le meme `--form-shortcode` pour
+regenerer la page proprement plutot que de corriger a la main dans
+l'editeur.
+
 ## Ajouter les pages au menu de navigation
 
 `add_menu_links.py` ajoute Chauffage, Sanitaire et Contact au menu de

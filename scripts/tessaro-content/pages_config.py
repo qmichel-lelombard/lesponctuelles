@@ -62,7 +62,11 @@ PAGES = [
             "Contactez Guillaume Tessaro, plombier-chauffagiste independant a "
             "Enghien : telephone, adresse, horaires et formulaire de contact."
         ),
-        "images": [],
+        "images": [
+            {"key": "hero-contact", "filename": "hero-contact.jpg",
+             "alt": "Enghien, zone d'intervention de Guillaume Tessaro", "color": (60, 60, 60),
+             "external_url": "https://guillaumetessaro.be/wp-content/uploads/2026/08/enghien.jpg"},
+        ],
     },
     {
         # Reproduction de la page d'accueil (actuellement en Elementor) en

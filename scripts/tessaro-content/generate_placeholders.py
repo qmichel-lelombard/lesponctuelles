@@ -87,6 +87,8 @@ def ensure_images(media_dir):
     created = []
     for page in PAGES:
         for image in page["images"]:
+            if image.get("external_url"):
+                continue  # deja hebergee ailleurs, pas de placeholder a generer
             path = os.path.join(media_dir, image["filename"])
             if os.path.exists(path):
                 continue

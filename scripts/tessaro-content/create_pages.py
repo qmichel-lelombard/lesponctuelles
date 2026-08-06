@@ -226,7 +226,18 @@ def main():
     with open(CSS_PATH, encoding="utf-8") as f:
         css = f.read()
 
-    form_shortcode = args.form_shortcode or CONTACT_FORM_SHORTCODE or FORM_MISSING_HTML
+    raw_shortcode = args.form_shortcode or CONTACT_FORM_SHORTCODE
+    if raw_shortcode:
+        # Emballe le shortcode dans son propre bloc Gutenberg "wp:shortcode"
+        # (au lieu de le laisser en texte brut dans le bloc HTML personnalise
+        # englobant) : ce bloc est concu par WordPress pour proteger son
+        # contenu tel quel. Sans ca, rouvrir/enregistrer la page dans
+        # l'editeur peut "texturiser" les guillemets droits de id="..." en
+        # guillemets courbes, ce qui casse le parsing du shortcode par
+        # Contact Form 7 (erreur "Formulaire de contact non trouve").
+        form_shortcode = f"<!-- wp:shortcode -->\n{raw_shortcode}\n<!-- /wp:shortcode -->"
+    else:
+        form_shortcode = FORM_MISSING_HTML
     logo_url = args.logo_url or FOOTER_LOGO_URL
     extra_tokens = {
         "<!--FORMSHORTCODE-->": form_shortcode,
