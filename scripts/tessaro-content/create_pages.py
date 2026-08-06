@@ -165,6 +165,12 @@ def create_or_update_page(base_url, auth, session, page, parent_id, status, over
 
     media_by_key = {}
     for image in page["images"]:
+        if image.get("external_url"):
+            # Image deja hebergee sur le site (ex: televersee a la main dans
+            # wp-admin > Medias) : on reutilise son URL directement, sans la
+            # re-televerser (pas de doublon dans la mediatheque).
+            media_by_key[image["key"]] = {"id": None, "source_url": image["external_url"]}
+            continue
         path = os.path.join(media_dir, image["filename"])
         media_by_key[image["key"]] = upload_media(base_url, auth, session, path, image["alt"], media_cache)
 
@@ -178,7 +184,9 @@ def create_or_update_page(base_url, auth, session, page, parent_id, status, over
         "status": status,
     }
     if page["images"]:
-        payload["featured_media"] = media_by_key[page["images"][0]["key"]]["id"]
+        first_media_id = media_by_key[page["images"][0]["key"]]["id"]
+        if first_media_id:
+            payload["featured_media"] = first_media_id
     if parent_id:
         payload["parent"] = parent_id
 
