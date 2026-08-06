@@ -64,6 +64,35 @@ PAGES = [
         ),
         "images": [],
     },
+    {
+        # Reproduction de la page d'accueil (actuellement en Elementor) en
+        # HTML/CSS simple, dans le meme style que les 3 pages ci-dessus.
+        # Creee sous un slug distinct pour relecture : ne remplace pas
+        # automatiquement la page d'accueil actuelle. Reutilise les memes
+        # photos hero que chauffage/sanitaire (meme cle -> pas de doublon
+        # grace au cache de televersement dans create_pages.py).
+        "slug": "nouvel-accueil",
+        "title": "Accueil (nouvelle version)",
+        "content_file": os.path.join(BASE_DIR, "content", "accueil.html"),
+        "excerpt": (
+            "Guillaume Tessaro, plombier-chauffagiste independant a Enghien : "
+            "chauffage, sanitaire, devis gratuit."
+        ),
+        "images": [
+            {"key": "hero-chauffage", "filename": "hero-chauffage.jpg",
+             "alt": "Chauffagiste en intervention a Enghien", "color": (198, 93, 42)},
+            {"key": "hero-sanitaire", "filename": "hero-sanitaire.jpg",
+             "alt": "Travaux de plomberie sanitaire a Enghien", "color": (36, 92, 122)},
+            {"key": "bio-chauffe-eau", "filename": "bio-chauffe-eau.jpg",
+             "alt": "Installation d'un chauffe-eau", "color": (60, 90, 110)},
+            {"key": "bio-wc", "filename": "bio-wc.jpg",
+             "alt": "Installation sanitaire d'un WC", "color": (90, 70, 60)},
+            {"key": "bio-chantier", "filename": "bio-chantier.jpg",
+             "alt": "Guillaume Tessaro sur un chantier", "color": (70, 70, 70)},
+            {"key": "bio-chauffe-eau-2", "filename": "bio-chauffe-eau-2.jpg",
+             "alt": "Installation d'un second chauffe-eau", "color": (50, 80, 100)},
+        ],
+    },
 ]
 
 # Coordonnees affichees sur la page Contact et dans le pied de page commun

@@ -73,6 +73,122 @@ html, body { overflow-x: hidden; }
 }
 .gt-hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
+/* Hero scinde de la page d'accueil (Chauffage / Sanitaire cote a cote) */
+.gt-split-hero {
+  position: relative;
+  width: 100vw !important;
+  max-width: none !important;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  display: flex;
+  min-height: 62vh;
+}
+.gt-split-hero::after {
+  content: "&";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: clamp(60px, 9vw, 130px);
+  color: rgba(255, 255, 255, .35);
+  z-index: 2;
+  pointer-events: none;
+}
+.gt-split-half {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  text-decoration: none !important;
+  overflow: hidden;
+}
+.gt-split-half::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.72));
+  transition: background .2s ease;
+}
+.gt-split-half:hover::before { background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.82)); }
+.gt-split-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 50px 30px;
+  color: var(--gt-white);
+  width: 100%;
+}
+.gt-split-overlay h2 {
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(30px, 4vw, 44px);
+  margin: 0 0 14px;
+  color: var(--gt-white) !important;
+}
+.gt-split-overlay ul { list-style: none; margin: 0 0 18px; padding: 0; }
+.gt-split-overlay li {
+  font-family: 'Quicksand', sans-serif !important;
+  font-size: 15px;
+  margin-bottom: 6px;
+  opacity: .92;
+}
+.gt-split-cta {
+  display: inline-block;
+  font-family: 'Quicksand', sans-serif !important;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--gt-white);
+  border-bottom: 2px solid var(--gt-white);
+  padding-bottom: 2px;
+}
+
+/* Section "Guillaume Tessaro" (grille photo + bio) de la page d'accueil */
+.gt-bio-wrap {
+  display: flex;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gt-bio-grid {
+  flex: 1;
+  min-width: 280px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.gt-bio-grid img {
+  width: 100%;
+  max-width: none !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+}
+.gt-bio-text { flex: 1; min-width: 280px; }
+.gt-bio-text h2 {
+  font-family: 'Oswald', sans-serif !important;
+  text-transform: uppercase;
+  font-size: 32px;
+  margin: 0 0 16px;
+  color: var(--gt-black);
+}
+.gt-bio-text p {
+  font-family: 'Quicksand', sans-serif !important;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--gt-gray-text);
+  margin-bottom: 24px;
+}
+
 .gt-btn {
   display: inline-block;
   font-family: 'Quicksand', sans-serif;
@@ -318,4 +434,8 @@ html, body { overflow-x: hidden; }
   .gt-feature img { width: 100%; }
   .gt-hero { min-height: 55vh; }
   .gt-footer-bar { justify-content: center; text-align: center; }
+  .gt-split-hero { flex-direction: column; min-height: auto; }
+  .gt-split-hero::after { font-size: 40px; }
+  .gt-split-half { min-height: 320px; }
+  .gt-bio-grid { grid-template-columns: 1fr 1fr; max-width: 360px; margin: 0 auto; }
 }

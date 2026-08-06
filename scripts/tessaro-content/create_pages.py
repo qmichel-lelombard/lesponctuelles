@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Cree (ou met a jour) les pages "Chauffage", "Sanitaire" et "Contact" sur un site WordPress.
+"""Cree (ou met a jour) les pages "Chauffage", "Sanitaire", "Contact" et
+"Accueil (nouvelle version)" sur un site WordPress.
 
 S'authentifie avec un Application Password WordPress (wp-admin > Utilisateurs
 > Profil > Mots de passe d'application), envoye en HTTP Basic Auth sur HTTPS.
@@ -114,8 +115,10 @@ def find_page_id_by_slug(base_url, auth, session, slug):
     return data[0]["id"] if data else None
 
 
-def upload_media(base_url, auth, session, file_path, alt_text):
+def upload_media(base_url, auth, session, file_path, alt_text, media_cache=None):
     filename = os.path.basename(file_path)
+    if media_cache is not None and filename in media_cache:
+        return media_cache[filename]
     with open(file_path, "rb") as f:
         resp = session.post(
             f"{base_url}/wp-json/wp/v2/media",
@@ -135,6 +138,8 @@ def upload_media(base_url, auth, session, file_path, alt_text):
         json={"alt_text": alt_text, "title": alt_text},
         auth=auth,
     )
+    if media_cache is not None:
+        media_cache[filename] = media
     return media
 
 
@@ -152,7 +157,7 @@ def render_content(page, media_by_key, css, extra_tokens=None):
     return html.replace("<!-- wp:html -->", "<!-- wp:html -->\n" + style_block, 1)
 
 
-def create_or_update_page(base_url, auth, session, page, parent_id, status, overwrite, media_dir, css, extra_tokens):
+def create_or_update_page(base_url, auth, session, page, parent_id, status, overwrite, media_dir, css, extra_tokens, media_cache):
     existing_id = find_page_id_by_slug(base_url, auth, session, page["slug"])
     if existing_id and not overwrite:
         print(f"  skip (already exists, id={existing_id}): /{page['slug']}/ -- use --overwrite to update")
@@ -161,7 +166,7 @@ def create_or_update_page(base_url, auth, session, page, parent_id, status, over
     media_by_key = {}
     for image in page["images"]:
         path = os.path.join(media_dir, image["filename"])
-        media_by_key[image["key"]] = upload_media(base_url, auth, session, path, image["alt"])
+        media_by_key[image["key"]] = upload_media(base_url, auth, session, path, image["alt"], media_cache)
 
     content = render_content(page, media_by_key, css, extra_tokens)
 
@@ -231,9 +236,10 @@ def main():
         if not parent_id:
             print(f"warning: parent page '{args.parent_slug}' introuvable, creation des pages au premier niveau", file=sys.stderr)
 
+    media_cache = {}
     print(f"Creation/mise a jour de {len(PAGES)} page(s) sur {base_url} en '{args.status}' ...")
     for page in PAGES:
-        create_or_update_page(base_url, auth, session, page, parent_id, args.status, args.overwrite, media_dir, css, extra_tokens)
+        create_or_update_page(base_url, auth, session, page, parent_id, args.status, args.overwrite, media_dir, css, extra_tokens, media_cache)
 
     print("Termine. Relisez les pages dans wp-admin avant de passer en 'publish', et ajoutez-les a votre menu.")
 

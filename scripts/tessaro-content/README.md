@@ -1,11 +1,14 @@
-# Contenu "Chauffage", "Sanitaire" et "Contact" -- guillaumetessaro.be
+# Contenu "Chauffage", "Sanitaire", "Contact" et accueil -- guillaumetessaro.be
 
-Boite a outils pour ajouter trois pages dediees (Chauffage, Sanitaire,
+Boite a outils pour ajouter des pages dediees (Chauffage, Sanitaire,
 Contact) au site one-page WordPress de Guillaume Tessaro, avec du texte
 redige, une mise en page moderne (hero plein ecran, sections alternees
 photo/texte, bandeau zone d'intervention, CTA avec le numero de telephone)
 inspiree du logo et de la page d'accueil, et des photos placeholder faciles
-a remplacer ensuite.
+a remplacer ensuite. Inclut aussi une reproduction de la page d'accueil en
+HTML/CSS simple (page "Accueil (nouvelle version)", slug `nouvel-accueil`),
+dans le meme style, pour remplacer a terme la version Elementor actuelle si
+vous le souhaitez.
 
 ## Design
 
@@ -158,14 +161,14 @@ Les pages deja presentes dans le menu sont ignorees (pas de doublon si vous
 relancez). Les elements sont ajoutes a la fin : reordonnez-les ensuite dans
 Apparence > Menus par glisser-deposer si besoin.
 
-## Page d'accueil (Elementor) -- liens et bords arrondis
+## Page d'accueil actuelle (Elementor) -- liens et bords arrondis
 
-La page d'accueil est construite avec **Elementor**, qui stocke son contenu
-dans un format different (JSON prive `_elementor_data`) des pages classiques
-creees par `create_pages.py`. Ce depot ne modifie donc pas la page d'accueil
-automatiquement -- ce serait trop risque de le faire a l'aveugle par API
-sans jamais avoir vu la structure reelle de la page. Ces reglages se font a
-la main dans l'editeur Elementor (rapide, quelques clics) :
+La page d'accueil actuelle est construite avec **Elementor**, qui stocke son
+contenu dans un format different (JSON prive `_elementor_data`) des pages
+classiques creees par `create_pages.py`. Ce depot ne modifie donc pas cette
+page automatiquement -- ce serait trop risque de le faire a l'aveugle par
+API sans jamais avoir vu la structure reelle de la page. Ces reglages se
+font a la main dans l'editeur Elementor (rapide, quelques clics) :
 
 **Liens vers les pages** : ouvrez la page d'accueil avec Elementor
 ("Modifier avec Elementor"), cliquez sur chaque bouton/bloc concerne
@@ -187,6 +190,35 @@ coherent sur tout le site : menu hamburger Elementor (en haut a gauche) >
 Si vous preferez ajuster uniquement la page d'accueil sans toucher au style
 global : cliquez sur chaque widget Bouton ou Image individuellement, onglet
 **Style > Bordure > Rayon**, et entrez la meme valeur.
+
+## Reproduction de l'accueil sans Elementor (page "Accueil (nouvelle version)")
+
+Alternative a la section precedente : `create_pages.py` cree aussi une page
+`/nouvel-accueil/` qui reproduit le contenu et la mise en page de l'accueil
+actuel (hero scinde Chauffage/Sanitaire avec listes de services et liens
+vers les pages dediees, grille de 4 photos + bio "Guillaume Tessaro" +
+bouton Contact, meme pied de page commun) mais en HTML/CSS simple, dans le
+meme style que les 3 autres pages -- pas besoin de reglages Elementor.
+
+Elle est creee en **brouillon**, sous un slug distinct : elle ne remplace
+pas la page d'accueil actuelle tant que vous ne le decidez pas. Comparez les
+deux, et si vous preferez cette version :
+
+1. Passez-la en `publish` dans wp-admin (ou relancez le script avec
+   `--status publish`).
+2. Dans wp-admin > Reglages > Lecture, section "Vos pages affichent" :
+   choisissez "Une page statique" et selectionnez "Accueil (nouvelle
+   version)" comme page d'accueil.
+3. Optionnel : une fois satisfait, vous pouvez supprimer l'ancienne page
+   Elementor (ou la laisser en brouillon comme sauvegarde).
+
+Les 6 photos reutilisees dans cette page (2 heros + 4 photos de la grille)
+suivent les memes regles que les autres : placeholders generes
+automatiquement, remplacables via wp-admin > Medias ou `fetch_stock_photos.py`
+(cles `bio-chauffe-eau`, `bio-wc`, `bio-chantier`, `bio-chauffe-eau-2` en
+plus de `hero-chauffage`/`hero-sanitaire` deja utilisees ailleurs -- ces deux
+dernieres ne sont televersees qu'une fois par execution grace a un cache
+interne, pas de doublon dans la mediatheque).
 
 ## Pied de page commun (carte + logo + coordonnees + Facebook)
 
