@@ -102,7 +102,8 @@ html, body { overflow-x: hidden; }
   position: relative;
   flex: 1;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   background-size: cover;
   background-position: center;
   text-decoration: none !important;
@@ -119,23 +120,25 @@ html, body { overflow-x: hidden; }
 .gt-split-overlay {
   position: relative;
   z-index: 1;
-  padding: 50px 30px;
+  padding: 40px;
   color: var(--gt-white);
   width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
 }
 .gt-split-overlay h2 {
   font-family: 'Oswald', sans-serif !important;
   text-transform: uppercase;
   font-weight: 700;
   font-size: clamp(30px, 4vw, 44px);
-  margin: 0 0 14px;
+  margin: 0 0 18px;
   color: var(--gt-white) !important;
 }
-.gt-split-overlay ul { list-style: none; margin: 0 0 18px; padding: 0; }
+.gt-split-overlay ul { list-style: none; margin: 0 0 22px; padding: 0; }
 .gt-split-overlay li {
   font-family: 'Quicksand', sans-serif !important;
   font-size: 15px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   opacity: .92;
 }
 .gt-split-cta {
@@ -437,5 +440,6 @@ html, body { overflow-x: hidden; }
   .gt-split-hero { flex-direction: column; min-height: auto; }
   .gt-split-hero::after { font-size: 40px; }
   .gt-split-half { min-height: 320px; }
+  .gt-split-overlay { max-width: none; padding: 32px 28px; }
   .gt-bio-grid { grid-template-columns: 1fr 1fr; max-width: 360px; margin: 0 auto; }
 }
