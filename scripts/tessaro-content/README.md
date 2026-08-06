@@ -95,7 +95,7 @@ python3 create_pages.py --dest https://guillaumetessaro.be --parent-slug service
   Menus, et/ou des liens "En savoir plus" depuis les sections correspondantes
   de la page d'accueil actuelle.
 - Les boutons "Appeler" utilisent le numero `tel:+32475308449` ; le bouton
-  "Nous contacter" des pages Chauffage/Sanitaire renvoie vers `/contact/`.
+  "Me contacter" des pages Chauffage/Sanitaire renvoie vers `/contact/`.
   Adaptez ces liens dans les fichiers `content/*.html` si besoin.
 
 ## Page Contact et formulaire

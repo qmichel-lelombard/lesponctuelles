@@ -437,6 +437,7 @@ html, body { overflow-x: hidden; }
   .gt-feature img { width: 100%; }
   .gt-hero { min-height: 55vh; }
   .gt-footer-bar { justify-content: center; text-align: center; }
+  .gt-footer-info, .gt-footer-fb { display: none; }
   .gt-split-hero { flex-direction: column; min-height: auto; }
   .gt-split-hero::after { font-size: 40px; }
   .gt-split-half { min-height: 320px; }
