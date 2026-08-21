@@ -34,6 +34,30 @@ votre poste ou un serveur ayant accès aux deux domaines.
   aussi nécessaire côté `lesponctuelles.com`, pour un compte ayant la
   capacité `manage_woocommerce`.
 
+## 0. Retrouver les slugs d'une liste d'articles (par titre approximatif)
+
+Si vous avez une liste de titres (pas forcément exacts) plutôt que des slugs,
+`find_posts.py` interroge la recherche WordPress publique de `lesponctuelles.com`
+pour retrouver les articles correspondants :
+
+```bash
+python3 find_posts.py --source https://lesponctuelles.com \
+    --queries-file ./queries.txt
+```
+
+`queries.txt` contient une requête par ligne (un titre ou un extrait de titre).
+Le script affiche, pour chaque requête, les articles trouvés (slug, titre,
+lien) et termine par une liste de slugs prête à copier-coller dans
+`--slugs` pour `export_posts.py`. Vérifiez chaque résultat à l'œil avant de
+l'utiliser : la recherche est approximative (elle peut renvoyer plusieurs
+articles ou aucun pour une requête trop courte/ambiguë).
+
+Vous n'avez pas besoin de vérifier séparément ce qui est déjà sur
+`lesponctuelles.be` : `import_posts.py` (étape 2) saute automatiquement tout
+article dont le slug existe déjà côté destination et l'indique dans sa sortie
+(`skip (already exists...)`), donc exporter puis importer toute la liste
+suffit à ne migrer que ce qui manque réellement.
+
 ## 1. Exporter une sélection d'articles depuis lesponctuelles.com
 
 ```bash
