@@ -45,8 +45,8 @@ def get_auth():
     return HTTPBasicAuth(user, password)
 
 
-def post_exists(base_url, auth, session, slug):
-    resp = session.get(f"{base_url}/wp-json/wp/v2/posts", params={"slug": slug, "status": "any"}, auth=auth)
+def post_exists(base_url, auth, session, post_type, slug):
+    resp = session.get(f"{base_url}/wp-json/wp/v2/{post_type}", params={"slug": slug, "status": "any"}, auth=auth)
     resp.raise_for_status()
     data = resp.json()
     return data[0]["id"] if data else None
@@ -82,10 +82,10 @@ def upload_media(base_url, auth, session, file_path):
     return resp.json()
 
 
-def import_post(record, base_url, auth, session, media_dir, status, skip_existing, log):
+def import_post(record, base_url, auth, session, media_dir, post_type, status, skip_existing, log):
     slug = record["slug"]
     if skip_existing:
-        existing_id = post_exists(base_url, auth, session, slug)
+        existing_id = post_exists(base_url, auth, session, post_type, slug)
         if existing_id:
             print(f"  skip (already exists, id={existing_id}): {slug}")
             return
@@ -106,23 +106,21 @@ def import_post(record, base_url, auth, session, media_dir, status, skip_existin
         if media:
             content = content.replace(f"media/{local_name}", media["source_url"])
 
-    category_ids = [get_or_create_term(base_url, auth, session, "categories", name) for name in record.get("categories", [])]
-    tag_ids = [get_or_create_term(base_url, auth, session, "tags", name) for name in record.get("tags", [])]
-
     payload = {
         "title": record["title"],
         "slug": slug,
         "content": content,
         "excerpt": record.get("excerpt", ""),
         "status": status,
-        "categories": category_ids,
-        "tags": tag_ids,
         "date": record.get("date"),
     }
+    if post_type == "posts":
+        payload["categories"] = [get_or_create_term(base_url, auth, session, "categories", name) for name in record.get("categories", [])]
+        payload["tags"] = [get_or_create_term(base_url, auth, session, "tags", name) for name in record.get("tags", [])]
     if featured_media_id:
         payload["featured_media"] = featured_media_id
 
-    resp = session.post(f"{base_url}/wp-json/wp/v2/posts", json=payload, auth=auth)
+    resp = session.post(f"{base_url}/wp-json/wp/v2/{post_type}", json=payload, auth=auth)
     if resp.status_code not in (200, 201):
         print(f"  ERROR creating '{slug}': {resp.status_code} {resp.text[:300]}", file=sys.stderr)
         return
@@ -145,6 +143,7 @@ def _referenced_media(content):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--dest", required=True, help="Destination site base URL, e.g. https://lesponctuelles.be")
+    parser.add_argument("--post-type", default="posts", help="REST post type to import into: 'posts' (default) or 'pages'")
     parser.add_argument("--input-dir", required=True, help="Directory produced by export_posts.py")
     parser.add_argument("--status", default="draft", choices=["draft", "publish", "pending", "private"], help="Status to create posts with (default: draft, review before publishing)")
     parser.add_argument("--overwrite", action="store_true", help="Import even if a post with the same slug already exists")
@@ -160,12 +159,12 @@ def main():
     if not files:
         raise SystemExit(f"No exported *.json files found in {args.input_dir}")
 
-    print(f"Importing {len(files)} post(s) into {base_url} as '{args.status}' ...")
+    print(f"Importing {len(files)} {args.post_type} into {base_url} as '{args.status}' ...")
     log = []
     for filename in files:
         with open(os.path.join(args.input_dir, filename), encoding="utf-8") as f:
             record = json.load(f)
-        import_post(record, base_url, auth, session, media_dir, args.status, not args.overwrite, log)
+        import_post(record, base_url, auth, session, media_dir, args.post_type, args.status, not args.overwrite, log)
 
     log_path = os.path.join(args.input_dir, "import_log.json")
     with open(log_path, "w", encoding="utf-8") as f:

@@ -41,11 +41,11 @@ def resolve_term_id(base_url, taxonomy, slug, session):
     return data[0]["id"]
 
 
-def fetch_posts(base_url, session, category_id=None, tag_id=None, slugs=None, after=None, before=None):
+def fetch_posts(base_url, session, post_type="posts", category_id=None, tag_id=None, slugs=None, after=None, before=None):
     posts = []
     if slugs:
         for slug in slugs:
-            resp = session.get(f"{base_url}/wp-json/wp/v2/posts", params={"slug": slug, "_embed": 1})
+            resp = session.get(f"{base_url}/wp-json/wp/v2/{post_type}", params={"slug": slug, "_embed": 1})
             resp.raise_for_status()
             data = resp.json()
             if not data:
@@ -65,7 +65,7 @@ def fetch_posts(base_url, session, category_id=None, tag_id=None, slugs=None, af
             params["after"] = f"{after}T00:00:00"
         if before:
             params["before"] = f"{before}T23:59:59"
-        resp = session.get(f"{base_url}/wp-json/wp/v2/posts", params=params)
+        resp = session.get(f"{base_url}/wp-json/wp/v2/{post_type}", params=params)
         if resp.status_code == 400:
             break
         resp.raise_for_status()
@@ -145,6 +145,7 @@ def export_post(post, base_url, output_dir, session):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--source", required=True, help="Source site base URL, e.g. https://lesponctuelles.com")
+    parser.add_argument("--post-type", default="posts", help="REST post type to export: 'posts' (default) or 'pages'")
     parser.add_argument("--category", help="Category slug to filter by")
     parser.add_argument("--tag", help="Tag slug to filter by")
     parser.add_argument("--slugs", help="Comma-separated list of exact post slugs to export")
@@ -163,8 +164,8 @@ def main():
     tag_id = resolve_term_id(base_url, "tags", args.tag, session) if args.tag else None
     slugs = [s.strip() for s in args.slugs.split(",")] if args.slugs else None
 
-    print(f"Fetching posts from {base_url} ...")
-    posts = fetch_posts(base_url, session, category_id, tag_id, slugs, args.after, args.before)
+    print(f"Fetching {args.post_type} from {base_url} ...")
+    posts = fetch_posts(base_url, session, args.post_type, category_id, tag_id, slugs, args.after, args.before)
     print(f"Found {len(posts)} post(s) matching the selection.")
 
     for post in posts:
