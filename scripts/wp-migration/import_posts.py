@@ -146,7 +146,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--dest", required=True, help="Destination site base URL, e.g. https://lesponctuelles.be")
     parser.add_argument("--input-dir", required=True, help="Directory produced by export_posts.py")
-    parser.add_argument("--status", default="draft", choices=["draft", "publish", "pending"], help="Status to create posts with (default: draft, review before publishing)")
+    parser.add_argument("--status", default="draft", choices=["draft", "publish", "pending", "private"], help="Status to create posts with (default: draft, review before publishing)")
     parser.add_argument("--overwrite", action="store_true", help="Import even if a post with the same slug already exists")
     args = parser.parse_args()
 
