@@ -19,6 +19,11 @@ Modes:
                                  text-editor widget, F should contain HTML
                                  (e.g. one or more <p>...</p>).
 
+  --set-image-path PATH         Replace an image field (a {url, id} object,
+  --image-field FIELD           e.g. bg_image) at PATH with an already
+  --image-url URL               uploaded media library image, looked up by
+                                 its URL.
+
 Example:
   export WP_DEST_USER=admin
   export WP_DEST_APP_PASSWORD="xxxx xxxx xxxx xxxx xxxx xxxx"
@@ -30,6 +35,7 @@ import argparse
 import json
 import os
 import sys
+from urllib.parse import urlparse
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -68,6 +74,17 @@ def walk(elements, path_prefix=""):
             walk(el["elements"], path + ".")
 
 
+def find_media_id_by_url(base_url, auth, session, image_url):
+    filename = os.path.basename(urlparse(image_url).path)
+    search_term = os.path.splitext(filename)[0]
+    resp = session.get(f"{base_url}/wp-json/wp/v2/media", params={"search": search_term, "per_page": 50}, auth=auth)
+    resp.raise_for_status()
+    for item in resp.json():
+        if item.get("source_url") == image_url:
+            return item["id"]
+    raise SystemExit(f"No media item found matching URL '{image_url}' (searched for '{search_term}')")
+
+
 def get_node(tree, path):
     indices = [int(x) for x in path.split(".")]
     node_list = tree
@@ -86,6 +103,9 @@ def main():
     parser.add_argument("--dump", action="store_true", help="List all text-bearing widgets with their path")
     parser.add_argument("--set-path", help="Dot-separated path (from --dump) of the widget to update")
     parser.add_argument("--text-file", help="File with the new text/HTML content for --set-path")
+    parser.add_argument("--set-image-path", help="Dot-separated path of the widget whose image field to update")
+    parser.add_argument("--image-field", default="bg_image", help="Settings key of the image field (default: bg_image)")
+    parser.add_argument("--image-url", help="URL of an already-uploaded media library image")
     args = parser.parse_args()
 
     base_url = args.dest.rstrip("/")
@@ -110,6 +130,17 @@ def main():
         walk(tree)
         return
 
+    def save():
+        resp = session.post(
+            f"{url_base}/{args.page_id}",
+            json={"meta": {"_elementor_data": json.dumps(tree)}},
+            auth=auth,
+        )
+        if resp.status_code not in (200, 201):
+            print(f"ERROR saving: {resp.status_code} {resp.text[:300]}", file=sys.stderr)
+            sys.exit(1)
+        print(f"Saved: {resp.json().get('link')}")
+
     if args.set_path and args.text_file:
         node = get_node(tree, args.set_path)
         widget_type = node.get("widgetType")
@@ -123,18 +154,22 @@ def main():
         print(f"Path {args.set_path} [{widget_type}].{field}:")
         print(f"  before: {old_text[:120]!r}")
         print(f"  after:  {new_text[:120]!r}")
-        resp = session.post(
-            f"{url_base}/{args.page_id}",
-            json={"meta": {"_elementor_data": json.dumps(tree)}},
-            auth=auth,
-        )
-        if resp.status_code not in (200, 201):
-            print(f"ERROR saving: {resp.status_code} {resp.text[:300]}", file=sys.stderr)
-            sys.exit(1)
-        print(f"Saved: {resp.json().get('link')}")
+        save()
         return
 
-    parser.error("Pass --dump, or --set-path together with --text-file")
+    if args.set_image_path and args.image_url:
+        node = get_node(tree, args.set_image_path)
+        widget_type = node.get("widgetType")
+        old_image = node["settings"].get(args.image_field, {})
+        new_id = find_media_id_by_url(base_url, auth, session, args.image_url)
+        node["settings"][args.image_field] = {"url": args.image_url, "id": new_id}
+        print(f"Path {args.set_image_path} [{widget_type}].{args.image_field}:")
+        print(f"  before: {old_image.get('url')!r} (id={old_image.get('id')})")
+        print(f"  after:  {args.image_url!r} (id={new_id})")
+        save()
+        return
+
+    parser.error("Pass --dump, or --set-path with --text-file, or --set-image-path with --image-url")
 
 
 if __name__ == "__main__":
