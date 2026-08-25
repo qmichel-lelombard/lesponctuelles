@@ -24,6 +24,10 @@ Modes:
   --image-url URL               uploaded media library image, looked up by
                                  its URL.
 
+  --set-setting-path PATH       Set an arbitrary settings key at PATH to a
+  --setting-key KEY              JSON value, e.g. to remove a border:
+  --setting-value JSON            --setting-key _border_border --setting-value '"none"'
+
 Example:
   export WP_DEST_USER=admin
   export WP_DEST_APP_PASSWORD="xxxx xxxx xxxx xxxx xxxx xxxx"
@@ -106,6 +110,9 @@ def main():
     parser.add_argument("--set-image-path", help="Dot-separated path of the widget whose image field to update")
     parser.add_argument("--image-field", default="bg_image", help="Settings key of the image field (default: bg_image)")
     parser.add_argument("--image-url", help="URL of an already-uploaded media library image")
+    parser.add_argument("--set-setting-path", help="Dot-separated path of the widget whose setting to update")
+    parser.add_argument("--setting-key", help="Settings key to set, e.g. _border_border")
+    parser.add_argument("--setting-value", help="New value, as JSON, e.g. '\"none\"' or '0'")
     args = parser.parse_args()
 
     base_url = args.dest.rstrip("/")
@@ -169,7 +176,22 @@ def main():
         save()
         return
 
-    parser.error("Pass --dump, or --set-path with --text-file, or --set-image-path with --image-url")
+    if args.set_setting_path and args.setting_key and args.setting_value is not None:
+        node = get_node(tree, args.set_setting_path)
+        widget_type = node.get("widgetType")
+        old_value = node["settings"].get(args.setting_key)
+        new_value = json.loads(args.setting_value)
+        node["settings"][args.setting_key] = new_value
+        print(f"Path {args.set_setting_path} [{widget_type}].{args.setting_key}:")
+        print(f"  before: {old_value!r}")
+        print(f"  after:  {new_value!r}")
+        save()
+        return
+
+    parser.error(
+        "Pass --dump, or --set-path with --text-file, or --set-image-path with --image-url, "
+        "or --set-setting-path with --setting-key and --setting-value"
+    )
 
 
 if __name__ == "__main__":
