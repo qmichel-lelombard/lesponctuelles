@@ -40,6 +40,7 @@ TEXT_FIELDS = {
     "text-editor": "editor",
     "button": "text",
     "icon-box": "title_text",
+    "call-to-action": "description",
 }
 
 
