@@ -141,4 +141,4 @@ FOOTER_LOGO_URL = "https://guillaumetessaro.be/wp-content/uploads/2025/08/logo-g
 # page Contact, une fois le plugin installe et le formulaire cree dans
 # wp-admin. Laissez vide pour afficher un message d'attente a la place.
 # Peut aussi etre fourni via l'option --form-shortcode de create_pages.py.
-CONTACT_FORM_SHORTCODE = ""
+CONTACT_FORM_SHORTCODE = '[contact-form-7 id="d5ab7c9" title="Formulaire de contact 1"]'
