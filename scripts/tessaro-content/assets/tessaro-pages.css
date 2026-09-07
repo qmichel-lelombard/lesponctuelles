@@ -29,7 +29,7 @@ html, body { overflow-x: hidden; }
   margin-right: -50vw;
   min-height: 62vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   background-size: cover;
   background-position: center;
 }
