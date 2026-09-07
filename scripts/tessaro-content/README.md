@@ -175,6 +175,21 @@ Les pages deja presentes dans le menu sont ignorees (pas de doublon si vous
 relancez). Les elements sont ajoutes a la fin : reordonnez-les ensuite dans
 Apparence > Menus par glisser-deposer si besoin.
 
+## Desactiver les commentaires
+
+`disable_comments.py` ferme les commentaires sur le site via l'API REST :
+
+```bash
+python3 disable_comments.py --dest https://guillaumetessaro.be
+```
+
+Il met le reglage global sur "commentaires fermes par defaut" pour les
+futurs articles, et ferme les commentaires deja ouverts sur tous les
+articles/pages existants. Il n'efface aucun commentaire deja publie -- le
+script affiche juste leur nombre a la fin ; pour les consulter ou les
+supprimer (utile s'il s'agit surtout de spam), allez dans wp-admin >
+Commentaires.
+
 ## Page d'accueil actuelle (Elementor) -- liens et bords arrondis
 
 La page d'accueil actuelle est construite avec **Elementor**, qui stocke son
