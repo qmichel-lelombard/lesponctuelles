@@ -20,6 +20,7 @@ Exemple :
   python3 create_pages.py --dest https://guillaumetessaro.be --status draft
 """
 import argparse
+import json
 import os
 import re
 import sys
@@ -30,6 +31,7 @@ from requests.auth import HTTPBasicAuth
 
 from generate_placeholders import ensure_images
 from pages_config import (
+    BUSINESS_GEO,
     CONTACT_FORM_SHORTCODE,
     CONTACT_INFO,
     FOOTER_LOGO_URL,
@@ -57,9 +59,46 @@ FACEBOOK_ICON_SVG = (
 )
 
 
+def render_local_business_jsonld(logo_url):
+    data = {
+        "@context": "https://schema.org",
+        "@type": ["Plumber", "HVACBusiness"],
+        "name": "Guillaume Tessaro",
+        "telephone": CONTACT_INFO["phone_tel"],
+        "email": CONTACT_INFO["email"],
+        "url": "https://guillaumetessaro.be/",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Enghien",
+            "postalCode": "7850",
+            "addressCountry": "BE",
+        },
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": BUSINESS_GEO["lat"],
+                "longitude": BUSINESS_GEO["lng"],
+            },
+            "geoRadius": "50000",
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "08:00",
+            "closes": "17:00",
+        },
+        "sameAs": [url for url in (CONTACT_INFO["facebook_url"], CONTACT_INFO["google_maps_url"]) if url],
+    }
+    if logo_url:
+        data["image"] = logo_url
+    return f'<script type="application/ld+json">{json.dumps(data, ensure_ascii=False)}</script>'
+
+
 def render_footer(logo_url):
     with open(FOOTER_PARTIAL, encoding="utf-8") as f:
         footer_html = f.read()
+    footer_html = render_local_business_jsonld(logo_url) + "\n" + footer_html
 
     if logo_url:
         logo_html = f'<img src="{logo_url}" alt="Guillaume Tessaro" class="gt-footer-logo-img">'
@@ -246,6 +285,7 @@ def main():
         "<!--CONTACT_EMAIL-->": CONTACT_INFO["email"],
         "<!--CONTACT_ADDRESS-->": CONTACT_INFO["address"],
         "<!--CONTACT_HOURS-->": CONTACT_INFO["hours"],
+        "<!--CONTACT_MAPS_URL-->": CONTACT_INFO["google_maps_url"],
         "<!--SITE_FOOTER-->": render_footer(logo_url),
     }
 

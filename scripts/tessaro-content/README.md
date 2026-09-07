@@ -334,6 +334,48 @@ l'image televersee -- ne les supprimez pas, deplacez-les si besoin. Le style
 visuel commun (couleurs, typo, mise en page) est dans
 `assets/tessaro-pages.css` et s'applique aux deux pages.
 
+## SEO : donnees structurees (Schema.org)
+
+Chaque page inclut desormais un bloc de donnees structurees JSON-LD (type
+`Plumber` + `HVACBusiness`) genere automatiquement par `render_footer()`
+dans `create_pages.py` : nom, telephone, email, adresse, zone d'intervention
+(rayon 50 km autour d'Enghien), horaires, logo, et liens Facebook/Google
+Maps (`CONTACT_INFO["google_maps_url"]` dans `pages_config.py`). Aide Google
+a identifier l'entreprise comme un artisan local et ameliore les chances
+d'apparaitre dans le "pack local" (resultats avec carte). Vous pouvez tester
+son rendu avec l'outil de test des donnees structurees de Google
+(https://search.google.com/test/rich-results) une fois les pages publiees.
+
+La page Contact affiche aussi desormais un lien "Voir sur Google Maps" a
+cote de l'adresse, pointant vers votre fiche Google Business Profile deja
+verifiee.
+
+**Note** : les coordonnees GPS utilisees (`BUSINESS_GEO` dans
+`pages_config.py`) sont une approximation du centre d'Enghien, pas une
+adresse precise -- suffisant pour indiquer une zone d'intervention.
+
+### Titres et meta-descriptions (Yoast SEO)
+
+Ce depot ne peut pas installer de plugin ni, une fois Yoast installe, remplir
+de facon fiable ses champs de titre/meta-description par API (Yoast
+n'expose pas ces champs en ecriture via l'API REST standard). A faire a la
+main : installez Yoast SEO (Extensions > Ajouter > "Yoast SEO" > Installer >
+Activer), puis dans l'editeur de chaque page, tout en bas, renseignez le
+titre SEO et la meta-description dans l'encart Yoast. Textes proposes :
+
+| Page | Titre SEO | Meta-description |
+|---|---|---|
+| Chauffage | Chauffagiste Enghien – Installation & Depannage \| G. Tessaro | Chauffagiste independant a Enghien : installation, entretien et depannage de chaudieres, pompes a chaleur. Devis gratuit, intervention sous 50 km. |
+| Sanitaire | Plombier Enghien – Sanitaire, Salle de bain \| G. Tessaro | Plombier independant a Enghien : installation sanitaire, renovation salle de bain, depannage fuites. Devis gratuit, intervention dans un rayon de 50 km. |
+| Contact | Contact – Guillaume Tessaro, Plombier-Chauffagiste Enghien | Contactez Guillaume Tessaro pour un devis gratuit : plomberie et chauffage a Enghien et environs. Telephone, email, formulaire de contact en ligne. |
+| Accueil | Guillaume Tessaro – Plombier-Chauffagiste independant a Enghien | Plombier-chauffagiste independant base a Enghien, intervention dans un rayon de 50 km. Installation, entretien, depannage. Devis gratuit. |
+
+Une fois Yoast actif, verifiez aussi **SEO > Reglages generaux >
+Fonctionnalites > Sitemaps XML** (active par defaut) : le sitemap sera
+disponible a `https://guillaumetessaro.be/sitemap_index.xml`, a soumettre
+dans Google Search Console (deja lie a votre fiche Google Business Profile
+existante).
+
 ## A verifier avant publication
 
 - **Zone d'intervention** : la liste des villes (Enghien, Silly, Lens, Ath,

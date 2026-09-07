@@ -117,7 +117,13 @@ CONTACT_INFO = {
     "address_short": "7850 Enghien",
     "hours_short": "Lu-Sa 8:00 - 17:00",
     "facebook_url": "https://www.facebook.com/tessaro.guillaume/",
+    "google_maps_url": "https://maps.app.goo.gl/WurUHe2V5Mg2JY7b9",
 }
+
+# Coordonnees geographiques approximatives d'Enghien (centre-ville), utilisees
+# uniquement pour le rayon d'intervention dans les donnees structurees
+# Schema.org (areaServed) -- precision suffisante pour cet usage.
+BUSINESS_GEO = {"lat": 50.6975, "lng": 4.0392}
 
 # Adresse utilisee pour centrer la carte du pied de page (repere approximatif,
 # sans numero de rue -- coherent avec la carte de la page d'accueil).
