@@ -51,7 +51,29 @@ TEXT_FIELDS = {
     "button": "text",
     "icon-box": "title_text",
     "call-to-action": "description",
+    # Elementor v4 "atomic" widgets: text is a typed value, see get_text/set_text.
+    "e-heading": "title",
+    "e-paragraph": "paragraph",
 }
+
+
+def get_text(value):
+    """Return the plain text of a settings value (classic string or atomic typed value)."""
+    if isinstance(value, dict):
+        inner = value.get("value")
+        if value.get("$$type") == "html-v3":
+            return inner["content"]["value"] or ""
+        return inner if isinstance(inner, str) else ""
+    return value or ""
+
+
+def set_text(old_value, new_text):
+    """Return a settings value holding new_text, in the same format as old_value."""
+    if isinstance(old_value, dict) and old_value.get("$$type") == "html-v3":
+        return {"$$type": "html-v3", "value": {"content": {"$$type": "string", "value": new_text}, "children": []}}
+    if isinstance(old_value, dict):
+        return {"$$type": old_value.get("$$type", "string"), "value": new_text}
+    return new_text
 
 
 def get_auth():
@@ -71,7 +93,7 @@ def walk(elements, path_prefix=""):
         widget_type = el.get("widgetType")
         field = TEXT_FIELDS.get(widget_type)
         if field and field in el.get("settings", {}):
-            text = el["settings"][field]
+            text = get_text(el["settings"][field])
             preview = (text[:80] + "...") if len(text) > 80 else text
             print(f"{path} [{widget_type}] {field}: {preview!r}")
         if el.get("elements"):
@@ -156,8 +178,9 @@ def main():
             raise SystemExit(f"Don't know which settings field holds text for widgetType '{widget_type}'")
         with open(args.text_file, encoding="utf-8") as f:
             new_text = f.read()
-        old_text = node["settings"].get(field, "")
-        node["settings"][field] = new_text
+        old_value = node["settings"].get(field, "")
+        old_text = get_text(old_value)
+        node["settings"][field] = set_text(old_value, new_text)
         print(f"Path {args.set_path} [{widget_type}].{field}:")
         print(f"  before: {old_text[:120]!r}")
         print(f"  after:  {new_text[:120]!r}")
