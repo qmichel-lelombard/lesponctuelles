@@ -35,10 +35,10 @@ const QUESTIONS = [
     a: ["Des objets bougent tout seuls et les cartables prennent vie", "L'école est inondée de bonbons", "Latouche devient invisible", "Toute la classe part en vacances"], c: 0,
     ok: "Brrr ! Dans ce tome, l'ambiance est sinistre : ton cartable pourrait bien te regarder de travers.",
     ko: "Pas du tout : les objets bougent tout seuls et les cartables prennent vie. Ça donne la chair de poule." },
-  { q: "Quel est le gros point commun entre le tome 30 et la couverture ?",
-    a: ["Halloween, avec une citrouille", "La plage et un parasol", "Noël et un sapin", "Un tournoi de foot"], c: 0,
-    ok: "Exactement : Halloween ! Prépare tes bonbons… et planque ton cahier de brouillon.",
-    ko: "C'est Halloween ! Regarde bien la couverture : il y a une citrouille." },
+  { q: "Qu'est-ce qui fait peur à Ducobu et Léonie sur la couverture de Duco… Bouh ! ?",
+    a: ["Une énorme citrouille aux yeux jaunes", "Un requin dans la classe", "Un père Noël en colère", "Un ballon de foot géant"], c: 0,
+    ok: "Exactement : une citrouille géante, parfaite pour Halloween ! Prépare tes bonbons… et planque ton cahier de brouillon.",
+    ko: "C'est une énorme citrouille aux yeux jaunes ! Regarde bien la couverture : Ducobu et Léonie n'en mènent pas large." },
   { q: "Qui a créé Ducobu dans les années 1990 ?",
     a: ["Godi (dessin) et Zidrou (scénario)", "Uderzo et Goscinny", "Hergé et Jacobs", "Peyo et Franquin"], c: 0,
     ok: "Godi et Zidrou : le duo qui fait rire Saint-Potache depuis plus de 30 ans.",
@@ -61,7 +61,7 @@ const PROFILES = [
 ];
 
 const $ = id => document.getElementById(id);
-let i = 0, score = 0, locked = false;
+let i = 0, score = 0, locked = false, readyAt = 0;
 
 function show(id){
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
@@ -81,6 +81,7 @@ function shuffle(a){
 function render(){
   const Q = QUESTIONS[i];
   locked = false;
+  readyAt = Date.now() + 600; // évite qu'un double-tap sur « Suivant » valide une réponse sans le vouloir
   $("num").textContent = i + 1;
   $("total").textContent = QUESTIONS.length;
   $("score").textContent = score;
@@ -103,7 +104,7 @@ function render(){
 }
 
 function pick(btn, idx){
-  if (locked) return;
+  if (locked || Date.now() < readyAt) return;
   locked = true;
   const Q = QUESTIONS[i];
   const right = idx === Q.c;
@@ -130,13 +131,14 @@ function finish(){
   $("bar").style.width = "100%";
   $("result-title").textContent = p.title;
   $("result-score").textContent = score;
+  $("result-count").textContent = score > 1 ? "bonnes réponses" : "bonne réponse";
   $("result-text").textContent = p.text;
   setImg($("result-img"), p.img);
   show("screen-result");
 }
 
 $("start").onclick = () => { i = 0; score = 0; show("screen-quiz"); render(); };
-$("next").onclick = () => { i++; i < QUESTIONS.length ? render() : finish(); };
+$("next").onclick = () => { if ($("feedback").hidden) return; i++; i < QUESTIONS.length ? render() : finish(); };
 $("again").onclick = () => { i = 0; score = 0; show("screen-quiz"); render(); };
 $("share").onclick = async () => {
   const text = `J'ai fait ${score}/10 au quiz Duco… Bouh ! Et toi, tu fais mieux que moi ?`;

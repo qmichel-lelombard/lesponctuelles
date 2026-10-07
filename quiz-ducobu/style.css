@@ -81,3 +81,5 @@ footer{text-align:center;font-size:.8rem;padding:16px;background:var(--black);co
 
 .logo{display:block;width:min(260px,70%);margin:0 0 6px}
 .logo-sm{height:30px;width:auto;vertical-align:middle;background:var(--yellow);padding:4px 12px;border-radius:8px}
+
+.big-score small{font-family:"Comic Neue",system-ui,sans-serif;font-size:1rem;color:var(--black);display:block}
