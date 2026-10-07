@@ -20,11 +20,11 @@ main{max-width:920px;margin:0 auto;padding:20px 16px}
 .screen{display:none}.screen.active{display:block;animation:pop .35s ease}
 @keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
 .hero,.card{background:var(--paper);border:5px solid var(--black);border-radius:18px;box-shadow:8px 8px 0 var(--black);padding:22px}
-.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;align-items:center;justify-items:center}
-.hero-text{justify-self:stretch}
-.walker{max-height:300px;width:auto;order:-1}
-@media(min-width:760px){.hero{grid-template-columns:200px 240px 1fr}.walker{max-height:380px;order:0}}
-.cover{width:100%;max-width:260px;margin:0 auto;display:block;border:4px solid var(--black);border-radius:6px;transform:rotate(-3deg);box-shadow:6px 6px 0 var(--orange)}
+.hero{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:center}
+.hero-text{flex:1 1 320px}
+.walker{max-height:300px;width:auto}
+@media(min-width:760px){.walker{max-height:380px}}
+.cover{width:220px;max-width:100%;display:block;border:4px solid var(--black);border-radius:6px;transform:rotate(-3deg);box-shadow:6px 6px 0 var(--orange)}
 .kicker{display:inline-block;margin:0 0 6px;background:var(--orange);color:var(--black);padding:2px 12px;border-radius:999px;font-size:1.1rem;transform:rotate(-2deg)}
 h1{margin:.1em 0;font-size:clamp(2.4rem,9vw,4.4rem);line-height:1;color:var(--black);text-shadow:3px 3px 0 var(--yellow)}
 h1 em{color:var(--purple);font-style:normal;text-shadow:3px 3px 0 var(--orange)}
@@ -78,3 +78,6 @@ footer{text-align:center;font-size:.8rem;padding:16px;background:var(--black);co
 .hop{animation:hop .5s ease}
 @keyframes hop{30%{transform:translateY(-14px) rotate(-3deg)}60%{transform:translateY(0) rotate(2deg)}}
 .result .mascot{max-height:260px;margin:0 auto 8px}
+
+.logo{display:block;width:min(260px,70%);margin:0 0 6px}
+.logo-sm{height:30px;width:auto;vertical-align:middle;background:var(--yellow);padding:4px 12px;border-radius:8px}
