@@ -160,13 +160,22 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .co:hover { color: var(--charge); }
 
 /* work */
-.feature { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 5vw, 80px); padding-block: 28px; border-top: 1px solid var(--ink); }
-.feature h3 { margin: 0 0 10px; font: 800 clamp(2.4rem, 7vw, 6.4rem)/.88 var(--f-display); font-stretch: 62%; text-transform: uppercase; }
-.feature p { margin: 0 0 16px; max-width: 52ch; }
-.feature .side { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); border-top: 1px solid var(--ink); }
+.kpi { padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }
+.kpi b { display: block; font: 800 clamp(2.6rem, 5.5vw, 4.6rem)/.9 var(--f-display); font-stretch: 62%; text-transform: uppercase; color: var(--charge); }
+.kpi p { margin: 8px 0 0; max-width: 28ch; font-weight: 500; }
+.accts { margin: 14px 0 0; }
+.accts a { text-underline-offset: 3px; }
+.cases { margin-top: clamp(28px, 4vw, 48px); border-top: 1px solid var(--ink); }
+.case { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 4fr); gap: clamp(12px, 3vw, 48px); padding-block: 22px; border-bottom: 1px solid var(--line); }
+.case h3 { margin: 0 0 8px; font: 800 clamp(1.4rem, 2.3vw, 2rem)/1.05 var(--f-display); font-stretch: 75%; text-transform: uppercase; }
+.case p { margin: 0 0 12px; max-width: 54ch; }
+.tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
+.tags li { font: 400 .7rem/1.2 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; border: 1px solid var(--line); padding: 7px 9px; }
+.subhead { margin: clamp(32px, 5vw, 56px) 0 0; }
 .lnk { display: inline-block; font: 500 .78rem/1.2 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
 .lnk:hover { color: var(--charge); border-color: var(--charge); }
-.sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 20px; }
+.sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 12px; }
 .site { background: var(--bg); padding: 22px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; min-width: 0; }
 .site:hover { background: var(--surface); }
 .site b { font: 800 clamp(1.5rem, 2.4vw, 2.1rem)/1 var(--f-display); font-stretch: 70%; text-transform: uppercase; overflow-wrap: anywhere; }
@@ -201,8 +210,9 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
 @media (max-width: 900px) {
+  .case { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .nav { display: none; }
-  .hero-foot, .why, .track, .feature { grid-template-columns: minmax(0, 1fr); }
+  .hero-foot, .why, .track { grid-template-columns: minmax(0, 1fr); }
   .stage { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .stage .when { padding-top: 0; }
   .match .head { display: none; }
@@ -352,25 +362,34 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
 
   <section id="projets">
     <h2 class="h2"><small class="mono" data-t="j_k">Le Lombard · WordPress</small><span data-t="j_h">Réalisations</span></h2>
-    <article class="feature">
-      <div><h3>Elles, tome 4</h3><p class="mono mute" data-t="e_k">Le Lombard · Lancement</p></div>
-      <div class="side">
-        <p data-t="e_p">Nouveau tome d'une série à succès. Je coordonne l'agence et le budget, je produis les visuels et je gère la sous-traitance, avec la suite Adobe et des outils d'IA.</p>
-        <a class="lnk" href="https://datastudio.google.com/u/0/reporting/9c04b171-5a3c-4c2b-85b3-da0b10993597/page/p_khmjjc4zbd" target="_blank" rel="noopener" data-t="e_l">Voir le rapport de campagne ↗</a>
-      </div>
-    </article>
-    <article class="feature">
-      <div><h3 data-t="sn_h">Filtre Snapchat Schtroumpfs</h3><p class="mono mute" data-t="sn_k">Le Lombard · Snapchat</p></div>
-      <div class="side"><p data-t="sn_p">Un filtre de marque créé pour Snapchat, où je lance des campagnes depuis 2021.</p></div>
-    </article>
-    <article class="feature">
-      <div><h3 data-t="v_h">Vidéos originales</h3><p class="mono mute" data-t="v_k">Le Lombard · Vidéo</p></div>
-      <div class="side"><p data-t="v_p">Prises de vues réelles, animation 3D et IA, selon ce que demande l'idée. Certaines vidéos ont dépassé plusieurs millions de vues, sponsoring compris.</p></div>
-    </article>
-    <article class="feature">
-      <div><h3 data-t="wp_h">Sites WordPress</h3><p class="mono mute" data-t="wp_k">Conception et mise en ligne</p></div>
-      <div class="side"><p data-t="wp_p">Quatre sites conçus pour des indépendants et des associations.</p></div>
-    </article>
+    <div class="kpis">
+      <div class="kpi"><b>200 000+</b><p data-t="k1">abonnés cumulés sur les réseaux sociaux du Lombard, partis de zéro</p></div>
+      <div class="kpi"><b data-t="k2n">Millions</b><p data-t="k2">de vues sur certaines vidéos, sponsoring inclus</p></div>
+      <div class="kpi"><b>4</b><p data-t="k3">plateformes média payant pilotées : Meta, TikTok, Snapchat, Google</p></div>
+    </div>
+    <p class="mono mute accts"><span data-t="k4">Les comptes à vérifier</span> :
+      <a href="https://www.instagram.com/lelombard/" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://www.tiktok.com/@lelombard" target="_blank" rel="noopener">TikTok</a> ·
+      <a href="https://www.youtube.com/c/%C3%89ditionsLeLombard" target="_blank" rel="noopener">YouTube</a> ·
+      <a href="https://www.facebook.com/lelombardbd" target="_blank" rel="noopener">Facebook</a></p>
+    <div class="cases">
+      <article class="case">
+        <div class="mono mute" data-t="c1k">Lancement · Le Lombard</div>
+        <div><h3 data-t="c1h">Elles, tome 4 : Intemporelle(s)</h3><p data-t="c1p">Retour d'une série à succès de Kid Toussaint et Aveline Stokart. Campagne pilotée du brief à l'agence jusqu'au suivi des résultats.</p><a class="lnk" href="https://www.lelombard.com/bd/elles/intemporelles" target="_blank" rel="noopener" data-t="c1l">Fiche de l'album ↗</a></div>
+        <ul class="tags" data-t="c1r"><li>Coordination de l'agence et du budget</li><li>Production des visuels et sous-traitance</li><li>Adobe et outils d'IA</li><li>Suivi dans un rapport Looker Studio</li></ul>
+      </article>
+      <article class="case">
+        <div class="mono mute" data-t="c2k">Marque · Le Lombard</div>
+        <div><h3 data-t="c2h">Filtre Snapchat des Schtroumpfs</h3><p data-t="c2p">Un filtre de marque pour la série créée par Peyo, sur Snapchat, où je pilote des campagnes depuis 2021.</p><a class="lnk" href="https://www.lelombard.com/incontournable/schtroumpfs" target="_blank" rel="noopener" data-t="c2l">La série sur lelombard.com ↗</a></div>
+        <ul class="tags" data-t="c2r"><li>Projet de filtre de marque</li><li>Snapchat Ads depuis 2021</li></ul>
+      </article>
+      <article class="case">
+        <div class="mono mute" data-t="c3k">Contenu · Le Lombard</div>
+        <div><h3 data-t="c3h">Vidéos originales</h3><p data-t="c3p">Des formats tournés ou animés selon l'idée. Certaines vidéos ont dépassé plusieurs millions de vues, sponsoring inclus.</p></div>
+        <ul class="tags" data-t="c3r"><li>Prises de vues réelles</li><li>Animation 3D</li><li>Création avec l'IA</li><li>Diffusion sponsorisée</li></ul>
+      </article>
+    </div>
+    <p class="mono mute subhead" data-t="wp_k">Sites WordPress conçus et mis en ligne</p>
     <div class="sites">
       <a class="site" href="https://unjourencouleurs.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x1k">Organisation de mariages</span><b>Un jour en couleurs</b><span class="mono">unjourencouleurs.be ↗</span></a>
       <a class="site" href="https://lesponctuelles.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x2k">ASBL littéraire · agenda · boutique</span><b>Les Ponctuelles</b><span class="mono">lesponctuelles.be ↗</span></a>
@@ -429,6 +448,14 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
 (function () {
   var NL = {
     s6l: "Opgebouwd bereik", s6v: "200.000+ volgers, vanaf nul", l0: "Sociale media: meer dan 200.000 volgers samen, vanaf nul, en miljoenen weergaven.",
+    k1: "volgers samen op de sociale media van Le Lombard, vanaf nul", k2n: "Miljoenen", k2: "weergaven op sommige video's, sponsoring inbegrepen", k3: "betaalde mediaplatformen beheerd: Meta, TikTok, Snapchat, Google", k4: "Accounts om na te kijken",
+    c1k: "Lancering · Le Lombard", c1h: "Elles, deel 4: Intemporelle(s)", c1p: "Terugkeer van een succesreeks van Kid Toussaint en Aveline Stokart. Campagne van begin tot eind aangestuurd, van de briefing aan het bureau tot de opvolging van de resultaten.", c1l: "Albumpagina ↗",
+    c1r: "<li>Coördinatie van bureau en budget</li><li>Productie van visuals en onderaanneming</li><li>Adobe en AI-tools</li><li>Opvolging in een Looker Studio-rapport</li>",
+    c2k: "Merk · Le Lombard", c2h: "Smurfen-filter op Snapchat", c2p: "Een merkfilter voor de reeks van Peyo, op Snapchat, waar ik sinds 2021 campagnes aanstuur.", c2l: "De reeks op lelombard.com ↗",
+    c2r: "<li>Project voor een merkfilter</li><li>Snapchat Ads sinds 2021</li>",
+    c3k: "Content · Le Lombard", c3h: "Originele video's", c3p: "Formats met echte opnames of animatie, naargelang het idee. Sommige video's haalden meerdere miljoenen weergaven, sponsoring inbegrepen.",
+    c3r: "<li>Echte opnames</li><li>3D-animatie</li><li>Creatie met AI</li><li>Gesponsorde verspreiding</li>",
+    wp_k: "WordPress-sites ontworpen en gelanceerd",
     soc: "Lading", n_offer: "Vacature", n_road: "Loopbaan", n_work: "Projecten", n_track: "Circuit", n_contact: "Contact",
     tag: "Sollicitatie · Digital Marketing Specialist, Denza BeLux",
     lead: "Digital projectmanager bij Le Lombard. Ik laat merken leven op sociale media en coördineer daarbij bureaus, budgetten en teams. Gepassioneerd door auto's: design, merken, modellen, F1 en WRC.",
@@ -466,7 +493,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     e_l: "Campagnerapport bekijken ↗",
     sn_h: "Smurfen-filter Snapchat", sn_k: "Le Lombard · Snapchat", sn_p: "Een merkfilter voor Snapchat, waar ik sinds 2021 campagnes voer.",
     v_h: "Originele video's", v_k: "Le Lombard · Video", v_p: "Echte opnames, 3D-animatie en AI, naargelang wat het idee vraagt. Sommige video's haalden meerdere miljoenen weergaven, sponsoring inbegrepen.",
-    wp_h: "WordPress-sites", wp_k: "Ontwerp en lancering", wp_p: "Vier sites voor zelfstandigen en verenigingen.",
+    wp_h: "WordPress-sites", wp_p: "Vier sites voor zelfstandigen en verenigingen.",
     x1k: "Huwelijksplanning", x2k: "Literaire vzw · agenda · winkel", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
     t_k: "F1 · WRC · Alpine A110", t_h: "Op het circuit", fe: "Formule E", t_cap: "Hoe intens ik volg, van 1 tot 5",
     t_big: "Wat me aantrekt in een auto: de lijn, de identiteit van het merk, het verhaal dat het model vertelt.",
@@ -481,6 +508,14 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
   };
   var EN = {
     s6l: "Audience built", s6v: "200,000+ followers, from zero", l0: "Social media: over 200,000 followers combined, built from zero, plus millions of views.",
+    k1: "followers combined across Le Lombard's social accounts, built from zero", k2n: "Millions", k2: "of views on some videos, sponsoring included", k3: "paid media platforms managed: Meta, TikTok, Snapchat, Google", k4: "Accounts to check",
+    c1k: "Launch · Le Lombard", c1h: "Elles, volume 4: Intemporelle(s)", c1p: "Return of a hit series by Kid Toussaint and Aveline Stokart. Campaign run end to end, from the agency brief to tracking the results.", c1l: "Album page ↗",
+    c1r: "<li>Agency and budget coordination</li><li>Visual production and subcontracting</li><li>Adobe and AI tools</li><li>Tracking in a Looker Studio report</li>",
+    c2k: "Brand · Le Lombard", c2h: "Smurfs Snapchat filter", c2p: "A branded filter for the series created by Peyo, on Snapchat, where I've run campaigns since 2021.", c2l: "The series on lelombard.com ↗",
+    c2r: "<li>Branded filter project</li><li>Snapchat Ads since 2021</li>",
+    c3k: "Content · Le Lombard", c3h: "Original videos", c3p: "Formats shot or animated depending on the idea. Some videos passed several million views, sponsoring included.",
+    c3r: "<li>Live shoots</li><li>3D animation</li><li>Creation with AI</li><li>Sponsored distribution</li>",
+    wp_k: "WordPress sites designed and launched",
     soc: "Charge", n_offer: "The role", n_road: "Career", n_work: "Work", n_track: "Track", n_contact: "Contact",
     tag: "Application · Digital Marketing Specialist, Denza BeLux",
     lead: "Digital project manager at Le Lombard. I make brands live on social, coordinating agencies, budgets and teams along the way. Into cars: design, brands, models, F1 and WRC.",
@@ -518,7 +553,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     e_l: "View the campaign report ↗",
     sn_h: "Smurfs Snapchat filter", sn_k: "Le Lombard · Snapchat", sn_p: "A branded filter for Snapchat, where I've run campaigns since 2021.",
     v_h: "Original videos", v_k: "Le Lombard · Video", v_p: "Live shoots, 3D animation and AI, depending on what the idea needs. Some videos passed several million views, sponsoring included.",
-    wp_h: "WordPress sites", wp_k: "Design and launch", wp_p: "Four sites for independents and associations.",
+    wp_h: "WordPress sites", wp_p: "Four sites for independents and associations.",
     x1k: "Wedding planning", x2k: "Literary non-profit · events · shop", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
     t_k: "F1 · WRC · Alpine A110", t_h: "Track side", fe: "Formula E", t_cap: "How closely I follow, from 1 to 5",
     t_big: "What draws me to a car: the line, the identity of the brand, what the model says.",
