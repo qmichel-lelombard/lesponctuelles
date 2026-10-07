@@ -15,6 +15,9 @@
   --dim: rgba(10, 17, 23, .14);
   --charge: #0B6BFF;
   --signal: #E8480C;
+  --paper: #F4F7F9;
+  --pblend: multiply;
+  --pfilter: none;
   --f-display: "Archivo", "Arial Narrow", Arial, sans-serif;
   --f-mono: "Martian Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gut: clamp(16px, 4vw, 56px);
@@ -23,13 +26,13 @@
   :root:not([data-theme="light"]) {
     --bg: #080D12; --surface: #0F1720; --ink: #E8EFF4; --mute: #8C9CA8;
     --line: rgba(232, 239, 244, .18); --dim: rgba(232, 239, 244, .13);
-    --charge: #3AB4FF; --signal: #FF6A33; color-scheme: dark;
+    --charge: #3AB4FF; --signal: #FF6A33; --pblend: screen; --pfilter: invert(1); color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #080D12; --surface: #0F1720; --ink: #E8EFF4; --mute: #8C9CA8;
   --line: rgba(232, 239, 244, .18); --dim: rgba(232, 239, 244, .13);
-  --charge: #3AB4FF; --signal: #FF6A33; color-scheme: dark;
+  --charge: #3AB4FF; --signal: #FF6A33; --pblend: screen; --pfilter: invert(1); color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -112,6 +115,10 @@ a { color: inherit; }
 .btn.solid { background: var(--ink); color: var(--bg); }
 .btn:hover { background: var(--charge); border-color: var(--charge); color: #fff; }
 
+.tag-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: clamp(24px, 4vw, 48px); }
+.tag-row .tag { margin: 0; }
+.portrait { width: clamp(92px, 12vw, 168px); height: auto; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; mix-blend-mode: var(--pblend); filter: var(--pfilter); flex: none; }
+
 /* ---------- sections ---------- */
 section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .h2 {
@@ -169,6 +176,16 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .gauges b { font: 800 clamp(1.8rem, 3.4vw, 3rem)/1 var(--f-display); font-stretch: 62%; text-transform: uppercase; }
 .gauge { position: relative; flex: none; width: 56px; height: 28px; background: repeating-linear-gradient(90deg, var(--dim) 0 8px, transparent 8px 12px); }
 .gauge::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--n) * 12px - 4px); background: repeating-linear-gradient(90deg, var(--charge) 0 8px, transparent 8px 12px); }
+.picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 12px; max-width: none; }
+.pick { background: var(--bg); padding: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.pick b { font: 800 clamp(2.6rem, 5vw, 4.4rem)/.9 var(--f-display); font-stretch: 62%; text-transform: uppercase; }
+.pick p { font-size: .98rem; }
+.garage { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); margin-top: clamp(40px, 6vw, 80px); align-items: start; }
+.garage figure { margin: 0; display: grid; gap: 10px; min-width: 0; }
+.garage img { display: block; width: 100%; height: auto; background: var(--dim); }
+.garage .alp img { aspect-ratio: 3 / 4; object-fit: cover; }
+.garage .bmw { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.garage .bmw img { aspect-ratio: 3 / 2; object-fit: cover; filter: grayscale(.5); }
 .track .cols { display: grid; gap: 18px; max-width: 58ch; }
 .track p { margin: 0; }
 .track .big { font: 600 clamp(1.6rem, 3.2vw, 2.8rem)/1.12 var(--f-display); font-stretch: 90%; text-wrap: balance; max-width: none; }
@@ -181,14 +198,17 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 
 /* contact */
 .contact { padding-bottom: clamp(48px, 8vw, 96px); }
-.contact .h2 { font-size: clamp(3.4rem, 17vw, 16rem); font-stretch: 125%; font-weight: 900; line-height: .84; letter-spacing: -.03em; }
+.cgrid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(150px, 20vw, 260px); gap: clamp(20px, 4vw, 64px); align-items: end; }
+.wave { display: block; width: 100%; height: auto; background: var(--paper); border: 1px solid var(--line); }
+.contact .h2 { font-size: clamp(3.4rem, 12vw, 11rem); font-stretch: 125%; font-weight: 900; line-height: .84; letter-spacing: -.03em; }
 .contact .row { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; border-top: 1px solid var(--ink); padding-top: 24px; }
 .mail { font: 500 clamp(1rem, 2.6vw, 1.6rem)/1.2 var(--f-mono); overflow-wrap: anywhere; user-select: all; }
 footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
 @media (max-width: 900px) {
   .nav { display: none; }
-  .hero-foot, .why, .track, .feature { grid-template-columns: minmax(0, 1fr); }
+  .hero-foot, .why, .track, .feature, .garage, .cgrid { grid-template-columns: minmax(0, 1fr); }
+  .wave { max-width: 200px; }
   .stage { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .stage .when { padding-top: 0; }
   .match .head { display: none; }
@@ -231,7 +251,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
 
 <main class="wrap" id="top">
   <div class="hero">
-    <div class="tag mono" data-t="tag">Candidature · Digital Marketing Specialist, Denza BeLux</div>
+    <div class="tag-row"><div class="tag mono" data-t="tag">Candidature · Digital Marketing Specialist, Denza BeLux</div><img class="portrait" src="img/portrait.jpg" width="400" height="400" alt="Portrait dessiné de Quentin Michel"></div>
     <h1 class="name" aria-label="Quentin Michel"><span class="blade" aria-hidden="true">Quentin</span><span aria-hidden="true">Michel</span></h1>
     <div class="hero-foot">
       <div>
@@ -260,8 +280,8 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       <div class="row"><p class="q" data-t="r3q">Agences et équipes transverses</p><p class="a" data-t="r3a">Coordination de l'agence et du budget, production de visuels et sous-traitance pour chaque campagne.</p></div>
       <div class="row"><p class="q" data-t="r4q">Outils de publication</p><p class="a" data-t="r4a">Meta Business Suite et Agorapulse au quotidien. Hootsuite pratiqué.</p></div>
       <div class="row"><p class="q" data-t="r5q">Performance et trafic web</p><p class="a" data-t="r5a">Google Ads depuis 2014, Snapchat Ads depuis 2021, TikTok Ads, GA4 et rapports de campagne chiffrés.</p></div>
-      <div class="row"><p class="q" data-t="r6q">Community management et réputation</p><p class="a" data-t="r6a">Community management depuis 2016, du réseau de magasins Meno aux séries grand public.</p></div>
-      <div class="row"><p class="q" data-t="r7q">Néerlandais, français, anglais</p><p class="a" data-t="r7a">Français langue maternelle, néerlandais et anglais B2/C1. Ce site existe en trois langues.</p></div>
+      <div class="row"><p class="q" data-t="r6q">Community management et réputation de marque</p><p class="a" data-t="r6a">Community management depuis 2016. Situations sensibles gérées : polémique autour d'illustrations générées par IA, accueil mitigé d'une reprise de série par de nouveaux auteurs et, chez Meno, photos produits erronées, avis clients négatifs et doutes sur des promotions.</p></div>
+      <div class="row"><p class="q" data-t="r7q">Néerlandais, français, anglais</p><p class="a" data-t="r7a">Français langue maternelle, néerlandais et anglais utilisés en contexte professionnel. Ce site existe en trois langues.</p></div>
       <div class="row"><p class="q" data-t="r8q">Bachelor en communication</p><p class="a" data-t="r8a">Bachelor Publicité (Esupcom Lille, 2014), media planning (EFP, 2014), web content (Cepegra, 2016).</p></div>
     </div>
   </section>
@@ -274,6 +294,10 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
         <p data-t="w_p1">Denza avance en Belgique et au Luxembourg avec une marque à installer dans les esprits. C'est la phase où le ton, le calendrier éditorial et la communauté se construisent, et c'est le travail que je préfère.</p>
         <p data-t="w_p2">Je suis l'automobile depuis toujours, côté design, marques et modèles plus que mécanique. Je connais la plupart des modèles BYD et Denza vendus en Europe, et je n'ai pas encore eu l'occasion de les conduire. J'ai très envie de le faire.</p>
         <p data-t="w_p3">Plusieurs langues, des agences, des équipes à aligner : je travaille déjà dans ce cadre.</p>
+        <div class="picks">
+          <div class="pick"><span class="mono mute" data-t="pk1k">Coup de cœur Denza</span><b>Z9 GT</b><p data-t="pk1p">Les Denza Z attirent d'abord par leurs lignes de coupé sportif. La Z9 GT reste proche d'une Porsche Panamera : luxe et sportivité pour tous les jours.</p></div>
+          <div class="pick"><span class="mono mute" data-t="pk2k">Coup de cœur BYD</span><b>Seal</b><p data-t="pk2p">Une berline familiale sûre et confortable, faite pour les très longues routes dans l'élégance et le silence, sans oublier la puissance.</p></div>
+        </div>
       </div>
     </div>
   </section>
@@ -345,7 +369,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     </article>
     <article class="feature">
       <div><h3 data-t="v_h">Vidéos originales</h3><p class="mono mute" data-t="v_k">Le Lombard · Vidéo</p></div>
-      <div class="side"><p data-t="v_p">Prises de vues réelles, animation 3D et IA, selon ce que demande l'idée.</p></div>
+      <div class="side"><p data-t="v_p">Prises de vues réelles, animation 3D et IA, selon ce que demande l'idée. Certaines vidéos ont dépassé plusieurs millions de vues, sponsoring compris.</p></div>
     </article>
     <article class="feature">
       <div><h3 data-t="wp_h">Sites WordPress</h3><p class="mono mute" data-t="wp_k">Conception et mise en ligne</p></div>
@@ -377,6 +401,18 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
         <p data-t="t_p2">Mon garage a toujours été allemand. Ma curiosité est maintenant en Chine, BYD et Denza en premier.</p>
       </div>
     </div>
+    <div class="garage">
+      <figure class="alp"><img src="img/alpine.jpg" width="1000" height="1333" loading="lazy" alt="Alpine A110 bleue sur le circuit"><figcaption class="mono mute" data-t="g1">Alpine A110 · essai sur circuit</figcaption></figure>
+      <figure>
+        <div class="bmw">
+          <img src="img/bmw1.jpg" width="600" height="345" loading="lazy" alt="BMW Série 3 grise">
+          <img src="img/bmw2.jpg" width="600" height="390" loading="lazy" alt="BMW Série 3 gris foncé">
+          <img src="img/bmw3.jpg" width="600" height="407" loading="lazy" alt="BMW Série 3 noire">
+          <img src="img/bmw4.jpg" width="600" height="293" loading="lazy" alt="BMW Série 1 grise">
+        </div>
+        <figcaption class="mono mute" data-t="g2">Mon garage jusqu'ici</figcaption>
+      </figure>
+    </div>
   </section>
 
   <section id="outils">
@@ -386,16 +422,19 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       <div><h3 class="mono" data-t="b2">Médias payants</h3><ul><li>Google Ads <small data-t="b2a">depuis 2014</small></li><li>Meta Ads · LinkedIn Ads</li><li>TikTok Ads</li><li>Snapchat Ads <small data-t="b2b">depuis 2021</small></li></ul></div>
       <div><h3 class="mono" data-t="b3">Mesure</h3><ul><li>Google Analytics 4</li><li>Looker Studio</li></ul></div>
       <div><h3 class="mono" data-t="b4">Création et web</h3><ul><li>Adobe Creative Cloud</li><li data-t="b4a">Outils d'IA</li><li>WordPress</li></ul></div>
-      <div><h3 class="mono" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>B2/C1</small></li><li data-t="b5c">Anglais <small>B2/C1</small></li></ul></div>
+      <div><h3 class="mono" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>usage professionnel</small></li><li data-t="b5c">Anglais <small>usage professionnel</small></li></ul></div>
     </div>
   </section>
 
   <section id="contact" class="contact">
+    <div class="cgrid"><div>
     <h2 class="h2"><small class="mono" data-t="c_k">Candidature Denza BeLux</small><span data-t="c_h">Parlons-en.</span></h2>
     <div class="row">
       <span class="mail" id="mail">quentin.michel@outlook.com</span>
       <button class="btn" type="button" id="copy" data-t="copy">Copier l'adresse</button>
       <a class="btn solid" href="https://www.linkedin.com/in/quentin-michel/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div></div>
+    <img class="wave" src="img/wave.jpg" width="560" height="841" loading="lazy" alt="Quentin en personnage 3D qui fait un signe de la main">
     </div>
   </section>
 
@@ -420,8 +459,8 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     r3q: "Bureaus en cross-functionele teams", r3a: "Coördinatie van bureau en budget, productie van visuals en onderaanneming voor elke campagne.",
     r4q: "Publicatietools", r4a: "Dagelijks Meta Business Suite en Agorapulse. Ervaring met Hootsuite.",
     r5q: "Performance en websiteverkeer", r5a: "Google Ads sinds 2014, Snapchat Ads sinds 2021, TikTok Ads, GA4 en campagnerapporten met cijfers.",
-    r6q: "Community management en reputatie", r6a: "Community management sinds 2016, van het Meno-winkelnetwerk tot succesvolle reeksen voor het grote publiek.",
-    r7q: "Nederlands, Frans, Engels", r7a: "Frans als moedertaal, Nederlands en Engels B2/C1. Deze site bestaat in drie talen.",
+    r6q: "Community management en merkreputatie", r6a: "Community management sinds 2016. Gevoelige situaties beheerd: ophef over met AI gegenereerde illustraties, gemengde ontvangst van een heruitgave van een reeks door nieuwe auteurs en, bij Meno, foute productfoto's, negatieve klantenreviews en twijfels over promoties.",
+    r7q: "Nederlands, Frans, Engels", r7a: "Frans als moedertaal, Nederlands en Engels in een professionele context. Deze site bestaat in drie talen.",
     r8q: "Bachelor in communicatie", r8a: "Bachelor Reclame (Esupcom Rijsel, 2014), mediaplanning (EFP, 2014), webcontent (Cepegra, 2016).",
     w_k: "BYD · Denza", w_h: "Waarom Denza",
     w_big: "Een premium elektrisch merk dat in België en Luxemburg nog in de hoofden moet landen.",
@@ -444,7 +483,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     e_p: "Nieuw deel van een succesreeks. Ik coördineer het bureau en het budget, maak de visuals en beheer de onderaanneming, met Adobe en AI-tools.",
     e_l: "Campagnerapport bekijken ↗",
     sn_h: "Smurfen-filter Snapchat", sn_k: "Le Lombard · Snapchat", sn_p: "Een merkfilter voor Snapchat, waar ik sinds 2021 campagnes voer.",
-    v_h: "Originele video's", v_k: "Le Lombard · Video", v_p: "Echte opnames, 3D-animatie en AI, naargelang wat het idee vraagt.",
+    v_h: "Originele video's", v_k: "Le Lombard · Video", v_p: "Echte opnames, 3D-animatie en AI, naargelang wat het idee vraagt. Sommige video's haalden meerdere miljoenen weergaven, sponsoring inbegrepen.",
     wp_h: "WordPress-sites", wp_k: "Ontwerp en lancering", wp_p: "Vier sites voor zelfstandigen en verenigingen.",
     x1k: "Huwelijksplanning", x2k: "Literaire vzw · agenda · winkel", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
     t_k: "F1 · WRC · Alpine A110", t_h: "Op het circuit", fe: "Formule E", t_cap: "Hoe intens ik volg, van 1 tot 5",
@@ -453,8 +492,9 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     t_p2: "Mijn garage was altijd Duits. Mijn nieuwsgierigheid ligt nu in China, met BYD en Denza op kop.",
     b_k: "Social · Paid · Analytics · Creatie", b_h: "Toolbox", b1: "Publicatie en social", b2: "Betaalde media", b2a: "sinds 2014", b2b: "sinds 2021",
     b3: "Meting", b4: "Creatie en web", b4a: "AI-tools", b5: "Talen",
-    b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>B2/C1</small>", b5c: "Engels <small>B2/C1</small>",
+    b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>professioneel gebruik</small>", b5c: "Engels <small>professioneel gebruik</small>",
     c_k: "Sollicitatie Denza BeLux", c_h: "Laten we praten.", copy: "Adres kopiëren", copied: "Gekopieerd",
+    pk1k: "Favoriet bij Denza", pk1p: "De Denza Z-modellen trekken eerst door hun sportieve coupélijnen. De Z9 GT staat dicht bij een Porsche Panamera: luxe en sportiviteit voor elke dag.", pk2k: "Favoriet bij BYD", pk2p: "Een veilige, comfortabele gezinssedan voor heel lange ritten in elegantie en stilte, zonder het vermogen te vergeten.", g1: "Alpine A110 · circuitsessie", g2: "Mijn garage tot nu toe",
     foot: "Site gemaakt voor de sollicitatie bij Denza BeLux"
   };
   var EN = {
@@ -470,8 +510,8 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     r3q: "Agencies and cross-functional teams", r3a: "Agency and budget coordination, visual production and subcontracting on every campaign.",
     r4q: "Publishing tools", r4a: "Meta Business Suite and Agorapulse every day. Hands-on with Hootsuite.",
     r5q: "Channel performance and web traffic", r5a: "Google Ads since 2014, Snapchat Ads since 2021, TikTok Ads, GA4 and campaign reports with real numbers.",
-    r6q: "Community management and reputation", r6a: "Community management since 2016, from the Meno store network to mainstream series.",
-    r7q: "Dutch, French, English", r7a: "French mother tongue, Dutch and English B2/C1. This site exists in three languages.",
+    r6q: "Community management and brand reputation", r6a: "Community management since 2016. Sensitive situations handled: backlash over AI-generated illustrations, a mixed reception for a classic series revived by new authors and, at Meno, wrong product photos, negative customer reviews and doubts about promotions.",
+    r7q: "Dutch, French, English", r7a: "French mother tongue, Dutch and English used in a professional setting. This site exists in three languages.",
     r8q: "Bachelor in communications", r8a: "Bachelor in Advertising (Esupcom Lille, 2014), media planning (EFP, 2014), web content (Cepegra, 2016).",
     w_k: "BYD · Denza", w_h: "Why Denza",
     w_big: "A premium electric brand still settling into minds in Belgium and Luxembourg.",
@@ -494,7 +534,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     e_p: "New volume of a hit series. I coordinate the agency and budget, produce the visuals and manage subcontracting, using Adobe and AI tools.",
     e_l: "View the campaign report ↗",
     sn_h: "Smurfs Snapchat filter", sn_k: "Le Lombard · Snapchat", sn_p: "A branded filter for Snapchat, where I've run campaigns since 2021.",
-    v_h: "Original videos", v_k: "Le Lombard · Video", v_p: "Live shoots, 3D animation and AI, depending on what the idea needs.",
+    v_h: "Original videos", v_k: "Le Lombard · Video", v_p: "Live shoots, 3D animation and AI, depending on what the idea needs. Some videos passed several million views, sponsoring included.",
     wp_h: "WordPress sites", wp_k: "Design and launch", wp_p: "Four sites for independents and associations.",
     x1k: "Wedding planning", x2k: "Literary non-profit · events · shop", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
     t_k: "F1 · WRC · Alpine A110", t_h: "Track side", fe: "Formula E", t_cap: "How closely I follow, from 1 to 5",
@@ -503,8 +543,9 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     t_p2: "My garage has always been German. My curiosity is now in China, BYD and Denza first.",
     b_k: "Social · Paid · Analytics · Creative", b_h: "Toolbox", b1: "Publishing and social", b2: "Paid media", b2a: "since 2014", b2b: "since 2021",
     b3: "Measurement", b4: "Creative and web", b4a: "AI tools", b5: "Languages",
-    b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>B2/C1</small>", b5c: "English <small>B2/C1</small>",
+    b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>professional use</small>", b5c: "English <small>professional use</small>",
     c_k: "Denza BeLux application", c_h: "Let's talk.", copy: "Copy address", copied: "Copied",
+    pk1k: "Favourite Denza", pk1p: "The Denza Z models draw you in first with their sporty coupé lines. The Z9 GT sits close to a Porsche Panamera: luxury and sportiness for every day.", pk2k: "Favourite BYD", pk2p: "A safe, comfortable family saloon built for very long drives in elegance and silence, without forgetting the power.", g1: "Alpine A110 · track session", g2: "My garage so far",
     foot: "Site made for the Denza BeLux application"
   };
   var dict = { fr: {}, nl: NL, en: EN };
