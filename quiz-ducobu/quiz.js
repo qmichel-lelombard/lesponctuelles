@@ -86,9 +86,7 @@ function render(){
   $("score").textContent = score;
   $("bar").style.width = (i / QUESTIONS.length * 100) + "%";
   $("question").textContent = Q.q;
-  const m = $("mascot");
-  m.onerror = () => { m.onerror = null; m.src = MASCOT.think; };
-  setImg(m, Q.img || MASCOT.think);
+  setImg($("mascot"), MASCOT.think);
   $("mascot").classList.remove("hop");
   $("feedback").hidden = true;
   const box = $("answers");
@@ -118,7 +116,10 @@ function pick(btn, idx){
   });
   $("feedback-text").textContent = (right ? "✅ " : "❌ ") + (right ? Q.ok : Q.ko);
   $("next").textContent = i === QUESTIONS.length - 1 ? "Mon bulletin ➜" : "Suivant ➜";
-  setImg($("mascot"), right ? MASCOT.good : MASCOT.bad);
+  // le personnage de la question est dévoilé après la réponse
+  const m = $("mascot"), fallback = right ? MASCOT.good : MASCOT.bad;
+  m.onerror = () => { m.onerror = null; m.src = fallback; };
+  setImg(m, Q.img || fallback);
   $("mascot").classList.toggle("hop", right);
   $("feedback").hidden = false;
   $("next").focus();

@@ -4,5 +4,5 @@ Fournis (Ducobu, utilisés tels quels, sans retouche du dessin) :
 ducobu-visage.png (question), ducobu-marche.png (bonne réponse / accueil), ducobu-bonnet.png (mauvaise réponse),
 
 
-À fournir (facultatif) : couverture-tome-30.png, et d'autres personnages détourés (Léonie, Nénèss, Rotule, Latouche).
+Personnages fournis : leonie.png, neness.png (version effrayée), latouche.png (révélés après la réponse). Reste à fournir : couverture-tome-30.png, Rotule.
 Un fichier absent est simplement masqué.
