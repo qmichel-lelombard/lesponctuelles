@@ -1,9 +1,8 @@
-# Visuels à fournir (détourés, PNG transparent) — aucun dessin n'est créé par le site
+# Visuels
 
-| Fichier | Usage |
-|---|---|
-| couverture-tome-30.png | Accueil (couverture de Duco… Bouh !) |
-| leonie.png, neness.png, rotule.png, latouche.png | Illustration des questions |
-| resultat-ducobu.png, resultat-leonie.png, resultat-latouche.png | Écran de résultat |
+Fournis (Ducobu, utilisés tels quels, sans retouche du dessin) :
+ducobu-visage.png (question), ducobu-marche.png (bonne réponse / accueil), ducobu-bonnet.png (mauvaise réponse),
 
-Tant qu'un fichier est absent, l'image est simplement masquée. Pour une image par question, renseigner `img` dans `quiz.js`.
+
+À fournir (facultatif) : couverture-tome-30.png, et d'autres personnages détourés (Léonie, Nénèss, Rotule, Latouche).
+Un fichier absent est simplement masqué.

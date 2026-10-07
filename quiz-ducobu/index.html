@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Duco… Bouh ! Le Quiz</title>
 <meta name="description" content="Le quiz de Ducobu pour fêter la sortie du tome 30, Duco… Bouh ! Réponds en 5 minutes, sans tricher (enfin, presque).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,6 +19,7 @@
   <!-- ACCUEIL -->
   <section id="screen-intro" class="screen active">
     <div class="hero">
+      <img class="slot walker" src="assets/ducobu-marche.png" alt="Ducobu en route pour l'école" onerror="this.remove()">
       <img class="slot cover" src="assets/couverture-tome-30.png" alt="Couverture de Duco… Bouh !" onerror="this.remove()">
       <div class="hero-text">
         <p class="kicker">🎃 Spécial Halloween</p>
@@ -36,7 +39,7 @@
     <div class="progress" aria-hidden="true"><div id="bar"></div></div>
     <p class="counter"><span id="num">1</span> / <span id="total">10</span> · Score&nbsp;: <b id="score">0</b></p>
     <div class="card">
-      <img class="slot mascot" id="mascot" src="" alt="" onerror="this.style.display='none'">
+      <div class="mascot-wrap"><img class="slot mascot" id="mascot" src="" alt="Ducobu" onerror="this.style.display='none'"></div>
       <h2 id="question"></h2>
       <div id="answers" class="answers"></div>
       <div id="feedback" class="feedback" hidden>
