@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Quentin Michel · Candidature Denza BeLux</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wght@300;400;500;700&display=swap">
+<style>
+@page { size: A4; margin: 0; }
+:root {
+  --bg: #E3E9ED; --surface: #F1F5F8; --ink: #0A1117; --mute: #52616C;
+  --line: rgba(10,17,23,.2); --dim: rgba(10,17,23,.14); --charge: #0B6BFF; --signal: #E8480C;
+  --f-display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --f-mono: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font: 400 9.4pt/1.5 var(--f-display); font-stretch: 100%; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; padding: 11mm 15mm 9mm; position: relative; overflow: hidden; page-break-after: always; display: flex; flex-direction: column; }
+.page:last-child { page-break-after: auto; }
+.mono { font-family: var(--f-mono); font-size: 6.6pt; letter-spacing: .06em; text-transform: uppercase; }
+.mute { color: var(--mute); }
+a { color: inherit; text-decoration: none; }
+
+/* header */
+.top { display: flex; justify-content: space-between; align-items: center; border-bottom: .3mm solid var(--ink); padding-bottom: 3mm; }
+.mark { font: 900 12pt/1 var(--f-display); font-stretch: 125%; letter-spacing: -.02em; }
+.soc { display: flex; align-items: center; gap: 2.5mm; }
+.bar { width: 38mm; height: 3.2mm; background: repeating-linear-gradient(90deg, var(--charge) 0 1.1mm, transparent 1.1mm 1.8mm); }
+.tag { display: flex; align-items: center; gap: 2.5mm; margin: 9mm 0 5mm; }
+.tag::before { content: ""; width: 2.2mm; height: 2.2mm; background: var(--signal); border-radius: 50%; }
+.name { margin: 0; font: 900 52pt/.84 var(--f-display); font-stretch: 125%; letter-spacing: -.025em; text-transform: uppercase; }
+.name span { display: block; width: fit-content; }
+.bladeimg { display: block; height: 17.32mm; width: auto; margin: -.5mm 0 -.6mm -.4mm; }
+.bt { font: 900 18.3px "Archivo", Arial, sans-serif; font-stretch: 125%; letter-spacing: -.46px; stroke: #0A1117; stroke-width: .12; }
+.name .blade {
+  color: transparent; -webkit-text-stroke: .35mm var(--ink);
+  background-image: repeating-linear-gradient(90deg, var(--charge) 0 .07em, transparent .07em .115em);
+  background-size: 100% 100%; background-repeat: no-repeat; -webkit-background-clip: text; background-clip: text;
+}
+
+/* letter */
+.contact { display: flex; flex-wrap: wrap; gap: 1.5mm 6mm; margin: 7mm 0 0; padding-top: 3mm; border-top: .3mm solid var(--ink); }
+.letter { margin-top: 7mm; display: grid; grid-template-columns: 40mm 1fr; gap: 8mm; flex: 1; }
+.meta { display: grid; gap: 4mm; align-content: start; }
+.meta p { margin: 0; }
+.meta b { display: block; font: 800 11pt/1.05 var(--f-display); font-stretch: 75%; text-transform: uppercase; margin-top: 1mm; }
+.body p { margin: 0 0 3.4mm; }
+.body .obj { font: 800 13pt/1.1 var(--f-display); font-stretch: 75%; text-transform: uppercase; margin-bottom: 4.5mm; }
+.body .sig { margin-top: 5mm; font: 800 11pt/1 var(--f-display); font-stretch: 100%; }
+.body strong { font-weight: 700; }
+
+/* cv */
+.cvhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; margin: 4mm 0 3mm; }
+.cvname { margin: 0; font: 900 30pt/.88 var(--f-display); font-stretch: 125%; letter-spacing: -.02em; text-transform: uppercase; }
+.cvrole { margin: 2mm 0 0; font-weight: 500; font-size: 10pt; }
+.portrait { width: 21mm; height: 21mm; border-radius: 50%; mix-blend-mode: multiply; flex: none; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: .3mm solid var(--ink); border-bottom: .2mm solid var(--line); margin-bottom: 3mm; }
+.stats div { padding: 1.6mm 2mm 1.6mm 0; }
+.stats b { display: block; font: 800 17pt/.95 var(--f-display); font-stretch: 62%; text-transform: uppercase; color: var(--charge); }
+.stats span { font-size: 7.6pt; font-weight: 500; line-height: 1.25; display: block; }
+.cols { display: grid; grid-template-columns: 52mm 1fr; gap: 7mm; flex: 1; min-height: 0; }
+h2 { margin: 0 0 2mm; font: 800 12.5pt/1 var(--f-display); font-stretch: 62%; text-transform: uppercase; letter-spacing: .01em; }
+h2.k { padding-top: 2.2mm; border-top: .3mm solid var(--ink); }
+.side section, .main section { margin-bottom: 3mm; }
+.side p, .side li, .main li { font-size: 7.9pt; line-height: 1.34; }
+.side ul, .main ul { margin: 0; padding: 0; list-style: none; }
+.side li { padding: .6mm 0; }
+.side li small { color: var(--mute); font-size: 7.4pt; }
+.job { display: grid; grid-template-columns: 24mm 1fr; gap: 3mm; padding: 1.5mm 0; border-top: .2mm solid var(--line); }
+.job:first-of-type { border-top: 0; }
+.job h3 { margin: 0; font: 800 11pt/1 var(--f-display); font-stretch: 70%; text-transform: uppercase; }
+.job .role { margin: .4mm 0 .9mm; color: var(--mute); font-weight: 500; font-size: 8pt; }
+.job li { padding-left: 3.2mm; position: relative; margin-bottom: .2mm; }
+.job li::before { content: ""; position: absolute; left: 0; top: .55em; width: 1.8mm; height: .3mm; background: var(--charge); }
+.job .when { padding-top: .6mm; line-height: 1.5; }
+.job.small { padding: 1.1mm 0; }
+.job.small h3 { font-size: 9.5pt; }
+.chips { display: flex; flex-wrap: wrap; gap: 1.2mm; }
+.chips span { font: 400 6.4pt/1.2 var(--f-mono); letter-spacing: .03em; text-transform: uppercase; border: .2mm solid var(--line); padding: .8mm 1.4mm; }
+.chips span.cur { border-color: var(--charge); }
+.foot { display: flex; justify-content: space-between; border-top: .2mm solid var(--line); padding-top: 2.5mm; margin-top: auto; }
+.blue { color: var(--charge); }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 : lettre de motivation -->
+<div class="page">
+  <div class="top">
+    <span class="mark">QM</span>
+    <span class="soc"><span class="mono mute">Charge</span><span class="bar"></span><span class="mono">100 %</span></span>
+  </div>
+  <div class="tag mono">Candidature · Digital Marketing Specialist, Denza BeLux</div>
+  <h1 class="name"><img class="bladeimg" src="name-blade.png" alt="Quentin"><span>Michel</span></h1>
+  <div class="contact mono">
+    <span>quentin.michel@outlook.com</span>
+    <span>linkedin.com/in/quentin-michel</span>
+    <span>Enghien, Belgique</span>
+  </div>
+
+  <div class="letter">
+    <div class="meta">
+      <p class="mono mute">Destinataire<b>BYD Europe<br>Recrutement Denza BeLux</b></p>
+      <p class="mono mute">Date<b>Octobre 2026</b></p>
+      <p class="mono mute">Objet<b>Digital Marketing Specialist, Denza (BeLux)</b></p>
+      <p class="mono mute">Portfolio<b style="font-stretch:100%;font-size:8pt;text-transform:none;font-weight:600;overflow-wrap:anywhere"><a href="https://claude.ai/artifact/9vV4yPJ3Mpjntthi8jHrSn">claude.ai/artifact/<br>9vV4yPJ3Mpjntthi8jHrSn</a></b></p>
+    </div>
+    <div class="body">
+      <p class="obj">Faire vivre une marque qui fait rêver</p>
+      <p>Madame, Monsieur,</p>
+      <p>Denza se développe en Belgique et au Luxembourg avec une marque encore à installer dans les esprits. Le poste de Digital Marketing Specialist consiste à construire son ton, son calendrier éditorial et sa communauté. C'est le travail que je préfère, et celui que je fais depuis plus de dix ans.</p>
+      <p>Chef de projet digital au Lombard depuis avril 2021, je pilote avec l'agence les campagnes de lancement d'albums et de séries, du brief et du budget jusqu'au bilan chiffré. Je produis ou sous-traite les visuels, avec la suite Adobe et des outils d'IA, et je fais vivre les réseaux de la maison : <strong>plus de 200 000 abonnés cumulés, construits de zéro, et des vidéos qui ont dépassé plusieurs millions de vues</strong>. Je suis aussi webmaster de lelombard.com et de thorgal.com.</p>
+      <p>Ce que vous demandez, je le pratique déjà. Je tiens la cohérence de ton et de marque sur des licences très connues comme Les Schtroumpfs. Je coordonne agences et équipes autour d'un même calendrier. Je publie avec Meta Business Suite et Agorapulse, et j'ai pratiqué Hootsuite. Je pilote des médias payants sur Meta, TikTok, Snapchat et Google, suivis dans des rapports chiffrés. Enfin, j'ai géré des situations sensibles, comme la polémique autour d'illustrations générées par IA, ou, chez Meno, des photos produits erronées et des avis clients négatifs : répondre vite, calmement et avec les faits.</p>
+      <p>L'automobile m'intéresse par le design, les marques et leur histoire. Je connais la plupart des modèles BYD et Denza vendus en Europe sans avoir encore pu les conduire. La Z9 GT réunit luxe et sportivité pour tous les jours, et la Seal me parle par son confort, son silence et sa puissance. Cette curiosité nourrit des contenus justes pour la communauté.</p>
+      <p>Je travaille en français, langue maternelle, et j'utilise professionnellement le néerlandais (niveau B2, e-mailings FR/NL chez Meno) et l'anglais (B2/C1). Je suis motivé pour consolider mon néerlandais et je suis prêt à l'illustrer en entretien. Ce portfolio existe d'ailleurs en trois langues.</p>
+      <p>Je serais heureux de vous présenter ma vision des réseaux de Denza BeLux lors d'un entretien.</p>
+      <p>Avec mes salutations les meilleures,</p>
+      <p class="sig">Quentin Michel</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 : CV -->
+<div class="page">
+  <div class="top">
+    <span class="mark">QM</span>
+    <span class="mono mute">Curriculum vitae · Digital Marketing Specialist, Denza BeLux</span>
+  </div>
+  <div class="cvhead">
+    <div>
+      <h1 class="cvname">Quentin Michel</h1>
+      <p class="cvrole">Chef de projet digital, Le Lombard · dans le métier depuis 2012</p>
+      <p class="mono mute" style="margin:1.4mm 0 0">quentin.michel@outlook.com · linkedin.com/in/quentin-michel · Enghien, Belgique</p>
+    </div>
+    <img class="portrait" src="../img/portrait.jpg" alt="">
+  </div>
+  <div class="stats">
+    <div><b>200 000+</b><span>abonnés cumulés sur les réseaux du Lombard, partis de zéro</span></div>
+    <div><b>20 M</b><span>de vues sur TikTok, sur certaines vidéos</span></div>
+    <div><b>100k</b><span>abonnés sur Instagram</span></div>
+    <div><b>4</b><span>plateformes média payant : Meta, TikTok, Snapchat, Google</span></div>
+  </div>
+
+  <div class="cols">
+    <div class="side">
+      <section>
+        <h2 class="k">Langues</h2>
+        <ul>
+          <li>Français <small>langue maternelle</small></li>
+          <li>Néerlandais <small>B2</small></li>
+          <li>Anglais <small>B2/C1</small></li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="k">Outils</h2>
+        <ul>
+          <li><b>Publication</b><br>Meta Business Suite, Agorapulse, Hootsuite</li>
+          <li><b>Médias payants</b><br>Google Ads, Meta Ads, LinkedIn Ads, TikTok Ads, Snapchat Ads</li>
+          <li><b>Mesure</b><br>Google Analytics 4, Looker Studio</li>
+          <li><b>Création et web</b><br>Adobe Creative Cloud, outils d'IA, WordPress</li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="k">Formation</h2>
+        <ul>
+          <li><b>Bachelor Publicité</b><br><small>Esupcom Lille, 2014</small></li>
+          <li><b>Media planning</b><br><small>EFP Uccle, 2014</small></li>
+          <li><b>Web content</b><br><small>Cepegra Charleroi, 2016</small></li>
+          <li><b>CESS Latin-anglais</b><br><small>CSA Enghien, 2008</small></li>
+        </ul>
+      </section>
+      <section>
+        <h2 class="k">Centres d'intérêt</h2>
+        <p>Design et histoire de l'automobile, architecture, voyages, lecture, dessin, théâtre et one-man show.</p>
+      </section>
+    </div>
+
+    <div class="main">
+      <section>
+        <h2 class="k">Expérience</h2>
+        <article class="job">
+          <div class="when mono"><b>04.2021 → auj.</b><br><span class="mute">Le Lombard</span></div>
+          <div><h3>Le Lombard</h3><p class="role">Chef de projet digital</p>
+            <ul>
+              <li>Lancements : campagnes pilotées avec l'agence, du brief au bilan chiffré, visuels produits ou sous-traités (Adobe, IA).</li>
+              <li>Médias payants : Meta, TikTok, Snapchat et Google Ads, suivis dans des rapports chiffrés.</li>
+              <li>Contenus : filtre Snapchat des Schtroumpfs, vidéos originales en prises de vues, animation 3D et IA.</li>
+              <li>Web et communauté : webmaster de lelombard.com et thorgal.com, animation avec Agorapulse, gestion des situations sensibles.</li>
+            </ul></div>
+        </article>
+        <article class="job">
+          <div class="when mono"><b>01.2020 → 03.2021</b><br><span class="mute">Diegem</span></div>
+          <div><h3>AddRetail</h3><p class="role">Project &amp; Creative Manager · PubliFast</p>
+            <ul>
+              <li>Sites WordPress créés pour des clients.</li>
+              <li>Campagnes Facebook et LinkedIn Ads, animation de communautés.</li>
+              <li>E-mailings HTML : conception et rédaction pour des marques belges.</li>
+              <li>Relation client, prospection et pilotage des projets.</li>
+            </ul></div>
+        </article>
+        <article class="job">
+          <div class="when mono"><b>03.2016 → 12.2019</b><br><span class="mute">Nivelles</span></div>
+          <div><h3>Meno Group</h3><p class="role">Web marketeer</p>
+            <ul>
+              <li>Web : rédaction SEO et webdesign de 4 sites pour 150 magasins de bricolage.</li>
+              <li>Réseaux : community management, Facebook Ads, formation et accompagnement.</li>
+              <li>E-mailing FR/NL, e-commerce (prix, expérience utilisateur) et Google Analytics.</li>
+            </ul></div>
+        </article>
+        <article class="job small">
+          <div class="when mono"><b>01.2015 → 09.2015</b><br><span class="mute">Bruxelles</span></div>
+          <div><h3>Media Markt</h3><p class="role" style="margin-bottom:0">Spécialiste e-content · gestion d'équipe, optimisation de contenu, fournisseurs</p></div>
+        </article>
+        <article class="job small">
+          <div class="when mono"><b>01.2014 → 10.2014</b><br><span class="mute">Namur</span></div>
+          <div><h3>Expansion</h3><p class="role" style="margin-bottom:0">Assistant chef de projet · communication, stratégie marketing, événements</p></div>
+        </article>
+        <article class="job small">
+          <div class="when mono"><b>11.2012 → 12.2013</b><br><span class="mute">Bruxelles</span></div>
+          <div><h3>Zenith Media</h3><p class="role" style="margin-bottom:0">Assistant achat presse · media planning, recherche médias, achat presse</p></div>
+        </article>
+      </section>
+
+      <section>
+        <h2 class="k">Réalisations</h2>
+        <p class="mono mute" style="margin:0 0 1.6mm">Réseaux du Lombard</p>
+        <div class="chips">
+          <span><b class="blue">Facebook</b> · 12 ans d'expérience</span>
+          <span><b class="blue">Instagram</b> · 100k abonnés</span>
+          <span><b class="blue">TikTok</b> · 20 millions de vues</span>
+          <span><b class="blue">YouTube</b> · motion design et Ads</span>
+        </div>
+        <p class="mono mute" style="margin:1.8mm 0 1.2mm">Sites gérés en tant que webmaster</p>
+        <div class="chips">
+          <span class="cur">lelombard.com</span><span class="cur">thorgal.com</span>
+          <span>meno.be</span><span>menopro.be</span><span>handyhome.be</span><span>mediamarkt.be</span>
+        </div>
+        <p class="mono mute" style="margin:1.8mm 0 1.2mm">Sites WordPress conçus</p>
+        <div class="chips">
+          <span>unjourencouleurs.be</span><span>lesponctuelles.be</span><span>guillaumetessaro.be</span><span>marcherman.be</span>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+</body>
+</html>
