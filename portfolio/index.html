@@ -18,6 +18,10 @@
   --paper: #F4F7F9;
   --pblend: multiply;
   --pfilter: none;
+  --dk-blend: multiply;
+  --dk-filter: invert(1);
+  --lt-blend: multiply;
+  --lt-filter: none;
   --f-display: "Archivo", "Arial Narrow", Arial, sans-serif;
   --f-mono: "Martian Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --gut: clamp(16px, 4vw, 56px);
@@ -26,13 +30,13 @@
   :root:not([data-theme="light"]) {
     --bg: #080D12; --surface: #0F1720; --ink: #E8EFF4; --mute: #8C9CA8;
     --line: rgba(232, 239, 244, .18); --dim: rgba(232, 239, 244, .13);
-    --charge: #3AB4FF; --signal: #FF6A33; --pblend: screen; --pfilter: invert(1); color-scheme: dark;
+    --charge: #3AB4FF; --signal: #FF6A33; --pblend: screen; --pfilter: invert(1); --dk-blend: screen; --dk-filter: none; --lt-blend: screen; --lt-filter: invert(1); color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #080D12; --surface: #0F1720; --ink: #E8EFF4; --mute: #8C9CA8;
   --line: rgba(232, 239, 244, .18); --dim: rgba(232, 239, 244, .13);
-  --charge: #3AB4FF; --signal: #FF6A33; --pblend: screen; --pfilter: invert(1); color-scheme: dark;
+  --charge: #3AB4FF; --signal: #FF6A33; --pblend: screen; --pfilter: invert(1); --dk-blend: screen; --dk-filter: none; --lt-blend: screen; --lt-filter: invert(1); color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -119,6 +123,21 @@ a { color: inherit; }
 .tag-row .tag { margin: 0; }
 .portrait { width: clamp(92px, 12vw, 168px); height: auto; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; mix-blend-mode: var(--pblend); filter: var(--pfilter); flex: none; }
 
+/* decorative car visuals, blended into the page ground */
+.hero, section { position: relative; }
+.deco {
+  position: absolute; z-index: 0; pointer-events: none; user-select: none; height: auto;
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 35%, transparent 100%);
+}
+.deco.dk { mix-blend-mode: var(--dk-blend); filter: var(--dk-filter); }
+.deco.lt { mix-blend-mode: var(--lt-blend); filter: var(--lt-filter); }
+.hero > :not(.deco), section > :not(.deco) { position: relative; z-index: 1; }
+.deco.hero-img { top: 2%; right: calc(var(--gut) * -1); width: min(80%, 1100px); opacity: .5; }
+.deco.why-img { top: 8%; right: calc(var(--gut) * -1); width: min(72%, 980px); opacity: .32; }
+.deco.track-img { top: -4%; right: calc(var(--gut) * -1); width: min(54%, 700px); opacity: .55; }
+.deco.contact-img { bottom: 0; left: calc(var(--gut) * -1); width: calc(100% + var(--gut) * 2); opacity: .38; }
+
 /* ---------- sections ---------- */
 section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .h2 {
@@ -160,19 +179,9 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .co:hover { color: var(--charge); }
 
 /* work */
-.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); border-top: 1px solid var(--ink); }
-.kpi { padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); }
-.kpi b { display: block; font: 800 clamp(2.6rem, 5.5vw, 4.6rem)/.9 var(--f-display); font-stretch: 62%; text-transform: uppercase; color: var(--charge); }
-.kpi p { margin: 8px 0 0; max-width: 28ch; font-weight: 500; }
-.accts { margin: 14px 0 0; }
-.accts a { text-underline-offset: 3px; }
-.cases { margin-top: clamp(28px, 4vw, 48px); border-top: 1px solid var(--ink); }
-.case { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 4fr); gap: clamp(12px, 3vw, 48px); padding-block: 22px; border-bottom: 1px solid var(--line); }
-.case h3 { margin: 0 0 8px; font: 800 clamp(1.4rem, 2.3vw, 2rem)/1.05 var(--f-display); font-stretch: 75%; text-transform: uppercase; }
-.case p { margin: 0 0 12px; max-width: 54ch; }
-.tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
-.tags li { font: 400 .7rem/1.2 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; border: 1px solid var(--line); padding: 7px 9px; }
 .subhead { margin: clamp(32px, 5vw, 56px) 0 0; }
+.subhead.first { margin-top: 0; }
+.site b.blue { color: var(--charge); }
 .lnk { display: inline-block; font: 500 .78rem/1.2 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
 .lnk:hover { color: var(--charge); border-color: var(--charge); }
 .sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 12px; }
@@ -210,7 +219,6 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 
 @media (max-width: 900px) {
-  .case { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .nav { display: none; }
   .hero-foot, .why, .track { grid-template-columns: minmax(0, 1fr); }
   .stage { grid-template-columns: minmax(0, 1fr); gap: 10px; }
@@ -220,6 +228,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
   .spec div { grid-template-columns: 8rem minmax(0, 1fr); }
 }
 @media (max-width: 520px) {
+  .deco { opacity: .3 !important; }
   .soc .bar { display: none; }
   .top .wrap { justify-content: space-between; }
   .soc { flex: none; }
@@ -255,6 +264,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
 
 <main class="wrap" id="top">
   <div class="hero">
+    <img class="deco dk hero-img" src="img/deco-z9gt.jpg" alt="" aria-hidden="true" width="1400" height="774">
     <div class="tag-row"><div class="tag mono" data-t="tag">Candidature · Digital Marketing Specialist, Denza BeLux</div><img class="portrait" src="img/portrait.jpg" width="400" height="400" alt="Portrait dessiné de Quentin Michel"></div>
     <h1 class="name" aria-label="Quentin Michel"><span class="blade" aria-hidden="true">Quentin</span><span aria-hidden="true">Michel</span></h1>
     <div class="hero-foot">
@@ -292,6 +302,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
   </section>
 
   <section id="denza">
+    <img class="deco lt why-img" src="img/deco-coupe.jpg" alt="" aria-hidden="true" width="1400" height="933" loading="lazy">
     <h2 class="h2"><small class="mono" data-t="w_k">BYD · Denza</small><span data-t="w_h">Pourquoi Denza</span></h2>
     <div class="why">
       <p class="big" data-t="w_big">Une marque premium, électrique, à installer dans les esprits en Belgique et au Luxembourg.</p>
@@ -361,33 +372,21 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
   </section>
 
   <section id="projets">
-    <h2 class="h2"><small class="mono" data-t="j_k">Le Lombard · WordPress</small><span data-t="j_h">Réalisations</span></h2>
-    <div class="kpis">
-      <div class="kpi"><b>200 000+</b><p data-t="k1">abonnés cumulés sur les réseaux sociaux du Lombard, partis de zéro</p></div>
-      <div class="kpi"><b data-t="k2n">Millions</b><p data-t="k2">de vues sur certaines vidéos, sponsoring inclus</p></div>
-      <div class="kpi"><b>4</b><p data-t="k3">plateformes média payant pilotées : Meta, TikTok, Snapchat, Google</p></div>
+    <h2 class="h2"><small class="mono" data-t="j_k">Social · Web</small><span data-t="j_h">Réalisations</span></h2>
+    <p class="mono mute subhead first" data-t="grp1">Réseaux sociaux du Lombard</p>
+    <div class="sites">
+      <a class="site" href="https://www.facebook.com/lelombardbd" target="_blank" rel="noopener"><span class="mono mute">Facebook</span><b class="blue" data-t="fb_t">12 ans d'expérience</b><span class="mono">facebook.com/lelombardbd ↗</span></a>
+      <a class="site" href="https://www.instagram.com/lelombard/" target="_blank" rel="noopener"><span class="mono mute">Instagram</span><b class="blue" data-t="ig_t">100k abonnés</b><span class="mono">instagram.com/lelombard ↗</span></a>
+      <a class="site" href="https://www.tiktok.com/@lelombard" target="_blank" rel="noopener"><span class="mono mute">TikTok</span><b class="blue" data-t="tt_t">20 millions de vues</b><span class="mono">tiktok.com/@lelombard ↗</span></a>
+      <a class="site" href="https://www.youtube.com/c/%C3%89ditionsLeLombard" target="_blank" rel="noopener"><span class="mono mute">YouTube</span><b class="blue" data-t="yt_t">Montage, motion design et Ads</b><span class="mono">youtube.com/Éditions Le Lombard ↗</span></a>
     </div>
-    <p class="mono mute accts"><span data-t="k4">Les comptes à vérifier</span> :
-      <a href="https://www.instagram.com/lelombard/" target="_blank" rel="noopener">Instagram</a> ·
-      <a href="https://www.tiktok.com/@lelombard" target="_blank" rel="noopener">TikTok</a> ·
-      <a href="https://www.youtube.com/c/%C3%89ditionsLeLombard" target="_blank" rel="noopener">YouTube</a> ·
-      <a href="https://www.facebook.com/lelombardbd" target="_blank" rel="noopener">Facebook</a></p>
-    <div class="cases">
-      <article class="case">
-        <div class="mono mute" data-t="c1k">Lancement · Le Lombard</div>
-        <div><h3 data-t="c1h">Elles, tome 4 : Intemporelle(s)</h3><p data-t="c1p">Retour d'une série à succès de Kid Toussaint et Aveline Stokart. Campagne pilotée du brief à l'agence jusqu'au suivi des résultats.</p><a class="lnk" href="https://www.lelombard.com/bd/elles/intemporelles" target="_blank" rel="noopener" data-t="c1l">Fiche de l'album ↗</a></div>
-        <ul class="tags" data-t="c1r"><li>Coordination de l'agence et du budget</li><li>Production des visuels et sous-traitance</li><li>Adobe et outils d'IA</li><li>Suivi dans un rapport Looker Studio</li></ul>
-      </article>
-      <article class="case">
-        <div class="mono mute" data-t="c2k">Marque · Le Lombard</div>
-        <div><h3 data-t="c2h">Filtre Snapchat des Schtroumpfs</h3><p data-t="c2p">Un filtre de marque pour la série créée par Peyo, sur Snapchat, où je pilote des campagnes depuis 2021.</p><a class="lnk" href="https://www.lelombard.com/incontournable/schtroumpfs" target="_blank" rel="noopener" data-t="c2l">La série sur lelombard.com ↗</a></div>
-        <ul class="tags" data-t="c2r"><li>Projet de filtre de marque</li><li>Snapchat Ads depuis 2021</li></ul>
-      </article>
-      <article class="case">
-        <div class="mono mute" data-t="c3k">Contenu · Le Lombard</div>
-        <div><h3 data-t="c3h">Vidéos originales</h3><p data-t="c3p">Des formats tournés ou animés selon l'idée. Certaines vidéos ont dépassé plusieurs millions de vues, sponsoring inclus.</p></div>
-        <ul class="tags" data-t="c3r"><li>Prises de vues réelles</li><li>Animation 3D</li><li>Création avec l'IA</li><li>Diffusion sponsorisée</li></ul>
-      </article>
+    <p class="mono mute subhead" data-t="grp2">Sites gérés en tant que webmaster</p>
+    <div class="sites">
+      <a class="site" href="https://www.lelombard.com/" target="_blank" rel="noopener"><span class="mono mute" data-t="cur">Actuel</span><b>Le Lombard</b><span class="mono">lelombard.com ↗</span></a>
+      <a class="site" href="https://www.thorgal.com/" target="_blank" rel="noopener"><span class="mono mute" data-t="cur">Actuel</span><b>Thorgal</b><span class="mono">thorgal.com ↗</span></a>
+      <a class="site" href="https://www.meno.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Ancien</span><b>Meno</b><span class="mono">meno.be ↗</span></a>
+      <a class="site" href="https://www.handyhome.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Ancien</span><b>HandyHome</b><span class="mono">handyhome.be ↗</span></a>
+      <a class="site" href="https://www.mediamarkt.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Ancien</span><b>Media Markt</b><span class="mono">mediamarkt.be ↗</span></a>
     </div>
     <p class="mono mute subhead" data-t="wp_k">Sites WordPress conçus et mis en ligne</p>
     <div class="sites">
@@ -399,6 +398,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
   </section>
 
   <section id="piste">
+    <img class="deco dk track-img" src="img/deco-concept.jpg" alt="" aria-hidden="true" width="1100" height="752" loading="lazy">
     <h2 class="h2"><small class="mono" data-t="t_k">F1 · WRC · Alpine A110</small><span data-t="t_h">Sur la piste</span></h2>
     <div class="track">
       <div>
@@ -430,6 +430,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
   </section>
 
   <section id="contact" class="contact">
+    <img class="deco lt contact-img" src="img/deco-platform.jpg" alt="" aria-hidden="true" width="1400" height="518" loading="lazy">
     <h2 class="h2"><small class="mono" data-t="c_k">Candidature Denza BeLux</small><span data-t="c_h">Parlons-en.</span></h2>
     <div class="row">
       <span class="mail" id="mail">quentin.michel@outlook.com</span>
@@ -456,6 +457,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     c3k: "Content · Le Lombard", c3h: "Originele video's", c3p: "Formats met echte opnames of animatie, naargelang het idee. Sommige video's haalden meerdere miljoenen weergaven, sponsoring inbegrepen.",
     c3r: "<li>Echte opnames</li><li>3D-animatie</li><li>Creatie met AI</li><li>Gesponsorde verspreiding</li>",
     wp_k: "WordPress-sites ontworpen en gelanceerd",
+    grp1: "Sociale kanalen van Le Lombard", fb_t: "12 jaar ervaring", ig_t: "100K volgers", tt_t: "20 miljoen weergaven", yt_t: "Montage, motion design en Ads", grp2: "Websites beheerd als webmaster", cur: "Huidig", old: "Vroeger",
     soc: "Lading", n_offer: "Vacature", n_road: "Loopbaan", n_work: "Projecten", n_track: "Circuit", n_contact: "Contact",
     tag: "Sollicitatie · Digital Marketing Specialist, Denza BeLux",
     lead: "Digital projectmanager bij Le Lombard. Ik laat merken leven op sociale media en coördineer daarbij bureaus, budgetten en teams. Gepassioneerd door auto's: design, merken, modellen, F1 en WRC.",
@@ -488,7 +490,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     mm_role: "E-content specialist", mm1: "Team, contentoptimalisatie, leveranciers.",
     ex_role: "Assistent projectmanager", ex1: "Communicatieprojecten, marketingstrategie, evenementen.",
     z_role: "Print buyer assistant", z1: "Mediaplanning, mediaonderzoek, aankoop van pers.",
-    j_k: "Le Lombard · WordPress", j_h: "Realisaties", e_k: "Le Lombard · Lancering",
+    j_k: "Social · Web", j_h: "Realisaties", e_k: "Le Lombard · Lancering",
     e_p: "Nieuw deel van een succesreeks. Ik coördineer het bureau en het budget, maak de visuals en beheer de onderaanneming, met Adobe en AI-tools.",
     e_l: "Campagnerapport bekijken ↗",
     sn_h: "Smurfen-filter Snapchat", sn_k: "Le Lombard · Snapchat", sn_p: "Een merkfilter voor Snapchat, waar ik sinds 2021 campagnes voer.",
@@ -516,6 +518,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     c3k: "Content · Le Lombard", c3h: "Original videos", c3p: "Formats shot or animated depending on the idea. Some videos passed several million views, sponsoring included.",
     c3r: "<li>Live shoots</li><li>3D animation</li><li>Creation with AI</li><li>Sponsored distribution</li>",
     wp_k: "WordPress sites designed and launched",
+    grp1: "Le Lombard's social channels", fb_t: "12 years of experience", ig_t: "100K followers", tt_t: "20 million views", yt_t: "Editing, motion design and Ads", grp2: "Sites run as webmaster", cur: "Current", old: "Former",
     soc: "Charge", n_offer: "The role", n_road: "Career", n_work: "Work", n_track: "Track", n_contact: "Contact",
     tag: "Application · Digital Marketing Specialist, Denza BeLux",
     lead: "Digital project manager at Le Lombard. I make brands live on social, coordinating agencies, budgets and teams along the way. Into cars: design, brands, models, F1 and WRC.",
@@ -548,7 +551,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     mm_role: "E-content specialist", mm1: "Team, content optimisation, suppliers.",
     ex_role: "Project manager assistant", ex1: "Communication projects, marketing strategy, events.",
     z_role: "Print buyer assistant", z1: "Media planning, media research, print buying.",
-    j_k: "Le Lombard · WordPress", j_h: "Selected work", e_k: "Le Lombard · Launch",
+    j_k: "Social · Web", j_h: "Selected work", e_k: "Le Lombard · Launch",
     e_p: "New volume of a hit series. I coordinate the agency and budget, produce the visuals and manage subcontracting, using Adobe and AI tools.",
     e_l: "View the campaign report ↗",
     sn_h: "Smurfs Snapchat filter", sn_k: "Le Lombard · Snapchat", sn_p: "A branded filter for Snapchat, where I've run campaigns since 2021.",
