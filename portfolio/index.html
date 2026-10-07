@@ -179,13 +179,16 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .co:hover { color: var(--charge); }
 
 /* work */
+.tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags li { font: 400 .72rem/1.2 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; border: 1px solid var(--line); padding: 8px 10px; }
+.tl { margin: 0 0 10px; }
 .subhead { margin: clamp(32px, 5vw, 56px) 0 0; }
 .subhead.first { margin-top: 0; }
 .site b.blue { color: var(--charge); }
 .lnk { display: inline-block; font: 500 .78rem/1.2 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
 .lnk:hover { color: var(--charge); border-color: var(--charge); }
-.sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 12px; }
-.site { background: var(--bg); padding: 22px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; min-width: 0; }
+.sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: 12px; }
+.site { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; min-width: 0; }
 .site:hover { background: var(--surface); }
 .site b { font: 800 clamp(1.5rem, 2.4vw, 2.1rem)/1 var(--f-display); font-stretch: 70%; text-transform: uppercase; overflow-wrap: anywhere; }
 .site .mono { overflow-wrap: anywhere; }
@@ -251,7 +254,8 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       <a href="#offre" data-go="offre" data-t="n_offer">L'offre</a>
       <a href="#parcours" data-go="parcours" data-t="n_road">Parcours</a>
       <a href="#projets" data-go="projets" data-t="n_work">Projets</a>
-      <a href="#piste" data-go="piste" data-t="n_track">Piste</a>
+      <a href="#piste" data-go="piste" data-t="n_track">Auto</a>
+      <a href="#apropos" data-go="apropos" data-t="n_about">À propos</a>
       <a href="#contact" data-go="contact" data-t="n_contact">Contact</a>
     </nav>
     <div class="lang" role="group" aria-label="Langue">
@@ -269,7 +273,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     <h1 class="name" aria-label="Quentin Michel"><span class="blade" aria-hidden="true">Quentin</span><span aria-hidden="true">Michel</span></h1>
     <div class="hero-foot">
       <div>
-        <p class="lead" data-t="lead">Chef de projet digital chez Le Lombard. Je fais vivre des marques sur les réseaux, avec des agences, des budgets et des équipes à coordonner. Passionné d'automobile : design, marques, modèles, F1 et WRC.</p>
+        <p class="lead" data-t="lead">Chef de projet digital chez Le Lombard. Je fais vivre des marques sur les réseaux, avec des agences, des budgets et des équipes à coordonner. Passionné d'automobile : design, marques et histoire.</p>
         <div class="cta">
           <a class="btn solid" href="#offre" data-go="offre"><span data-t="cta1">Voir l'adéquation avec l'offre</span> ↓</a>
           <a class="btn" href="#contact" data-go="contact" data-t="cta2">Me contacter</a>
@@ -378,20 +382,21 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       <a class="site" href="https://www.facebook.com/lelombardbd" target="_blank" rel="noopener"><span class="mono mute">Facebook</span><b class="blue" data-t="fb_t">12 ans d'expérience</b><span class="mono">facebook.com/lelombardbd ↗</span></a>
       <a class="site" href="https://www.instagram.com/lelombard/" target="_blank" rel="noopener"><span class="mono mute">Instagram</span><b class="blue" data-t="ig_t">100k abonnés</b><span class="mono">instagram.com/lelombard ↗</span></a>
       <a class="site" href="https://www.tiktok.com/@lelombard" target="_blank" rel="noopener"><span class="mono mute">TikTok</span><b class="blue" data-t="tt_t">20 millions de vues</b><span class="mono">tiktok.com/@lelombard ↗</span></a>
-      <a class="site" href="https://www.youtube.com/c/%C3%89ditionsLeLombard" target="_blank" rel="noopener"><span class="mono mute">YouTube</span><b class="blue" data-t="yt_t">Montage, motion design et Ads</b><span class="mono">youtube.com/Éditions Le Lombard ↗</span></a>
+      <a class="site" href="https://www.youtube.com/c/%C3%89ditionsLeLombard" target="_blank" rel="noopener"><span class="mono mute">YouTube</span><b class="blue" data-t="yt_t">Motion design et Ads</b><span class="mono">youtube.com/Éditions Le Lombard ↗</span></a>
     </div>
     <p class="mono mute subhead" data-t="grp2">Sites gérés en tant que webmaster</p>
     <div class="sites">
-      <a class="site" href="https://www.lelombard.com/" target="_blank" rel="noopener"><span class="mono mute" data-t="cur">Actuel</span><b>Le Lombard</b><span class="mono">lelombard.com ↗</span></a>
-      <a class="site" href="https://www.thorgal.com/" target="_blank" rel="noopener"><span class="mono mute" data-t="cur">Actuel</span><b>Thorgal</b><span class="mono">thorgal.com ↗</span></a>
-      <a class="site" href="https://www.meno.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Ancien</span><b>Meno</b><span class="mono">meno.be ↗</span></a>
-      <a class="site" href="https://www.handyhome.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Ancien</span><b>HandyHome</b><span class="mono">handyhome.be ↗</span></a>
-      <a class="site" href="https://www.mediamarkt.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Ancien</span><b>Media Markt</b><span class="mono">mediamarkt.be ↗</span></a>
+      <a class="site" href="https://www.lelombard.com/" target="_blank" rel="noopener"><span class="mono mute" data-t="cur">Géré actuellement</span><b>Le Lombard</b><span class="mono">lelombard.com ↗</span></a>
+      <a class="site" href="https://www.thorgal.com/" target="_blank" rel="noopener"><span class="mono mute" data-t="cur">Géré actuellement</span><b>Thorgal</b><span class="mono">thorgal.com ↗</span></a>
+      <a class="site" href="https://www.meno.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Géré précédemment</span><b>Meno</b><span class="mono">meno.be ↗</span></a>
+      <a class="site" href="https://www.handyhome.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Géré précédemment</span><b>HandyHome</b><span class="mono">handyhome.be ↗</span></a>
+      <a class="site" href="https://www.menopro.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Géré précédemment</span><b>MenoPro</b><span class="mono">menopro.be ↗</span></a>
+      <a class="site" href="https://www.mediamarkt.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="old">Géré précédemment</span><b>Media Markt</b><span class="mono">mediamarkt.be ↗</span></a>
     </div>
     <p class="mono mute subhead" data-t="wp_k">Sites WordPress conçus et mis en ligne</p>
     <div class="sites">
       <a class="site" href="https://unjourencouleurs.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x1k">Organisation de mariages</span><b>Un jour en couleurs</b><span class="mono">unjourencouleurs.be ↗</span></a>
-      <a class="site" href="https://lesponctuelles.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x2k">ASBL littéraire · agenda · boutique</span><b>Les Ponctuelles</b><span class="mono">lesponctuelles.be ↗</span></a>
+      <a class="site" href="https://lesponctuelles.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x2k">ASBL littéraire</span><b>Les Ponctuelles</b><span class="mono">lesponctuelles.be ↗</span></a>
       <a class="site" href="https://guillaumetessaro.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x3k">Chauffage et sanitaire</span><b>Guillaume Tessaro</b><span class="mono">guillaumetessaro.be ↗</span></a>
       <a class="site" href="https://marcherman.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x4k">Humoriste · vidéos · boutique</span><b>Marc Herman</b><span class="mono">marcherman.be ↗</span></a>
     </div>
@@ -399,7 +404,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
 
   <section id="piste">
     <img class="deco dk track-img" src="img/deco-concept.jpg" alt="" aria-hidden="true" width="1100" height="752" loading="lazy">
-    <h2 class="h2"><small class="mono" data-t="t_k">F1 · WRC · Alpine A110</small><span data-t="t_h">Sur la piste</span></h2>
+    <h2 class="h2"><small class="mono" data-t="t_k">Design · Marques · Histoire</small><span data-t="t_h">Lignes et marques</span></h2>
     <div class="track">
       <div>
         <div class="gauges">
@@ -408,12 +413,27 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
           <div><b data-t="fe">Formule E</b><span class="gauge" style="--n:2" role="img" aria-label="2/5"></span></div>
           <div><b>MotoGP</b><span class="gauge" style="--n:2" role="img" aria-label="2/5"></span></div>
         </div>
-        <p class="mono mute" style="margin-top:12px" data-t="t_cap">Intensité de suivi, de 1 à 5</p>
+        <p class="mono mute" style="margin-top:12px" data-t="t_cap">Sport auto : intensité de suivi, de 1 à 5</p>
       </div>
       <div class="cols">
-        <p class="big" data-t="t_big">Ce qui m'attire dans une voiture : la ligne, l'identité de la marque, ce que le modèle raconte.</p>
-        <p data-t="t_p1">Je suis la F1 et le WRC toute la saison, la Formule E et le MotoGP d'un œil plus lointain. Côté volant, je suis resté amateur : du karting, puis un cadeau de Noël qui m'a envoyé sur circuit dans une Alpine A110. Verdict : j'en veux encore.</p>
-        <p data-t="t_p2">Côté garage : une BMW Série 3 E36, une E46, une E92, puis une Série 1 de 2019. Fidèle, mais curieux. La suite de l'histoire s'écrit peut-être en Chine, avec BYD et Denza en tête.</p>
+        <p class="big" data-t="t_big">Ce qui me fascine : la ligne d'une voiture, l'identité d'une marque et les histoires qui relient les deux.</p>
+        <p data-t="t_p1">J'aime savoir pourquoi une calandre ressemble à ça, comment une marque a trouvé son style et ce qu'un modèle raconte de son époque. L'automobile est une histoire de design, de ruptures et d'héritage, et BYD ou Denza sont en train d'en écrire un nouveau chapitre.</p>
+        <p data-t="t_p2">Côté garage : une BMW Série 3 E36, une E46, une E92, puis une Série 1 de 2019. Fidèle, mais curieux : la suite s'écrit peut-être en Chine.</p>
+        <p data-t="t_p3">Le sport auto reste un plaisir en arrière-plan : la F1 et le WRC toute la saison, un peu de karting et, un Noël, un tour de circuit en Alpine A110.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <h2 class="h2"><small class="mono" data-t="a_k">Famille · Passions · Caractère</small><span data-t="a_h">À propos de moi</span></h2>
+    <div class="why">
+      <p class="big" data-t="a_big">Marié à Louise, papa d'Agathe (6 ans). Le reste du temps : voyager, lire, dessiner et rire noir.</p>
+      <div class="cols">
+        <p data-t="a_p">Je suis curieux de tout ce qui se crée : un bâtiment, une scène, un livre, un dessin. J'aime les soirées entre amis autour d'une table de poker, et je prends le jeu au sérieux.</p>
+        <div><p class="mono mute tl" data-t="a2l">Ce que j'aime</p>
+        <ul class="tags" data-t="a2r"><li>Voyager</li><li>Lecture</li><li>Dessin</li><li>Architecture et design</li><li>One-man show et théâtre</li><li>Poker</li><li>Soirées entre amis</li></ul></div>
+        <div><p class="mono mute tl" data-t="a3l">Caractère</p>
+        <ul class="tags" data-t="a3r"><li>Sociable</li><li>Compétitif</li><li>Pragmatique</li><li>Humour noir</li></ul></div>
       </div>
     </div>
   </section>
@@ -422,7 +442,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     <h2 class="h2"><small class="mono" data-t="b_k">Social · Paid · Analytics · Création</small><span data-t="b_h">Boîte à outils</span></h2>
     <div class="tools">
       <div><h3 class="mono" data-t="b1">Publication et social</h3><ul><li>Meta Business Suite</li><li>Agorapulse</li><li>Hootsuite</li></ul></div>
-      <div><h3 class="mono" data-t="b2">Médias payants</h3><ul><li>Google Ads <small data-t="b2a">depuis 2014</small></li><li>Meta Ads · LinkedIn Ads</li><li>TikTok Ads</li><li>Snapchat Ads <small data-t="b2b">depuis 2021</small></li></ul></div>
+      <div><h3 class="mono" data-t="b2">Médias payants</h3><ul><li>Google Ads</li><li>Meta Ads · LinkedIn Ads</li><li>TikTok Ads</li><li>Snapchat Ads</li></ul></div>
       <div><h3 class="mono" data-t="b3">Mesure</h3><ul><li>Google Analytics 4</li><li>Looker Studio</li></ul></div>
       <div><h3 class="mono" data-t="b4">Création et web</h3><ul><li>Adobe Creative Cloud</li><li data-t="b4a">Outils d'IA</li><li>WordPress</li></ul></div>
       <div><h3 class="mono" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>B2</small></li><li data-t="b5c">Anglais <small>B2/C1</small></li></ul></div>
@@ -457,10 +477,14 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     c3k: "Content · Le Lombard", c3h: "Originele video's", c3p: "Formats met echte opnames of animatie, naargelang het idee. Sommige video's haalden meerdere miljoenen weergaven, sponsoring inbegrepen.",
     c3r: "<li>Echte opnames</li><li>3D-animatie</li><li>Creatie met AI</li><li>Gesponsorde verspreiding</li>",
     wp_k: "WordPress-sites ontworpen en gelanceerd",
-    grp1: "Sociale kanalen van Le Lombard", fb_t: "12 jaar ervaring", ig_t: "100K volgers", tt_t: "20 miljoen weergaven", yt_t: "Montage, motion design en Ads", grp2: "Websites beheerd als webmaster", cur: "Huidig", old: "Vroeger",
-    soc: "Lading", n_offer: "Vacature", n_road: "Loopbaan", n_work: "Projecten", n_track: "Circuit", n_contact: "Contact",
+    grp1: "Sociale kanalen van Le Lombard", fb_t: "12 jaar ervaring", ig_t: "100K volgers", tt_t: "20 miljoen weergaven", yt_t: "Motion design en Ads", grp2: "Websites beheerd als webmaster", cur: "Momenteel beheerd", old: "Eerder beheerd",
+    n_about: "Over mij", a_k: "Gezin · Passies · Karakter", a_h: "Over mij", a_big: "Getrouwd met Louise, vader van Agathe (6). De rest van de tijd: reizen, lezen, tekenen en zwart lachen.",
+    a_p: "Ik ben nieuwsgierig naar alles wat gemaakt wordt: een gebouw, een toneel, een boek, een tekening. Ik hou van vriendenavonden rond een pokertafel en neem het spel serieus.",
+    a2l: "Wat ik graag doe", a2r: "<li>Reizen</li><li>Lezen</li><li>Tekenen</li><li>Architectuur en design</li><li>One-manshows en theater</li><li>Poker</li><li>Avonden met vrienden</li>",
+    a3l: "Karakter", a3r: "<li>Sociaal</li><li>Competitief</li><li>Pragmatisch</li><li>Zwarte humor</li>",
+    soc: "Lading", n_offer: "Vacature", n_road: "Loopbaan", n_work: "Projecten", n_track: "Auto", n_contact: "Contact",
     tag: "Sollicitatie · Digital Marketing Specialist, Denza BeLux",
-    lead: "Digital projectmanager bij Le Lombard. Ik laat merken leven op sociale media en coördineer daarbij bureaus, budgetten en teams. Gepassioneerd door auto's: design, merken, modellen, F1 en WRC.",
+    lead: "Digital projectmanager bij Le Lombard. Ik laat merken leven op sociale media en coördineer daarbij bureaus, budgetten en teams. Gepassioneerd door auto's: design, merken en geschiedenis.",
     cta1: "Bekijk de match met de vacature", cta2: "Contact opnemen",
     s1l: "Huidige functie", s1v: "Digital projectmanager, Le Lombard", s2l: "In het vak", s2v: "Sinds 2012",
     s3l: "Specialiteiten", s3v: "Social · Betaalde media · Web", s4l: "Talen", s5l: "Basis", s5v: "Edingen, België",
@@ -496,11 +520,11 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     sn_h: "Smurfen-filter Snapchat", sn_k: "Le Lombard · Snapchat", sn_p: "Een merkfilter voor Snapchat, waar ik sinds 2021 campagnes voer.",
     v_h: "Originele video's", v_k: "Le Lombard · Video", v_p: "Echte opnames, 3D-animatie en AI, naargelang wat het idee vraagt. Sommige video's haalden meerdere miljoenen weergaven, sponsoring inbegrepen.",
     wp_h: "WordPress-sites", wp_p: "Vier sites voor zelfstandigen en verenigingen.",
-    x1k: "Huwelijksplanning", x2k: "Literaire vzw · agenda · winkel", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
-    t_k: "F1 · WRC · Alpine A110", t_h: "Op het circuit", fe: "Formule E", t_cap: "Hoe intens ik volg, van 1 tot 5",
-    t_big: "Wat me aantrekt in een auto: de lijn, de identiteit van het merk, het verhaal dat het model vertelt.",
-    t_p1: "Ik volg F1 en WRC het hele seizoen, Formule E en MotoGP van wat verder weg. Achter het stuur bleef ik amateur: wat karting, en een kerstcadeau dat me op het circuit bracht in een Alpine A110. Conclusie: ik wil meer.",
-    t_p2: "Mijn garage: een BMW 3-reeks E36, een E46, een E92 en daarna een 1-reeks van 2019. Trouw, maar nieuwsgierig. Het volgende hoofdstuk wordt misschien in China geschreven, met BYD en Denza voorop.",
+    x1k: "Huwelijksplanning", x2k: "Literaire vzw", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
+    t_k: "Design · Merken · Geschiedenis", t_h: "Lijnen en merken", fe: "Formule E", t_cap: "Autosport: hoe intens ik volg, van 1 tot 5",
+    t_big: "Wat me fascineert: de lijn van een auto, de identiteit van een merk en de verhalen die beide verbinden.",
+    t_p1: "Ik wil weten waarom een grille er zo uitziet, hoe een merk zijn stijl vond en wat een model vertelt over zijn tijd. De auto is een verhaal van design, breuken en erfgoed, en BYD en Denza schrijven er een nieuw hoofdstuk aan.",
+    t_p2: "Mijn garage: een BMW 3-reeks E36, een E46, een E92 en daarna een 1-reeks van 2019. Trouw, maar nieuwsgierig: het vervolg wordt misschien in China geschreven.", t_p3: "Autosport blijft een plezier op de achtergrond: F1 en WRC het hele seizoen, wat karting en, met één Kerst, een rondje circuit in een Alpine A110.",
     b_k: "Social · Paid · Analytics · Creatie", b_h: "Toolbox", b1: "Publicatie en social", b2: "Betaalde media", b2a: "sinds 2014", b2b: "sinds 2021",
     b3: "Meting", b4: "Creatie en web", b4a: "AI-tools", b5: "Talen",
     b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>B2</small>", b5c: "Engels <small>B2/C1</small>",
@@ -518,10 +542,14 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     c3k: "Content · Le Lombard", c3h: "Original videos", c3p: "Formats shot or animated depending on the idea. Some videos passed several million views, sponsoring included.",
     c3r: "<li>Live shoots</li><li>3D animation</li><li>Creation with AI</li><li>Sponsored distribution</li>",
     wp_k: "WordPress sites designed and launched",
-    grp1: "Le Lombard's social channels", fb_t: "12 years of experience", ig_t: "100K followers", tt_t: "20 million views", yt_t: "Editing, motion design and Ads", grp2: "Sites run as webmaster", cur: "Current", old: "Former",
-    soc: "Charge", n_offer: "The role", n_road: "Career", n_work: "Work", n_track: "Track", n_contact: "Contact",
+    grp1: "Le Lombard's social channels", fb_t: "12 years of experience", ig_t: "100K followers", tt_t: "20 million views", yt_t: "Motion design and Ads", grp2: "Sites run as webmaster", cur: "Currently managed", old: "Previously managed",
+    n_about: "About", a_k: "Family · Passions · Character", a_h: "About me", a_big: "Married to Louise, dad to Agathe (6). The rest of the time: travelling, reading, drawing and dark humour.",
+    a_p: "I'm curious about anything that gets made: a building, a stage, a book, a drawing. I like evenings with friends around a poker table, and I take the game seriously.",
+    a2l: "What I enjoy", a2r: "<li>Travel</li><li>Reading</li><li>Drawing</li><li>Architecture and design</li><li>One-man shows and theatre</li><li>Poker</li><li>Evenings with friends</li>",
+    a3l: "Character", a3r: "<li>Sociable</li><li>Competitive</li><li>Pragmatic</li><li>Dark humour</li>",
+    soc: "Charge", n_offer: "The role", n_road: "Career", n_work: "Work", n_track: "Cars", n_contact: "Contact",
     tag: "Application · Digital Marketing Specialist, Denza BeLux",
-    lead: "Digital project manager at Le Lombard. I make brands live on social, coordinating agencies, budgets and teams along the way. Into cars: design, brands, models, F1 and WRC.",
+    lead: "Digital project manager at Le Lombard. I make brands live on social, coordinating agencies, budgets and teams along the way. Into cars: design, brands and history.",
     cta1: "See how I match the role", cta2: "Get in touch",
     s1l: "Current role", s1v: "Digital project manager, Le Lombard", s2l: "In the trade", s2v: "Since 2012",
     s3l: "Specialities", s3v: "Social · Paid media · Web", s4l: "Languages", s5l: "Base", s5v: "Enghien, Belgium",
@@ -557,11 +585,11 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     sn_h: "Smurfs Snapchat filter", sn_k: "Le Lombard · Snapchat", sn_p: "A branded filter for Snapchat, where I've run campaigns since 2021.",
     v_h: "Original videos", v_k: "Le Lombard · Video", v_p: "Live shoots, 3D animation and AI, depending on what the idea needs. Some videos passed several million views, sponsoring included.",
     wp_h: "WordPress sites", wp_p: "Four sites for independents and associations.",
-    x1k: "Wedding planning", x2k: "Literary non-profit · events · shop", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
-    t_k: "F1 · WRC · Alpine A110", t_h: "Track side", fe: "Formula E", t_cap: "How closely I follow, from 1 to 5",
-    t_big: "What draws me to a car: the line, the identity of the brand, what the model says.",
-    t_p1: "I follow F1 and WRC all season, Formula E and MotoGP from a bit further away. Behind the wheel I stayed an amateur: some karting, then a Christmas present that put me on track in an Alpine A110. Verdict: I want more.",
-    t_p2: "My garage so far: a BMW 3 Series E36, an E46, an E92, then a 2019 1 Series. Loyal, but curious. The next chapter may well be written in China, with BYD and Denza first.",
+    x1k: "Wedding planning", x2k: "Literary non-profit", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
+    t_k: "Design · Brands · History", t_h: "Lines and badges", fe: "Formula E", t_cap: "Motorsport: how closely I follow, from 1 to 5",
+    t_big: "What fascinates me: the line of a car, the identity of a brand and the stories that connect the two.",
+    t_p1: "I like knowing why a grille looks the way it does, how a brand found its style and what a model says about its era. The car is a story of design, breaks and heritage, and BYD and Denza are writing a new chapter of it.",
+    t_p2: "My garage so far: a BMW 3 Series E36, an E46, an E92, then a 2019 1 Series. Loyal, but curious: the sequel may well be written in China.", t_p3: "Motorsport stays a background pleasure: F1 and WRC all season, a bit of karting and, one Christmas, a track session in an Alpine A110.",
     b_k: "Social · Paid · Analytics · Creative", b_h: "Toolbox", b1: "Publishing and social", b2: "Paid media", b2a: "since 2014", b2b: "since 2021",
     b3: "Measurement", b4: "Creative and web", b4a: "AI tools", b5: "Languages",
     b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>B2</small>", b5c: "English <small>B2/C1</small>",
