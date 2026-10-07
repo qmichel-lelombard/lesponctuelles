@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duco… Bouh ! Le Quiz</title>
+<meta name="description" content="Le quiz de Ducobu pour fêter la sortie du tome 30, Duco… Bouh ! Réponds en 5 minutes, sans tricher (enfin, presque).">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="https://www.lelombard.com/bd/ducobu/duco-bouh" target="_blank" rel="noopener">Ducobu <span>Tome 30</span></a>
+  <span class="top-date">En librairie le 9 octobre</span>
+</header>
+
+<main id="app">
+  <!-- ACCUEIL -->
+  <section id="screen-intro" class="screen active">
+    <div class="hero">
+      <img class="slot cover" src="assets/couverture-tome-30.png" alt="Couverture de Duco… Bouh !" onerror="this.remove()">
+      <div class="hero-text">
+        <p class="kicker">🎃 Spécial Halloween</p>
+        <h1>Duco… <em>Bouh&nbsp;!</em><br><small>Le Quiz</small></h1>
+        <p class="lead">Saint-Potache est hantée : les cartables bougent tout seuls et les objets n'en font qu'à leur tête. Sauras-tu garder ton sang-froid (et ton cahier de brouillon) ?</p>
+        <ul class="facts">
+          <li>⏱️ 5 minutes</li><li>❓ 10 questions</li><li>😅 Aucune interro surprise</li>
+        </ul>
+        <button class="btn" id="start">C'est parti&nbsp;!</button>
+        <p class="note">Conseil de Latouche : ne regarde pas la copie de ton voisin. Conseil de Ducobu : si.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section id="screen-quiz" class="screen" aria-live="polite">
+    <div class="progress" aria-hidden="true"><div id="bar"></div></div>
+    <p class="counter"><span id="num">1</span> / <span id="total">10</span> · Score&nbsp;: <b id="score">0</b></p>
+    <div class="card">
+      <img class="slot mascot" id="mascot" src="" alt="" onerror="this.style.display='none'">
+      <h2 id="question"></h2>
+      <div id="answers" class="answers"></div>
+      <div id="feedback" class="feedback" hidden>
+        <p id="feedback-text"></p>
+        <button class="btn" id="next">Suivant ➜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RÉSULTAT -->
+  <section id="screen-result" class="screen">
+    <div class="card result">
+      <img class="slot mascot" id="result-img" src="" alt="" onerror="this.style.display='none'">
+      <p class="kicker">Ton bulletin</p>
+      <h2 id="result-title"></h2>
+      <p class="big-score"><span id="result-score"></span>&nbsp;/&nbsp;10</p>
+      <p id="result-text"></p>
+      <div class="cta">
+        <a class="btn" href="https://www.lelombard.com/bd/ducobu/duco-bouh" target="_blank" rel="noopener">Découvrir Duco… Bouh&nbsp;!</a>
+        <button class="btn ghost" id="share">Défier un copain</button>
+        <button class="btn ghost" id="again">Rejouer</button>
+      </div>
+      <p class="bonus">Encore envie de jouer ? <a href="https://www.lelombard.com/incontournable/ducobu?categorie=jeux#bonus" target="_blank" rel="noopener">Télécharge les jeux Ducobu gratuits</a>.</p>
+    </div>
+  </section>
+</main>
+
+<aside class="film">
+  <span class="film-tag">Au cinéma</span>
+  <p><b>Ducobu et le fantôme de Saint-Potache</b> — le film, avec Élie Semoun.</p>
+  <a href="https://www.pathe.be/fr/films-evenements/ducobu-et-le-fantome-de-saint-potache-55180" target="_blank" rel="noopener">Voir la séance</a>
+</aside>
+
+<footer>
+  <p>Ducobu © Zidrou &amp; Godi — Éditions du Lombard. Tous droits réservés.</p>
+</footer>
+
+<script src="quiz.js"></script>
+</body>
+</html>
