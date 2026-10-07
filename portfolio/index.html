@@ -155,6 +155,9 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .stage.now::before { content: ""; position: absolute; left: calc(var(--gut) * -1); top: 0; bottom: 0; width: 6px; background: repeating-linear-gradient(180deg, var(--charge) 0 10px, transparent 10px 14px); }
 .stage.small h3 { font-size: clamp(1.4rem, 2.6vw, 2.2rem); }
 .live { color: var(--signal); }
+.co { text-decoration: none; }
+.co span { color: var(--charge); font-size: .5em; vertical-align: top; }
+.co:hover { color: var(--charge); }
 
 /* work */
 .feature { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 5vw, 80px); padding-block: 28px; border-top: 1px solid var(--ink); }
@@ -180,12 +183,6 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 .pick { background: var(--bg); padding: 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .pick b { font: 800 clamp(2.6rem, 5vw, 4.4rem)/.9 var(--f-display); font-stretch: 62%; text-transform: uppercase; }
 .pick p { font-size: .98rem; }
-.garage { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); margin-top: clamp(40px, 6vw, 80px); align-items: start; }
-.garage figure { margin: 0; display: grid; gap: 10px; min-width: 0; }
-.garage img { display: block; width: 100%; height: auto; background: var(--dim); }
-.garage .alp img { aspect-ratio: 3 / 4; object-fit: cover; }
-.garage .bmw { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.garage .bmw img { aspect-ratio: 3 / 2; object-fit: cover; filter: grayscale(.5); }
 .track .cols { display: grid; gap: 18px; max-width: 58ch; }
 .track p { margin: 0; }
 .track .big { font: 600 clamp(1.6rem, 3.2vw, 2.8rem)/1.12 var(--f-display); font-stretch: 90%; text-wrap: balance; max-width: none; }
@@ -198,8 +195,6 @@ section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
 
 /* contact */
 .contact { padding-bottom: clamp(48px, 8vw, 96px); }
-.cgrid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(150px, 20vw, 260px); gap: clamp(20px, 4vw, 64px); align-items: end; }
-.wave { display: block; width: 100%; height: auto; background: var(--paper); border: 1px solid var(--line); }
 .contact .h2 { font-size: clamp(3.4rem, 12vw, 11rem); font-stretch: 125%; font-weight: 900; line-height: .84; letter-spacing: -.03em; }
 .contact .row { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; border-top: 1px solid var(--ink); padding-top: 24px; }
 .mail { font: 500 clamp(1rem, 2.6vw, 1.6rem)/1.2 var(--f-mono); overflow-wrap: anywhere; user-select: all; }
@@ -207,8 +202,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
 
 @media (max-width: 900px) {
   .nav { display: none; }
-  .hero-foot, .why, .track, .feature, .garage, .cgrid { grid-template-columns: minmax(0, 1fr); }
-  .wave { max-width: 200px; }
+  .hero-foot, .why, .track, .feature { grid-template-columns: minmax(0, 1fr); }
   .stage { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .stage .when { padding-top: 0; }
   .match .head { display: none; }
@@ -264,6 +258,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       <dl class="spec mono">
         <div><dt data-t="s1l">Poste actuel</dt><dd data-t="s1v">Chef de projet digital, Le Lombard</dd></div>
         <div><dt data-t="s2l">Dans le métier</dt><dd data-t="s2v">Depuis 2012</dd></div>
+        <div><dt data-t="s6l">Audience bâtie</dt><dd data-t="s6v">200 000+ abonnés, partis de zéro</dd></div>
         <div><dt data-t="s3l">Spécialités</dt><dd data-t="s3v">Social · Médias payants · Web</dd></div>
         <div><dt data-t="s4l">Langues</dt><dd data-t="s4v">FR · NL · EN</dd></div>
         <div><dt data-t="s5l">Base</dt><dd data-t="s5v">Enghien, Belgique</dd></div>
@@ -275,13 +270,13 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     <h2 class="h2"><small class="mono" data-t="o_k">Digital Marketing Specialist · Denza BeLux</small><span data-t="o_h">Votre offre, mes preuves</span></h2>
     <div class="match">
       <div class="head mono"><span data-t="o_q">Ce que vous cherchez</span><span data-t="o_a">Ce que j'ai déjà fait</span></div>
-      <div class="row"><p class="q" data-t="r1q">Stratégie social media et calendrier éditorial</p><p class="a" data-t="r1a">Lancements d'albums et de séries au Lombard : planning, contenus et médias payants sur Meta, TikTok et Snapchat.</p></div>
+      <div class="row"><p class="q" data-t="r1q">Stratégie social media et calendrier éditorial</p><p class="a" data-t="r1a">Lancements d'albums et de séries au Lombard : planning, contenus et médias payants sur Meta, TikTok et Snapchat. Plus de 200 000 abonnés cumulés sur les réseaux, partis de zéro, et des millions de vues.</p></div>
       <div class="row"><p class="q" data-t="r2q">Cohérence de marque, ton, souci du détail</p><p class="a" data-t="r2a">Des licences très connues (Les Schtroumpfs, Elles) au Lombard. Avant cela, 4 sites et 150 magasins Meno à faire parler d'une seule voix, en FR et NL.</p></div>
       <div class="row"><p class="q" data-t="r3q">Agences et équipes transverses</p><p class="a" data-t="r3a">Coordination de l'agence et du budget, production de visuels et sous-traitance pour chaque campagne.</p></div>
       <div class="row"><p class="q" data-t="r4q">Outils de publication</p><p class="a" data-t="r4a">Meta Business Suite et Agorapulse au quotidien. Hootsuite pratiqué.</p></div>
       <div class="row"><p class="q" data-t="r5q">Performance et trafic web</p><p class="a" data-t="r5a">Google Ads depuis 2014, Snapchat Ads depuis 2021, TikTok Ads, GA4 et rapports de campagne chiffrés.</p></div>
-      <div class="row"><p class="q" data-t="r6q">Community management et réputation de marque</p><p class="a" data-t="r6a">Community management depuis 2016. Situations sensibles gérées : polémique autour d'illustrations générées par IA, accueil mitigé d'une reprise de série par de nouveaux auteurs et, chez Meno, photos produits erronées, avis clients négatifs et doutes sur des promotions.</p></div>
-      <div class="row"><p class="q" data-t="r7q">Néerlandais, français, anglais</p><p class="a" data-t="r7a">Français langue maternelle, néerlandais et anglais utilisés en contexte professionnel. Ce site existe en trois langues.</p></div>
+      <div class="row"><p class="q" data-t="r6q">Community management et réputation de marque</p><p class="a" data-t="r6a">Community management depuis 2016. Situations sensibles gérées : polémique autour d'illustrations générées par IA, et, chez Meno, photos produits erronées, avis clients négatifs et doutes sur des promotions.</p></div>
+      <div class="row"><p class="q" data-t="r7q">Néerlandais, français, anglais</p><p class="a" data-t="r7a">Français langue maternelle, néerlandais B2, anglais B2/C1. Ce site existe en trois langues.</p></div>
       <div class="row"><p class="q" data-t="r8q">Bachelor en communication</p><p class="a" data-t="r8a">Bachelor Publicité (Esupcom Lille, 2014), media planning (EFP, 2014), web content (Cepegra, 2016).</p></div>
     </div>
   </section>
@@ -307,8 +302,9 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     <div class="road">
       <article class="stage now">
         <div class="when mono"><b>04.2021 → <span class="live" data-t="now">auj.</span></b><span class="mute">Le Lombard</span></div>
-        <div><h3>Le Lombard</h3><p class="role" data-t="l_role">Chef de projet digital</p></div>
+        <div><h3><a class="co" href="https://www.lelombard.com/" target="_blank" rel="noopener">Le Lombard<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="l_role">Chef de projet digital</p></div>
         <ul>
+          <li data-t="l0">Réseaux sociaux : plus de 200 000 abonnés cumulés, partis de zéro, et des millions de vues.</li>
           <li data-t="l1">Campagnes de lancement : coordination de l'agence et du budget.</li>
           <li data-t="l2">Production des visuels et sous-traitance, avec la suite Adobe et des outils d'IA.</li>
           <li data-t="l3">Médias payants Meta, TikTok, Snapchat et Google, suivis dans des rapports chiffrés.</li>
@@ -318,7 +314,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       </article>
       <article class="stage">
         <div class="when mono"><b>01.2020 → 03.2021</b><span class="mute">Diegem</span></div>
-        <div><h3>PubliFast</h3><p class="role" data-t="f_role">Project &amp; Creative Manager (agence AddRetail)</p></div>
+        <div><h3><a class="co" href="https://www.addretail.com/" target="_blank" rel="noopener">AddRetail<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="f_role">Project &amp; Creative Manager · PubliFast</p></div>
         <ul>
           <li data-t="f1">Sites WordPress pour des clients.</li>
           <li data-t="f2">Facebook et LinkedIn Ads, community management.</li>
@@ -328,7 +324,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       </article>
       <article class="stage">
         <div class="when mono"><b>03.2016 → 12.2019</b><span class="mute">Nivelles</span></div>
-        <div><h3>Meno Group</h3><p class="role" data-t="m_role">Web marketeer</p></div>
+        <div><h3><a class="co" href="https://www.meno.be/fr/home" target="_blank" rel="noopener">Meno Group<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="m_role">Web marketeer</p></div>
         <ul>
           <li data-t="m1">SEO-copywriting et webdesign : 4 sites pour 150 magasins de bricolage.</li>
           <li data-t="m2">Community management, Facebook Ads, formation et accompagnement.</li>
@@ -338,17 +334,17 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       </article>
       <article class="stage small">
         <div class="when mono"><b>01.2015 → 09.2015</b><span class="mute">Bruxelles</span></div>
-        <div><h3>Media Markt</h3><p class="role" data-t="mm_role">E-content specialist</p></div>
+        <div><h3><a class="co" href="https://www.mediamarkt.be/" target="_blank" rel="noopener">Media Markt<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="mm_role">E-content specialist</p></div>
         <ul><li data-t="mm1">Équipe, optimisation de contenu, fournisseurs.</li></ul>
       </article>
       <article class="stage small">
         <div class="when mono"><b>01.2014 → 10.2014</b><span class="mute">Namur</span></div>
-        <div><h3>Expansion</h3><p class="role" data-t="ex_role">Assistant chef de projet</p></div>
+        <div><h3><a class="co" href="https://www.expansion.be/fr" target="_blank" rel="noopener">Expansion<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="ex_role">Assistant chef de projet</p></div>
         <ul><li data-t="ex1">Projets de communication, stratégie marketing, événements.</li></ul>
       </article>
       <article class="stage small">
         <div class="when mono"><b>11.2012 → 12.2013</b><span class="mute">Bruxelles</span></div>
-        <div><h3>Zenith Media</h3><p class="role" data-t="z_role">Print buyer assistant</p></div>
+        <div><h3><a class="co" href="https://www.zenithmedia.com/" target="_blank" rel="noopener">Zenith Media<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="z_role">Print buyer assistant</p></div>
         <ul><li data-t="z1">Media planning, recherche médias, achat presse.</li></ul>
       </article>
     </div>
@@ -397,21 +393,9 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       </div>
       <div class="cols">
         <p class="big" data-t="t_big">Ce qui m'attire dans une voiture : la ligne, l'identité de la marque, ce que le modèle raconte.</p>
-        <p data-t="t_p1">Je suis surtout la F1 et le WRC, la Formule E et le MotoGP de plus loin. Je n'ai jamais couru, seulement du karting en amateur. Récemment, un essai sur circuit au volant d'une Alpine A110 m'a été offert pour Noël.</p>
-        <p data-t="t_p2">Mon garage a toujours été allemand. Ma curiosité est maintenant en Chine, BYD et Denza en premier.</p>
+        <p data-t="t_p1">Je suis la F1 et le WRC toute la saison, la Formule E et le MotoGP d'un œil plus lointain. Côté volant, je suis resté amateur : du karting, puis un cadeau de Noël qui m'a envoyé sur circuit dans une Alpine A110. Verdict : j'en veux encore.</p>
+        <p data-t="t_p2">Côté garage : une BMW Série 3 E36, une E46, une E92, puis une Série 1 de 2019. Fidèle, mais curieux. La suite de l'histoire s'écrit peut-être en Chine, avec BYD et Denza en tête.</p>
       </div>
-    </div>
-    <div class="garage">
-      <figure class="alp"><img src="img/alpine.jpg" width="1000" height="1333" loading="lazy" alt="Alpine A110 bleue sur le circuit"><figcaption class="mono mute" data-t="g1">Alpine A110 · essai sur circuit</figcaption></figure>
-      <figure>
-        <div class="bmw">
-          <img src="img/bmw1.jpg" width="600" height="345" loading="lazy" alt="BMW Série 3 grise">
-          <img src="img/bmw2.jpg" width="600" height="390" loading="lazy" alt="BMW Série 3 gris foncé">
-          <img src="img/bmw3.jpg" width="600" height="407" loading="lazy" alt="BMW Série 3 noire">
-          <img src="img/bmw4.jpg" width="600" height="293" loading="lazy" alt="BMW Série 1 grise">
-        </div>
-        <figcaption class="mono mute" data-t="g2">Mon garage jusqu'ici</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -422,19 +406,16 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
       <div><h3 class="mono" data-t="b2">Médias payants</h3><ul><li>Google Ads <small data-t="b2a">depuis 2014</small></li><li>Meta Ads · LinkedIn Ads</li><li>TikTok Ads</li><li>Snapchat Ads <small data-t="b2b">depuis 2021</small></li></ul></div>
       <div><h3 class="mono" data-t="b3">Mesure</h3><ul><li>Google Analytics 4</li><li>Looker Studio</li></ul></div>
       <div><h3 class="mono" data-t="b4">Création et web</h3><ul><li>Adobe Creative Cloud</li><li data-t="b4a">Outils d'IA</li><li>WordPress</li></ul></div>
-      <div><h3 class="mono" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>usage professionnel</small></li><li data-t="b5c">Anglais <small>usage professionnel</small></li></ul></div>
+      <div><h3 class="mono" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>B2</small></li><li data-t="b5c">Anglais <small>B2/C1</small></li></ul></div>
     </div>
   </section>
 
   <section id="contact" class="contact">
-    <div class="cgrid"><div>
     <h2 class="h2"><small class="mono" data-t="c_k">Candidature Denza BeLux</small><span data-t="c_h">Parlons-en.</span></h2>
     <div class="row">
       <span class="mail" id="mail">quentin.michel@outlook.com</span>
       <button class="btn" type="button" id="copy" data-t="copy">Copier l'adresse</button>
       <a class="btn solid" href="https://www.linkedin.com/in/quentin-michel/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    </div></div>
-    <img class="wave" src="img/wave.jpg" width="560" height="841" loading="lazy" alt="Quentin en personnage 3D qui fait un signe de la main">
     </div>
   </section>
 
@@ -447,6 +428,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
 <script>
 (function () {
   var NL = {
+    s6l: "Opgebouwd bereik", s6v: "200.000+ volgers, vanaf nul", l0: "Sociale media: meer dan 200.000 volgers samen, vanaf nul, en miljoenen weergaven.",
     soc: "Lading", n_offer: "Vacature", n_road: "Loopbaan", n_work: "Projecten", n_track: "Circuit", n_contact: "Contact",
     tag: "Sollicitatie · Digital Marketing Specialist, Denza BeLux",
     lead: "Digital projectmanager bij Le Lombard. Ik laat merken leven op sociale media en coördineer daarbij bureaus, budgetten en teams. Gepassioneerd door auto's: design, merken, modellen, F1 en WRC.",
@@ -454,13 +436,13 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     s1l: "Huidige functie", s1v: "Digital projectmanager, Le Lombard", s2l: "In het vak", s2v: "Sinds 2012",
     s3l: "Specialiteiten", s3v: "Social · Betaalde media · Web", s4l: "Talen", s5l: "Basis", s5v: "Edingen, België",
     o_k: "Digital Marketing Specialist · Denza BeLux", o_h: "Uw vacature, mijn bewijzen", o_q: "Wat u zoekt", o_a: "Wat ik al deed",
-    r1q: "Social-mediastrategie en redactiekalender", r1a: "Lanceringen van albums en reeksen bij Le Lombard: planning, content en betaalde media op Meta, TikTok en Snapchat.",
+    r1q: "Social-mediastrategie en redactiekalender", r1a: "Lanceringen van albums en reeksen bij Le Lombard: planning, content en betaalde media op Meta, TikTok en Snapchat. Meer dan 200.000 volgers samen op sociale media, vanaf nul, en miljoenen weergaven.",
     r2q: "Merkconsistentie, toon en oog voor detail", r2a: "Bekende licenties (De Smurfen, Elles) bij Le Lombard. Daarvoor 4 websites en 150 Meno-winkels met één stem laten spreken, in FR en NL.",
     r3q: "Bureaus en cross-functionele teams", r3a: "Coördinatie van bureau en budget, productie van visuals en onderaanneming voor elke campagne.",
     r4q: "Publicatietools", r4a: "Dagelijks Meta Business Suite en Agorapulse. Ervaring met Hootsuite.",
     r5q: "Performance en websiteverkeer", r5a: "Google Ads sinds 2014, Snapchat Ads sinds 2021, TikTok Ads, GA4 en campagnerapporten met cijfers.",
-    r6q: "Community management en merkreputatie", r6a: "Community management sinds 2016. Gevoelige situaties beheerd: ophef over met AI gegenereerde illustraties, gemengde ontvangst van een heruitgave van een reeks door nieuwe auteurs en, bij Meno, foute productfoto's, negatieve klantenreviews en twijfels over promoties.",
-    r7q: "Nederlands, Frans, Engels", r7a: "Frans als moedertaal, Nederlands en Engels in een professionele context. Deze site bestaat in drie talen.",
+    r6q: "Community management en merkreputatie", r6a: "Community management sinds 2016. Gevoelige situaties beheerd: ophef over met AI gegenereerde illustraties en, bij Meno, foute productfoto's, negatieve klantenreviews en twijfels over promoties.",
+    r7q: "Nederlands, Frans, Engels", r7a: "Frans als moedertaal, Nederlands B2, Engels B2/C1. Deze site bestaat in drie talen.",
     r8q: "Bachelor in communicatie", r8a: "Bachelor Reclame (Esupcom Rijsel, 2014), mediaplanning (EFP, 2014), webcontent (Cepegra, 2016).",
     w_k: "BYD · Denza", w_h: "Waarom Denza",
     w_big: "Een premium elektrisch merk dat in België en Luxemburg nog in de hoofden moet landen.",
@@ -472,7 +454,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     l1: "Lanceringscampagnes: coördinatie van bureau en budget.", l2: "Productie van visuals en onderaanneming, met Adobe en AI-tools.",
     l3: "Betaalde media op Meta, TikTok, Snapchat en Google, opgevolgd in rapporten met cijfers.", l4: "Webprojecten, Smurfen-filter op Snapchat, originele video's (opnames, 3D, AI).",
     l5: "Planning en community management met Agorapulse.",
-    f_role: "Project & Creative Manager (bureau AddRetail)", f1: "WordPress-sites voor klanten.", f2: "Facebook- en LinkedIn-ads, community management.",
+    f_role: "Project & Creative Manager · PubliFast", f1: "WordPress-sites voor klanten.", f2: "Facebook- en LinkedIn-ads, community management.",
     f3: "HTML-mailings en copywriting voor Belgische merken.", f4: "Klantrelatie, prospectie en projectbeheer.",
     m_role: "Web marketeer", m1: "SEO-copywriting en webdesign: 4 sites voor 150 doe-het-zelfwinkels.", m2: "Community management, Facebook Ads, opleiding en begeleiding.",
     m3: "Mailings FR/NL: opmaak, inhoud, database.", m4: "E-commerce: prijzen, gebruikerservaring, Google Analytics.",
@@ -488,16 +470,17 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     x1k: "Huwelijksplanning", x2k: "Literaire vzw · agenda · winkel", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
     t_k: "F1 · WRC · Alpine A110", t_h: "Op het circuit", fe: "Formule E", t_cap: "Hoe intens ik volg, van 1 tot 5",
     t_big: "Wat me aantrekt in een auto: de lijn, de identiteit van het merk, het verhaal dat het model vertelt.",
-    t_p1: "Ik volg vooral F1 en WRC, de Formule E en MotoGP van op wat grotere afstand. Ik ben nooit gaan racen, enkel wat amateurkarting. Onlangs kreeg ik met Kerst een circuitsessie in een Alpine A110.",
-    t_p2: "Mijn garage was altijd Duits. Mijn nieuwsgierigheid ligt nu in China, met BYD en Denza op kop.",
+    t_p1: "Ik volg F1 en WRC het hele seizoen, Formule E en MotoGP van wat verder weg. Achter het stuur bleef ik amateur: wat karting, en een kerstcadeau dat me op het circuit bracht in een Alpine A110. Conclusie: ik wil meer.",
+    t_p2: "Mijn garage: een BMW 3-reeks E36, een E46, een E92 en daarna een 1-reeks van 2019. Trouw, maar nieuwsgierig. Het volgende hoofdstuk wordt misschien in China geschreven, met BYD en Denza voorop.",
     b_k: "Social · Paid · Analytics · Creatie", b_h: "Toolbox", b1: "Publicatie en social", b2: "Betaalde media", b2a: "sinds 2014", b2b: "sinds 2021",
     b3: "Meting", b4: "Creatie en web", b4a: "AI-tools", b5: "Talen",
-    b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>professioneel gebruik</small>", b5c: "Engels <small>professioneel gebruik</small>",
+    b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>B2</small>", b5c: "Engels <small>B2/C1</small>",
     c_k: "Sollicitatie Denza BeLux", c_h: "Laten we praten.", copy: "Adres kopiëren", copied: "Gekopieerd",
-    pk1k: "Favoriet bij Denza", pk1p: "De Denza Z-modellen trekken eerst door hun sportieve coupélijnen. De Z9 GT staat dicht bij een Porsche Panamera: luxe en sportiviteit voor elke dag.", pk2k: "Favoriet bij BYD", pk2p: "Een veilige, comfortabele gezinssedan voor heel lange ritten in elegantie en stilte, zonder het vermogen te vergeten.", g1: "Alpine A110 · circuitsessie", g2: "Mijn garage tot nu toe",
+    pk1k: "Favoriet bij Denza", pk1p: "De Denza Z-modellen trekken eerst door hun sportieve coupélijnen. De Z9 GT staat dicht bij een Porsche Panamera: luxe en sportiviteit voor elke dag.", pk2k: "Favoriet bij BYD", pk2p: "Een veilige, comfortabele gezinssedan voor heel lange ritten in elegantie en stilte, zonder het vermogen te vergeten.",
     foot: "Site gemaakt voor de sollicitatie bij Denza BeLux"
   };
   var EN = {
+    s6l: "Audience built", s6v: "200,000+ followers, from zero", l0: "Social media: over 200,000 followers combined, built from zero, plus millions of views.",
     soc: "Charge", n_offer: "The role", n_road: "Career", n_work: "Work", n_track: "Track", n_contact: "Contact",
     tag: "Application · Digital Marketing Specialist, Denza BeLux",
     lead: "Digital project manager at Le Lombard. I make brands live on social, coordinating agencies, budgets and teams along the way. Into cars: design, brands, models, F1 and WRC.",
@@ -505,13 +488,13 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     s1l: "Current role", s1v: "Digital project manager, Le Lombard", s2l: "In the trade", s2v: "Since 2012",
     s3l: "Specialities", s3v: "Social · Paid media · Web", s4l: "Languages", s5l: "Base", s5v: "Enghien, Belgium",
     o_k: "Digital Marketing Specialist · Denza BeLux", o_h: "Your brief, my proof", o_q: "What you need", o_a: "What I've done",
-    r1q: "Social media strategy and editorial calendar", r1a: "Album and series launches at Le Lombard: planning, content and paid media on Meta, TikTok and Snapchat.",
+    r1q: "Social media strategy and editorial calendar", r1a: "Album and series launches at Le Lombard: planning, content and paid media on Meta, TikTok and Snapchat. Over 200,000 followers combined across social, built from zero, and millions of views.",
     r2q: "Brand consistency, tone and attention to detail", r2a: "Well-known licences (The Smurfs, Elles) at Le Lombard. Before that, 4 websites and 150 Meno stores to keep speaking with one voice, in FR and NL.",
     r3q: "Agencies and cross-functional teams", r3a: "Agency and budget coordination, visual production and subcontracting on every campaign.",
     r4q: "Publishing tools", r4a: "Meta Business Suite and Agorapulse every day. Hands-on with Hootsuite.",
     r5q: "Channel performance and web traffic", r5a: "Google Ads since 2014, Snapchat Ads since 2021, TikTok Ads, GA4 and campaign reports with real numbers.",
-    r6q: "Community management and brand reputation", r6a: "Community management since 2016. Sensitive situations handled: backlash over AI-generated illustrations, a mixed reception for a classic series revived by new authors and, at Meno, wrong product photos, negative customer reviews and doubts about promotions.",
-    r7q: "Dutch, French, English", r7a: "French mother tongue, Dutch and English used in a professional setting. This site exists in three languages.",
+    r6q: "Community management and brand reputation", r6a: "Community management since 2016. Sensitive situations handled: backlash over AI-generated illustrations and, at Meno, wrong product photos, negative customer reviews and doubts about promotions.",
+    r7q: "Dutch, French, English", r7a: "French mother tongue, Dutch B2, English B2/C1. This site exists in three languages.",
     r8q: "Bachelor in communications", r8a: "Bachelor in Advertising (Esupcom Lille, 2014), media planning (EFP, 2014), web content (Cepegra, 2016).",
     w_k: "BYD · Denza", w_h: "Why Denza",
     w_big: "A premium electric brand still settling into minds in Belgium and Luxembourg.",
@@ -523,7 +506,7 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     l1: "Launch campaigns: agency and budget coordination.", l2: "Visual production and subcontracting, using Adobe and AI tools.",
     l3: "Paid media on Meta, TikTok, Snapchat and Google, tracked in reports with real numbers.", l4: "Web projects, Smurfs Snapchat filter, original videos (live shoots, 3D, AI).",
     l5: "Scheduling and community management with Agorapulse.",
-    f_role: "Project & Creative Manager (AddRetail agency)", f1: "WordPress websites for clients.", f2: "Facebook and LinkedIn Ads, community management.",
+    f_role: "Project & Creative Manager · PubliFast", f1: "WordPress websites for clients.", f2: "Facebook and LinkedIn Ads, community management.",
     f3: "HTML e-mailings and copywriting for Belgian brands.", f4: "Client relations, prospecting and project management.",
     m_role: "Web marketeer", m1: "SEO copywriting and web design: 4 sites for 150 DIY stores.", m2: "Community management, Facebook Ads, training and support.",
     m3: "FR/NL e-mailings: layout, content, database.", m4: "E-commerce: prices, user experience, Google Analytics.",
@@ -539,13 +522,13 @@ footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: f
     x1k: "Wedding planning", x2k: "Literary non-profit · events · shop", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
     t_k: "F1 · WRC · Alpine A110", t_h: "Track side", fe: "Formula E", t_cap: "How closely I follow, from 1 to 5",
     t_big: "What draws me to a car: the line, the identity of the brand, what the model says.",
-    t_p1: "I mostly follow F1 and WRC, with Formula E and MotoGP from further away. I've never raced, only amateur karting. Recently I was given a track session in an Alpine A110 for Christmas.",
-    t_p2: "My garage has always been German. My curiosity is now in China, BYD and Denza first.",
+    t_p1: "I follow F1 and WRC all season, Formula E and MotoGP from a bit further away. Behind the wheel I stayed an amateur: some karting, then a Christmas present that put me on track in an Alpine A110. Verdict: I want more.",
+    t_p2: "My garage so far: a BMW 3 Series E36, an E46, an E92, then a 2019 1 Series. Loyal, but curious. The next chapter may well be written in China, with BYD and Denza first.",
     b_k: "Social · Paid · Analytics · Creative", b_h: "Toolbox", b1: "Publishing and social", b2: "Paid media", b2a: "since 2014", b2b: "since 2021",
     b3: "Measurement", b4: "Creative and web", b4a: "AI tools", b5: "Languages",
-    b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>professional use</small>", b5c: "English <small>professional use</small>",
+    b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>B2</small>", b5c: "English <small>B2/C1</small>",
     c_k: "Denza BeLux application", c_h: "Let's talk.", copy: "Copy address", copied: "Copied",
-    pk1k: "Favourite Denza", pk1p: "The Denza Z models draw you in first with their sporty coupé lines. The Z9 GT sits close to a Porsche Panamera: luxury and sportiness for every day.", pk2k: "Favourite BYD", pk2p: "A safe, comfortable family saloon built for very long drives in elegance and silence, without forgetting the power.", g1: "Alpine A110 · track session", g2: "My garage so far",
+    pk1k: "Favourite Denza", pk1p: "The Denza Z models draw you in first with their sporty coupé lines. The Z9 GT sits close to a Porsche Panamera: luxury and sportiness for every day.", pk2k: "Favourite BYD", pk2p: "A safe, comfortable family saloon built for very long drives in elegance and silence, without forgetting the power.",
     foot: "Site made for the Denza BeLux application"
   };
   var dict = { fr: {}, nl: NL, en: EN };
