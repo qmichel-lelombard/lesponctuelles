@@ -1,0 +1,579 @@
+<title>Quentin Michel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one long road book. Expanded black type for the name, condensed type for titles,
+   mono for telemetry. Recurring motif: battery "blades" (thin vertical cells) used as scroll
+   charge, hero fill and gauges. */
+:root {
+  --bg: #E3E9ED;
+  --surface: #F1F5F8;
+  --ink: #0A1117;
+  --mute: #52616C;
+  --line: rgba(10, 17, 23, .18);
+  --dim: rgba(10, 17, 23, .14);
+  --charge: #0B6BFF;
+  --signal: #E8480C;
+  --f-display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --f-mono: "Martian Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --gut: clamp(16px, 4vw, 56px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #080D12; --surface: #0F1720; --ink: #E8EFF4; --mute: #8C9CA8;
+    --line: rgba(232, 239, 244, .18); --dim: rgba(232, 239, 244, .13);
+    --charge: #3AB4FF; --signal: #FF6A33; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #080D12; --surface: #0F1720; --ink: #E8EFF4; --mute: #8C9CA8;
+  --line: rgba(232, 239, 244, .18); --dim: rgba(232, 239, 244, .13);
+  --charge: #3AB4FF; --signal: #FF6A33; color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 400 1.0625rem/1.55 var(--f-display); font-stretch: 100%;
+  padding-inline: var(--gut); padding-block: 0;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--charge); outline-offset: 3px; }
+.wrap { max-width: 1400px; margin-inline: auto; }
+.mono { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 400; }
+.mute { color: var(--mute); }
+
+/* ---------- header ---------- */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  margin-inline: calc(var(--gut) * -1); padding: 12px var(--gut);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; gap: 20px; }
+.mark { font: 900 1.15rem/1 var(--f-display); font-stretch: 125%; letter-spacing: -.02em; text-decoration: none; }
+.soc { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.soc .bar {
+  position: relative; flex: 1; max-width: 360px; height: 14px; min-width: 60px;
+  background: repeating-linear-gradient(90deg, var(--dim) 0 5px, transparent 5px 8px);
+}
+.soc .bar i {
+  position: absolute; inset: 0 auto 0 0; width: calc(var(--p, 0) * 1%);
+  background: repeating-linear-gradient(90deg, var(--charge) 0 5px, transparent 5px 8px);
+}
+.soc .val { min-width: 4.5ch; text-align: right; font-variant-numeric: tabular-nums; }
+.nav { display: flex; gap: 18px; }
+.nav a { text-decoration: none; padding-block: 4px; border-bottom: 1px solid transparent; }
+.nav a:hover { border-color: var(--ink); }
+.lang { display: flex; gap: 2px; }
+.lang button {
+  font: 500 .72rem/1 var(--f-mono); letter-spacing: .06em; color: var(--mute);
+  background: none; border: 1px solid transparent; padding: 7px 8px; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { color: var(--bg); background: var(--ink); }
+.lang button:hover:not([aria-pressed="true"]) { border-color: var(--line); color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: clamp(40px, 8vw, 96px) clamp(32px, 5vw, 64px); }
+.tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: clamp(24px, 4vw, 48px); }
+.tag::before { content: ""; width: 9px; height: 9px; background: var(--signal); border-radius: 50%; }
+.name {
+  margin: 0; display: flex; flex-direction: column;
+  font: 900 clamp(3.1rem, 14.4vw, 13rem)/.84 var(--f-display); font-stretch: 125%;
+  letter-spacing: -.025em; text-transform: uppercase;
+}
+.name span { display: block; }
+.name .blade {
+  color: transparent; -webkit-text-stroke: 1.5px var(--ink);
+  background-image:
+    repeating-linear-gradient(90deg, var(--charge) 0 .07em, transparent .07em .115em),
+    repeating-linear-gradient(90deg, var(--dim) 0 .07em, transparent .07em .115em);
+  background-size: 100% 100%, 100% 100%; background-position: 0 100%, 0 0; background-repeat: no-repeat;
+  -webkit-background-clip: text; background-clip: text;
+  animation: charge 2.1s cubic-bezier(.3, .6, .2, 1) both;
+}
+@keyframes charge { from { background-size: 100% 0%, 100% 100%; } }
+.hero-foot { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); margin-top: clamp(32px, 5vw, 64px); align-items: start; }
+.lead { margin: 0; font-size: clamp(1.25rem, 2.3vw, 1.9rem); line-height: 1.25; font-weight: 500; text-wrap: balance; max-width: 30ch; }
+.spec { margin: 0; border-top: 1px solid var(--ink); }
+.spec div { display: grid; grid-template-columns: 10.5rem minmax(0, 1fr); gap: 16px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.spec dt { color: var(--mute); padding-top: 3px; }
+.spec dd { margin: 0; font-weight: 600; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.btn {
+  font: 500 .78rem/1 var(--f-mono); letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+  padding: 16px 20px; border: 1px solid var(--ink); cursor: pointer; background: none; color: var(--ink);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.btn.solid { background: var(--ink); color: var(--bg); }
+.btn:hover { background: var(--charge); border-color: var(--charge); color: #fff; }
+
+/* ---------- sections ---------- */
+section { padding-block: clamp(56px, 9vw, 128px) 0; scroll-margin-top: 56px; }
+.h2 {
+  margin: 0 0 clamp(28px, 4vw, 56px); text-wrap: balance;
+  font: 800 clamp(3rem, 11vw, 9.5rem)/.86 var(--f-display); font-stretch: 62%;
+  text-transform: uppercase; letter-spacing: -.01em;
+}
+.h2 small { display: block; margin-bottom: 14px; font-size: .72rem; line-height: 1; color: var(--mute); }
+
+/* offer vs proof */
+.match { border-top: 1px solid var(--ink); }
+.match .head, .match .row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(16px, 4vw, 64px); padding-block: 18px; border-bottom: 1px solid var(--line); }
+.match .head { padding-block: 12px; color: var(--mute); }
+.match .q { margin: 0; font: 700 clamp(1.3rem, 2.4vw, 2rem)/1.1 var(--f-display); font-stretch: 75%; text-transform: uppercase; }
+.match .a { margin: 0; max-width: 62ch; }
+.match .row:hover { background: var(--surface); }
+
+/* why */
+.why { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); }
+.why .big { margin: 0; font: 600 clamp(1.6rem, 3.2vw, 2.8rem)/1.12 var(--f-display); font-stretch: 90%; text-wrap: balance; }
+.why .cols { display: grid; gap: 18px; max-width: 58ch; }
+.why p { margin: 0; }
+
+/* road book */
+.road { border-top: 1px solid var(--ink); }
+.stage { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 6fr); gap: clamp(12px, 3vw, 48px); padding-block: 24px; border-bottom: 1px solid var(--line); position: relative; }
+.stage .when { padding-top: .5rem; }
+.stage .when b { display: block; font-weight: 500; }
+.stage h3 { margin: 0; font: 800 clamp(2rem, 4.8vw, 4.2rem)/.92 var(--f-display); font-stretch: 62%; text-transform: uppercase; overflow-wrap: anywhere; }
+.stage .role { margin: 6px 0 0; color: var(--mute); font-weight: 500; }
+.stage ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 58ch; }
+.stage li { padding-left: 22px; position: relative; }
+.stage li::before { content: ""; position: absolute; left: 0; top: .62em; width: 12px; height: 2px; background: var(--charge); }
+.stage.now::before { content: ""; position: absolute; left: calc(var(--gut) * -1); top: 0; bottom: 0; width: 6px; background: repeating-linear-gradient(180deg, var(--charge) 0 10px, transparent 10px 14px); }
+.stage.small h3 { font-size: clamp(1.4rem, 2.6vw, 2.2rem); }
+.live { color: var(--signal); }
+
+/* work */
+.feature { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(20px, 5vw, 80px); padding-block: 28px; border-top: 1px solid var(--ink); }
+.feature h3 { margin: 0 0 10px; font: 800 clamp(2.4rem, 7vw, 6.4rem)/.88 var(--f-display); font-stretch: 62%; text-transform: uppercase; }
+.feature p { margin: 0 0 16px; max-width: 52ch; }
+.feature .side { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+.lnk { display: inline-block; font: 500 .78rem/1.2 var(--f-mono); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
+.lnk:hover { color: var(--charge); border-color: var(--charge); }
+.sites { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 20px; }
+.site { background: var(--bg); padding: 22px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; min-width: 0; }
+.site:hover { background: var(--surface); }
+.site b { font: 800 clamp(1.5rem, 2.4vw, 2.1rem)/1 var(--f-display); font-stretch: 70%; text-transform: uppercase; overflow-wrap: anywhere; }
+.site .mono { overflow-wrap: anywhere; }
+
+/* track */
+.track { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); }
+.gauges { display: grid; gap: 0; border-top: 1px solid var(--ink); align-self: start; }
+.gauges div { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.gauges b { font: 800 clamp(1.8rem, 3.4vw, 3rem)/1 var(--f-display); font-stretch: 62%; text-transform: uppercase; }
+.gauge { position: relative; flex: none; width: 56px; height: 28px; background: repeating-linear-gradient(90deg, var(--dim) 0 8px, transparent 8px 12px); }
+.gauge::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--n) * 12px - 4px); background: repeating-linear-gradient(90deg, var(--charge) 0 8px, transparent 8px 12px); }
+.track .cols { display: grid; gap: 18px; max-width: 58ch; }
+.track p { margin: 0; }
+.track .big { font: 600 clamp(1.6rem, 3.2vw, 2.8rem)/1.12 var(--f-display); font-stretch: 90%; text-wrap: balance; max-width: none; }
+
+/* toolbox */
+.tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: clamp(20px, 3vw, 40px); border-top: 1px solid var(--ink); padding-top: 20px; }
+.tools h3 { margin: 0 0 10px; color: var(--mute); font-weight: 400; }
+.tools ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-weight: 600; font-size: 1.15rem; }
+.tools li small { font-weight: 400; color: var(--mute); font-size: .85rem; }
+
+/* contact */
+.contact { padding-bottom: clamp(48px, 8vw, 96px); }
+.contact .h2 { font-size: clamp(3.4rem, 17vw, 16rem); font-stretch: 125%; font-weight: 900; line-height: .84; letter-spacing: -.03em; }
+.contact .row { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; border-top: 1px solid var(--ink); padding-top: 24px; }
+.mail { font: 500 clamp(1rem, 2.6vw, 1.6rem)/1.2 var(--f-mono); overflow-wrap: anywhere; user-select: all; }
+footer { border-top: 1px solid var(--line); padding-block: 20px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .hero-foot, .why, .track, .feature { grid-template-columns: minmax(0, 1fr); }
+  .stage { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .stage .when { padding-top: 0; }
+  .match .head { display: none; }
+  .match .row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .spec div { grid-template-columns: 8rem minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .soc .bar { display: none; }
+  .top .wrap { justify-content: space-between; }
+  .soc { flex: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .name .blade { animation: none; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top" data-go="top" aria-label="Quentin Michel">QM</a>
+    <div class="soc" aria-hidden="true">
+      <span class="mono mute" data-t="soc">Charge</span>
+      <span class="bar"><i id="socbar"></i></span>
+      <span class="mono val" id="socval">0 %</span>
+    </div>
+    <nav class="nav mono" aria-label="Sections">
+      <a href="#offre" data-go="offre" data-t="n_offer">L'offre</a>
+      <a href="#parcours" data-go="parcours" data-t="n_road">Parcours</a>
+      <a href="#projets" data-go="projets" data-t="n_work">Projets</a>
+      <a href="#piste" data-go="piste" data-t="n_track">Piste</a>
+      <a href="#contact" data-go="contact" data-t="n_contact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="nl" aria-pressed="false">NL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div class="tag mono" data-t="tag">Candidature · Digital Marketing Specialist, Denza BeLux</div>
+    <h1 class="name" aria-label="Quentin Michel"><span class="blade" aria-hidden="true">Quentin</span><span aria-hidden="true">Michel</span></h1>
+    <div class="hero-foot">
+      <div>
+        <p class="lead" data-t="lead">Chef de projet digital chez Le Lombard. Je fais vivre des marques sur les réseaux, avec des agences, des budgets et des équipes à coordonner. Passionné d'automobile : design, marques, modèles, F1 et WRC.</p>
+        <div class="cta">
+          <a class="btn solid" href="#offre" data-go="offre"><span data-t="cta1">Voir l'adéquation avec l'offre</span> ↓</a>
+          <a class="btn" href="#contact" data-go="contact" data-t="cta2">Me contacter</a>
+        </div>
+      </div>
+      <dl class="spec mono">
+        <div><dt data-t="s1l">Poste actuel</dt><dd data-t="s1v">Chef de projet digital, Le Lombard</dd></div>
+        <div><dt data-t="s2l">Dans le métier</dt><dd data-t="s2v">Depuis 2012</dd></div>
+        <div><dt data-t="s3l">Spécialités</dt><dd data-t="s3v">Social · Médias payants · Web</dd></div>
+        <div><dt data-t="s4l">Langues</dt><dd data-t="s4v">FR · NL · EN</dd></div>
+        <div><dt data-t="s5l">Base</dt><dd data-t="s5v">Enghien, Belgique</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <section id="offre">
+    <h2 class="h2"><small class="mono" data-t="o_k">Digital Marketing Specialist · Denza BeLux</small><span data-t="o_h">Votre offre, mes preuves</span></h2>
+    <div class="match">
+      <div class="head mono"><span data-t="o_q">Ce que vous cherchez</span><span data-t="o_a">Ce que j'ai déjà fait</span></div>
+      <div class="row"><p class="q" data-t="r1q">Stratégie social media et calendrier éditorial</p><p class="a" data-t="r1a">Lancements d'albums et de séries au Lombard : planning, contenus et médias payants sur Meta, TikTok et Snapchat.</p></div>
+      <div class="row"><p class="q" data-t="r2q">Cohérence de marque, ton, souci du détail</p><p class="a" data-t="r2a">Des licences très connues (Les Schtroumpfs, Elles) au Lombard. Avant cela, 4 sites et 150 magasins Meno à faire parler d'une seule voix, en FR et NL.</p></div>
+      <div class="row"><p class="q" data-t="r3q">Agences et équipes transverses</p><p class="a" data-t="r3a">Coordination de l'agence et du budget, production de visuels et sous-traitance pour chaque campagne.</p></div>
+      <div class="row"><p class="q" data-t="r4q">Outils de publication</p><p class="a" data-t="r4a">Meta Business Suite et Agorapulse au quotidien. Hootsuite pratiqué.</p></div>
+      <div class="row"><p class="q" data-t="r5q">Performance et trafic web</p><p class="a" data-t="r5a">Google Ads depuis 2014, Snapchat Ads depuis 2021, TikTok Ads, GA4 et rapports de campagne chiffrés.</p></div>
+      <div class="row"><p class="q" data-t="r6q">Community management et réputation</p><p class="a" data-t="r6a">Community management depuis 2016, du réseau de magasins Meno aux séries grand public.</p></div>
+      <div class="row"><p class="q" data-t="r7q">Néerlandais, français, anglais</p><p class="a" data-t="r7a">Français langue maternelle, néerlandais et anglais B2/C1. Ce site existe en trois langues.</p></div>
+      <div class="row"><p class="q" data-t="r8q">Bachelor en communication</p><p class="a" data-t="r8a">Bachelor Publicité (Esupcom Lille, 2014), media planning (EFP, 2014), web content (Cepegra, 2016).</p></div>
+    </div>
+  </section>
+
+  <section id="denza">
+    <h2 class="h2"><small class="mono" data-t="w_k">BYD · Denza</small><span data-t="w_h">Pourquoi Denza</span></h2>
+    <div class="why">
+      <p class="big" data-t="w_big">Une marque premium, électrique, à installer dans les esprits en Belgique et au Luxembourg.</p>
+      <div class="cols">
+        <p data-t="w_p1">Denza avance en Belgique et au Luxembourg avec une marque à installer dans les esprits. C'est la phase où le ton, le calendrier éditorial et la communauté se construisent, et c'est le travail que je préfère.</p>
+        <p data-t="w_p2">Je suis l'automobile depuis toujours, côté design, marques et modèles plus que mécanique. Je connais la plupart des modèles BYD et Denza vendus en Europe, et je n'ai pas encore eu l'occasion de les conduire. J'ai très envie de le faire.</p>
+        <p data-t="w_p3">Plusieurs langues, des agences, des équipes à aligner : je travaille déjà dans ce cadre.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="parcours">
+    <h2 class="h2"><small class="mono" data-t="p_k">2012 → <span class="live">●</span></small><span data-t="p_h">Carnet de route</span></h2>
+    <div class="road">
+      <article class="stage now">
+        <div class="when mono"><b>04.2021 → <span class="live" data-t="now">auj.</span></b><span class="mute">Le Lombard</span></div>
+        <div><h3>Le Lombard</h3><p class="role" data-t="l_role">Chef de projet digital</p></div>
+        <ul>
+          <li data-t="l1">Campagnes de lancement : coordination de l'agence et du budget.</li>
+          <li data-t="l2">Production des visuels et sous-traitance, avec la suite Adobe et des outils d'IA.</li>
+          <li data-t="l3">Médias payants Meta, TikTok, Snapchat et Google, suivis dans des rapports chiffrés.</li>
+          <li data-t="l4">Projets web, filtre Snapchat Schtroumpfs, vidéos originales (prises de vues, 3D, IA).</li>
+          <li data-t="l5">Planification et community management avec Agorapulse.</li>
+        </ul>
+      </article>
+      <article class="stage">
+        <div class="when mono"><b>01.2020 → 03.2021</b><span class="mute">Diegem</span></div>
+        <div><h3>PubliFast</h3><p class="role" data-t="f_role">Project &amp; Creative Manager (agence AddRetail)</p></div>
+        <ul>
+          <li data-t="f1">Sites WordPress pour des clients.</li>
+          <li data-t="f2">Facebook et LinkedIn Ads, community management.</li>
+          <li data-t="f3">E-mailings en HTML et copywriting pour des marques belges.</li>
+          <li data-t="f4">Relation client, prospection et gestion de projet.</li>
+        </ul>
+      </article>
+      <article class="stage">
+        <div class="when mono"><b>03.2016 → 12.2019</b><span class="mute">Nivelles</span></div>
+        <div><h3>Meno Group</h3><p class="role" data-t="m_role">Web marketeer</p></div>
+        <ul>
+          <li data-t="m1">SEO-copywriting et webdesign : 4 sites pour 150 magasins de bricolage.</li>
+          <li data-t="m2">Community management, Facebook Ads, formation et accompagnement.</li>
+          <li data-t="m3">E-mailings FR/NL : mise en page, contenu, base de données.</li>
+          <li data-t="m4">E-commerce : prix, expérience utilisateur, Google Analytics.</li>
+        </ul>
+      </article>
+      <article class="stage small">
+        <div class="when mono"><b>01.2015 → 09.2015</b><span class="mute">Bruxelles</span></div>
+        <div><h3>Media Markt</h3><p class="role" data-t="mm_role">E-content specialist</p></div>
+        <ul><li data-t="mm1">Équipe, optimisation de contenu, fournisseurs.</li></ul>
+      </article>
+      <article class="stage small">
+        <div class="when mono"><b>01.2014 → 10.2014</b><span class="mute">Namur</span></div>
+        <div><h3>Expansion</h3><p class="role" data-t="ex_role">Assistant chef de projet</p></div>
+        <ul><li data-t="ex1">Projets de communication, stratégie marketing, événements.</li></ul>
+      </article>
+      <article class="stage small">
+        <div class="when mono"><b>11.2012 → 12.2013</b><span class="mute">Bruxelles</span></div>
+        <div><h3>Zenith Media</h3><p class="role" data-t="z_role">Print buyer assistant</p></div>
+        <ul><li data-t="z1">Media planning, recherche médias, achat presse.</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projets">
+    <h2 class="h2"><small class="mono" data-t="j_k">Le Lombard · WordPress</small><span data-t="j_h">Réalisations</span></h2>
+    <article class="feature">
+      <div><h3>Elles, tome 4</h3><p class="mono mute" data-t="e_k">Le Lombard · Lancement</p></div>
+      <div class="side">
+        <p data-t="e_p">Nouveau tome d'une série à succès. Je coordonne l'agence et le budget, je produis les visuels et je gère la sous-traitance, avec la suite Adobe et des outils d'IA.</p>
+        <a class="lnk" href="https://datastudio.google.com/u/0/reporting/9c04b171-5a3c-4c2b-85b3-da0b10993597/page/p_khmjjc4zbd" target="_blank" rel="noopener" data-t="e_l">Voir le rapport de campagne ↗</a>
+      </div>
+    </article>
+    <article class="feature">
+      <div><h3 data-t="sn_h">Filtre Snapchat Schtroumpfs</h3><p class="mono mute" data-t="sn_k">Le Lombard · Snapchat</p></div>
+      <div class="side"><p data-t="sn_p">Un filtre de marque créé pour Snapchat, où je lance des campagnes depuis 2021.</p></div>
+    </article>
+    <article class="feature">
+      <div><h3 data-t="v_h">Vidéos originales</h3><p class="mono mute" data-t="v_k">Le Lombard · Vidéo</p></div>
+      <div class="side"><p data-t="v_p">Prises de vues réelles, animation 3D et IA, selon ce que demande l'idée.</p></div>
+    </article>
+    <article class="feature">
+      <div><h3 data-t="wp_h">Sites WordPress</h3><p class="mono mute" data-t="wp_k">Conception et mise en ligne</p></div>
+      <div class="side"><p data-t="wp_p">Quatre sites conçus pour des indépendants et des associations.</p></div>
+    </article>
+    <div class="sites">
+      <a class="site" href="https://unjourencouleurs.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x1k">Organisation de mariages</span><b>Un jour en couleurs</b><span class="mono">unjourencouleurs.be ↗</span></a>
+      <a class="site" href="https://lesponctuelles.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x2k">ASBL littéraire · agenda · boutique</span><b>Les Ponctuelles</b><span class="mono">lesponctuelles.be ↗</span></a>
+      <a class="site" href="https://guillaumetessaro.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x3k">Chauffage et sanitaire</span><b>Guillaume Tessaro</b><span class="mono">guillaumetessaro.be ↗</span></a>
+      <a class="site" href="https://marcherman.be/" target="_blank" rel="noopener"><span class="mono mute" data-t="x4k">Humoriste · vidéos · boutique</span><b>Marc Herman</b><span class="mono">marcherman.be ↗</span></a>
+    </div>
+  </section>
+
+  <section id="piste">
+    <h2 class="h2"><small class="mono" data-t="t_k">F1 · WRC · Alpine A110</small><span data-t="t_h">Sur la piste</span></h2>
+    <div class="track">
+      <div>
+        <div class="gauges">
+          <div><b>F1</b><span class="gauge" style="--n:5" role="img" aria-label="5/5"></span></div>
+          <div><b>WRC</b><span class="gauge" style="--n:5" role="img" aria-label="5/5"></span></div>
+          <div><b data-t="fe">Formule E</b><span class="gauge" style="--n:2" role="img" aria-label="2/5"></span></div>
+          <div><b>MotoGP</b><span class="gauge" style="--n:2" role="img" aria-label="2/5"></span></div>
+        </div>
+        <p class="mono mute" style="margin-top:12px" data-t="t_cap">Intensité de suivi, de 1 à 5</p>
+      </div>
+      <div class="cols">
+        <p class="big" data-t="t_big">Ce qui m'attire dans une voiture : la ligne, l'identité de la marque, ce que le modèle raconte.</p>
+        <p data-t="t_p1">Je suis surtout la F1 et le WRC, la Formule E et le MotoGP de plus loin. Je n'ai jamais couru, seulement du karting en amateur. Récemment, un essai sur circuit au volant d'une Alpine A110 m'a été offert pour Noël.</p>
+        <p data-t="t_p2">Mon garage a toujours été allemand. Ma curiosité est maintenant en Chine, BYD et Denza en premier.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="outils">
+    <h2 class="h2"><small class="mono" data-t="b_k">Social · Paid · Analytics · Création</small><span data-t="b_h">Boîte à outils</span></h2>
+    <div class="tools">
+      <div><h3 class="mono" data-t="b1">Publication et social</h3><ul><li>Meta Business Suite</li><li>Agorapulse</li><li>Hootsuite</li></ul></div>
+      <div><h3 class="mono" data-t="b2">Médias payants</h3><ul><li>Google Ads <small data-t="b2a">depuis 2014</small></li><li>Meta Ads · LinkedIn Ads</li><li>TikTok Ads</li><li>Snapchat Ads <small data-t="b2b">depuis 2021</small></li></ul></div>
+      <div><h3 class="mono" data-t="b3">Mesure</h3><ul><li>Google Analytics 4</li><li>Looker Studio</li></ul></div>
+      <div><h3 class="mono" data-t="b4">Création et web</h3><ul><li>Adobe Creative Cloud</li><li data-t="b4a">Outils d'IA</li><li>WordPress</li></ul></div>
+      <div><h3 class="mono" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>B2/C1</small></li><li data-t="b5c">Anglais <small>B2/C1</small></li></ul></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="h2"><small class="mono" data-t="c_k">Candidature Denza BeLux</small><span data-t="c_h">Parlons-en.</span></h2>
+    <div class="row">
+      <span class="mail" id="mail">quentin.michel@outlook.com</span>
+      <button class="btn" type="button" id="copy" data-t="copy">Copier l'adresse</button>
+      <a class="btn solid" href="https://www.linkedin.com/in/quentin-michel/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </section>
+
+  <footer class="mono mute">
+    <span>Quentin Michel</span>
+    <span data-t="foot">Site créé pour la candidature Denza BeLux</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var NL = {
+    soc: "Lading", n_offer: "Vacature", n_road: "Loopbaan", n_work: "Projecten", n_track: "Circuit", n_contact: "Contact",
+    tag: "Sollicitatie · Digital Marketing Specialist, Denza BeLux",
+    lead: "Digital projectmanager bij Le Lombard. Ik laat merken leven op sociale media en coördineer daarbij bureaus, budgetten en teams. Gepassioneerd door auto's: design, merken, modellen, F1 en WRC.",
+    cta1: "Bekijk de match met de vacature", cta2: "Contact opnemen",
+    s1l: "Huidige functie", s1v: "Digital projectmanager, Le Lombard", s2l: "In het vak", s2v: "Sinds 2012",
+    s3l: "Specialiteiten", s3v: "Social · Betaalde media · Web", s4l: "Talen", s5l: "Basis", s5v: "Edingen, België",
+    o_k: "Digital Marketing Specialist · Denza BeLux", o_h: "Uw vacature, mijn bewijzen", o_q: "Wat u zoekt", o_a: "Wat ik al deed",
+    r1q: "Social-mediastrategie en redactiekalender", r1a: "Lanceringen van albums en reeksen bij Le Lombard: planning, content en betaalde media op Meta, TikTok en Snapchat.",
+    r2q: "Merkconsistentie, toon en oog voor detail", r2a: "Bekende licenties (De Smurfen, Elles) bij Le Lombard. Daarvoor 4 websites en 150 Meno-winkels met één stem laten spreken, in FR en NL.",
+    r3q: "Bureaus en cross-functionele teams", r3a: "Coördinatie van bureau en budget, productie van visuals en onderaanneming voor elke campagne.",
+    r4q: "Publicatietools", r4a: "Dagelijks Meta Business Suite en Agorapulse. Ervaring met Hootsuite.",
+    r5q: "Performance en websiteverkeer", r5a: "Google Ads sinds 2014, Snapchat Ads sinds 2021, TikTok Ads, GA4 en campagnerapporten met cijfers.",
+    r6q: "Community management en reputatie", r6a: "Community management sinds 2016, van het Meno-winkelnetwerk tot succesvolle reeksen voor het grote publiek.",
+    r7q: "Nederlands, Frans, Engels", r7a: "Frans als moedertaal, Nederlands en Engels B2/C1. Deze site bestaat in drie talen.",
+    r8q: "Bachelor in communicatie", r8a: "Bachelor Reclame (Esupcom Rijsel, 2014), mediaplanning (EFP, 2014), webcontent (Cepegra, 2016).",
+    w_k: "BYD · Denza", w_h: "Waarom Denza",
+    w_big: "Een premium elektrisch merk dat in België en Luxemburg nog in de hoofden moet landen.",
+    w_p1: "Denza groeit in België en Luxemburg met een merk dat nog in de hoofden moet landen. In die fase worden toon, redactiekalender en community opgebouwd, en dat is het werk dat ik het liefst doe.",
+    w_p2: "Ik volg auto's al mijn hele leven, vanuit design, merken en modellen eerder dan techniek. Ik ken de meeste BYD- en Denza-modellen die in Europa verkocht worden en heb ze nog niet kunnen besturen. Ik kijk er erg naar uit.",
+    w_p3: "Meerdere talen, bureaus en teams op één lijn brengen: daar werk ik nu al in.",
+    p_k: "2012 → ●", p_h: "Wegenboek", now: "nu",
+    l_role: "Digital projectmanager",
+    l1: "Lanceringscampagnes: coördinatie van bureau en budget.", l2: "Productie van visuals en onderaanneming, met Adobe en AI-tools.",
+    l3: "Betaalde media op Meta, TikTok, Snapchat en Google, opgevolgd in rapporten met cijfers.", l4: "Webprojecten, Smurfen-filter op Snapchat, originele video's (opnames, 3D, AI).",
+    l5: "Planning en community management met Agorapulse.",
+    f_role: "Project & Creative Manager (bureau AddRetail)", f1: "WordPress-sites voor klanten.", f2: "Facebook- en LinkedIn-ads, community management.",
+    f3: "HTML-mailings en copywriting voor Belgische merken.", f4: "Klantrelatie, prospectie en projectbeheer.",
+    m_role: "Web marketeer", m1: "SEO-copywriting en webdesign: 4 sites voor 150 doe-het-zelfwinkels.", m2: "Community management, Facebook Ads, opleiding en begeleiding.",
+    m3: "Mailings FR/NL: opmaak, inhoud, database.", m4: "E-commerce: prijzen, gebruikerservaring, Google Analytics.",
+    mm_role: "E-content specialist", mm1: "Team, contentoptimalisatie, leveranciers.",
+    ex_role: "Assistent projectmanager", ex1: "Communicatieprojecten, marketingstrategie, evenementen.",
+    z_role: "Print buyer assistant", z1: "Mediaplanning, mediaonderzoek, aankoop van pers.",
+    j_k: "Le Lombard · WordPress", j_h: "Realisaties", e_k: "Le Lombard · Lancering",
+    e_p: "Nieuw deel van een succesreeks. Ik coördineer het bureau en het budget, maak de visuals en beheer de onderaanneming, met Adobe en AI-tools.",
+    e_l: "Campagnerapport bekijken ↗",
+    sn_h: "Smurfen-filter Snapchat", sn_k: "Le Lombard · Snapchat", sn_p: "Een merkfilter voor Snapchat, waar ik sinds 2021 campagnes voer.",
+    v_h: "Originele video's", v_k: "Le Lombard · Video", v_p: "Echte opnames, 3D-animatie en AI, naargelang wat het idee vraagt.",
+    wp_h: "WordPress-sites", wp_k: "Ontwerp en lancering", wp_p: "Vier sites voor zelfstandigen en verenigingen.",
+    x1k: "Huwelijksplanning", x2k: "Literaire vzw · agenda · winkel", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
+    t_k: "F1 · WRC · Alpine A110", t_h: "Op het circuit", fe: "Formule E", t_cap: "Hoe intens ik volg, van 1 tot 5",
+    t_big: "Wat me aantrekt in een auto: de lijn, de identiteit van het merk, het verhaal dat het model vertelt.",
+    t_p1: "Ik volg vooral F1 en WRC, de Formule E en MotoGP van op wat grotere afstand. Ik ben nooit gaan racen, enkel wat amateurkarting. Onlangs kreeg ik met Kerst een circuitsessie in een Alpine A110.",
+    t_p2: "Mijn garage was altijd Duits. Mijn nieuwsgierigheid ligt nu in China, met BYD en Denza op kop.",
+    b_k: "Social · Paid · Analytics · Creatie", b_h: "Toolbox", b1: "Publicatie en social", b2: "Betaalde media", b2a: "sinds 2014", b2b: "sinds 2021",
+    b3: "Meting", b4: "Creatie en web", b4a: "AI-tools", b5: "Talen",
+    b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>B2/C1</small>", b5c: "Engels <small>B2/C1</small>",
+    c_k: "Sollicitatie Denza BeLux", c_h: "Laten we praten.", copy: "Adres kopiëren", copied: "Gekopieerd",
+    foot: "Site gemaakt voor de sollicitatie bij Denza BeLux"
+  };
+  var EN = {
+    soc: "Charge", n_offer: "The role", n_road: "Career", n_work: "Work", n_track: "Track", n_contact: "Contact",
+    tag: "Application · Digital Marketing Specialist, Denza BeLux",
+    lead: "Digital project manager at Le Lombard. I make brands live on social, coordinating agencies, budgets and teams along the way. Into cars: design, brands, models, F1 and WRC.",
+    cta1: "See how I match the role", cta2: "Get in touch",
+    s1l: "Current role", s1v: "Digital project manager, Le Lombard", s2l: "In the trade", s2v: "Since 2012",
+    s3l: "Specialities", s3v: "Social · Paid media · Web", s4l: "Languages", s5l: "Base", s5v: "Enghien, Belgium",
+    o_k: "Digital Marketing Specialist · Denza BeLux", o_h: "Your brief, my proof", o_q: "What you need", o_a: "What I've done",
+    r1q: "Social media strategy and editorial calendar", r1a: "Album and series launches at Le Lombard: planning, content and paid media on Meta, TikTok and Snapchat.",
+    r2q: "Brand consistency, tone and attention to detail", r2a: "Well-known licences (The Smurfs, Elles) at Le Lombard. Before that, 4 websites and 150 Meno stores to keep speaking with one voice, in FR and NL.",
+    r3q: "Agencies and cross-functional teams", r3a: "Agency and budget coordination, visual production and subcontracting on every campaign.",
+    r4q: "Publishing tools", r4a: "Meta Business Suite and Agorapulse every day. Hands-on with Hootsuite.",
+    r5q: "Channel performance and web traffic", r5a: "Google Ads since 2014, Snapchat Ads since 2021, TikTok Ads, GA4 and campaign reports with real numbers.",
+    r6q: "Community management and reputation", r6a: "Community management since 2016, from the Meno store network to mainstream series.",
+    r7q: "Dutch, French, English", r7a: "French mother tongue, Dutch and English B2/C1. This site exists in three languages.",
+    r8q: "Bachelor in communications", r8a: "Bachelor in Advertising (Esupcom Lille, 2014), media planning (EFP, 2014), web content (Cepegra, 2016).",
+    w_k: "BYD · Denza", w_h: "Why Denza",
+    w_big: "A premium electric brand still settling into minds in Belgium and Luxembourg.",
+    w_p1: "Denza is growing in Belgium and Luxembourg with a brand that still has to settle in people's minds. That is when tone, editorial calendar and community get built, and it's the work I like best.",
+    w_p2: "I've followed cars all my life, through design, brands and models more than mechanics. I know most of the BYD and Denza models sold in Europe and haven't yet had the chance to drive one. I'd love to.",
+    w_p3: "Several languages, agencies and teams to keep aligned: that's already how I work.",
+    p_k: "2012 → ●", p_h: "Road book", now: "now",
+    l_role: "Digital project manager",
+    l1: "Launch campaigns: agency and budget coordination.", l2: "Visual production and subcontracting, using Adobe and AI tools.",
+    l3: "Paid media on Meta, TikTok, Snapchat and Google, tracked in reports with real numbers.", l4: "Web projects, Smurfs Snapchat filter, original videos (live shoots, 3D, AI).",
+    l5: "Scheduling and community management with Agorapulse.",
+    f_role: "Project & Creative Manager (AddRetail agency)", f1: "WordPress websites for clients.", f2: "Facebook and LinkedIn Ads, community management.",
+    f3: "HTML e-mailings and copywriting for Belgian brands.", f4: "Client relations, prospecting and project management.",
+    m_role: "Web marketeer", m1: "SEO copywriting and web design: 4 sites for 150 DIY stores.", m2: "Community management, Facebook Ads, training and support.",
+    m3: "FR/NL e-mailings: layout, content, database.", m4: "E-commerce: prices, user experience, Google Analytics.",
+    mm_role: "E-content specialist", mm1: "Team, content optimisation, suppliers.",
+    ex_role: "Project manager assistant", ex1: "Communication projects, marketing strategy, events.",
+    z_role: "Print buyer assistant", z1: "Media planning, media research, print buying.",
+    j_k: "Le Lombard · WordPress", j_h: "Selected work", e_k: "Le Lombard · Launch",
+    e_p: "New volume of a hit series. I coordinate the agency and budget, produce the visuals and manage subcontracting, using Adobe and AI tools.",
+    e_l: "View the campaign report ↗",
+    sn_h: "Smurfs Snapchat filter", sn_k: "Le Lombard · Snapchat", sn_p: "A branded filter for Snapchat, where I've run campaigns since 2021.",
+    v_h: "Original videos", v_k: "Le Lombard · Video", v_p: "Live shoots, 3D animation and AI, depending on what the idea needs.",
+    wp_h: "WordPress sites", wp_k: "Design and launch", wp_p: "Four sites for independents and associations.",
+    x1k: "Wedding planning", x2k: "Literary non-profit · events · shop", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
+    t_k: "F1 · WRC · Alpine A110", t_h: "Track side", fe: "Formula E", t_cap: "How closely I follow, from 1 to 5",
+    t_big: "What draws me to a car: the line, the identity of the brand, what the model says.",
+    t_p1: "I mostly follow F1 and WRC, with Formula E and MotoGP from further away. I've never raced, only amateur karting. Recently I was given a track session in an Alpine A110 for Christmas.",
+    t_p2: "My garage has always been German. My curiosity is now in China, BYD and Denza first.",
+    b_k: "Social · Paid · Analytics · Creative", b_h: "Toolbox", b1: "Publishing and social", b2: "Paid media", b2a: "since 2014", b2b: "since 2021",
+    b3: "Measurement", b4: "Creative and web", b4a: "AI tools", b5: "Languages",
+    b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>B2/C1</small>", b5c: "English <small>B2/C1</small>",
+    c_k: "Denza BeLux application", c_h: "Let's talk.", copy: "Copy address", copied: "Copied",
+    foot: "Site made for the Denza BeLux application"
+  };
+  var dict = { fr: {}, nl: NL, en: EN };
+  var nodes = document.querySelectorAll("[data-t]");
+  nodes.forEach(function (el) { dict.fr[el.getAttribute("data-t")] = el.innerHTML; });
+  dict.fr.copied = "Copié";
+
+  function setLang(l) {
+    var d = dict[l] || dict.fr;
+    nodes.forEach(function (el) {
+      var k = el.getAttribute("data-t");
+      el.innerHTML = d[k] !== undefined ? d[k] : dict.fr[k];
+    });
+    document.documentElement.lang = l;
+    document.querySelectorAll("[data-lang]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === l));
+    });
+    try { localStorage.setItem("qm-lang", l); } catch (e) {}
+  }
+  var start = "fr";
+  try {
+    start = localStorage.getItem("qm-lang") || "";
+  } catch (e) {}
+  if (!dict[start]) {
+    var h = (location.hash || "").replace("#", "");
+    var nav = ((navigator.language || "fr").slice(0, 2)).toLowerCase();
+    start = dict[h] ? h : (dict[nav] ? nav : "fr");
+  }
+  if (start !== "fr") setLang(start);
+  document.querySelectorAll("[data-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+  });
+
+  document.querySelectorAll("[data-go]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var t = document.getElementById(a.getAttribute("data-go"));
+      if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  var bar = document.getElementById("socbar"), val = document.getElementById("socval");
+  function onScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, Math.round(window.scrollY / max * 100))) : 0;
+    bar.style.setProperty("--p", p);
+    val.textContent = p + " %";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  var copy = document.getElementById("copy");
+  copy.addEventListener("click", function () {
+    var label = copy.innerHTML, l = document.documentElement.lang || "fr";
+    function done() {
+      copy.textContent = (dict[l] && dict[l].copied) || "Copié";
+      setTimeout(function () { copy.innerHTML = (dict[l] && dict[l].copy) || dict.fr.copy; }, 1600);
+    }
+    var mail = document.getElementById("mail");
+    try {
+      navigator.clipboard.writeText(mail.textContent).then(done, function () {
+        var r = document.createRange(); r.selectNodeContents(mail);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      });
+    } catch (e) {
+      var r = document.createRange(); r.selectNodeContents(mail);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+  });
+})();
+</script>
