@@ -1,0 +1,137 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Quentin Michel · Lettre de motivation / Motivatiebrief / Cover letter</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wght@300;400;500;700&display=swap"><style>
+@page { size: A4; margin: 0; }
+:root {
+  --bg: #E3E9ED; --surface: #F1F5F8; --ink: #0A1117; --mute: #52616C;
+  --line: rgba(10,17,23,.2); --dim: rgba(10,17,23,.14); --charge: #0B6BFF; --signal: #E8480C;
+  --f-display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --f-mono: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); }
+body { font: 400 9.4pt/1.5 var(--f-display); font-stretch: 100%; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.page { width: 210mm; height: 297mm; padding: 11mm 15mm 9mm; position: relative; overflow: hidden; page-break-after: always; display: flex; flex-direction: column; }
+.page:last-child { page-break-after: auto; }
+.mono { font-family: var(--f-mono); font-size: 6.6pt; letter-spacing: .06em; text-transform: uppercase; }
+.mute { color: var(--mute); }
+a { color: inherit; text-decoration: none; }
+
+/* header */
+.top { display: flex; justify-content: space-between; align-items: center; border-bottom: .3mm solid var(--ink); padding-bottom: 3mm; }
+.mark { font: 900 12pt/1 var(--f-display); font-stretch: 125%; letter-spacing: -.02em; }
+.soc { display: flex; align-items: center; gap: 2.5mm; }
+.bar { width: 38mm; height: 3.2mm; background: repeating-linear-gradient(90deg, var(--charge) 0 1.1mm, transparent 1.1mm 1.8mm); }
+.tag { display: flex; align-items: center; gap: 2.5mm; margin: 9mm 0 5mm; }
+.tag::before { content: ""; width: 2.2mm; height: 2.2mm; background: var(--signal); border-radius: 50%; }
+.name { margin: 0; font: 900 52pt/.84 var(--f-display); font-stretch: 125%; letter-spacing: -.025em; text-transform: uppercase; }
+.name span { display: block; width: fit-content; }
+.bladeimg { display: block; height: 17.32mm; width: auto; margin: -.5mm 0 -.6mm -.4mm; }
+.bt { font: 900 18.3px "Archivo", Arial, sans-serif; font-stretch: 125%; letter-spacing: -.46px; stroke: #0A1117; stroke-width: .12; }
+.name .blade {
+  color: transparent; -webkit-text-stroke: .35mm var(--ink);
+  background-image: repeating-linear-gradient(90deg, var(--charge) 0 .07em, transparent .07em .115em);
+  background-size: 100% 100%; background-repeat: no-repeat; -webkit-background-clip: text; background-clip: text;
+}
+
+/* letter */
+.contact { display: flex; flex-wrap: wrap; gap: 1.5mm 6mm; margin: 7mm 0 0; padding-top: 3mm; border-top: .3mm solid var(--ink); }
+.letter { margin-top: 7mm; display: grid; grid-template-columns: 40mm 1fr; gap: 8mm; flex: 1; }
+.meta { display: grid; gap: 4mm; align-content: start; }
+.meta p { margin: 0; }
+.meta b { display: block; font: 800 11pt/1.05 var(--f-display); font-stretch: 75%; text-transform: uppercase; margin-top: 1mm; }
+.body p { margin: 0 0 3.4mm; }
+.body .obj { font: 800 13pt/1.1 var(--f-display); font-stretch: 75%; text-transform: uppercase; margin-bottom: 4.5mm; }
+.body .sig { margin-top: 5mm; font: 800 11pt/1 var(--f-display); font-stretch: 100%; }
+.body strong { font-weight: 700; }
+
+/* cv */
+.cvhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; margin: 4mm 0 3mm; }
+.cvname { margin: 0; font: 900 30pt/.88 var(--f-display); font-stretch: 125%; letter-spacing: -.02em; text-transform: uppercase; }
+.cvrole { margin: 2mm 0 0; font-weight: 500; font-size: 10pt; }
+.portrait { width: 21mm; height: 21mm; border-radius: 50%; mix-blend-mode: multiply; flex: none; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: .3mm solid var(--ink); border-bottom: .2mm solid var(--line); margin-bottom: 3mm; }
+.stats div { padding: 1.6mm 2mm 1.6mm 0; }
+.stats b { display: block; font: 800 17pt/.95 var(--f-display); font-stretch: 62%; text-transform: uppercase; color: var(--charge); }
+.stats span { font-size: 7.6pt; font-weight: 500; line-height: 1.25; display: block; }
+.cols { display: grid; grid-template-columns: 52mm 1fr; gap: 7mm; flex: 1; min-height: 0; }
+h2 { margin: 0 0 2mm; font: 800 12.5pt/1 var(--f-display); font-stretch: 62%; text-transform: uppercase; letter-spacing: .01em; }
+h2.k { padding-top: 2.2mm; border-top: .3mm solid var(--ink); }
+.side section, .main section { margin-bottom: 3mm; }
+.side p, .side li, .main li { font-size: 7.9pt; line-height: 1.34; }
+.side ul, .main ul { margin: 0; padding: 0; list-style: none; }
+.side li { padding: .6mm 0; }
+.side li small { color: var(--mute); font-size: 7.4pt; }
+.job { display: grid; grid-template-columns: 24mm 1fr; gap: 3mm; padding: 1.5mm 0; border-top: .2mm solid var(--line); }
+.job:first-of-type { border-top: 0; }
+.job h3 { margin: 0; font: 800 11pt/1 var(--f-display); font-stretch: 70%; text-transform: uppercase; }
+.job .role { margin: .4mm 0 .9mm; color: var(--mute); font-weight: 500; font-size: 8pt; }
+.job li { padding-left: 3.2mm; position: relative; margin-bottom: .2mm; }
+.job li::before { content: ""; position: absolute; left: 0; top: .55em; width: 1.8mm; height: .3mm; background: var(--charge); }
+.job .when { padding-top: .6mm; line-height: 1.5; }
+.job.small { padding: 1.1mm 0; }
+.job.small h3 { font-size: 9.5pt; }
+.chips { display: flex; flex-wrap: wrap; gap: 1.2mm; }
+.chips span { font: 400 6.4pt/1.2 var(--f-mono); letter-spacing: .03em; text-transform: uppercase; border: .2mm solid var(--line); padding: .8mm 1.4mm; }
+.chips span.cur { border-color: var(--charge); }
+.foot { display: flex; justify-content: space-between; border-top: .2mm solid var(--line); padding-top: 2.5mm; margin-top: auto; }
+.blue { color: var(--charge); }
+</style></head><body><div class="page">
+  <div class="top"><span class="mark">QM</span><span class="soc"><span class="mono mute">Charge</span><span class="bar"></span><span class="mono">100 %</span></span></div>
+  <div class="tag mono">Candidature · Digital Marketing Specialist, Denza BeLux</div>
+  <h1 class="name"><img class="bladeimg" src="name-blade.png" alt="Quentin"><span>Michel</span></h1>
+  <div class="contact mono"><span>quentin.michel@outlook.com</span><span>linkedin.com/in/quentin-michel</span><span>Enghien, Belgique</span></div>
+  <div class="letter">
+    <div class="meta">
+      <p class="mono mute">Destinataire<b>BYD Europe<br>Recrutement Denza BeLux</b></p>
+      <p class="mono mute">Date<b>Octobre 2026</b></p>
+      <p class="mono mute">Objet<b>Digital Marketing Specialist, Denza (BeLux)</b></p>
+      <p class="mono mute">Portfolio<b style="font-stretch:100%;font-size:8pt;text-transform:none;font-weight:600;overflow-wrap:anywhere"><a href="https://claude.ai/artifact/9vV4yPJ3Mpjntthi8jHrSn">claude.ai/artifact/<br>9vV4yPJ3Mpjntthi8jHrSn</a></b></p>
+    </div>
+    <div class="body">
+      <p class="obj">Faire vivre une marque qui fait rêver</p>
+      <p>Madame, Monsieur,</p>
+      <p>Denza se développe en Belgique et au Luxembourg avec une marque encore à installer dans les esprits. Le poste de Digital Marketing Specialist consiste à construire son ton, son calendrier éditorial et sa communauté. C'est le travail que je préfère, et celui que je fais depuis plus de dix ans.</p><p>Chef de projet digital au Lombard depuis avril 2021, je pilote avec l'agence les campagnes de lancement d'albums et de séries, du brief et du budget jusqu'au bilan chiffré. Je produis ou sous-traite les visuels, avec la suite Adobe et des outils d'IA, et je fais vivre les réseaux de la maison : <strong>plus de 200 000 abonnés cumulés, construits de zéro, et des vidéos qui ont dépassé plusieurs millions de vues</strong>. Je suis aussi webmaster de lelombard.com et de thorgal.com.</p><p>Ce que vous demandez, je le pratique déjà. Je tiens la cohérence de ton et de marque sur des licences très connues comme Les Schtroumpfs. Je coordonne agences et équipes autour d'un même calendrier. Je publie avec Meta Business Suite et Agorapulse, et j'ai pratiqué Hootsuite. Je pilote des médias payants sur Meta, TikTok, Snapchat et Google, suivis dans des rapports chiffrés. Enfin, j'ai géré des situations sensibles, comme la polémique autour d'illustrations générées par IA ou, chez Meno, des photos produits erronées et des avis clients négatifs : répondre vite, calmement et avec les faits.</p><p>L'automobile m'intéresse par le design, les marques et leur histoire. Je connais la plupart des modèles BYD et Denza vendus en Europe sans avoir encore pu les conduire. La Z9 GT réunit luxe et sportivité pour tous les jours, et la Seal me parle par son confort, son silence et sa puissance. Cette curiosité nourrit des contenus justes pour la communauté.</p><p>Je travaille en français, langue maternelle, et j'utilise professionnellement le néerlandais (niveau B2, e-mailings FR/NL chez Meno) et l'anglais (B2/C1). Je suis motivé pour consolider mon néerlandais et prêt à l'illustrer en entretien. Ce portfolio existe d'ailleurs en trois langues.</p><p>Je serais heureux de vous présenter ma vision des réseaux de Denza BeLux lors d'un entretien.</p>
+      <p>Avec mes salutations les meilleures,</p>
+      <p class="sig">Quentin Michel</p>
+    </div>
+  </div>
+</div><div class="page">
+  <div class="top"><span class="mark">QM</span><span class="soc"><span class="mono mute">Lading</span><span class="bar"></span><span class="mono">100 %</span></span></div>
+  <div class="tag mono">Sollicitatie · Digital Marketing Specialist, Denza BeLux</div>
+  <h1 class="name"><img class="bladeimg" src="name-blade.png" alt="Quentin"><span>Michel</span></h1>
+  <div class="contact mono"><span>quentin.michel@outlook.com</span><span>linkedin.com/in/quentin-michel</span><span>Edingen, België</span></div>
+  <div class="letter">
+    <div class="meta">
+      <p class="mono mute">Bestemmeling<b>BYD Europe<br>Werving Denza BeLux</b></p>
+      <p class="mono mute">Datum<b>Oktober 2026</b></p>
+      <p class="mono mute">Betreft<b>Digital Marketing Specialist, Denza (BeLux)</b></p>
+      <p class="mono mute">Portfolio<b style="font-stretch:100%;font-size:8pt;text-transform:none;font-weight:600;overflow-wrap:anywhere"><a href="https://claude.ai/artifact/9vV4yPJ3Mpjntthi8jHrSn">claude.ai/artifact/<br>9vV4yPJ3Mpjntthi8jHrSn</a></b></p>
+    </div>
+    <div class="body">
+      <p class="obj">Een merk laten leven dat doet dromen</p>
+      <p>Geachte mevrouw, geachte heer,</p>
+      <p>Denza groeit in België en Luxemburg met een merk dat nog in de hoofden moet landen. De functie van Digital Marketing Specialist bestaat erin zijn toon, redactiekalender en community op te bouwen. Dat is het werk dat ik het liefst doe, en dat ik al meer dan tien jaar doe.</p><p>Sinds april 2021 ben ik digital projectmanager bij Le Lombard. Samen met het bureau stuur ik de lanceringscampagnes van albums en reeksen aan, van briefing en budget tot becijferde evaluatie. Ik maak de visuals zelf of besteed ze uit, met Adobe en AI-tools, en ik houd de sociale kanalen van het huis levendig: <strong>meer dan 200.000 volgers samen, vanaf nul opgebouwd, en video's met meerdere miljoenen weergaven</strong>. Daarnaast ben ik webmaster van lelombard.com en thorgal.com.</p><p>Wat u vraagt, doe ik al. Ik bewaak de consistentie van toon en merk bij bekende licenties zoals De Smurfen. Ik coördineer bureaus en teams rond één kalender. Ik publiceer met Meta Business Suite en Agorapulse en heb ervaring met Hootsuite. Ik stuur betaalde media aan op Meta, TikTok, Snapchat en Google, opgevolgd in rapporten met cijfers. Tot slot heb ik gevoelige situaties beheerd, zoals de ophef over met AI gegenereerde illustraties of, bij Meno, foute productfoto's en negatieve klantenreviews: snel, kalm en met de feiten reageren.</p><p>Auto's boeien me door hun design, hun merken en hun geschiedenis. Ik ken de meeste BYD- en Denza-modellen die in Europa verkocht worden, zonder ze al te hebben kunnen besturen. De Z9 GT combineert luxe en sportiviteit voor elke dag, en de Seal spreekt me aan door zijn comfort, stilte en vermogen. Die nieuwsgierigheid voedt content die klopt voor de community.</p><p>Frans is mijn moedertaal. Nederlands (niveau B2, onder meer FR/NL-mailings bij Meno) en Engels (B2/C1) gebruik ik professioneel. Ik wil mijn Nederlands graag verder versterken en toon het u graag tijdens een gesprek. Deze portfolio bestaat trouwens in drie talen.</p><p>Graag licht ik tijdens een gesprek mijn visie op de sociale kanalen van Denza BeLux toe.</p>
+      <p>Met vriendelijke groeten,</p>
+      <p class="sig">Quentin Michel</p>
+    </div>
+  </div>
+</div><div class="page">
+  <div class="top"><span class="mark">QM</span><span class="soc"><span class="mono mute">Charge</span><span class="bar"></span><span class="mono">100 %</span></span></div>
+  <div class="tag mono">Application · Digital Marketing Specialist, Denza BeLux</div>
+  <h1 class="name"><img class="bladeimg" src="name-blade.png" alt="Quentin"><span>Michel</span></h1>
+  <div class="contact mono"><span>quentin.michel@outlook.com</span><span>linkedin.com/in/quentin-michel</span><span>Enghien, Belgium</span></div>
+  <div class="letter">
+    <div class="meta">
+      <p class="mono mute">To<b>BYD Europe<br>Denza BeLux Recruitment</b></p>
+      <p class="mono mute">Date<b>October 2026</b></p>
+      <p class="mono mute">Subject<b>Digital Marketing Specialist, Denza (BeLux)</b></p>
+      <p class="mono mute">Portfolio<b style="font-stretch:100%;font-size:8pt;text-transform:none;font-weight:600;overflow-wrap:anywhere"><a href="https://claude.ai/artifact/9vV4yPJ3Mpjntthi8jHrSn">claude.ai/artifact/<br>9vV4yPJ3Mpjntthi8jHrSn</a></b></p>
+    </div>
+    <div class="body">
+      <p class="obj">Bringing a brand that makes people dream to life</p>
+      <p>Dear Sir or Madam,</p>
+      <p>Denza is growing in Belgium and Luxembourg with a brand that still has to settle in people's minds. The Digital Marketing Specialist role is about building its tone, editorial calendar and community. It is the work I like best, and the work I have been doing for more than ten years.</p><p>I have been digital project manager at Le Lombard since April 2021. With the agency, I run album and series launch campaigns, from brief and budget to a results report. I produce or subcontract the visuals, using Adobe and AI tools, and I keep the publisher's channels alive: <strong>over 200,000 followers combined, built from zero, and videos that have passed several million views</strong>. I am also webmaster of lelombard.com and thorgal.com.</p><p>What you ask for, I already do. I keep tone and brand consistent on well-known licences such as The Smurfs. I coordinate agencies and teams around one calendar. I publish with Meta Business Suite and Agorapulse, and I have used Hootsuite. I run paid media on Meta, TikTok, Snapchat and Google, tracked in reports with real numbers. And I have handled sensitive situations, such as the backlash over AI-generated illustrations or, at Meno, wrong product photos and negative customer reviews: answer fast, calmly and with facts.</p><p>I am drawn to cars through design, brands and history. I know most of the BYD and Denza models sold in Europe, without yet having driven one. The Z9 GT combines luxury and sportiness for every day, and the Seal speaks to me through its comfort, silence and power. That curiosity feeds content that rings true with the community.</p><p>French is my mother tongue. I use Dutch (B2 level, including FR/NL e-mailings at Meno) and English (B2/C1) professionally. I am keen to strengthen my Dutch further and happy to show it in an interview. This portfolio, incidentally, exists in three languages.</p><p>I would be glad to present my vision for Denza BeLux's social channels in an interview.</p>
+      <p>Kind regards,</p>
+      <p class="sig">Quentin Michel</p>
+    </div>
+  </div>
+</div></body></html>
