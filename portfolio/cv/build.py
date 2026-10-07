@@ -6,7 +6,8 @@ import re, pathlib
 HERE = pathlib.Path(__file__).parent
 CSS = (HERE / "base.css").read_text(encoding="utf-8")
 FONT = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wght@300;400;500;700&display=swap">'
-PORTFOLIO = "https://claude.ai/artifact/9vV4yPJ3Mpjntthi8jHrSn"
+PORTFOLIO = "https://quentin-michel.netlify.app/"
+PFLINK = '<a href="https://quentin-michel.netlify.app/" style="white-space:nowrap"><strong>quentin-michel.netlify.app</strong></a>'
 EMAIL = "quentin.michel@outlook.com"
 LINKEDIN = "linkedin.com/in/quentin-michel"
 
@@ -27,7 +28,7 @@ L = {
             "Chef de projet digital au Lombard depuis avril 2021, je pilote avec l'agence les campagnes de lancement d'albums et de séries, du brief et du budget jusqu'au bilan chiffré. Je produis ou sous-traite les visuels, avec la suite Adobe et des outils d'IA, et je fais vivre les réseaux de la maison : <strong>plus de 200 000 abonnés cumulés, construits de zéro, et des vidéos qui ont dépassé plusieurs millions de vues</strong>. Je suis aussi webmaster de lelombard.com et de thorgal.com.",
             "Ce que vous demandez, je le pratique déjà. Je tiens la cohérence de ton et de marque sur des licences très connues comme Les Schtroumpfs. Je coordonne agences et équipes autour d'un même calendrier. Je publie avec Meta Business Suite et Agorapulse, et j'ai pratiqué Hootsuite. Je pilote des médias payants sur Meta, TikTok, Snapchat et Google, suivis dans des rapports chiffrés. Enfin, j'ai géré des situations sensibles, comme la polémique autour d'illustrations générées par IA ou, chez Meno, des photos produits erronées et des avis clients négatifs : répondre vite, calmement et avec les faits.",
             "L'automobile m'intéresse par le design, les marques et leur histoire. Je connais la plupart des modèles BYD et Denza vendus en Europe sans avoir encore pu les conduire. La Z9 GT réunit luxe et sportivité pour tous les jours, et la Seal me parle par son confort, son silence et sa puissance. Cette curiosité nourrit des contenus justes pour la communauté.",
-            "Je travaille en français, langue maternelle, et j'utilise professionnellement le néerlandais (niveau B2, e-mailings FR/NL chez Meno) et l'anglais (B2/C1). Je suis motivé pour consolider mon néerlandais et prêt à l'illustrer en entretien. Ce portfolio existe d'ailleurs en trois langues.",
+            "Je travaille en français, langue maternelle, et j'utilise professionnellement le néerlandais (niveau B2, e-mailings FR/NL chez Meno) et l'anglais (B2/C1). Je suis motivé pour consolider mon néerlandais et prêt à l'illustrer en entretien. Mon portfolio, {PF}, est d'ailleurs disponible en trois langues.",
             "Je serais heureux de vous présenter ma vision des réseaux de Denza BeLux lors d'un entretien.",
             "Avec mes salutations les meilleures,",
         ]),
@@ -41,7 +42,7 @@ L = {
             "Sinds april 2021 ben ik digital projectmanager bij Le Lombard. Samen met het bureau stuur ik de lanceringscampagnes van albums en reeksen aan, van briefing en budget tot becijferde evaluatie. Ik maak de visuals zelf of besteed ze uit, met Adobe en AI-tools, en ik houd de sociale kanalen van het huis levendig: <strong>meer dan 200.000 volgers samen, vanaf nul opgebouwd, en video's met meerdere miljoenen weergaven</strong>. Daarnaast ben ik webmaster van lelombard.com en thorgal.com.",
             "Wat u vraagt, doe ik al. Ik bewaak de consistentie van toon en merk bij bekende licenties zoals De Smurfen. Ik coördineer bureaus en teams rond één kalender. Ik publiceer met Meta Business Suite en Agorapulse en heb ervaring met Hootsuite. Ik stuur betaalde media aan op Meta, TikTok, Snapchat en Google, opgevolgd in rapporten met cijfers. Tot slot heb ik gevoelige situaties beheerd, zoals de ophef over met AI gegenereerde illustraties of, bij Meno, foute productfoto's en negatieve klantenreviews: snel, kalm en met de feiten reageren.",
             "Auto's boeien me door hun design, hun merken en hun geschiedenis. Ik ken de meeste BYD- en Denza-modellen die in Europa verkocht worden, zonder ze al te hebben kunnen besturen. De Z9 GT combineert luxe en sportiviteit voor elke dag, en de Seal spreekt me aan door zijn comfort, stilte en vermogen. Die nieuwsgierigheid voedt content die klopt voor de community.",
-            "Frans is mijn moedertaal. Nederlands (niveau B2, onder meer FR/NL-mailings bij Meno) en Engels (B2/C1) gebruik ik professioneel. Ik wil mijn Nederlands graag verder versterken en toon het u graag tijdens een gesprek. Deze portfolio bestaat trouwens in drie talen.",
+            "Frans is mijn moedertaal. Nederlands (niveau B2, onder meer FR/NL-mailings bij Meno) en Engels (B2/C1) gebruik ik professioneel. Ik wil mijn Nederlands graag verder versterken en toon het u graag tijdens een gesprek. Mijn portfolio, {PF}, bestaat trouwens in drie talen.",
             "Graag licht ik tijdens een gesprek mijn visie op de sociale kanalen van Denza BeLux toe.",
             "Met vriendelijke groeten,",
         ]),
@@ -55,7 +56,7 @@ L = {
             "I have been digital project manager at Le Lombard since April 2021. With the agency, I run album and series launch campaigns, from brief and budget to a results report. I produce or subcontract the visuals, using Adobe and AI tools, and I keep the publisher's channels alive: <strong>over 200,000 followers combined, built from zero, and videos that have passed several million views</strong>. I am also webmaster of lelombard.com and thorgal.com.",
             "What you ask for, I already do. I keep tone and brand consistent on well-known licences such as The Smurfs. I coordinate agencies and teams around one calendar. I publish with Meta Business Suite and Agorapulse, and I have used Hootsuite. I run paid media on Meta, TikTok, Snapchat and Google, tracked in reports with real numbers. And I have handled sensitive situations, such as the backlash over AI-generated illustrations or, at Meno, wrong product photos and negative customer reviews: answer fast, calmly and with facts.",
             "I am drawn to cars through design, brands and history. I know most of the BYD and Denza models sold in Europe, without yet having driven one. The Z9 GT combines luxury and sportiness for every day, and the Seal speaks to me through its comfort, silence and power. That curiosity feeds content that rings true with the community.",
-            "French is my mother tongue. I use Dutch (B2 level, including FR/NL e-mailings at Meno) and English (B2/C1) professionally. I am keen to strengthen my Dutch further and happy to show it in an interview. This portfolio, incidentally, exists in three languages.",
+            "French is my mother tongue. I use Dutch (B2 level, including FR/NL e-mailings at Meno) and English (B2/C1) professionally. I am keen to strengthen my Dutch further and happy to show it in an interview. My portfolio, {PF}, incidentally exists in three languages.",
             "I would be glad to present my vision for Denza BeLux's social channels in an interview.",
             "Kind regards,",
         ]),
@@ -63,7 +64,7 @@ L = {
 
 
 def letter_page(d):
-    paras = "".join(f"<p>{x}</p>" for x in d["p"][:-1])
+    paras = "".join(f"<p>{x.replace('{PF}', PFLINK)}</p>" for x in d["p"][:-1])
     return f'''<div class="page">
   <div class="top"><span class="mark">QM</span><span class="soc"><span class="mono mute">{d["soc"]}</span><span class="bar"></span><span class="mono">100 %</span></span></div>
   <div class="tag mono">{d["tag"]}</div>
@@ -74,7 +75,7 @@ def letter_page(d):
       <p class="mono mute">{d["k_to"]}<b>{d["to"]}</b></p>
       <p class="mono mute">{d["k_date"]}<b>{d["date"]}</b></p>
       <p class="mono mute">{d["k_obj"]}<b>{d["obj"]}</b></p>
-      <p class="mono mute">{d["k_pf"]}<b style="font-stretch:100%;font-size:8pt;text-transform:none;font-weight:600;overflow-wrap:anywhere"><a href="{PORTFOLIO}">claude.ai/artifact/<br>9vV4yPJ3Mpjntthi8jHrSn</a></b></p>
+      <p class="mono mute">{d["k_pf"]}<b style="font-stretch:100%;font-size:8pt;text-transform:none;font-weight:600;overflow-wrap:anywhere"><a href="{PORTFOLIO}">quentin-michel.<br>netlify.app</a></b></p>
     </div>
     <div class="body">
       <p class="obj">{d["head"]}</p>
@@ -166,7 +167,7 @@ def cv_page(d):
     old = "".join(f"<span>{x}</span>" for x in ["meno.be", "menopro.be", "handyhome.be", "mediamarkt.be"])
     wp = "".join(f"<span>{x}</span>" for x in ["unjourencouleurs.be", "lesponctuelles.be", "guillaumetessaro.be", "marcherman.be"])
     return f'''<div class="page">
-  <div class="top"><span class="mark">QM</span><span class="mono mute">{d["top"]}</span></div>
+  <div class="top"><span class="mark">QM</span><span class="mono mute">{d["top"]} · <a href="{PORTFOLIO}">quentin-michel.netlify.app</a></span></div>
   <div class="cvhead"><div><h1 class="cvname">Quentin Michel</h1><p class="cvrole">{d["role"]}</p>
     <p class="mono mute" style="margin:1.4mm 0 0">{EMAIL} · {LINKEDIN} · {d["place"]}</p></div>
     <img class="portrait" src="../img/portrait.jpg" alt=""></div>
