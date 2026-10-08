@@ -62,12 +62,11 @@ const PROFILES = [
     text: "Ducobu te salue : il t'accepte dans son club ! Rejoue, ou lis le tome 30 pour réviser." }
 ];
 
-// Tirage au sort : renseigner l'adresse de l'outil de newsletter (Mailchimp, Brevo, formulaire WordPress…).
-// Tant que "endpoint" est vide, le formulaire fonctionne en mode test : rien n'est envoyé ni enregistré.
+// Tirage au sort : formulaire Brevo (champs PRENOM et EMAIL). Si "endpoint" est vide, le formulaire
+// fonctionne en mode test : rien n'est envoyé ni enregistré.
 const NEWSLETTER = {
-  endpoint: "",
-  reglementUrl: "",   // lien vers le règlement officiel du tirage au sort
-  extra: { source: "quiz-duco-bouh" }
+  endpoint: "https://8e4b1da6.sibforms.com/serve/MUIFAOMBy3DAP--3s4Ag8X8qx6kSGQLNkrJ4_MKVGeY0wJIyP1k8hK-lwk_ECTseSw_uWYk82wZncZGTAywxBjk_lco_t9Xw6lho7AkyzE9IyuiNY2CBoY2lGodugv8RhWPFwlpdVda2Cvegs5ZUAdrocZN8l-m0RaaEvnducdyRaculbN3aDywXpzuRTko7oK18k5HU3gZMZl0=",
+  reglementUrl: ""   // lien vers le règlement officiel du tirage au sort
 };
 
 const $ = id => document.getElementById(id);
@@ -178,19 +177,26 @@ $("share").onclick = async () => {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return err("Vérifie ton adresse e-mail.");
     if (!form.consent.checked) return err("Coche la case pour accepter la newsletter et le règlement.");
 
-    const data = new URLSearchParams({ prenom, email, score: String(score), consent: "oui", ...NEWSLETTER.extra });
+    const data = new FormData();
+    data.append("PRENOM", prenom);
+    data.append("EMAIL", email);
+    data.append("email_address_check", "");            // champ anti-robot attendu par Brevo
+    data.append("locale", "fr");
     const btn = $("draw-submit");
     btn.disabled = true;
     try {
       if (NEWSLETTER.endpoint) {
-        await fetch(NEWSLETTER.endpoint, { method: "POST", mode: "no-cors", body: data });
+        const res = await fetch(NEWSLETTER.endpoint, { method: "POST", body: data, headers: { Accept: "application/json" } });
+        let body = null;
+        try { body = await res.json(); } catch (x) {}
+        if (!res.ok || (body && body.success === false)) throw new Error("brevo");
       } else {
         $("draw-done-text").textContent = "Mode test : ton inscription n'a pas été enregistrée.";
       }
       form.hidden = true;
       $("draw-done").hidden = false;
     } catch (x) {
-      err("Oups, l'inscription n'a pas fonctionné. Réessaie dans un instant.");
+      err("Oups, l'inscription n'a pas fonctionné. Vérifie ton e-mail ou réessaie dans un instant.");
       btn.disabled = false;
     }
   });
