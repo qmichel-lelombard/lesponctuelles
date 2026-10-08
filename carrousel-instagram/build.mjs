@@ -68,7 +68,7 @@ const set1 = [
     <span class="k" style="margin-top:6px">🎃 Spécial Halloween</span>
     <img src="${A}/logo-ducobu.png" style="width:420px;margin:22px 0 6px" alt="Ducobu">
     <h1>Duco… <em>Bouh&nbsp;!</em><small>Le Quiz</small></h1>
-    <img src="${A}/couverture-tome-30.jpg" style="height:430px;margin-top:26px;border:6px solid var(--black);border-radius:8px;transform:rotate(-3deg);box-shadow:10px 10px 0 var(--orange)" alt="">
+    <img src="${A}/couverture-tome-30-v2.jpg" style="height:430px;margin-top:26px;border:6px solid var(--black);border-radius:8px;transform:rotate(-3deg);box-shadow:10px 10px 0 var(--orange)" alt="">
     <p class="sub" style="margin-top:30px">Saint-Potache est hantée.<br>Garderas-tu ton sang-froid&nbsp;?</p>
   `, 1, T1),
   question(1, 7, 2, T1, "Qui est la voisine de classe dont Ducobu adore «&nbsp;s'inspirer&nbsp;» en contrôle&nbsp;?",
@@ -101,7 +101,7 @@ const set1 = [
     <span class="k">🎁 Tirage au sort</span>
     <h2 style="margin:14px 0 4px;font-size:120px">Concours</h2>
     <p class="sub" style="font-size:40px">Joue sur le site et tente de gagner<br><span style="color:var(--purple)">le tome&nbsp;30 + le jeu de cartes Ducobu</span></p>
-    <img src="${A}/lot-tome30-jeu.png" style="height:430px;margin:10px 0" alt="">
+    <img src="${A}/lot-tome30-jeu-v2.png" style="height:430px;margin:10px 0" alt="">
     <span class="btn" style="font-size:54px">🔗 Lien dans la bio</span>
     <p class="sub" style="font-size:36px;margin-top:14px">${URL_SITE}</p>
   `, 10, T1, { swipe: false }),
@@ -113,7 +113,7 @@ const set2 = [
   page(`
     <span class="k" style="margin-top:6px">🎃 Spécial Halloween</span>
     <h1 style="margin-top:20px;font-size:132px">Saint-Potache<br>est <em>hantée…</em></h1>
-    <img src="${A}/couverture-tome-30.jpg" style="height:560px;margin-top:30px;border:6px solid var(--black);border-radius:8px;transform:rotate(-3deg);box-shadow:10px 10px 0 var(--orange)" alt="">
+    <img src="${A}/couverture-tome-30-v2.jpg" style="height:560px;margin-top:30px;border:6px solid var(--black);border-radius:8px;transform:rotate(-3deg);box-shadow:10px 10px 0 var(--orange)" alt="">
     <p class="sub" style="margin-top:34px">Ducobu, tome&nbsp;30 : <b style="color:var(--purple)">Duco… Bouh&nbsp;!</b></p>
   `, 1, T2),
   page(`
@@ -128,7 +128,7 @@ const set2 = [
   page(`
     <span class="k">🎁 À gagner</span>
     <h2 style="font-size:84px;margin:18px 0 0">Le tome&nbsp;30<br>+ le jeu de cartes</h2>
-    <img src="${A}/lot-tome30-jeu.png" style="height:600px;margin:12px 0" alt="">
+    <img src="${A}/lot-tome30-jeu-v2.png" style="height:600px;margin:12px 0" alt="">
     <p class="sub" style="font-size:40px">Tirage au sort pour les joueurs<br>inscrits à la newsletter du Lombard</p>
     <p class="sub" style="font-size:34px;opacity:.75">En librairie le 9 octobre</p>
   `, 3, T2),
