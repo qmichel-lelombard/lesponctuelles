@@ -231,14 +231,13 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .bg[data-bg=paradizeg] .kb{background-image:url(img/bg-paradize-g.webp);background-position:50% 40%}
 .bg[data-bg=paradized] .kb{background-image:url(img/bg-paradize-d.webp);background-position:50% 40%}
 .qcard{position:relative;z-index:1}
-/* les Elles à côté des questions : une boîte fixe dans l'espace libre de part et d'autre de la carte (720 px) */
-@media (min-width:1100px){
-  .peek{display:block;position:fixed;bottom:0;top:auto;right:14px;left:auto;z-index:0;
-    width:calc((100vw - 720px)/2 - 36px);height:min(54vh,460px);max-width:none;max-height:none;
+/* les Elles devant la carte, collées aux bords de l'écran : elles débordent d'environ 30 px sur le cadre au maximum */
+@media (min-width:860px){
+  .peek{display:block;position:fixed;bottom:0;top:auto;right:6px;left:auto;z-index:3;pointer-events:none;
+    width:min(280px,calc((100vw - 720px)/2 + 30px));max-width:none;height:min(40vh,340px);max-height:none;
     object-fit:contain;object-position:right bottom}
-  .peek.left{left:14px;right:auto;object-position:left bottom}
+  .peek.left{left:6px;right:auto;object-position:left bottom}
 }
-
 /* Trailer en fin de parcours */
 .trailer{max-width:420px;margin:28px auto 0;text-align:center}
 .trailer .kicker{opacity:.9}
