@@ -234,6 +234,7 @@
 
     const peek = $("#peek");
     peek.src = ELLES[peekOrder[state.idx % 6]].img;
+    peek.classList.toggle("left", state.idx % 2 === 1);
     peek.classList.remove("swap"); void peek.offsetWidth; peek.classList.add("swap");
   }
 
@@ -280,7 +281,7 @@
   /* ------------------------------------------------------------------ *
    *  Chargement + résultat
    * ------------------------------------------------------------------ */
-  const LOADING_LINES = ["Les couleurs se mélangent…", "Les cheveux changent de teinte…", "Elle écoute ses voix intérieures…", "Quelque chose se dessine…"];
+  const LOADING_LINES = ["Devinez qui est de retour ?", "Les couleurs se mélangent…", "Les cheveux changent de teinte…", "Elle écoute ses voix intérieures…", "Quelque chose se dessine…"];
 
   function finish() {
     $(".bar i").style.width = "100%";
@@ -336,6 +337,8 @@
   }
 
   function restart() {
+    const tv = $("#trailerVideo"); if (tv) tv.pause();
+
     state.idx = 0; state.picks = []; state.scores = null; state.result = null;
     root.style.setProperty("--accent", "#ff4f93");
     document.title = "Quelle Elle se cache en toi ? – Le test ELLES";

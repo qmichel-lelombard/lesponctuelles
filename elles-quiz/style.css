@@ -231,5 +231,24 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .bg[data-bg=paradizeg] .kb{background-image:url(img/bg-paradize-g.webp);background-position:50% 40%}
 .bg[data-bg=paradized] .kb{background-image:url(img/bg-paradize-d.webp);background-position:50% 40%}
 .qcard{position:relative;z-index:1}
-@media (min-width:1320px){.peek{display:block!important;z-index:0;height:min(44vh,380px)!important}}
-.peek,#peek{display:none!important}
+/* les Elles à côté des questions : une boîte fixe dans l'espace libre de part et d'autre de la carte (720 px) */
+@media (min-width:1100px){
+  .peek{display:block;position:fixed;bottom:0;top:auto;right:14px;left:auto;z-index:0;
+    width:calc((100vw - 720px)/2 - 36px);height:min(54vh,460px);max-width:none;max-height:none;
+    object-fit:contain;object-position:right bottom}
+  .peek.left{left:14px;right:auto;object-position:left bottom}
+}
+
+/* Trailer en fin de parcours */
+.trailer{max-width:420px;margin:28px auto 0;text-align:center}
+.trailer .kicker{opacity:.9}
+.tr-title{font-size:clamp(1.7rem,7vw,2.4rem)!important;color:#fff!important;filter:none!important;margin:2px 0 14px;text-shadow:0 0 26px var(--accent),0 3px 14px rgba(0,0,0,.5)}
+.tr-frame{position:relative;border-radius:26px;padding:6px;background:conic-gradient(from 0deg,var(--verte),var(--bleue),var(--violette),var(--rose),var(--blonde),var(--brune),var(--verte));
+  box-shadow:0 0 40px color-mix(in srgb,var(--accent) 55%,transparent),0 20px 50px rgba(10,0,40,.55)}
+.tr-frame video{display:block;width:100%;aspect-ratio:9/16;max-height:78vh;object-fit:cover;border-radius:21px;background:#0d0620}
+.tr-sub{margin-top:12px;font-size:.9rem;opacity:.9}
+/* Chargement : rubans de lumière façon trailer */
+.loader{position:relative}
+.loader::before{content:"";position:absolute;left:50%;top:75px;width:min(110vw,560px);aspect-ratio:1;translate:-50% -50%;z-index:-1;border-radius:50%;opacity:.75;filter:blur(14px);
+  background:repeating-conic-gradient(from 0deg,var(--verte) 0 8deg,transparent 8deg 30deg,var(--bleue) 30deg 38deg,transparent 38deg 60deg,var(--violette) 60deg 68deg,transparent 68deg 90deg,var(--rose) 90deg 98deg,transparent 98deg 120deg,var(--blonde) 120deg 128deg,transparent 128deg 150deg,var(--brune) 150deg 158deg,transparent 158deg 180deg);
+  -webkit-mask-image:radial-gradient(closest-side,transparent 8%,#000 30%,transparent 100%);mask-image:radial-gradient(closest-side,transparent 8%,#000 30%,transparent 100%);animation:spin 9s linear infinite}
