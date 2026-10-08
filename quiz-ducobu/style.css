@@ -24,7 +24,7 @@ main{max-width:920px;margin:0 auto;padding:20px 16px}
 .hero-text{flex:1 1 320px}
 .walker{max-height:300px;width:auto}
 @media(min-width:760px){.walker{max-height:380px}}
-.cover{width:220px;max-width:100%;display:block;border:4px solid var(--black);border-radius:6px;transform:rotate(-3deg);box-shadow:6px 6px 0 var(--orange)}
+.cover{width:320px;max-width:100%;display:block;border:4px solid var(--black);border-radius:6px;transform:rotate(-3deg);box-shadow:6px 6px 0 var(--orange)}
 .kicker{display:inline-block;margin:0 0 6px;background:var(--orange);color:var(--black);padding:2px 12px;border-radius:999px;font-size:1.1rem;transform:rotate(-2deg)}
 h1{margin:.1em 0;font-size:clamp(2.4rem,9vw,4.4rem);line-height:1;color:var(--black);text-shadow:3px 3px 0 var(--yellow)}
 h1 em{color:var(--purple);font-style:normal;text-shadow:3px 3px 0 var(--orange)}
