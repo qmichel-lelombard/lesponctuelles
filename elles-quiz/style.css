@@ -24,10 +24,12 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;-webki
 .bg .kb{position:absolute;inset:0;background-size:cover;background-repeat:no-repeat;
   background-position:var(--bx,50%) 50%;transition:background-position 3s cubic-bezier(.5,0,.2,1);
   animation:kenburns 38s ease-in-out infinite alternate;will-change:transform}
-.bg[data-bg=desert] .kb{background-image:url(img/bg-desert.webp)}
+.bg[data-bg=desert] .kb{background-image:url(img/bg-monde.webp)}
 .bg[data-bg=diner] .kb{background-image:url(img/bg-rosies-nuit.webp);background-position:var(--bx,50%) var(--by,70%)}
+.bg[data-bg=route] .kb{background-image:url(img/bg-route.webp)}
 .bg[data-bg=night] .kb{background-image:url(img/bg-pyramides.webp);background-position:50% 60%}
-.bg[data-bg=regard] .kb{background-image:url(img/bg-regard.webp);filter:blur(10px) saturate(1.2)}
+.bg[data-bg=miroir] .kb{background-image:url(img/bg-miroir.webp);background-position:50% 30%;filter:brightness(.5) saturate(1.15)}
+.bg[data-bg=paradize] .kb{background-image:url(img/bg-paradize.webp)}
 @keyframes kenburns{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-1.2%,-1%,0)}}
 /* néon du Rosie's qui pulse (positions calculées en JS) */
 .glow{position:absolute;left:0;top:0;border-radius:50%;mix-blend-mode:screen;pointer-events:none;opacity:0;
@@ -217,3 +219,9 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 
 .mrow img{width:34px;height:34px;object-fit:contain}
 .duo-card img{border-radius:0!important;background:none!important;object-fit:contain!important}
+.promo{display:block;margin:0 0 16px;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(10,0,40,.4);transition:transform .25s}
+.promo:hover{transform:scale(1.02) rotate(-.4deg)}
+.promo img{width:100%;height:auto}
+.fort{margin-bottom:12px;padding:10px 14px;border-radius:18px;background:rgba(255,255,255,.1)}
+.fort span{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;opacity:.8}
+.fort b{font-family:var(--font-title);font-weight:500;font-size:1.05rem}

@@ -21,10 +21,12 @@
 
 <!-- Décors : les mondes intérieurs -->
 <div id="bgstack" aria-hidden="true">
+  <div class="bg" data-bg="route"><div class="kb"></div></div>
+  <div class="bg" data-bg="paradize"><div class="kb"></div></div>
   <div class="bg" data-bg="desert"><div class="kb"></div></div>
   <div class="bg on" data-bg="diner"><div class="kb"><i class="glow g1"></i><i class="glow g2"></i></div></div>
   <div class="bg" data-bg="night"><div class="kb"></div></div>
-  <div class="bg" data-bg="regard"><div class="kb"></div></div>
+  <div class="bg" data-bg="miroir"><div class="kb"></div></div>
 </div>
 <div id="tint" aria-hidden="true"></div>
 <canvas id="fx" aria-hidden="true"></canvas>
@@ -37,9 +39,9 @@
     <div class="intro-grid">
       <div class="intro-text">
         <img class="logo" src="img/logo.png" alt="ELLES" width="300" height="164">
-        <p class="badge"><span class="dot"></span>Tome 4 · Intemporelle(s) · Enfin en librairie !</p>
+        <p class="badge"><span class="dot"></span>Tome 4 · Intemporelle(s) · Le grand retour !</p>
         <h1 id="intro-title">Quelle <em>Elle</em><br>se cache en toi&nbsp;?</h1>
-        <p class="lead">Rose, Blonde, Châtain, Violette, Verte ou Bleue&nbsp;? <strong>5&nbsp;personnalités, 1&nbsp;seul corps&nbsp;!</strong> Réponds à 12&nbsp;questions et plonge dans ton monde intérieur.</p>
+        <p class="lead">Rose, Blonde, Châtain, Violette, Verte ou Bleue&nbsp;? <strong>5&nbsp;personnalités, 1&nbsp;seul corps&nbsp;!</strong> Réponds à 12&nbsp;questions et découvre dans quelle forteresse intérieure tu te réfugies.</p>
         <button class="cta" id="start" type="button">Plonger dans mon monde intérieur</button>
         <ul class="facts">
           <li>12 questions</li><li>≈ 5 minutes</li><li>6 résultats</li>
@@ -95,6 +97,7 @@
           <div><h3>Tes super-pouvoirs</h3><ul id="r-strengths"></ul></div>
           <div><h3>Ton petit défaut</h3><ul id="r-flaws"></ul></div>
         </div>
+        <p class="fort"><span>Ta forteresse de solitude</span><b id="r-fort"></b></p>
         <p class="mantra"><span>Ton mantra</span><q id="r-mantra"></q></p>
 
         <div class="duo">
@@ -104,6 +107,8 @@
 
         <h3 class="mix-title">Ton mélange de couleurs</h3>
         <div class="mix" id="mix"></div>
+
+        <a class="promo" href="https://www.lelombard.com/bd/elles/intemporelles" target="_blank" rel="noopener"><img src="img/elles-reviennent.webp" alt="Elles reviennent ! Tome 4 : Intemporelle(s), disponible" loading="lazy"></a>
 
         <div class="actions">
           <a class="cta" id="buy" href="https://www.lelombard.com/bd/elles/intemporelles" target="_blank" rel="noopener">Découvrir le tome 4</a>
