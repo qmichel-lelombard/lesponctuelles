@@ -26,10 +26,7 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;-webki
   animation:kenburns 38s ease-in-out infinite alternate;will-change:transform}
 .bg[data-bg=desert] .kb{background-image:url(img/bg-monde.webp)}
 .bg[data-bg=diner] .kb{background-image:url(img/bg-rosies-nuit.webp);background-position:var(--bx,50%) var(--by,70%)}
-.bg[data-bg=route] .kb{background-image:url(img/bg-route.webp)}
 .bg[data-bg=night] .kb{background-image:url(img/bg-pyramides.webp);background-position:50% 60%}
-.bg[data-bg=miroir] .kb{background-image:url(img/bg-miroir.webp);background-position:50% 30%;filter:brightness(.5) saturate(1.15)}
-.bg[data-bg=paradize] .kb{background-image:url(img/bg-paradize.webp)}
 @keyframes kenburns{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-1.2%,-1%,0)}}
 /* néon du Rosie's qui pulse (positions calculées en JS) */
 .glow{position:absolute;left:0;top:0;border-radius:50%;mix-blend-mode:screen;pointer-events:none;opacity:0;
@@ -204,7 +201,7 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
   .chips{grid-template-columns:1fr 1fr}
   .actions{grid-template-columns:1fr 1fr}
   .actions .cta{grid-column:1/-1}
-  .peek{display:block;position:fixed;right:max(1vw,12px);bottom:0;height:min(50vh,420px);width:auto;z-index:4;pointer-events:none;
+  .peek{display:none;position:fixed;right:max(1vw,12px);bottom:0;height:min(50vh,420px);width:auto;z-index:4;pointer-events:none;
     animation:peekIn .8s cubic-bezier(.2,.8,.2,1) both;filter:drop-shadow(0 10px 24px rgba(10,0,40,.55))}
   .peek.swap{animation:peekIn .8s cubic-bezier(.2,.8,.2,1) both}
   @keyframes peekIn{from{transform:translateY(70%) rotate(6deg);opacity:0}to{transform:none;opacity:1}}
@@ -231,6 +228,8 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .book:hover{transform:translateY(-3px)}
 .book img{width:84px;height:auto;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,.45);transform:rotate(-3deg)}
 .book span{font-size:.92rem}.book b{display:block;font-family:var(--font-title);font-size:1.15rem;font-weight:600;color:var(--accent);filter:brightness(1.25)}
-.bg[data-bg=cantine] .kb{background-image:url(img/bg-cantine.webp);background-position:50% 40%}
-.bg[data-bg=chambre] .kb{background-image:url(img/bg-chambre.webp);background-position:50% 40%}
-.bg[data-bg=cinema] .kb{background-image:url(img/bg-cinema.webp);background-position:30% 50%}
+.bg[data-bg=paradizeg] .kb{background-image:url(img/bg-paradize-g.webp);background-position:50% 40%}
+.bg[data-bg=paradized] .kb{background-image:url(img/bg-paradize-d.webp);background-position:50% 40%}
+.qcard{position:relative;z-index:1}
+@media (min-width:1320px){.peek{display:block!important;z-index:0;height:min(44vh,380px)!important}}
+.peek,#peek{display:none!important}
