@@ -28,7 +28,7 @@
       ally: "verte"
     },
     brune: {
-      fort: "Une forêt enneigée et endormie", name: "Châtain", rond: "img/rond-brune.webp", color: "#c0764a", img: "img/brune.webp",
+      fort: "Une forêt enneigée et endormie", name: "Châtain", rond: "img/rond-brune.webp", color: "#c0764a", img: "img/brune.webp", full: "img/brune.webp",
       tag: "La plus sensible, avec un cœur d'artiste.",
       desc: "Tu ressens tout, plus fort que les autres. Timide et introvertie, tu doutes souvent de toi, mais tu as un grand secret : tes talents artistiques, qui t'aident à trouver un peu d'apaisement face au tumulte extérieur. Ta sensibilité est un vrai super-pouvoir, même si tu ne le sais pas encore.",
       strengths: ["Une sensibilité hors du commun", "Une créativité qui apaise", "Une loyauté en béton"],
