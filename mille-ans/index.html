@@ -26,8 +26,9 @@
     <a href="#album" data-s="album"><b>01</b> L'album</a>
     <a href="#fresque" data-s="fresque"><b>02</b> La fresque</a>
     <a href="#chrono" data-s="chrono"><b>03</b> Chronologie</a>
-    <a href="#auteurs" data-s="auteurs"><b>04</b> Les auteurs</a>
-    <a href="#extrait" data-s="extrait"><b>05</b> Extrait</a>
+    <a href="#carnet" data-s="carnet"><b>04</b> Carnet</a>
+    <a href="#auteurs" data-s="auteurs"><b>05</b> Les auteurs</a>
+    <a href="#extrait" data-s="extrait"><b>06</b> Extrait</a>
   </nav>
   <button class="top__burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
 </header>
@@ -201,10 +202,35 @@
   <p class="dip__cap eyebrow">Deux ambiances · planches © Le Lombard</p>
 </section>
 
+<!-- CARNET -->
+<section class="sec" id="carnet">
+  <header class="sec__head reveal">
+    <p class="eyebrow">04 · Recherches graphiques</p>
+    <h2>Le carnet <em>de l'univers</em></h2>
+    <p class="sec__sub">Station, caissons, navette, combinaisons, robot : les crayonnés qui ont servi à inventer le monde de Mille Ans.</p>
+  </header>
+  <div class="cn reveal">
+    <figure class="cn__view">
+      <button type="button" class="cn__zoom" id="cn-open" aria-label="Agrandir la planche"><img id="cn-img" src="assets/img/carnet-univers.webp" alt="Création de l'univers graphique par Philippe Buchet : crayonnés de caissons de stase, de la station à anneau en rotation et d'un mini-drone" width="1200" height="1519" loading="lazy"><span class="cn__hint" aria-hidden="true">Agrandir ⤢</span></button>
+      <figcaption id="cn-cap"><b>Création de l'univers graphique</b>Page d'ouverture du cahier de recherches : caissons M1 et M2, anneau en rotation de la station, mini-drone de réparations électriques.</figcaption>
+    </figure>
+    <div class="cn__tabs" role="tablist" aria-label="Planches de recherches">
+      <button type="button" role="tab" class="cn__tab on" data-i="0" aria-selected="true"><b>01</b><span>Création de l'univers graphique</span></button>
+      <button type="button" role="tab" class="cn__tab" data-i="1" aria-selected="false"><b>02</b><span>La station</span></button>
+      <button type="button" role="tab" class="cn__tab" data-i="2" aria-selected="false"><b>03</b><span>La navette SB05</span></button>
+      <button type="button" role="tab" class="cn__tab" data-i="3" aria-selected="false"><b>04</b><span>Combinaison et écussons</span></button>
+      <button type="button" role="tab" class="cn__tab" data-i="4" aria-selected="false"><b>05</b><span>Billy, l'assistant autonome</span></button>
+      <p class="cn__src">Recherches graphiques © Le Lombard</p>
+    </div>
+  </div>
+  <dialog class="lb" id="lb" aria-label="Planche agrandie"><button type="button" class="lb__x" id="lb-x" aria-label="Fermer">×</button><img id="lb-img" alt=""></dialog>
+  <script type="application/json" id="cn-data">[{"src":"assets/img/carnet-univers.webp","t":"Création de l'univers graphique","c":"Page d'ouverture du cahier de recherches : caissons M1 et M2, anneau en rotation de la station, mini-drone de réparations électriques.","a":"Création de l'univers graphique par Philippe Buchet : crayonnés de caissons de stase, de la station à anneau en rotation et d'un mini-drone"},{"src":"assets/img/carnet-station.webp","t":"La station","c":"Plan annoté : réacteurs de rotation et de stabilisation, plots d'appontage, zone de stockage et serre, modules cryogénisés de 1re classe (M1) et de 2e classe (M2), centres de commande n°1 et n°2.","a":"Plan annoté de la station : bras horizontal, anneau, modules cryogénisés M1 et M2 et plot d'appontage"},{"src":"assets/img/carnet-navette.webp","t":"La navette SB05","c":"Poste de pilotage, zone passager, zone de transport de matériaux, trois trains d'atterrissage, sas d'arrimage à la base orbitale.","a":"Études de la navette SB05, en crayonné orange et en couleur, avec ses annotations techniques"},{"src":"assets/img/carnet-combinaison.webp","t":"Combinaison et écussons","c":"Combinaison anti-radiation de l'équipe Terre, écussons Millenew Earth, Moon-Base et Green.T, étude du pilote avec micro.","a":"Étude de la combinaison anti-radiation orange, des écussons Millenew Earth et du portrait d'un pilote"},{"src":"assets/img/carnet-billy.webp","t":"Billy, l'assistant autonome","c":"Unité d'assistance autonome B-LEE Corporation Industries « Billy » : écran à expressions (une centaine possibles), oreilles rétractables, mode « off ».","a":"Études du robot Billy : expressions de l'écran, robot assis les bras ouverts et mode off"}]</script>
+</section>
+
 <!-- AUTEURS -->
 <section class="sec sec--alt" id="auteurs">
   <header class="sec__head reveal">
-    <p class="eyebrow">04 · Équipage</p>
+    <p class="eyebrow">05 · Équipage</p>
     <h2>Neuf auteurs, <em>neuf trajectoires</em></h2>
     <p class="sec__sub">Du thriller à la fantasy, de la hard SF à la fresque historique : un équipage aux parcours très différents, réuni pour un même voyage.</p>
   </header>
@@ -315,7 +341,7 @@
 <!-- EXTRAIT -->
 <section class="sec sec--end" id="extrait">
   <div class="end reveal">
-    <p class="eyebrow">05 · Prêt pour le décollage</p>
+    <p class="eyebrow">06 · Prêt pour le décollage</p>
     <h2>Entrez dans <em>Mille Ans</em></h2>
     <p>Feuilletez les premières planches de l'album, puis retrouvez-le en librairie le 23 octobre 2026.</p>
     <div class="cta cta--center">
