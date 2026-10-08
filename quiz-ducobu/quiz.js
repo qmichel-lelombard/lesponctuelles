@@ -70,6 +70,8 @@ const NEWSLETTER = {
 };
 
 const $ = id => document.getElementById(id);
+// Typographie française : espaces insécables à l'intérieur des guillemets et avant ? ! : ; (pas de signe seul en bout de ligne)
+const nb = t => t.replace(/«\s+/g, "«\u00a0").replace(/\s+»/g, "\u00a0»").replace(/\s+([?!:;])/g, "\u00a0$1");
 let i = 0, score = 0, locked = false, readyAt = 0;
 
 function show(id){
@@ -95,7 +97,7 @@ function render(){
   $("total").textContent = QUESTIONS.length;
   $("score").textContent = score;
   $("bar").style.width = (i / QUESTIONS.length * 100) + "%";
-  $("question").textContent = Q.q;
+  $("question").textContent = nb(Q.q);
   setImg($("mascot"), MASCOT.think);
   $("mascot").classList.remove("hop");
   $("feedback").hidden = true;
@@ -105,7 +107,7 @@ function render(){
   order.forEach(o => {
     const b = document.createElement("button");
     b.className = "answer";
-    b.textContent = o.t;
+    b.textContent = nb(o.t);
     b.onclick = () => pick(b, o.idx);
     b.dataset.idx = o.idx;
     box.appendChild(b);
@@ -124,7 +126,7 @@ function pick(btn, idx){
     b.disabled = true;
     if (+b.dataset.idx === Q.c) b.classList.add("good");
   });
-  $("feedback-text").textContent = (right ? "✅ " : "❌ ") + (right ? Q.ok : Q.ko);
+  $("feedback-text").textContent = (right ? "✅ " : "❌ ") + nb(right ? Q.ok : Q.ko);
   $("next").textContent = i === QUESTIONS.length - 1 ? "Mon bulletin ➜" : "Suivant ➜";
   // le personnage de la question est dévoilé après la réponse
   const m = $("mascot"), fallback = right ? MASCOT.good : MASCOT.bad[Math.floor(Math.random() * MASCOT.bad.length)];
@@ -138,10 +140,10 @@ function pick(btn, idx){
 function finish(){
   const p = PROFILES.find(p => score >= p.min);
   $("bar").style.width = "100%";
-  $("result-title").textContent = p.title;
+  $("result-title").textContent = nb(p.title);
   $("result-score").textContent = score;
   $("result-count").textContent = score > 1 ? "bonnes réponses" : "bonne réponse";
-  $("result-text").textContent = p.text;
+  $("result-text").textContent = nb(p.text);
   setImg($("result-img"), p.img);
   show("screen-result");
 }
