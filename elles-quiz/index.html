@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quelle Elle se cache en toi ? – Le test ELLES</title>
+<meta name="description" content="Rose, Blonde, Brune, Violette, Verte ou Bleue ? Plonge dans les mondes intérieurs de ELLES et découvre quelle personnalité domine en toi. Le tome 4, Intemporelle(s), est en librairie !">
+<meta name="theme-color" content="#2a1448">
+<meta property="og:title" content="Quelle Elle se cache en toi ?">
+<meta property="og:description" content="12 questions, 5 minutes, 6 personnalités. Fais le test ELLES et découvre ta couleur !">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/elles-groupe.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%23ff4f93%27/%3E%3Ctext x=%2716%27 y=%2724%27 font-size=%2722%27 font-weight=%27700%27 text-anchor=%27middle%27 fill=%27white%27 font-family=%27sans-serif%27%3EE%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="img/bg-desert.webp">
+</head>
+<body data-world="desert">
+
+<!-- Décors : les mondes intérieurs -->
+<div id="bgstack" aria-hidden="true">
+  <div class="bg on" data-bg="desert"><div class="kb"></div></div>
+  <div class="bg" data-bg="night"><div class="kb"></div></div>
+  <div class="bg" data-bg="regard"><div class="kb"></div></div>
+</div>
+<div id="tint" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+
+<main id="app">
+
+  <!-- ========== ACCUEIL ========== -->
+  <section id="intro" class="screen active" aria-labelledby="intro-title">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <img class="logo" src="img/logo.png" alt="ELLES" width="300" height="164">
+        <p class="badge"><span class="dot"></span>Tome 4 · Intemporelle(s) · Enfin en librairie !</p>
+        <h1 id="intro-title">Quelle <em>Elle</em><br>se cache en toi&nbsp;?</h1>
+        <p class="lead">Rose, Blonde, Brune, Violette, Verte ou Bleue&nbsp;? <strong>5&nbsp;personnalités, 1&nbsp;seul corps&nbsp;!</strong> Réponds à 12&nbsp;questions et plonge dans ton monde intérieur.</p>
+        <button class="cta" id="start" type="button">Plonger dans mon monde intérieur</button>
+        <ul class="facts">
+          <li>12 questions</li><li>≈ 5 minutes</li><li>6 résultats</li>
+        </ul>
+      </div>
+      <div class="intro-visual">
+        <div class="halo"></div>
+        <img class="group" src="img/elles-groupe.webp" alt="Les six Elles : verte, rose, bleue, blonde, brune et violette" width="1107" height="1238">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== QUESTIONS ========== -->
+  <section id="quiz" class="screen" aria-live="polite">
+    <header class="quiz-head">
+      <button class="back" id="back" type="button" aria-label="Question précédente">‹</button>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+        <div class="bar"><i></i></div>
+        <span class="count"><b id="qnum">1</b> / 12</span>
+      </div>
+    </header>
+    <div class="qcard" id="qcard">
+      <p class="world" id="world"></p>
+      <h2 id="qtitle"></h2>
+      <div class="answers" id="answers"></div>
+    </div>
+    <img class="peek" id="peek" alt="" aria-hidden="true">
+  </section>
+
+  <!-- ========== CHARGEMENT ========== -->
+  <section id="loading" class="screen" aria-live="assertive">
+    <div class="loader">
+      <div class="swirl"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="loading-title">Elle ferme les yeux…</p>
+      <p class="loading-sub" id="loadingSub">Les couleurs se mélangent</p>
+    </div>
+  </section>
+
+  <!-- ========== RÉSULTAT ========== -->
+  <section id="result" class="screen" aria-labelledby="r-name">
+    <div class="res-grid">
+      <div class="res-visual">
+        <div class="aura"></div>
+        <img id="r-img" alt="" width="600" height="800">
+      </div>
+      <div class="res-body">
+        <p class="kicker">Ton monde intérieur est…</p>
+        <h2 id="r-name"></h2>
+        <p class="r-tag" id="r-tag"></p>
+        <p class="r-desc" id="r-desc"></p>
+
+        <div class="chips">
+          <div><h3>Tes super-pouvoirs</h3><ul id="r-strengths"></ul></div>
+          <div><h3>Ton petit défaut</h3><ul id="r-flaws"></ul></div>
+        </div>
+        <p class="mantra"><span>Ton mantra</span><q id="r-mantra"></q></p>
+
+        <div class="duo">
+          <div class="duo-card"><img id="r-ally-img" alt="" width="80" height="80"><p><span>Ta meilleure alliée</span><b id="r-ally"></b></p></div>
+          <div class="duo-card"><img id="r-hidden-img" alt="" width="80" height="80"><p><span>Ta couleur cachée</span><b id="r-hidden"></b></p></div>
+        </div>
+
+        <h3 class="mix-title">Ton mélange de couleurs</h3>
+        <div class="mix" id="mix"></div>
+
+        <div class="actions">
+          <a class="cta" id="buy" href="https://www.lelombard.com/bd/elles/intemporelles" target="_blank" rel="noopener">Découvrir le tome 4</a>
+          <button class="ghost" id="share" type="button">Partager mon résultat</button>
+          <button class="ghost" id="card" type="button">Télécharger ma carte</button>
+          <button class="ghost" id="again" type="button">Refaire le test</button>
+        </div>
+        <p class="toast" id="toast" role="status"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <span>ELLES · Kid Toussaint &amp; Aveline Stokart · © Le Lombard</span>
+  <a href="https://www.lelombard.com/incontournable/elles" target="_blank" rel="noopener">Découvrir la série</a>
+</footer>
+
+<script src="quiz.js"></script>
+</body>
+</html>
