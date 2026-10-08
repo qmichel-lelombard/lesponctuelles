@@ -227,3 +227,7 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .fort b{font-family:var(--font-title);font-weight:500;font-size:1.05rem}
 #r-img.full{-webkit-mask-image:none;mask-image:none;height:min(58vh,560px)}
 @media (min-width:860px){#r-img.full{height:min(76vh,720px)}}
+.book{display:flex;gap:14px;align-items:center;margin:0 0 16px;padding:10px;border-radius:18px;background:rgba(255,255,255,.12);text-decoration:none;color:inherit;transition:transform .25s}
+.book:hover{transform:translateY(-3px)}
+.book img{width:84px;height:auto;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,.45);transform:rotate(-3deg)}
+.book span{font-size:.92rem}.book b{display:block;font-family:var(--font-title);font-size:1.15rem;font-weight:600;color:var(--accent);filter:brightness(1.25)}
