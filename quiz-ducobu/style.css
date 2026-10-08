@@ -12,7 +12,7 @@ body{
   background-attachment:fixed;
 }
 h1,h2,.btn,.brand,.kicker{font-family:"Bangers","Impact","Arial Black",system-ui,sans-serif;letter-spacing:.03em}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;background:var(--black);color:var(--yellow);border-bottom:4px solid var(--orange)}
+.top{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 16px;background:var(--black);color:var(--yellow);border-bottom:4px solid var(--orange)}
 .brand{color:var(--yellow);text-decoration:none;font-size:1.5rem}
 .brand span{white-space:nowrap;background:var(--orange);color:var(--black);padding:0 8px;border-radius:6px;font-size:1rem;margin-left:6px}
 .top-date{font-size:.9rem;color:#fff}
@@ -83,3 +83,22 @@ footer{text-align:center;font-size:.8rem;padding:16px;background:var(--black);co
 .logo-sm{height:30px;width:auto;vertical-align:middle;background:var(--yellow);padding:4px 12px;border-radius:8px}
 
 .big-score small{font-family:"Comic Neue",system-ui,sans-serif;font-size:1rem;color:var(--black);display:block}
+
+/* Halloween : frises et petites animations (dessins fournis, non modifiés) */
+.frise{height:64px;background:var(--orange) url("assets/halloween-frise1.png") repeat-x center bottom/auto 58px;border-bottom:4px solid var(--black)}
+.frise.f2{background-image:url("assets/halloween-frise2.png");margin-top:18px;border-top:4px solid var(--black)}
+.frise.f3{background:url("assets/halloween-frise3.png") repeat-x center bottom/auto 50px;height:56px;border:0;margin:14px -22px -4px}
+.bat{position:absolute;top:6px;left:-90px;height:34px;width:auto;animation:fly 16s linear infinite;pointer-events:none}
+@keyframes fly{0%{transform:translate(0,0)}25%{transform:translate(30vw,14px)}50%{transform:translate(60vw,-4px)}75%{transform:translate(85vw,12px)}100%{transform:translate(calc(100vw + 120px),0)}}
+.hero{position:relative}
+.spider{position:absolute;top:-5px;right:12px;width:90px;height:auto;transform-origin:70% 0;animation:swing 3.2s ease-in-out infinite;pointer-events:none}
+@keyframes swing{50%{transform:rotate(5deg)}0%,100%{transform:rotate(-5deg)}}
+.card.result{position:relative;overflow:hidden}
+.fantome{position:absolute;left:8px;top:10px;width:70px;height:auto;animation:bob 3s ease-in-out infinite;pointer-events:none}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@media(max-width:520px){.spider{width:60px}.fantome{width:50px}}
+
+a.film{display:block;max-width:1100px;margin:6px auto 0;padding:0;background:var(--black);border:4px solid var(--black);border-top:0;color:var(--yellow);text-decoration:none;text-align:center}
+a.film img{display:block;width:100%;height:auto}
+.film-cta{display:block;padding:8px 12px;font-family:"Bangers","Impact",sans-serif;font-size:1.2rem;letter-spacing:.04em}
+a.film:hover .film-cta,a.film:focus-visible .film-cta{background:var(--yellow);color:var(--black)}
