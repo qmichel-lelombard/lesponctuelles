@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Suivi du test ELLES – espace équipe</title>
+<link rel="icon" type="image/png" href="../img/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--rose:#ff4f93;--blonde:#ffae2b;--brune:#c0764a;--violette:#a86bff;--verte:#20b894;--bleue:#2aaee0;--bg:#1c0f3a;--card:rgba(255,255,255,.08);--line:rgba(255,255,255,.16)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:radial-gradient(120% 80% at 50% 0,#4a2380,#1c0f3a 60%);color:#fff;font:700 16px/1.45 Nunito,system-ui,sans-serif;padding:20px 16px 60px}
+h1,h2,.num,button,.tab{font-family:Fredoka,system-ui,sans-serif}
+.wrap{max-width:1040px;margin:0 auto}
+#login{max-width:360px;margin:14vh auto 0;text-align:center;background:var(--card);border:1.5px solid var(--line);border-radius:24px;padding:28px 22px}
+#login h1{font-size:1.6rem;margin-bottom:6px}#login p{opacity:.8;margin-bottom:16px;font-size:.95rem}
+input{width:100%;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line);background:rgba(0,0,0,.25);color:#fff;font:inherit;margin-bottom:12px}
+button{cursor:pointer;border:0;color:#fff;font-weight:600}
+.btn{width:100%;padding:13px;border-radius:99px;background:linear-gradient(135deg,var(--rose),var(--violette));font-size:1.05rem}
+.err{color:#ffb4c8;min-height:1.4em;margin-top:10px;font-size:.9rem}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px}
+header h1{font-size:1.5rem}header small{opacity:.7;font-weight:700;font-size:.8rem;display:block;font-family:Nunito}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tab,.mini{padding:8px 14px;border-radius:99px;background:var(--card);border:1.5px solid var(--line);font-size:.9rem}
+.tab.on{background:linear-gradient(135deg,var(--rose),var(--violette));border-color:transparent}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:12px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px 18px}
+.card h2{font-size:.82rem;text-transform:uppercase;letter-spacing:.12em;opacity:.8;font-weight:600;margin-bottom:6px}
+.num{font-size:2.3rem;font-weight:700;line-height:1.1}.sub{opacity:.75;font-size:.85rem}
+.two{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-bottom:12px}
+.row{display:grid;grid-template-columns:96px 1fr 70px;gap:10px;align-items:center;margin:7px 0;font-size:.92rem}
+.bar{height:14px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden}.bar i{display:block;height:100%;border-radius:99px;background:var(--c,#fff);width:0;transition:width .8s}
+.row b{text-align:right;font-family:Fredoka}
+svg{width:100%;height:auto;display:block}
+.empty{opacity:.7;padding:8px 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{padding:6px 8px;text-align:right;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}
+.foot{opacity:.65;font-size:.8rem;margin-top:16px;line-height:1.5}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section id="login">
+    <h1>Espace équipe</h1>
+    <p>Suivi du test « Quelle Elle se cache en toi ? »</p>
+    <form id="f"><input id="pw" type="password" placeholder="Mot de passe" autocomplete="current-password" required autofocus><button class="btn" type="submit">Entrer</button></form>
+    <p class="err" id="err" role="alert"></p>
+  </section>
+
+  <section id="dash" hidden>
+    <header>
+      <div><h1>Suivi du test ELLES</h1><small id="gen"></small></div>
+      <div class="tools">
+        <button class="tab on" data-d="0">Tout</button><button class="tab" data-d="30">30 jours</button><button class="tab" data-d="7">7 jours</button><button class="tab" data-d="1">Aujourd'hui</button>
+        <button class="mini" id="refresh">Actualiser</button><button class="mini" id="csv">Export CSV</button><button class="mini" id="out">Quitter</button>
+      </div>
+    </header>
+    <div class="grid" id="kpis"></div>
+    <div class="two">
+      <div class="card"><h2>Résultats obtenus</h2><div id="results"></div></div>
+      <div class="card"><h2>Clics sur la page de résultat</h2><div id="clicks"></div></div>
+    </div>
+    <div class="card" style="margin-bottom:12px"><h2>Participations par jour</h2><div id="chart"></div></div>
+    <div class="two">
+      <div class="card"><h2>Heures de démarrage (heure de Paris)</h2><div id="hours"></div></div>
+      <div class="card"><h2>Détail par jour</h2><div style="max-height:260px;overflow:auto"><table id="tbl"></table></div></div>
+    </div>
+    <p class="foot">Mesure anonyme : aucun cookie, aucune adresse IP ni donnée personnelle n'est enregistré. « Démarrés » compte les clics sur « Plonger dans mon monde intérieur », « Terminés » les résultats affichés. Les clics sont comptés à chaque appui (un même visiteur peut donc cliquer plusieurs fois).</p>
+  </section>
+</div>
+<script>
+const NAMES={rose:"Rose",blonde:"Blonde",brune:"Châtain",violette:"Violette",verte:"Verte",bleue:"Bleue"};
+const COL={rose:"#ff4f93",blonde:"#ffae2b",brune:"#c0764a",violette:"#a86bff",verte:"#20b894",bleue:"#2aaee0"};
+const CLK={buy:"Découvrir le tome 4 (bouton)",book:"Encart couverture du tome 4",share:"Partager mon résultat",card:"Télécharger ma carte",again:"Refaire le test",series:"Découvrir la série (pied de page)"};
+const $=s=>document.querySelector(s); let RAW=null, DAYS=0, PW="";
+try{PW=sessionStorage.getItem("elles-admin")||""}catch(e){}
+async function load(pw){
+  const r=await fetch("/.netlify/functions/stats",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:pw})});
+  if(r.status===401) throw new Error("Mot de passe incorrect");
+  if(!r.ok) throw new Error("Service indisponible ("+r.status+")");
+  return r.json();
+}
+function paris(offset=0){const d=new Date(Date.now()-offset*864e5);return d.toLocaleDateString("sv-SE",{timeZone:"Europe/Paris"})}
+function filtered(){
+  const keys=Object.keys(RAW.days).sort(); const min=DAYS?paris(DAYS-1):"";
+  const sel=keys.filter(k=>!min||k>=min);
+  const t={start:0,complete:0,click:0,sharedview:0};sel.forEach(k=>{for(const x in t)t[x]+=RAW.days[k][x]||0});
+  return {sel,t};
+}
+function render(){
+  const {sel,t}=filtered();
+  // résultats/clics : si filtre actif, on ne dispose que des totaux par jour -> on affiche les cumuls globaux avec mention
+  const rate=t.start?Math.round(t.complete/t.start*100):0;
+  $("#kpis").innerHTML=[["Démarrés",t.start,"ont cliqué sur « Plonger »"],["Terminés",t.complete,"résultats affichés"],["Taux d'achèvement",rate+" %","terminés / démarrés"],["Clics résultat",t.click,"tous boutons confondus"],["Résultats ouverts via un lien partagé",t.sharedview,"visites d'un lien #resultat-…"]]
+   .map(([a,b,c])=>`<div class="card"><h2>${a}</h2><div class="num">${b}</div><div class="sub">${c}</div></div>`).join("");
+  const R=RAW.results,C=RAW.clicks, note=DAYS?`<div class="sub" style="margin-bottom:6px">Cumul depuis le lancement (le filtre de période s'applique aux totaux et au graphique).</div>`:"";
+  const maxR=Math.max(1,...Object.values(R)),sumR=Object.values(R).reduce((a,b)=>a+b,0);
+  $("#results").innerHTML=note+(sumR?Object.keys(NAMES).map(k=>{const v=R[k]||0;return `<div class="row" style="--c:${COL[k]}"><span>${NAMES[k]}</span><div class="bar"><i data-w="${v/maxR*100}"></i></div><b>${v} · ${Math.round(v/sumR*100)}%</b></div>`}).join(""):`<div class="empty">Aucun résultat pour l'instant.</div>`);
+  const maxC=Math.max(1,...Object.values(C)),sumC=Object.values(C).reduce((a,b)=>a+b,0);
+  $("#clicks").innerHTML=note+(sumC?Object.keys(CLK).map(k=>{const v=C[k]||0;return `<div class="row" style="--c:#a86bff;grid-template-columns:150px 1fr 40px"><span style="font-size:.82rem">${CLK[k]}</span><div class="bar"><i data-w="${v/maxC*100}"></i></div><b>${v}</b></div>`}).join(""):`<div class="empty">Aucun clic pour l'instant.</div>`);
+  // graphique
+  const all=Object.keys(RAW.days).sort(); let rows=[];
+  if(all.length){const from=DAYS?paris(DAYS-1):all[0];let d=new Date(from+"T12:00:00"),end=new Date(paris()+"T12:00:00");
+    while(d<=end&&rows.length<400){const k=d.toLocaleDateString("sv-SE");rows.push([k,RAW.days[k]||{}]);d.setDate(d.getDate()+1)}}
+  const W=700,Hh=190,pad=26,mx=Math.max(1,...rows.map(r=>r[1].start||0));
+  const bw=rows.length?Math.min(34,Math.max(4,(W-pad)/rows.length-4)):10;
+  $("#chart").innerHTML=rows.length?`<svg viewBox="0 0 ${W} ${Hh+26}" role="img" aria-label="Participations par jour">`+rows.map((r,i)=>{
+    const x=pad+i*(bw+4),hs=(r[1].start||0)/mx*Hh,hc=(r[1].complete||0)/mx*Hh;
+    return `<rect x="${x}" y="${Hh-hs}" width="${bw}" height="${hs}" rx="3" fill="#a86bff" opacity=".55"><title>${r[0]} : ${r[1].start||0} démarrés</title></rect><rect x="${x+bw*.2}" y="${Hh-hc}" width="${bw*.6}" height="${hc}" rx="3" fill="#ff4f93"><title>${r[0]} : ${r[1].complete||0} terminés</title></rect>`+(rows.length<=16||i%Math.ceil(rows.length/10)===0?`<text x="${x+bw/2}" y="${Hh+16}" font-size="10" fill="#fff" text-anchor="middle" opacity=".75">${r[0].slice(5)}</text>`:"")}).join("")+`<text x="2" y="12" font-size="11" fill="#fff" opacity=".7">${mx}</text></svg><div class="sub"><span style="color:#a86bff">■</span> démarrés &nbsp; <span style="color:#ff4f93">■</span> terminés</div>`:`<div class="empty">Pas encore de données.</div>`;
+  const H=RAW.hours,mh=Math.max(1,...H);
+  $("#hours").innerHTML=`<svg viewBox="0 0 480 120">`+H.map((v,i)=>`<rect x="${i*20+4}" y="${100-v/mh*96}" width="14" height="${v/mh*96}" rx="3" fill="#2aaee0"><title>${i} h : ${v}</title></rect>`+(i%3===0?`<text x="${i*20+11}" y="114" font-size="9" fill="#fff" opacity=".7" text-anchor="middle">${i}h</text>`:"")).join("")+`</svg>`;
+  $("#tbl").innerHTML=`<tr><th>Jour</th><th>Démarrés</th><th>Terminés</th><th>Clics</th></tr>`+(sel.slice().reverse().map(k=>`<tr><td>${k}</td><td>${RAW.days[k].start||0}</td><td>${RAW.days[k].complete||0}</td><td>${RAW.days[k].click||0}</td></tr>`).join("")||`<tr><td colspan="4">–</td></tr>`);
+  requestAnimationFrame(()=>setTimeout(()=>document.querySelectorAll(".bar i").forEach(i=>i.style.width=i.dataset.w+"%"),50));
+  $("#gen").textContent="Mis à jour le "+new Date(RAW.generatedAt).toLocaleString("fr-FR");
+}
+async function enter(pw){RAW=await load(pw);PW=pw;try{sessionStorage.setItem("elles-admin",pw)}catch(e){};$("#login").hidden=true;$("#dash").hidden=false;render()}
+$("#f").addEventListener("submit",async e=>{e.preventDefault();$("#err").textContent="";try{await enter($("#pw").value)}catch(x){$("#err").textContent=x.message}});
+$("#refresh").onclick=async()=>{try{RAW=await load(PW);render()}catch(x){alert(x.message)}};
+$("#out").onclick=()=>{try{sessionStorage.removeItem("elles-admin")}catch(e){};location.reload()};
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("on",x===b));DAYS=+b.dataset.d;render()});
+$("#csv").onclick=()=>{const l=["jour;demarres;termines;clics"];Object.keys(RAW.days).sort().forEach(k=>l.push([k,RAW.days[k].start||0,RAW.days[k].complete||0,RAW.days[k].click||0].join(";")));
+  l.push("");l.push("resultat;nombre");Object.keys(NAMES).forEach(k=>l.push(NAMES[k]+";"+(RAW.results[k]||0)));l.push("");l.push("bouton;clics");Object.keys(CLK).forEach(k=>l.push(CLK[k]+";"+(RAW.clicks[k]||0)));
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["﻿"+l.join("\n")],{type:"text/csv"}));a.download="elles-test-stats.csv";a.click()};
+if(PW)enter(PW).catch(()=>{});
+</script>
+</body>
+</html>

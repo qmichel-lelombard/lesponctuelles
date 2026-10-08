@@ -1,0 +1,2 @@
+{ "name": "elles-quiz-functions", "private": true, "type": "module",
+  "dependencies": { "@netlify/blobs": "^8.1.0" }, "devDependencies": { "esbuild": "^0.24.0" } }

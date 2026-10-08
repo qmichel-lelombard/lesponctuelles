@@ -33,3 +33,10 @@ Aucun dessin n'a été créé ni modifié : uniquement des recadrages et détour
 (`tools/prepare_assets.py`). Les détourages des six Elles sont **provisoires** (issus d'un visuel de groupe
 de faible définition) : à remplacer par les PNG détourés HD en gardant les noms `img/rose.webp`, `blonde.webp`,
 `brune.webp`, `violette.webp`, `verte.webp`, `bleue.webp` (+ `elles-groupe.webp` pour l'accueil).
+
+## Suivi des participations (page admin)
+- Page cachée : `/gestion-elles/` (non liée depuis le site, `noindex`), protégée par mot de passe.
+- Le mot de passe est la variable d'environnement Netlify `ADMIN_PASSWORD` (Site configuration → Environment variables) : il n'est jamais dans le code. Pour le changer, modifier la variable puis redéployer.
+- Mesure **anonyme** (aucun cookie, aucune IP, aucune donnée personnelle) : démarrages, résultats obtenus, clics sur « Découvrir le tome 4 », encart couverture, « Partager », « Télécharger ma carte », « Refaire le test », « Découvrir la série », ouvertures de liens partagés.
+- Fonctions : `netlify/functions/track.mjs` (enregistre) et `stats.mjs` (agrège, protégée). Stockage : Netlify Blobs.
+- Déploiement (fonctions incluses) : `cd netlify && npm install` puis `NETLIFY_SITE_ID=… python3 tools/deploy_netlify.py`.

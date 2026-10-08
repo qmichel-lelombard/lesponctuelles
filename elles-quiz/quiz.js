@@ -155,6 +155,15 @@
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const cssColor = k => ELLES[k].color;
 
+  // Mesure anonyme (aucun cookie ni donnée personnelle) : voir netlify/functions/track.mjs
+  function track(type, detail) {
+    try {
+      if (!/^https?:$/.test(location.protocol)) return;
+      fetch("/.netlify/functions/track", { method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type, detail: detail || "" }) }).catch(() => {});
+    } catch (e) {}
+  }
+
   const state = { idx: 0, picks: [], scores: null, result: null, busy: false };
 
   /* ------------------------------------------------------------------ *
@@ -301,6 +310,7 @@
     setBg("diner");
     show("result");
     document.title = `Je suis Elle ${E.name} ! – Le test ELLES`;
+    track(fromHash ? "sharedview" : "complete", key);
     history.replaceState(null, "", "#resultat-" + key);
 
     const img = $("#r-img"); img.src = E.full || E.img; img.classList.toggle("full", !!E.full); img.alt = `Elle ${E.name}`;
@@ -490,17 +500,21 @@
   resize(); layoutDiner(); addEventListener("load", layoutDiner);
   if (!reduceMotion) requestAnimationFrame(frame);
 
-  $("#start").addEventListener("click", e => { burst(e.clientX, e.clientY, 18, KEYS.map(cssColor)); state.idx = 0; state.picks = []; show("quiz"); renderQuestion(); });
+  $("#start").addEventListener("click", e => { track("start"); burst(e.clientX, e.clientY, 18, KEYS.map(cssColor)); state.idx = 0; state.picks = []; show("quiz"); renderQuestion(); });
   $("#back").addEventListener("click", back);
-  $("#again").addEventListener("click", restart);
-  $("#share").addEventListener("click", share);
-  $("#card").addEventListener("click", downloadCard);
+  $("#again").addEventListener("click", () => { track("click", "again"); restart(); });
+  $("#share").addEventListener("click", () => { track("click", "share"); share(); });
+  $("#card").addEventListener("click", () => { track("click", "card"); downloadCard(); });
   addEventListener("keydown", e => {
     if (!$("#quiz").classList.contains("active") || e.metaKey || e.ctrlKey) return;
     const n = "1234".indexOf(e.key);
     if (n >= 0) $$(".ans")[n]?.click();
     else if (e.key === "ArrowLeft") back();
   });
+
+  $("#buy").addEventListener("click", () => track("click", "buy"));
+  $(".book").addEventListener("click", () => track("click", "book"));
+  $(".site-foot a").addEventListener("click", () => track("click", "series"));
 
   // lien partagé : #resultat-violette
   const m = location.hash.match(/^#resultat-(\w+)$/);
