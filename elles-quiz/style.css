@@ -225,3 +225,5 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .fort{margin-bottom:12px;padding:10px 14px;border-radius:18px;background:rgba(255,255,255,.1)}
 .fort span{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.12em;opacity:.8}
 .fort b{font-family:var(--font-title);font-weight:500;font-size:1.05rem}
+#r-img.full{-webkit-mask-image:none;mask-image:none;height:min(58vh,560px)}
+@media (min-width:860px){#r-img.full{height:min(76vh,720px)}}

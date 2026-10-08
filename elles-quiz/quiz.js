@@ -10,7 +10,7 @@
   // Textes inspirés des fiches officielles des Elles, reformulés à la 2e personne pour le test
   const ELLES = {
     rose: {
-      fort: "Un diner au milieu d'un désert américain futuriste", name: "Rose", rond: "img/rond-rose.webp", color: "#ff4f93", img: "img/rose.webp",
+      fort: "Un diner au milieu d'un désert américain futuriste", name: "Rose", rond: "img/rond-rose.webp", color: "#ff4f93", img: "img/rose.webp", full: "img/rose-pied.webp",
       tag: "Le cœur de la bande, l'équilibre en couleurs !",
       desc: "Tu es la personnalité de base : celle qui relie toutes les autres. Tantôt audacieuse, tantôt introvertie, parfois compétitrice mais toujours bienveillante envers tes proches : tu es la plus nuancée, en constante évolution. Quand ça part dans tous les sens, c'est souvent toi qui ramènes le calme (et le sourire). Ton point faible ? Te laisser submerger quand tout devient trop compliqué.",
       strengths: ["Une empathie XXL", "Tu trouves toujours le juste milieu", "Tu fais du bien aux gens autour de toi"],
@@ -302,7 +302,7 @@
     document.title = `Je suis Elle ${E.name} ! – Le test ELLES`;
     history.replaceState(null, "", "#resultat-" + key);
 
-    const img = $("#r-img"); img.src = E.img; img.alt = `Elle ${E.name}`;
+    const img = $("#r-img"); img.src = E.full || E.img; img.classList.toggle("full", !!E.full); img.alt = `Elle ${E.name}`;
     $("#r-name").textContent = `Elle ${E.name}`;
     $("#r-tag").textContent = E.tag;
     $("#r-desc").textContent = E.desc;
