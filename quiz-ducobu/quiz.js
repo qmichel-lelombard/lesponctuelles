@@ -204,3 +204,10 @@ $("share").onclick = async () => {
   // Rejouer : on réaffiche le formulaire
   $("again").addEventListener("click", () => { form.hidden = false; $("draw-done").hidden = true; $("draw-submit").disabled = false; });
 })();
+
+// Aperçu : ouvrir la page avec #tirage affiche directement l'écran de résultat et le formulaire (score fictif de 8/10).
+if (location.hash === "#tirage") {
+  score = 8;
+  finish();
+  setTimeout(() => $("draw").scrollIntoView({ behavior: "auto", block: "start" }), 150);
+}
