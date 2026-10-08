@@ -132,3 +132,6 @@ a.film:hover .film-cta,a.film:focus-visible .film-cta{background:var(--yellow);c
 .bottom .film-cta{padding:12px;font-size:1.3rem}
 .bottom a.film:hover .film-cta,.bottom a.film:focus-visible .film-cta{background:var(--black);color:var(--yellow)}
 .bottom footer{background:transparent;color:var(--black);padding:6px 16px 22px}
+
+.prizes{display:block;margin:8px auto 14px;max-width:520px}
+.prizes img{border:0;border-radius:0;box-shadow:none;background:none;transform:none!important}
