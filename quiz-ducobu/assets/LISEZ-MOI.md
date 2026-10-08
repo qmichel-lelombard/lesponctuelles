@@ -1,8 +1,5 @@
 # Visuels
 
-Fournis (Ducobu, utilisés tels quels, sans retouche du dessin) :
-ducobu-visage.png (question), ducobu-marche.png (bonne réponse / accueil), ducobu-bonnet.png (mauvaise réponse),
-
-
-Personnages fournis : leonie.png, neness.png (version effrayée), latouche.png (révélés après la réponse). Couverture fournie (recadrée). Reste à fournir : Rotule.
-Un fichier absent est simplement masqué.
+Tous les dessins sont ceux fournis par l'éditeur, utilisés sans retouche (détourage du fond blanc et redimensionnement uniquement).
+Non utilisés pour l'instant : main-leonie.png, ducobu-zero-copies.png (réserve).
+Reste à fournir : Rotule (chien-squelette).

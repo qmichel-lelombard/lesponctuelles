@@ -3,7 +3,7 @@
 const MASCOT = {
   think: "assets/ducobu-visage.png",
   good: "assets/ducobu-marche.png",
-  bad: "assets/ducobu-bonnet.png"
+  bad: ["assets/ducobu-bonnet.png", "assets/ducobu-zero-rond.webp"]
 };
 
 const QUESTIONS = [
@@ -32,7 +32,7 @@ const QUESTIONS = [
     ok: "Oui ! Trente albums plus tard, Ducobu est toujours dans l'air du temps. Pour tricher, du moins.",
     ko: "C'était : drones, IA et commandes en ligne ! Ducobu a compris que la triche, ça se modernise." },
   { q: "Que se passe-t-il à Saint-Potache dans Duco… Bouh ! ?",
-    a: ["Des objets bougent tout seuls et les cartables prennent vie", "L'école est inondée de bonbons", "Latouche devient invisible", "Toute la classe part en vacances"], c: 0,
+    img: "assets/cartable-vivant.png", a: ["Des objets bougent tout seuls et les cartables prennent vie", "L'école est inondée de bonbons", "Latouche devient invisible", "Toute la classe part en vacances"], c: 0,
     ok: "Brrr ! Dans ce tome, l'ambiance est sinistre : ton cartable pourrait bien te regarder de travers.",
     ko: "Pas du tout : les objets bougent tout seuls et les cartables prennent vie. Ça donne la chair de poule." },
   { q: "Qu'est-ce qui fait peur à Ducobu et Léonie sur la couverture de Duco… Bouh ! ?",
@@ -44,19 +44,21 @@ const QUESTIONS = [
     ok: "Godi et Zidrou : le duo qui fait rire Saint-Potache depuis plus de 30 ans.",
     ko: "Ce sont Godi (dessin) et Zidrou (scénario) ! Les autres, c'est une autre classe." },
   { q: "Dernière question : pour réussir un contrôle, la meilleure méthode est…",
-    a: ["Réviser !", "Copier sur Léonie", "Demander à Rotule", "Corrompre Nénèss avec un os"], c: 0,
+    img: "assets/ducobu-guette.png", a: ["Réviser !", "Copier sur Léonie", "Demander à Rotule", "Corrompre Nénèss avec un os"], c: 0,
     ok: "Réviser ! Latouche est fier de toi. Ducobu, lui, fait semblant de ne pas avoir entendu.",
     ko: "Réviser, bien sûr ! Mais dans la BD, on te laisse rigoler des autres méthodes." }
 ];
 
 const PROFILES = [
-  { min: 9, title: "Premier de la classe ! 🏆",
+  { min: 10, title: "Sans-faute, bravo l’artiste ! 🎤", img: "assets/ducobu-micro.webp",
+    text: "Sans-faute ! Tu as tout bon, et sans tricher (on a vérifié). Ducobu chante ton nom. Direction le tome 30 !" },
+  { min: 9, title: "Premier de la classe ! 🏆", img: "assets/leonie-livres.png",
     text: "Même Léonie est impressionnée. Tu connais Saint-Potache comme ta poche (et ton cartable). Va vite lire le tome 30 !" },
-  { min: 6, title: "Élève très honorable 👍",
+  { min: 6, title: "Élève très honorable 👍", img: "assets/leonie-ducobu-tableau.png",
     text: "Latouche te met un bon point. Avec le tome 30, tu seras imbattable sur Ducobu." },
-  { min: 3, title: "Cancre en progrès ✏️",
+  { min: 3, title: "Cancre en progrès ✏️", img: "assets/ducobu-zero-copies2.png",
     text: "Pas mal ! Ducobu te félicite : tu as sûrement un peu triché… mais lui, il ne dira rien. Relis les albums pour t'améliorer." },
-  { min: 0, title: "Champion du zéro pointé 🥚",
+  { min: 0, title: "Champion du zéro pointé 🥚", img: "assets/ducobu-zero-copies.png",
     text: "Ducobu te salue : il t'accepte dans son club ! Rejoue, ou lis le tome 30 pour réviser." }
 ];
 
@@ -118,7 +120,7 @@ function pick(btn, idx){
   $("feedback-text").textContent = (right ? "✅ " : "❌ ") + (right ? Q.ok : Q.ko);
   $("next").textContent = i === QUESTIONS.length - 1 ? "Mon bulletin ➜" : "Suivant ➜";
   // le personnage de la question est dévoilé après la réponse
-  const m = $("mascot"), fallback = right ? MASCOT.good : MASCOT.bad;
+  const m = $("mascot"), fallback = right ? MASCOT.good : MASCOT.bad[Math.floor(Math.random() * MASCOT.bad.length)];
   m.onerror = () => { m.onerror = null; m.src = fallback; };
   setImg(m, Q.img || fallback);
   $("mascot").classList.toggle("hop", right);
