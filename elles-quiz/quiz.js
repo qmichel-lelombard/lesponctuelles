@@ -7,58 +7,59 @@
   /* ------------------------------------------------------------------ *
    *  Les six personnalités
    * ------------------------------------------------------------------ */
+  // Textes inspirés des fiches officielles des Elles, reformulés à la 2e personne pour le test
   const ELLES = {
     rose: {
-      name: "Rose", color: "#ff4f93", img: "img/rose.webp",
+      name: "Rose", rond: "img/rond-rose.webp", color: "#ff4f93", img: "img/rose.webp",
       tag: "Le cœur de la bande, l'équilibre en couleurs !",
-      desc: "Tu es la personnalité de base : celle qui relie toutes les autres. Curieuse, à l'écoute et pleine de bonne humeur, tu t'adaptes à presque toutes les situations. Quand ça part dans tous les sens, c'est souvent toi qui ramènes le calme (et le sourire).",
+      desc: "Tu es la personnalité de base : celle qui relie toutes les autres. Bienveillante, curieuse et à l'écoute, tu t'adaptes à presque toutes les situations. Quand ça part dans tous les sens, c'est souvent toi qui ramènes le calme (et le sourire). Et le jour où toutes les Elles s'acceptent enfin, c'est grâce à des personnes comme toi.",
       strengths: ["Une empathie XXL", "Tu trouves toujours le juste milieu", "Tu fais du bien aux gens autour de toi"],
       flaws: ["Tu t'oublies pour les autres", "Tu as du mal à choisir quand tout te tente"],
       mantra: "Ensemble, c'est toujours mieux.",
       ally: "bleue"
     },
     blonde: {
-      name: "Blonde", color: "#ffae2b", img: "img/blonde.webp",
-      tag: "Prête à en découdre, toujours en première ligne !",
-      desc: "Courage, énergie et grand cœur : tu fonces d'abord et tu réfléchis après (parfois beaucoup après). Quand quelqu'un que tu aimes est en danger, tu deviens un vrai volcan. Avec toi, aucune bataille n'est perdue d'avance !",
-      strengths: ["Un courage à toute épreuve", "Tu défends les tiens coûte que coûte", "Une énergie contagieuse"],
-      flaws: ["Tu t'énerves plus vite que ton ombre", "Le mot « prudence » ne fait pas partie de ton vocabulaire"],
+      name: "Blonde", rond: "img/rond-blonde.webp", color: "#ffae2b", img: "img/blonde.webp",
+      tag: "La compétitrice : toujours prête à gagner !",
+      desc: "Tu adores explorer de nouveaux horizons et tu ne ménages pas tes efforts : quand tu te lances, c'est à fond. Compétitrice dans l'âme, tu fonces et tu ne crains pas de bousculer les gens autour de toi (parfois un peu trop). Avec toi, aucun défi n'est trop grand !",
+      strengths: ["Un courage et une énergie à toute épreuve", "Tu ne lâches jamais l'affaire", "Tu oses l'inconnu"],
+      flaws: ["Tu peux être un brin prétentieuse", "Tu vexes parfois sans le vouloir"],
       mantra: "Qui m'aime me suive… et je passe devant !",
       ally: "verte"
     },
     brune: {
-      name: "Brune", color: "#c0764a", img: "img/brune.webp",
-      tag: "Prudente, sensible et incroyablement lucide.",
-      desc: "Tu as toujours un temps d'avance : tu sens les dangers avant tout le monde, et tu n'oublies jamais ton plan B. Derrière ta prudence se cache une grande sensibilité et une loyauté à toute épreuve. Si tu dis « fais attention », mieux vaut t'écouter !",
-      strengths: ["Un sixième sens pour les problèmes", "Une loyauté en béton", "Tu ne laisses rien au hasard"],
-      flaws: ["Tu imagines toujours le pire scénario", "Tu as du mal à lâcher prise"],
-      mantra: "Et si… ? Vérifions encore une fois.",
+      name: "Châtain", rond: "img/rond-brune.webp", color: "#c0764a", img: "img/brune.webp",
+      tag: "La plus sensible, avec un cœur d'artiste.",
+      desc: "Tu ressens tout, plus fort que les autres. Timide et introvertie, tu doutes souvent de toi, mais tu as un grand secret : tes talents artistiques, qui t'aident à trouver un peu d'apaisement face au tumulte extérieur. Ta sensibilité est un vrai super-pouvoir, même si tu ne le sais pas encore.",
+      strengths: ["Une sensibilité hors du commun", "Une créativité qui apaise", "Une loyauté en béton"],
+      flaws: ["Tu doutes beaucoup de toi", "Tu as tendance à te replier sur toi-même"],
+      mantra: "Je ressens tout… et c'est ma force.",
       ally: "violette"
     },
     violette: {
-      name: "Violette", color: "#a86bff", img: "img/violette.webp",
-      tag: "Le feu d'artifice de la bande !",
-      desc: "Rire, blagues, grimaces et fous rires : tu transformes n'importe quel moment gris en soirée de fête. Les gens adorent ta bonne humeur, ton énergie et ton sens de l'autodérision. Ta mission : que personne ne s'ennuie jamais.",
+      name: "Violette", rond: "img/rond-violette.webp", color: "#a86bff", img: "img/violette.webp",
+      tag: "Le boute-en-train de la bande !",
+      desc: "Insouciante et blagueuse, tout t'amuse et tu ne prends jamais rien au sérieux. Rires, grimaces et fous rires : tu transformes n'importe quel moment gris en soirée de fête. Ta mission : que personne ne s'ennuie jamais.",
       strengths: ["L'humour à toute heure", "Tu dédramatises tout", "Tu rassembles les gens"],
       flaws: ["Tu fais une blague quand il faudrait parler sérieusement", "Tu as parfois du mal à rester en place"],
       mantra: "La vie est trop courte pour ne pas rigoler !",
       ally: "brune"
     },
     verte: {
-      name: "Verte", color: "#2fc474", img: "img/verte.webp",
-      tag: "Discrète en surface, immense à l'intérieur.",
-      desc: "Tu observes, tu écoutes et tu retiens tout. Timide ? Oui, parfois. Mais quand tu te sens en confiance, tu dévoiles une imagination, une douceur et une sincérité qui bluffent tout le monde. Ton monde intérieur est un vrai trésor.",
-      strengths: ["Un regard qui voit tout", "Une créativité secrète", "Une douceur qui rassure"],
-      flaws: ["Tu rougis pour un rien", "Tu gardes tes idées pour toi (alors qu'elles sont géniales)"],
-      mantra: "Je dirai quelque chose… peut-être… tout à l'heure.",
+      name: "Verte", rond: "img/rond-verte.webp", color: "#20b894", img: "img/verte.webp",
+      tag: "Discrète, réfléchie et pleine de sagesse.",
+      desc: "Tu observes, tu écoutes et tu retiens tout. Ton silence et ta retenue te rendent un peu difficile à cerner, mais ta grande sagesse est une aide précieuse dans les moments difficiles. Quand quelqu'un a besoin d'un conseil, c'est vers toi qu'on se tourne.",
+      strengths: ["Un regard qui voit tout", "Une sagesse qui rassure", "Tu sais écouter vraiment"],
+      flaws: ["On a parfois du mal à savoir ce que tu penses", "Tu gardes tes idées pour toi (alors qu'elles sont géniales)"],
+      mantra: "Je dirai quelque chose… quand ce sera le bon moment.",
       ally: "blonde"
     },
     bleue: {
-      name: "Bleue", color: "#2aaee0", img: "img/bleue.webp",
-      tag: "Cheffe de bande, naturellement.",
-      desc: "Organisée, déterminée et sûre de toi : tu sais où tu vas et tu as déjà un plan (avec tableau et couleurs). Les autres te suivent parce que tu rassures par ton assurance. Ton défi : laisser de la place aux idées des autres.",
-      strengths: ["Un sens de l'organisation redoutable", "Tu prends des décisions sans trembler", "Tu inspires confiance"],
-      flaws: ["Tu veux toujours avoir raison", "Tu donnes des ordres sans t'en rendre compte"],
+      name: "Bleue", rond: "img/rond-bleue.webp", color: "#2aaee0", img: "img/bleue.webp",
+      tag: "La stratège : toujours un plan d'avance.",
+      desc: "Tu es calculatrice et ultra-déterminée : tu sais ce que tu veux et tu as déjà trois plans pour l'obtenir. Charme, répartie, sens de la stratégie… tu n'hésites pas à utiliser tous tes atouts pour parvenir à tes fins. Ton défi : laisser de la place aux autres (et être sincère, même quand ça coûte).",
+      strengths: ["Un cerveau de stratège", "Du charme et de la répartie", "Tu ne te laisses jamais enfermer"],
+      flaws: ["Tu peux manipuler sans t'en rendre compte", "Tu veux toujours garder le contrôle"],
       mantra: "J'ai un plan. Suivez-moi.",
       ally: "rose"
     }
@@ -72,44 +73,44 @@
     { world: "Le désert des possibles", bg: "desert", bx: 50,
       q: "Ton réveil sonne. Ta première pensée, c'est…",
       a: [["rose", "Allez, voyons comment la journée se présente !"],
-          ["blonde", "Aujourd'hui, je vais tout déchirer. Qui veut m'en empêcher ?"],
-          ["brune", "J'ai bien préparé mon sac ? Et mes devoirs ? Et… tout ?"],
+          ["blonde", "Aujourd'hui, je vais tout gagner. Qui veut m'en empêcher ?"],
+          ["brune", "Est-ce que je suis prête pour aujourd'hui ? Je doute déjà de tout…"],
           ["violette", "Cinq minutes de plus, le temps de me raconter une blague."]] },
     { world: "Le désert des possibles", bg: "desert", bx: 45,
       q: "Premier jour dans une nouvelle classe. Tu fais quoi ?",
-      a: [["blonde", "Je me présente à tout le monde. Et si on me cherche, on me trouve."],
-          ["brune", "Je repère les sorties, les profs et les gens bizarres. Par sécurité."],
+      a: [["blonde", "Je me présente à tout le monde. Je compte bien être la meilleure de la classe."],
+          ["brune", "Mon cœur bat trop fort. Je sors mon carnet et je dessine pour me calmer."],
           ["verte", "Je m'installe au fond, discrètement. Si on m'oublie, c'est parfait."],
-          ["bleue", "Je repère qui dirige la classe. Spoiler : bientôt, ce sera moi."]] },
+          ["bleue", "Je repère qui dirige la classe. Spoiler : un peu de charme, et ce sera moi."]] },
     { world: "L'arche de pierre", bg: "desert", bx: 8,
       q: "Un exposé en groupe : ton rôle, c'est…",
       a: [["rose", "Celle qui s'assure que tout le monde trouve sa place."],
           ["violette", "Celle qui met l'ambiance et glisse un meme dans les slides."],
-          ["verte", "Celle qui fait la plus grosse partie du travail, sans être sur le devant de la scène."],
-          ["bleue", "Celle qui crée le planning avec un code couleur."]] },
+          ["verte", "Celle qui réfléchit le plus, sans être sur le devant de la scène."],
+          ["bleue", "Celle qui a déjà un plan et sait comment convaincre les autres de le suivre."]] },
     { world: "L'arche de pierre", bg: "desert", bx: 14,
       q: "Ta meilleure amie te lance un défi complètement fou. Ta réaction ?",
       a: [["blonde", "Défi accepté, je m'échauffe !"],
-          ["brune", "Euh… et si ça tourne mal ? J'ai besoin d'un plan B, C et D."],
+          ["brune", "Euh… et si je n'en suis pas capable ? Je ne suis pas sûre…"],
           ["violette", "Je relève le défi en faisant tellement de bruit que tout le monde regarde."],
-          ["bleue", "Je négocie les règles, je fixe les conditions. Puis j'accepte."]] },
-    { world: "Rosie's Diner", bg: "desert", bx: 50,
+          ["bleue", "Je négocie les règles à mon avantage. Puis j'accepte."]] },
+    { world: "Rosie's Diner", bg: "diner",
       q: "Au Rosie's, le serveur attend ta commande…",
       a: [["rose", "Ce qui me tente, et je goûte aussi les assiettes des autres !"],
           ["blonde", "Le plus gros menu. Je ne fais jamais les choses à moitié."],
-          ["brune", "Le plat que je connais déjà. Pas de mauvaise surprise."],
+          ["brune", "Le plat réconfortant que je connais déjà. Pas de surprise, pas de stress."],
           ["verte", "Je chuchote ma commande en pointant le menu du doigt."]] },
-    { world: "Rosie's Diner", bg: "desert", bx: 56,
+    { world: "Rosie's Diner", bg: "diner",
       q: "Quelqu'un renverse un milkshake sur ta veste préférée !",
       a: [["rose", "Ça arrive. Je respire, on nettoie, et on en rira demain."],
           ["violette", "Je fais comme si c'était la nouvelle tendance : la veste milkshake."],
           ["verte", "Je dis « c'est pas grave », je rougis, et je file aux toilettes."],
-          ["bleue", "Je veux un chiffon, des excuses et un remboursement. Dans cet ordre."]] },
+          ["bleue", "Je souris et je fais comprendre, avec charme, que ça va se payer. Poliment."]] },
     { world: "L'oasis aux secrets", bg: "desert", bx: 95,
       q: "C'est soirée pyjama ! Ton rôle dans la bande ?",
       a: [["rose", "Celle qui s'assure que chacune passe un bon moment."],
           ["blonde", "Celle qui lance la bataille d'oreillers (et la gagne)."],
-          ["brune", "Celle qui vérifie que la porte est bien fermée. Deux fois."],
+          ["brune", "Celle qui dessine dans son coin et sent l'humeur de chacune."],
           ["bleue", "Celle qui choisit le film et l'ordre des snacks."]] },
     { world: "L'oasis aux secrets", bg: "desert", bx: 90,
       q: "Ta playlist du moment, c'est plutôt…",
@@ -121,17 +122,17 @@
       q: "Au milieu du désert, tu découvres une porte secrète. Tu…",
       a: [["rose", "Je regarde autour de moi : on y va ensemble, ou on n'y va pas."],
           ["violette", "Je frappe trois coups en criant « Livraison de pizzas ! »."],
-          ["verte", "Je l'observe de loin… quelqu'un d'autre finira bien par l'ouvrir."],
+          ["verte", "Je l'observe de loin, je réfléchis… il y a sûrement une bonne raison qu'elle soit là."],
           ["bleue", "Je prends les commandes. On entre dans l'ordre que j'ai décidé."]] },
     { world: "La nuit des pyramides", bg: "night",
       q: "Quand tu hésites, la petite voix dans ta tête te dit…",
       a: [["rose", "Écoute ton cœur, ça va aller."],
           ["blonde", "Fonce, tu n'as rien à perdre !"],
-          ["brune", "Attends… vérifie encore une fois."],
+          ["brune", "Tu n'en es pas capable… tu vas te tromper."],
           ["bleue", "Arrête de douter : tu sais ce que tu dois faire."]] },
     { world: "Sous les deux lunes", bg: "night",
       q: "Ton super-pouvoir idéal ?",
-      a: [["brune", "Voir l'avenir, pour éviter les catastrophes."],
+      a: [["brune", "Transformer mes émotions en dessins qui touchent tout le monde."],
           ["violette", "Faire rire n'importe qui, même le plus grincheux."],
           ["verte", "L'invisibilité. Parfois, être tranquille, c'est le luxe."],
           ["bleue", "Convaincre n'importe qui de faire ce que je dis."]] },
@@ -171,6 +172,21 @@
       if (b.dataset.bg === name && bx != null) b.style.setProperty("--bx", bx + "%");
     });
     document.body.dataset.world = name === "night" ? "night" : "desert";
+    if (name === "diner") layoutDiner();
+  }
+
+  // Rosie's : on cadre le resto et on place les néons au bon endroit, quelle que soit la taille d'écran
+  const DINER = { w: 1455, h: 1478, x: .48, y: .87, sx: .65, sy: .67 };
+  function layoutDiner() {
+    const kb = $('.bg[data-bg="diner"] .kb'); if (!kb) return;
+    const cw = kb.offsetWidth, ch = kb.offsetHeight; if (!cw) return;
+    const sc = Math.max(cw / DINER.w, ch / DINER.h), w = DINER.w * sc, h = DINER.h * sc;
+    const pos = (target, size, frac, box) => size <= box + 1 ? .5 : Math.min(1, Math.max(0, (target - frac * size) / (box - size)));
+    const bx = pos(cw * .5, w, DINER.x, cw), by = pos(ch * (w > cw ? .6 : .62), h, DINER.y, ch);
+    kb.style.setProperty("--bx", bx * 100 + "%"); kb.style.setProperty("--by", by * 100 + "%");
+    const at = (el, fx, fy) => { el.style.left = ((cw - w) * bx + fx * w) + "px"; el.style.top = ((ch - h) * by + fy * h) + "px"; };
+    at($(".g1", kb), DINER.x, DINER.y + .01); at($(".g2", kb), DINER.sx, DINER.sy);
+    $$(".glow", kb).forEach(g => g.style.opacity = "");
   }
 
   // parallaxe pointeur / inclinaison
@@ -281,7 +297,7 @@
   function showResult(fromHash) {
     const key = state.result, E = ELLES[key];
     root.style.setProperty("--accent", E.color);
-    setBg("desert", 50);
+    setBg("diner");
     show("result");
     document.title = `Je suis Elle ${E.name} ! – Le test ELLES`;
     history.replaceState(null, "", "#resultat-" + key);
@@ -294,7 +310,7 @@
     $("#r-strengths").innerHTML = E.strengths.map(s => `<li>${s}</li>`).join("");
     $("#r-flaws").innerHTML = E.flaws.map(s => `<li>${s}</li>`).join("");
     const ally = ELLES[E.ally];
-    $("#r-ally").textContent = `Elle ${ally.name}`; $("#r-ally-img").src = ally.img;
+    $("#r-ally").textContent = `Elle ${ally.name}`; $("#r-ally-img").src = ally.rond;
 
     const hasMix = !fromHash && state.scores;
     $$(".mix-title,#mix").forEach(n => n.hidden = !hasMix);
@@ -303,11 +319,11 @@
     $(".duo").style.gridTemplateColumns = hasMix ? "" : "1fr";
     if (hasMix) {
       const H = ELLES[state.second];
-      $("#r-hidden").textContent = `Elle ${H.name}`; $("#r-hidden-img").src = H.img;
+      $("#r-hidden").textContent = `Elle ${H.name}`; $("#r-hidden-img").src = H.rond;
       const total = POINTS * N;
       const rank = ranking(state.scores);
       $("#mix").innerHTML = rank.map(k => `
-        <div class="mrow" style="--c:${cssColor(k)}"><span>${ELLES[k].name}</span>
+        <div class="mrow" style="--c:${cssColor(k)}"><img src="${ELLES[k].rond}" alt=""><span>${ELLES[k].name}</span>
         <div class="t"><i data-w="${Math.round(state.scores[k] / total * 100)}"></i></div>
         <output>${Math.round(state.scores[k] / total * 100)}%</output></div>`).join("");
       requestAnimationFrame(() => setTimeout(() => $$("#mix i").forEach(i => i.style.width = i.dataset.w + "%"), 250));
@@ -323,7 +339,7 @@
     root.style.setProperty("--accent", "#ff4f93");
     document.title = "Quelle Elle se cache en toi ? – Le test ELLES";
     history.replaceState(null, "", location.pathname + location.search);
-    setBg("desert", 50);
+    setBg("diner");
     show("intro");
   }
 
@@ -467,8 +483,8 @@
   /* ------------------------------------------------------------------ *
    *  Initialisation
    * ------------------------------------------------------------------ */
-  addEventListener("resize", resize);
-  resize();
+  addEventListener("resize", () => { resize(); layoutDiner(); });
+  resize(); layoutDiner(); addEventListener("load", layoutDiner);
   if (!reduceMotion) requestAnimationFrame(frame);
 
   $("#start").addEventListener("click", e => { burst(e.clientX, e.clientY, 18, KEYS.map(cssColor)); state.idx = 0; state.picks = []; show("quiz"); renderQuestion(); });

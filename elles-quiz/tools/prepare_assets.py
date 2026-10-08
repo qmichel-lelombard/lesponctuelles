@@ -118,4 +118,18 @@ save(n.crop((150, 135, 1395, 1830)), "bg-pyramides.webp", 80)
 d = Image.open(src + "5.jpg").convert("RGB")
 save(d.crop((0, 592, 1542, 1378)), "bg-desert.webp", 82)
 save(d.crop((133, 122, 543, 545)), "bg-regard.webp", 80)
+d6 = Image.open(src + "6.jpg").convert("RGB")   # planche de la dernière page : on coupe avant le « À suivre… »
+save(d6.crop((42, 42, 1497, 1520)), "bg-rosies-nuit.webp", 82)
 print("ok")
+
+# --- Médaillons ronds (PSD, nécessite `pip install psd-tools`) : dossier <src>/psd/Rond_ELLES_0N.psd
+import glob, os
+names = {"01": "rose", "02": "verte", "03": "brune", "04": "blonde", "05": "violette", "06": "bleue"}
+try:
+    from psd_tools import PSDImage
+    for f in glob.glob(src + "psd/Rond_ELLES_*.psd"):
+        n = os.path.basename(f).split("_")[-1][:2]
+        im = PSDImage.open(f).composite().convert("RGBA"); im = im.crop(im.getbbox()); im.thumbnail((360, 360))
+        im.save(out + f"rond-{names[n]}.webp", lossless=True, method=6)
+except ImportError:
+    print("psd-tools absent : médaillons ignorés")

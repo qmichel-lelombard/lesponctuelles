@@ -1,7 +1,7 @@
 # ELLES – « Quelle Elle se cache en toi ? »
 
 Test de personnalité en ligne (12 questions, ~5 min, mobile + PC) qui rattache le joueur à l'une des six
-personnalités de la série : **Rose, Blonde, Brune, Violette, Verte, Bleue**.
+personnalités de la série : **Rose, Blonde, Châtain, Violette, Verte, Bleue**.
 
 Site 100 % statique, sans dépendance ni build : `index.html`, `style.css`, `quiz.js`, dossier `img/`.
 
