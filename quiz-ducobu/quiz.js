@@ -22,7 +22,7 @@ const QUESTIONS = [
   { q: "Et comment s'appelle le chien-squelette de Nénèss ?",
     a: ["Rotule", "Fémur", "Médiator", "Toutou-Crâne"], c: 0,
     ok: "Rotule ! Il court toujours après son os. Enfin… après un os.",
-    ko: "Raté ! C'est Rotule. Un chien-squelette n'a plus que les os, mais il n'a pas perdu le flair… ni l'appétit pour les os des autres." },
+    ko: "Raté ! C'est Rotule. Pas de panique : lui aussi a séché sur cette question, il n'a vraiment pas la tête… ni la chair pour ça." },
   { q: "Qui est l'instit' qui n'en peut plus de Ducobu et de ses combines ?",
     img: "assets/latouche.png", a: ["Monsieur Latouche", "Monsieur Gratin", "Monsieur Rotule", "Le père Fouettard"], c: 0,
     ok: "Latouche, fidèle aux « bonnes vieilles méthodes »… qui ne marchent jamais sur Ducobu.",
