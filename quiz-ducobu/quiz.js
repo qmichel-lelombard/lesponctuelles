@@ -50,9 +50,9 @@ const QUESTIONS = [
 ];
 
 const PROFILES = [
-  { min: 10, title: "Sans-faute, bravo l’artiste ! 🎤", img: "assets/ducobu-micro.webp",
-    text: "Sans-faute ! Tu as tout bon, et sans tricher (on a vérifié). Ducobu chante ton nom. Direction le tome 30 !" },
-  { min: 9, title: "Premier de la classe ! 🏆", img: "assets/leonie-livres.png",
+  { min: 10, title: "10/10 : sans-faute, bravo ! 🏆", img: "assets/leonie-dix-sur-dix.png",
+    text: "Sans-faute ! Même Léonie n'aurait pas fait mieux, et tu n'as pas triché (on a vérifié). Direction le tome 30 !" },
+  { min: 8, title: "Premier de la classe ! 🏆", img: "assets/leonie-livres.png",
     text: "Même Léonie est impressionnée. Tu connais Saint-Potache comme ta poche (et ton cartable). Va vite lire le tome 30 !" },
   { min: 6, title: "Élève très honorable 👍", img: "assets/leonie-ducobu-tableau.png",
     text: "Latouche te met un bon point. Avec le tome 30, tu seras imbattable sur Ducobu." },
