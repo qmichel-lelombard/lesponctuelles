@@ -228,8 +228,6 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .book:hover{transform:translateY(-3px)}
 .book img{width:84px;height:auto;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,.45);transform:rotate(-3deg)}
 .book span{font-size:.92rem}.book b{display:block;font-family:var(--font-title);font-size:1.15rem;font-weight:600;color:var(--accent);filter:brightness(1.25)}
-.bg[data-bg=paradizeg] .kb{background-image:url(img/bg-paradize-g.webp);background-position:50% 40%}
-.bg[data-bg=paradized] .kb{background-image:url(img/bg-paradize-d.webp);background-position:50% 40%}
 .qcard{position:relative;z-index:1}
 /* les Elles devant la carte, collées aux bords de l'écran : elles débordent d'environ 30 px sur le cadre au maximum */
 @media (min-width:860px){
@@ -238,14 +236,6 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
     object-fit:contain;object-position:right bottom}
   .peek.left{left:6px;right:auto;object-position:left bottom}
 }
-/* Trailer en fin de parcours */
-.trailer{max-width:420px;margin:28px auto 0;text-align:center}
-.trailer .kicker{opacity:.9}
-.tr-title{font-size:clamp(1.7rem,7vw,2.4rem)!important;color:#fff!important;filter:none!important;margin:2px 0 14px;text-shadow:0 0 26px var(--accent),0 3px 14px rgba(0,0,0,.5)}
-.tr-frame{position:relative;border-radius:26px;padding:6px;background:conic-gradient(from 0deg,var(--verte),var(--bleue),var(--violette),var(--rose),var(--blonde),var(--brune),var(--verte));
-  box-shadow:0 0 40px color-mix(in srgb,var(--accent) 55%,transparent),0 20px 50px rgba(10,0,40,.55)}
-.tr-frame video{display:block;width:100%;aspect-ratio:9/16;max-height:78vh;object-fit:cover;border-radius:21px;background:#0d0620}
-.tr-sub{margin-top:12px;font-size:.9rem;opacity:.9}
 /* Chargement : rubans de lumière façon trailer */
 .loader{position:relative}
 .loader::before{content:"";position:absolute;left:50%;top:75px;width:min(110vw,560px);aspect-ratio:1;translate:-50% -50%;z-index:-1;border-radius:50%;opacity:.75;filter:blur(14px);
