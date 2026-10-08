@@ -295,55 +295,38 @@
   /* ---------- Ambiance sonore (synthèse Web Audio, aucun fichier) ---------- */
   const snd = $('#snd');
   let ac = null, master = null, started = false, enabled = store.get('milleans-sound') !== 'off';
+  let nextLoop = 0.3, sched = 0;
+  function buses(ctx, out) {
+    const len = ctx.sampleRate * 4.5, ir = ctx.createBuffer(2, len, ctx.sampleRate);
+    for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.4); }
+    const rev = ctx.createConvolver(); rev.buffer = ir;
+    const wet = ctx.createGain(); wet.gain.value = 1; wet.connect(rev);
+    const revOut = ctx.createGain(); revOut.gain.value = .9; rev.connect(revOut); revOut.connect(out);
+    const dry = ctx.createGain(); dry.gain.value = 1; dry.connect(out);
+    wet.connect(out); wet.gain.value = .7;
+    const echo = ctx.createGain(); echo.connect(dry); echo.connect(rev);
+    const dl = ctx.createDelay(2); dl.delayTime.value = .62; const fb = ctx.createGain(); fb.gain.value = .38;
+    echo.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(rev); dl.connect(out);
+    return { dry, wet, echo };
+  }
   function build() {
-    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return false;
-    ac = new AC(); master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination);
-    const len = ac.sampleRate * 5, ir = ac.createBuffer(2, len, ac.sampleRate);
-    for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6); }
-    const rev = ac.createConvolver(); rev.buffer = ir;
-    const wet = ac.createGain(); wet.gain.value = .75; rev.connect(wet); wet.connect(master);
-    const dry = ac.createGain(); dry.gain.value = .5; dry.connect(master);
-    const bus = ac.createGain(); bus.connect(dry); bus.connect(rev);
-    // nappe grave
-    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 380; lp.Q.value = 3; lp.connect(bus);
-    const lfo = ac.createOscillator(); lfo.frequency.value = .045; const lg = ac.createGain(); lg.gain.value = 220; lfo.connect(lg); lg.connect(lp.frequency); lfo.start();
-    [[55, 'sawtooth', .22], [55.4, 'sawtooth', .18], [82.4, 'sawtooth', .12], [110.3, 'triangle', .1]].forEach(([f, t, g]) => {
-      const o = ac.createOscillator(); o.type = t; o.frequency.value = f; const og = ac.createGain(); og.gain.value = g * .5; o.connect(og); og.connect(lp); o.start();
-    });
-    // voile aigu lent
-    [[220, .05], [329.6, .035], [440.5, .025], [659.3, .012]].forEach(([f, g], i) => {
-      const o = ac.createOscillator(); o.type = 'sine'; o.frequency.value = f;
-      const og = ac.createGain(); og.gain.value = g;
-      const tl = ac.createOscillator(); tl.frequency.value = .06 + i * .031; const tg = ac.createGain(); tg.gain.value = g * .9; tl.connect(tg); tg.connect(og.gain);
-      o.connect(og); og.connect(bus); o.start(); tl.start();
-    });
-    // souffle spatial
-    const nb = ac.createBuffer(1, ac.sampleRate * 4, ac.sampleRate), nd = nb.getChannelData(0);
-    for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
-    const ns = ac.createBufferSource(); ns.buffer = nb; ns.loop = true;
-    const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 600; bp.Q.value = .8;
-    const bl = ac.createOscillator(); bl.frequency.value = .03; const blg = ac.createGain(); blg.gain.value = 380; bl.connect(blg); blg.connect(bp.frequency); bl.start();
-    const ng = ac.createGain(); ng.gain.value = .05; ns.connect(bp); bp.connect(ng); ng.connect(bus); ns.start();
-    // ping sonar occasionnel
-    const dl = ac.createDelay(2); dl.delayTime.value = .55; const fb = ac.createGain(); fb.gain.value = .42; dl.connect(fb); fb.connect(dl); dl.connect(rev);
-    (function ping() {
-      setTimeout(() => {
-        if (ac.state === 'running' && enabled) {
-          const o = ac.createOscillator(), g = ac.createGain(), f = [659.3, 880, 987.8, 1174.7][Math.random() * 4 | 0];
-          o.type = 'sine'; o.frequency.value = f; g.gain.setValueAtTime(0, ac.currentTime);
-          g.gain.linearRampToValueAtTime(.05, ac.currentTime + .02); g.gain.exponentialRampToValueAtTime(.0001, ac.currentTime + 2.2);
-          o.connect(g); g.connect(dl); g.connect(bus); o.start(); o.stop(ac.currentTime + 2.4);
-        }
-        ping();
-      }, 9000 + Math.random() * 14000);
-    })();
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC || !window.MilleMusic) return false;
+    ac = new AC(); master = ac.createGain(); master.gain.value = 0;
+    const comp = ac.createDynamicsCompressor(); comp.threshold.value = -18; comp.ratio.value = 3;
+    master.connect(comp); comp.connect(ac.destination);
+    const b = buses(ac, master);
+    nextLoop = ac.currentTime + .4;
+    const tick = () => {
+      if (ac.currentTime > nextLoop - 12) { window.MilleMusic.schedule(ac, b, nextLoop); nextLoop += window.MilleMusic.LOOP; }
+    };
+    tick(); sched = setInterval(tick, 2000);
     return true;
   }
   function fadeTo(v, s) { master.gain.cancelScheduledValues(ac.currentTime); master.gain.setValueAtTime(master.gain.value, ac.currentTime); master.gain.linearRampToValueAtTime(v, ac.currentTime + s); }
   async function soundOn() {
     if (!started) { if (!build()) { snd.hidden = true; return; } started = true; }
     try { await ac.resume(); } catch (e) { /* ignoré */ }
-    fadeTo(.22, 4); enabled = true; snd.classList.add('on'); snd.classList.remove('wait'); snd.setAttribute('aria-pressed', 'true'); store.set('milleans-sound', 'on');
+    fadeTo(.8, 4); enabled = true; snd.classList.add('on'); snd.classList.remove('wait'); snd.setAttribute('aria-pressed', 'true'); store.set('milleans-sound', 'on');
   }
   function soundOff() {
     enabled = false; snd.classList.remove('on', 'wait'); snd.setAttribute('aria-pressed', 'false'); store.set('milleans-sound', 'off');
@@ -361,6 +344,6 @@
   }
   document.addEventListener('visibilitychange', () => {
     if (!ac || !enabled || !started) return;
-    if (document.hidden) { fadeTo(0, .3); setTimeout(() => ac.suspend(), 350); } else { ac.resume(); fadeTo(.22, 1.5); }
+    if (document.hidden) { fadeTo(0, .3); setTimeout(() => ac.suspend(), 350); } else { ac.resume(); fadeTo(.8, 1.5); }
   });
 })();
