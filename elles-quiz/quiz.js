@@ -125,7 +125,7 @@
           ["verte", "Je l'observe de loin, je réfléchis… il y a sûrement une bonne raison qu'elle soit là."],
           ["bleue", "Je prends les commandes. On entre dans l'ordre que j'ai décidé."]] },
     { world: "La nuit des pyramides", bg: "night",
-      q: "Une énorme vague d'émotions te submerge. Qui prend les commandes ?",
+      q: "Une énorme vague d'émotions te submerge. Comment réagis-tu ?",
       a: [["rose", "Je respire, j'en parle à quelqu'un de confiance et je cherche le juste milieu."],
           ["blonde", "Je transforme tout en énergie : sport, défi ou cri dans un coussin !"],
           ["brune", "Je me replie dans ma bulle : un dessin ou une chanson, et je comprends ce que je ressens."],
