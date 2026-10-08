@@ -62,6 +62,14 @@ const PROFILES = [
     text: "Ducobu te salue : il t'accepte dans son club ! Rejoue, ou lis le tome 30 pour réviser." }
 ];
 
+// Tirage au sort : renseigner l'adresse de l'outil de newsletter (Mailchimp, Brevo, formulaire WordPress…).
+// Tant que "endpoint" est vide, le formulaire fonctionne en mode test : rien n'est envoyé ni enregistré.
+const NEWSLETTER = {
+  endpoint: "",
+  reglementUrl: "",   // lien vers le règlement officiel du tirage au sort
+  extra: { source: "quiz-duco-bouh" }
+};
+
 const $ = id => document.getElementById(id);
 let i = 0, score = 0, locked = false, readyAt = 0;
 
@@ -149,3 +157,44 @@ $("share").onclick = async () => {
     else { await navigator.clipboard.writeText(text + " " + location.href); $("share").textContent = "Lien copié ✔"; }
   } catch (e) {}
 };
+
+// ---- Inscription newsletter / tirage au sort ----
+(function () {
+  const form = $("draw-form");
+  if (!form) return;
+  const link = $("reglement-link");
+  if (NEWSLETTER.reglementUrl) link.href = NEWSLETTER.reglementUrl;
+  else link.addEventListener("click", e => e.preventDefault());
+
+  const err = msg => { $("draw-error").textContent = msg; $("draw-error").hidden = !msg; };
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    err("");
+    const prenom = form.prenom.value.trim();
+    const email = form.email.value.trim();
+    if (form.site.value) return;                       // champ piège pour les robots
+    if (!prenom) return err("Écris ton prénom pour participer.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email)) return err("Vérifie ton adresse e-mail.");
+    if (!form.consent.checked) return err("Coche la case pour accepter la newsletter et le règlement.");
+
+    const data = new URLSearchParams({ prenom, email, score: String(score), consent: "oui", ...NEWSLETTER.extra });
+    const btn = $("draw-submit");
+    btn.disabled = true;
+    try {
+      if (NEWSLETTER.endpoint) {
+        await fetch(NEWSLETTER.endpoint, { method: "POST", mode: "no-cors", body: data });
+      } else {
+        $("draw-done-text").textContent = "Mode test : ton inscription n'a pas été enregistrée.";
+      }
+      form.hidden = true;
+      $("draw-done").hidden = false;
+    } catch (x) {
+      err("Oups, l'inscription n'a pas fonctionné. Réessaie dans un instant.");
+      btn.disabled = false;
+    }
+  });
+
+  // Rejouer : on réaffiche le formulaire
+  $("again").addEventListener("click", () => { form.hidden = false; $("draw-done").hidden = true; $("draw-submit").disabled = false; });
+})();

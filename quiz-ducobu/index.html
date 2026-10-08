@@ -70,6 +70,32 @@
       <div class="frise f3" aria-hidden="true"></div>
       <p class="bonus">Encore envie de jouer ? <a href="https://www.lelombard.com/incontournable/ducobu?categorie=jeux#bonus" target="_blank" rel="noopener">Télécharge les jeux Ducobu gratuits</a>.</p>
     </div>
+
+    <div class="card draw" id="draw">
+      <p class="kicker">🎁 Tirage au sort</p>
+      <h2>Gagne l'affiche et le jeu de cartes Ducobu&nbsp;!</h2>
+      <div class="prizes">
+        <figure><img src="assets/lot-affiche.jpg" alt="Affiche Ducobu Halloween"><figcaption>L'affiche Ducobu</figcaption></figure>
+        <figure><img src="assets/lot-jeu-cartes.jpg" alt="Boîte du jeu de cartes Ducobu"><figcaption>Le jeu de cartes Ducobu</figcaption></figure>
+      </div>
+      <form id="draw-form" novalidate>
+        <p class="draw-intro">Inscris-toi à la newsletter du Lombard pour participer au tirage au sort.</p>
+        <label for="f-prenom">Ton prénom</label>
+        <input id="f-prenom" name="prenom" type="text" autocomplete="given-name" maxlength="60" required>
+        <label for="f-email">Ton e-mail (ou celui d'un parent)</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" maxlength="120" required>
+        <div class="hp" aria-hidden="true"><label for="f-site">Ne pas remplir</label><input id="f-site" name="site" type="text" tabindex="-1" autocomplete="off"></div>
+        <label class="check" for="f-ok"><input id="f-ok" name="consent" type="checkbox" required>
+          <span>J'accepte de recevoir la newsletter du Lombard et j'ai lu le <a id="reglement-link" href="#" target="_blank" rel="noopener">règlement du tirage au sort</a>. Si j'ai moins de 13 ans, mon parent est d'accord.</span></label>
+        <p id="draw-error" class="draw-error" role="alert" hidden></p>
+        <button class="btn" type="submit" id="draw-submit">Je participe&nbsp;!</button>
+        <p class="legal">Tu peux te désinscrire à tout moment depuis chaque e-mail. Tes données ne servent qu'à la newsletter et au tirage au sort.</p>
+      </form>
+      <div id="draw-done" class="draw-done" hidden>
+        <h3>C'est noté, merci&nbsp;! 🎃</h3>
+        <p id="draw-done-text">Vérifie ta boîte mail (et les spams) pour confirmer ton inscription. Bonne chance&nbsp;!</p>
+      </div>
+    </div>
   </section>
 </main>
 
