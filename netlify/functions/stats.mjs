@@ -1,13 +1,20 @@
 // Données de la page d'administration : GET /api/stats (en-tête x-admin-token) ; ?format=csv pour l'export des inscrits.
-// Seul le hash SHA-256 du jeton est dans le code.
+// Accès = jeton (dans l'adresse) ET mot de passe. Seuls leurs empreintes sont dans le code : SHA-256 du jeton, scrypt (salé) du mot de passe.
 import { getStore } from "@netlify/blobs";
-import { createHash, timingSafeEqual } from "node:crypto";
+import { createHash, scryptSync, timingSafeEqual } from "node:crypto";
 
 const TOKEN_SHA256 = "8529c84f015e5a85479542f042aa4990a0043acb16c8f9ba51eb5390b2b321d1";
 
+const PASSWORD_SCRYPT = "1d48500a36de08180309fd62b5728b26:23110784127c2bdfa0c883d163824eb585617a9a20c0dc0362fea3446a868a9d"; // sel:empreinte
+
 const authorized = (req) => {
-  const given = createHash("sha256").update(req.headers.get("x-admin-token") || "").digest();
-  return timingSafeEqual(given, Buffer.from(TOKEN_SHA256, "hex"));
+  const token = createHash("sha256").update(req.headers.get("x-admin-token") || "").digest();
+  const [salt, hash] = PASSWORD_SCRYPT.split(":");
+  const pw = scryptSync(req.headers.get("x-admin-password") || "", salt, 32);
+  // les deux comparaisons sont toujours faites (pas de sortie anticipée)
+  const okToken = timingSafeEqual(token, Buffer.from(TOKEN_SHA256, "hex"));
+  const okPw = timingSafeEqual(pw, Buffer.from(hash, "hex"));
+  return okToken && okPw;
 };
 
 async function keys(store, prefix) {
@@ -19,7 +26,10 @@ async function keys(store, prefix) {
 const csvCell = (v) => '"' + String(v).replace(/"/g, '""') + '"';
 
 export default async (req) => {
-  if (!authorized(req)) return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401, headers: { "content-type": "application/json" } });
+  if (!authorized(req)) {
+    await new Promise((r) => setTimeout(r, 800)); // freine les essais répétés
+    return new Response(JSON.stringify({ error: "unauthorized" }), { status: 401, headers: { "content-type": "application/json" } });
+  }
   const store = getStore({ name: "quiz", consistency: "strong" });
   const url = new URL(req.url);
 

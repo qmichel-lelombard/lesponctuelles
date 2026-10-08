@@ -39,7 +39,7 @@ td.r,th.r{text-align:right}
 .btn{font:inherit;font-family:"Bangers";font-size:1.2rem;letter-spacing:.03em;background:var(--orange);color:var(--black);border:3px solid var(--black);border-radius:10px;padding:4px 14px;cursor:pointer;box-shadow:3px 3px 0 var(--black);text-decoration:none;display:inline-block}
 .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--black)}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
-input[type=search]{font:inherit;padding:5px 10px;border:3px solid var(--black);border-radius:8px;flex:1;min-width:160px}
+input[type=search],input[type=password]{font:inherit;padding:5px 10px;border:3px solid var(--black);border-radius:8px;flex:1;min-width:160px}
 .note{font-size:.85rem;opacity:.75}
 #msg{padding:18px;text-align:center;font-weight:700}
 [hidden]{display:none!important}
@@ -52,6 +52,15 @@ input[type=search]{font:inherit;padding:5px 10px;border:3px solid var(--black);b
 </header>
 <main>
   <div id="msg" class="card">Chargement…</div>
+
+  <form id="login" class="card" hidden>
+    <h2>Accès protégé</h2>
+    <div class="row">
+      <input type="password" id="pw" placeholder="Mot de passe" autocomplete="current-password" required>
+      <button class="btn" type="submit">Entrer</button>
+    </div>
+    <p class="note" id="login-err" role="alert"></p>
+  </form>
 
   <section class="card" id="s-kpi" hidden>
     <h2>Participations</h2>
@@ -94,6 +103,9 @@ input[type=search]{font:inherit;padding:5px 10px;border:3px solid var(--black);b
 
 <script>
 const token = decodeURIComponent(location.hash.slice(1));
+let password = "";
+try { password = sessionStorage.getItem("quiz-admin-pw") || ""; } catch (e) {}
+const headers = () => ({ "x-admin-token": token, "x-admin-password": password });
 const $ = id => document.getElementById(id);
 const LABELS = { brand: "Logo « Tome 30 » (haut de page)", decouvrir: "Découvrir Duco… Bouh ! (résultat)", jeux: "Jeux Ducobu gratuits", film: "Bannière du film", partage: "Bouton « Défier un copain »" };
 const PROFILES = [["10", "Sans-faute", s => s === 10], ["8–9", "Premier de la classe", s => s >= 8 && s <= 9], ["6–7", "Élève très honorable", s => s >= 6 && s <= 7], ["3–5", "Cancre en progrès", s => s >= 3 && s <= 5], ["0–2", "Champion du zéro pointé", s => s <= 2]];
@@ -101,16 +113,19 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;",
 const fmtDate = iso => new Date(iso).toLocaleString("fr-BE", { timeZone: "Europe/Brussels", dateStyle: "short", timeStyle: "short" });
 let data = null;
 
-function msg(t){ $("msg").hidden = false; $("msg").textContent = t; ["s-kpi","s-scores","s-clicks","s-days","s-subs"].forEach(i => $(i).hidden = true); }
+function msg(t){ $("login").hidden = true; $("msg").hidden = false; $("msg").textContent = t; ["s-kpi","s-scores","s-clicks","s-days","s-subs"].forEach(i => $(i).hidden = true); }
+function askPassword(err){ $("msg").hidden = true; ["s-kpi","s-scores","s-clicks","s-days","s-subs"].forEach(i => $(i).hidden = true); $("login").hidden = false; $("login-err").textContent = err || ""; $("pw").focus(); }
 
 async function load(){
   if (!token) return msg("Adresse incomplète : le lien d'accès doit se terminer par #… (jeton).");
+  if (!password) return askPassword();
   $("refresh").disabled = true;
   try {
-    const res = await fetch("/api/stats", { headers: { "x-admin-token": token }, cache: "no-store" });
-    if (res.status === 401) return msg("Accès refusé : jeton invalide.");
+    const res = await fetch("/api/stats", { headers: headers(), cache: "no-store" });
+    if (res.status === 401) { password = ""; try { sessionStorage.removeItem("quiz-admin-pw"); } catch (e) {} return askPassword("Accès refusé : vérifiez le lien et le mot de passe."); }
     if (!res.ok) return msg("Erreur du serveur (" + res.status + "). Réessayez dans un instant.");
     data = await res.json();
+    $("login").hidden = true;
     render();
   } catch (e) { msg("Impossible de joindre le serveur."); }
   finally { $("refresh").disabled = false; }
@@ -150,8 +165,15 @@ function renderSubs(){
 
 $("q").addEventListener("input", () => data && renderSubs());
 $("refresh").onclick = load;
+$("login").addEventListener("submit", e => {
+  e.preventDefault();
+  password = $("pw").value;
+  $("pw").value = "";
+  try { sessionStorage.setItem("quiz-admin-pw", password); } catch (x) {}
+  load();
+});
 $("csv").onclick = async () => {
-  const res = await fetch("/api/stats?format=csv", { headers: { "x-admin-token": token } });
+  const res = await fetch("/api/stats?format=csv", { headers: headers() });
   if (!res.ok) return;
   const url = URL.createObjectURL(await res.blob());
   const a = Object.assign(document.createElement("a"), { href: url, download: "inscrits-quiz-ducobu.csv" });
