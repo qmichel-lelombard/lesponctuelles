@@ -29,7 +29,7 @@ h1 em{font-style:normal;color:var(--purple);text-shadow:6px 6px 0 var(--orange)}
 h1 small{display:block;font-size:.5em;margin-top:8px}
 h2{font-size:64px;line-height:1.08}
 .sil{filter:brightness(0) drop-shadow(0 0 0 #000)}
-.q{font-size:64px;line-height:1.08;margin:14px 0 20px}
+.q{font-size:64px;line-height:1.08;margin:14px 0 20px;text-wrap:balance}
 .ans{width:100%;display:grid;gap:16px}
 .a{display:flex;align-items:center;gap:22px;text-align:left;background:#fff;border:6px solid var(--black);border-radius:20px;
   padding:10px 24px 10px 14px;box-shadow:6px 6px 0 var(--black);font-size:42px;min-height:98px;line-height:1.12}
@@ -71,7 +71,7 @@ const set1 = [
     <img src="${A}/couverture-tome-30.jpg" style="height:430px;margin-top:26px;border:6px solid var(--black);border-radius:8px;transform:rotate(-3deg);box-shadow:10px 10px 0 var(--orange)" alt="">
     <p class="sub" style="margin-top:30px">Saint-Potache est hantée.<br>Garderas-tu ton sang-froid&nbsp;?</p>
   `, 1, T1),
-  question(1, 7, 2, T1, "Qui est la voisine de classe que Ducobu adore « s'inspirer » en contrôle&nbsp;?",
+  question(1, 7, 2, T1, "Qui est la voisine de classe que Ducobu adore «&nbsp;s'inspirer&nbsp;» en contrôle&nbsp;?",
     ["Nénèss", "Léonie Gratin", "Rotule", "La directrice"], "leonie.png"),
   question(2, 7, 3, T1, "Comment s'appelle l'école de Ducobu&nbsp;?",
     ["Sainte-Cancre", "Saint-Cartable", "Saint-Potache", "Saint-Zéro-Pointé"], "ducobu-visage.png", false, 300),
@@ -84,11 +84,11 @@ const set1 = [
   question(6, 7, 7, T1, "Dans le tome&nbsp;30, avec quoi Ducobu essaie-t-il de tricher&nbsp;?",
     ["Un parchemin magique", "Une machine à remonter le temps", "Drones, IA et commandes en ligne", "Un perroquet savant"], "ducobu-bonnet.png", false, 290),
   question(7, 7, 8, T1, "Qui a créé Ducobu dans les années&nbsp;1990&nbsp;?",
-    ["Godi et Zidrou", "Uderzo et Goscinny", "Hergé et Jacobs", "Peyo et Franquin"], "ducobu-micro.webp", false, 290),
+    ["Godi (dessin) et Zidrou (scénario)", "Uderzo (dessin) et Goscinny (scénario)", "Hergé (dessin) et Jacobs (scénario)", "Peyo (dessin) et Franquin (scénario)"], "ducobu-micro.webp", false, 290),
   page(`
     <span class="k">Les réponses</span>
     <div style="width:100%;display:grid;gap:12px;margin-top:22px;text-align:left;font-size:41px">
-      ${[["1", "Léonie Gratin", "B"], ["2", "Saint-Potache", "C"], ["3", "Nénèss", "A"], ["4", "Rotule", "D"], ["5", "Monsieur Latouche", "B"], ["6", "Drones, IA et commandes en ligne", "C"], ["7", "Godi et Zidrou", "A"]]
+      ${[["1", "Léonie Gratin", "B"], ["2", "Saint-Potache", "C"], ["3", "Nénèss", "A"], ["4", "Rotule", "D"], ["5", "Monsieur Latouche", "B"], ["6", "Drones, IA et commandes en ligne", "C"], ["7", "Godi (dessin) et Zidrou (scénario)", "A"]]
         .map(([q, r, l]) => `<div class="a" style="min-height:0;padding:8px 20px 8px 12px;font-size:40px"><span class="letter" style="background:var(--orange);width:56px;height:56px;font-size:38px">${q}</span><span><b style="font-family:Bangers;font-weight:400;color:var(--purple)">${l}.</b> ${r}</span></div>`).join("")}
     </div>
     <div style="margin-top:26px;display:grid;gap:6px;font-size:40px;line-height:1.2">
