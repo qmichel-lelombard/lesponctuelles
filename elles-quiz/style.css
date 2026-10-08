@@ -231,3 +231,6 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .book:hover{transform:translateY(-3px)}
 .book img{width:84px;height:auto;border-radius:6px;box-shadow:0 8px 20px rgba(0,0,0,.45);transform:rotate(-3deg)}
 .book span{font-size:.92rem}.book b{display:block;font-family:var(--font-title);font-size:1.15rem;font-weight:600;color:var(--accent);filter:brightness(1.25)}
+.bg[data-bg=cantine] .kb{background-image:url(img/bg-cantine.webp);background-position:50% 40%}
+.bg[data-bg=chambre] .kb{background-image:url(img/bg-chambre.webp);background-position:50% 40%}
+.bg[data-bg=cinema] .kb{background-image:url(img/bg-cinema.webp);background-position:30% 50%}
