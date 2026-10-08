@@ -1,0 +1,104 @@
+[
+  {
+    "id": "duval",
+    "name": "Duval",
+    "first": "Fred",
+    "role": "Scénario",
+    "badge": "Seul scénariste",
+    "born": "Né à Rouen en janvier 1965",
+    "bio": "Scénariste français passé par le thriller, le récit historique et la science-fiction, Fred Duval est le fil rouge de la fresque : c'est lui qui écrit les huit récits de Mille Ans. On lui doit notamment Carmen Mc Callum, Le Casse, Jour J, L'Homme de l'année, Renaissance ou Néoforest. Il s'est aussi vu confier un one-shot Thorgal (Thorgal Saga). Chevalier de l'ordre des Arts et des Lettres depuis 2020.",
+    "works": ["Carmen Mc Callum", "Le Casse", "Jour J", "L'Homme de l'année", "Renaissance", "Néoforest", "Thorgal Saga – Wendigo"],
+    "photo": "assets/authors/duval-fred.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/duval-fred"
+  },
+  {
+    "id": "armand",
+    "name": "Armand",
+    "first": "Dimitri",
+    "role": "Dessin",
+    "born": "",
+    "bio": "Dessinateur d'une génération nourrie à la fois d'animation et de manga japonais, de comics américains et de tradition franco-belge, Armand se destinait d'abord au dessin animé avant de choisir la bande dessinée. Il a développé l'univers mystico-technologique de Salamandre, puis travaillé sur Angor, Bob Morane – Renaissance, Sykes et Texas Jack pour Le Lombard, avant de s'attaquer à la série de science-fiction Le Convoyeur avec Tristan Roulot.",
+    "works": ["Salamandre", "Angor", "Bob Morane – Renaissance", "Sykes", "Texas Jack", "Le Convoyeur"],
+    "photo": "assets/authors/armand.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/armand"
+  },
+  {
+    "id": "bajram",
+    "name": "Bajram",
+    "first": "Denis",
+    "role": "Dessin",
+    "born": "Né en 1970, en région parisienne",
+    "bio": "Figure de la science-fiction en bande dessinée, Denis Bajram a d'abord étudié les sciences avant de se tourner vers les arts, après un passage marquant par le fanzinat. Il signe Cryozone (scénario de Thierry Cailleteau) puis, scénario et dessin, la saga Universal War One, prolongée par Universal War Two chez Casterman. Installé à Bruxelles depuis 2001, il y a fondé l'Atelier Virtuel avec Valérie Mangin et dessine ses albums en numérique.",
+    "works": ["Cryozone", "Universal War One", "Universal War Two", "Mémoires Mortes (scénario)"],
+    "photo": "",
+    "link": "https://www.lelombard.com/auteur-bd/bajram-denis",
+    "chapter": "Signe le Prologue – Année 0 (avec Duval)"
+  },
+  {
+    "id": "buchet",
+    "name": "Buchet",
+    "first": "Philippe",
+    "role": "Dessin",
+    "born": "Né en 1962 à Juniville (Ardennes)",
+    "bio": "Installé à Reims comme illustrateur indépendant, puis directeur artistique dans une agence de bande dessinée de communication, Philippe Buchet y rencontre Jean-David Morvan et Sylvain Savoïa, avec qui il fonde l'atelier 510 TTC en 1994. Il participe à la série Nomad (Glénat) avant de s'imposer comme le dessinateur de Sillage, grande saga d'aventure spatiale écrite par Morvan.",
+    "works": ["Sillage", "Nomad"],
+    "photo": "",
+    "link": "https://www.lelombard.com/auteur-bd/philippe-buchet",
+    "chapter": "Signe « Première relève » – Année +0005 (avec Duval)"
+  },
+  {
+    "id": "grun",
+    "name": "Grun",
+    "first": "",
+    "role": "Dessin",
+    "born": "",
+    "bio": "",
+    "works": [],
+    "photo": "",
+    "link": "https://www.lelombard.com/auteur-bd/grun"
+  },
+  {
+    "id": "ricci",
+    "name": "Ricci",
+    "first": "Roberto",
+    "role": "Dessin",
+    "born": "Né à Rome en 1976",
+    "bio": "Après huit années d'études musicales interrompues par une blessure, Roberto Ricci se forme à l'École internationale de comics de Rome. Il collabore dans les années 2000 avec Philippe Saimbert sur Les Âmes d'Hélios (Delcourt), puis dessine notamment Moksha, Delta et June Christy.",
+    "works": ["Les Âmes d'Hélios", "Moksha", "Delta", "June Christy"],
+    "photo": "",
+    "link": "https://www.lelombard.com/auteur-bd/ricci-roberto"
+  },
+  {
+    "id": "salaun",
+    "name": "Salaün",
+    "first": "Jaouen",
+    "role": "Dessin",
+    "born": "Né en 1979",
+    "bio": "Passé par l'école Émile Cohl de Lyon (diplômé en 2003, sélectionné à la Foire internationale d'illustration de Bologne), Jaouen Salaün travaille d'abord pour l'édition jeunesse. Sa première bande dessinée, Nova, paraît chez Soleil en 2006 sur un scénario de Julien Blondel. Il collabore ensuite avec Christophe Bec (spin-off de Carthago, puis Eternum chez Casterman) et signe Juste une fois et la dystopie de science-fiction Elecboy.",
+    "works": ["Nova", "Carthago (spin-off)", "Eternum", "Juste une fois", "Elecboy"],
+    "photo": "",
+    "link": "https://www.lelombard.com/auteur-bd/salaun-jaouen"
+  },
+  {
+    "id": "toulhoat",
+    "name": "Toulhoat",
+    "first": "Ronan",
+    "role": "Dessin",
+    "born": "Né en 1984",
+    "bio": "Après un baccalauréat orienté ingénierie, Ronan Toulhoat se réoriente vers l'illustration indépendante : couvertures de livres, cinéma, jeux vidéo. Avec le scénariste Vincent Brugeas, il signe l'uchronie Block 109 (Akileos, 2010) puis Ira Dei, située à Byzance en 1040 (Dargaud). Il dessine ensuite Cosaques (Le Lombard) et Daemon, avec Brugeas et Yoann Guillo.",
+    "works": ["Block 109", "Ira Dei", "Cosaques", "Daemon"],
+    "photo": "assets/authors/toulhoat-ronan.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/toulhoat-ronan"
+  },
+  {
+    "id": "vignaux",
+    "name": "Vignaux",
+    "first": "Fred",
+    "role": "Dessin",
+    "born": "Né à Toulouse en 1972",
+    "bio": "Frédéric Vignaux a étudié les sciences à Toulouse, Montpellier et Lille avant de se consacrer à la bande dessinée, à Paris. Sa première œuvre, L'Ombre des Anciens (2002), est suivie de bandes dessinées publicitaires, dont Cassini-Huygens : Objectif Titan pour l'Agence spatiale européenne, puis de Time Twins, Le Pendule de Foucault ou Vercingétorix. Depuis 2017, il fait partie de l'équipe de l'univers Thorgal, à commencer par Kriss de Valnor.",
+    "works": ["L'Ombre des Anciens", "Cassini-Huygens : Objectif Titan", "Time Twins", "Le Pendule de Foucault", "Vercingétorix", "Kriss de Valnor"],
+    "photo": "assets/authors/vignaux-fred.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/vignaux-fred"
+  }
+]

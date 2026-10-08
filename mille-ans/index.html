@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mille Ans – Un scénariste, huit dessinateurs | Le Lombard</title>
+<meta name="description" content="Mille Ans, l'album SF de Duval avec Armand, Bajram, Buchet, Grun, Ricci, Salaün, Toulhoat et Vignaux : huit récits pour une grande fresque. Le 23 octobre 2026 chez Le Lombard.">
+<meta name="theme-color" content="#05080f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mille Ans – Un scénariste, huit dessinateurs">
+<meta property="og:description" content="Huit récits pour une grande fresque par les plus grands noms de la SF. Parution le 23 octobre 2026.">
+<meta property="og:image" content="assets/img/cover-front.webp">
+<link rel="preload" href="assets/fonts/Michroma-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="scan" aria-hidden="true"></div>
+
+<header class="top" id="top">
+  <a class="top__brand" href="#hero" aria-label="Mille Ans – accueil"><img src="assets/img/logo-station.webp" alt="Mille Ans" width="90" height="52"></a>
+  <nav class="top__nav" id="nav" aria-label="Navigation principale">
+    <a href="#album" data-s="album"><b>01</b> L'album</a>
+    <a href="#fresque" data-s="fresque"><b>02</b> La fresque</a>
+    <a href="#chrono" data-s="chrono"><b>03</b> Chronologie</a>
+    <a href="#auteurs" data-s="auteurs"><b>04</b> Les auteurs</a>
+    <a href="#extrait" data-s="extrait"><b>05</b> Extrait</a>
+  </nav>
+  <button class="top__burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
+</header>
+<div class="progress" aria-hidden="true"><i id="progress"></i></div>
+
+<main id="contenu">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__inner">
+    <p class="eyebrow hero__eyebrow">Le Lombard présente</p>
+    <h1 class="hero__logo">
+      <img src="assets/img/logo-station.webp" alt="Mille Ans" width="950" height="550" fetchpriority="high">
+    </h1>
+    <p class="hero__tag" id="tag" data-text="Un scénariste. Huit dessinateurs. Mille ans.">Un scénariste. Huit dessinateurs. Mille ans.</p>
+    <p class="hero__by"><span>Duval</span><i></i><span>Armand · Bajram · Buchet · Grun · Ricci · Salaün · Toulhoat · Vignaux</span></p>
+
+    <div class="count" id="count" data-target="2026-10-23T00:00:00+02:00" aria-live="off">
+      <p class="count__label eyebrow">Parution en librairie · 23 octobre 2026</p>
+      <div class="count__grid" role="timer">
+        <div><b id="c-d">--</b><span>jours</span></div>
+        <div><b id="c-h">--</b><span>heures</span></div>
+        <div><b id="c-m">--</b><span>minutes</span></div>
+        <div><b id="c-s">--</b><span>secondes</span></div>
+      </div>
+      <p class="count__done" id="count-done" hidden>L'album est disponible en librairie.</p>
+    </div>
+
+    <div class="cta">
+      <a class="btn btn--solid" href="https://www.westory.fr/player-display?do=html&amp;token=h2vpJGKDGRFZ2ZW82QiItS426PvpIhfq#excerpt" target="_blank" rel="noopener">Lire les premières planches <span aria-hidden="true">↗</span></a>
+      <a class="btn" href="#auteurs">Rencontrer les 9 auteurs</a>
+    </div>
+  </div>
+  <a class="hero__down" href="#album" aria-label="Descendre"><span></span></a>
+</section>
+
+<!-- L'ALBUM -->
+<section class="sec" id="album">
+  <header class="sec__head reveal">
+    <p class="eyebrow">01 · Transmission d'ouverture</p>
+    <h2>Laisser la Terre se régénérer… <em>pendant mille ans</em></h2>
+  </header>
+
+  <div class="album">
+    <figure class="album__cover reveal" id="cover" aria-label="Couverture de l'album Mille Ans">
+      <div class="album__tilt">
+        <img src="assets/img/cover-front.webp" alt="Couverture de Mille Ans : une astronaute et son petit robot face à une ville en ruines reprise par la végétation, dominée par une immense tour" width="950" height="1310">
+        <span class="album__glare" aria-hidden="true"></span>
+      </div>
+      <figcaption>Couverture · © Le Lombard</figcaption>
+    </figure>
+
+    <div class="album__text">
+      <div class="reveal">
+        <p class="lead">2056. Les conflits, la surpopulation et l'épuisement des ressources naturelles ont débouché sur une catastrophe écologique majeure.</p>
+        <p>Pour sauver la planète, une seule solution : laisser la Terre se régénérer… pendant mille ans !</p>
+        <p>Une poignée d'humains privilégiés a été cryogénisée et va se retrouver malgré elle à devoir assurer la survie de notre espèce…</p>
+      </div>
+
+      <dl class="spec reveal" aria-label="Fiche technique">
+        <div><dt>Parution</dt><dd>23 octobre 2026</dd></div>
+        <div><dt>Genre</dt><dd>Science-fiction</dd></div>
+        <div><dt>Type</dt><dd>Album · One-shot</dd></div>
+        <div><dt>Pagination</dt><dd>104 pages</dd></div>
+        <div><dt>Format</dt><dd>241 × 318 mm</dd></div>
+        <div><dt>Public</dt><dd>9+</dd></div>
+        <div class="spec__wide"><dt>ISBN</dt><dd>978-2-8082-1782-8</dd></div>
+      </dl>
+      <p class="reveal"><a class="link-out" href="https://www.lelombard.com/bd/pour-mille-ans/mille-ans" target="_blank" rel="noopener">Fiche officielle sur lelombard.com <span aria-hidden="true">↗</span></a></p>
+    </div>
+  </div>
+
+  <div class="strip reveal" aria-hidden="true">
+    <img src="assets/img/earth.webp" alt="" loading="lazy" width="952" height="330">
+  </div>
+</section>
+
+<!-- LA FRESQUE -->
+<section class="sec sec--alt" id="fresque">
+  <header class="sec__head reveal">
+    <p class="eyebrow">02 · Projet éditorial</p>
+    <h2>Une fresque collective, <em>un fait rare</em></h2>
+  </header>
+
+  <div class="fresque">
+    <div class="fresque__text reveal">
+      <p class="lead">Un scénariste et huit dessinateurs s'associent pour créer une grande fresque composée de 8 récits courts.</p>
+      <p>Dans l'édition de bandes dessinées, les projets collectifs de cette ampleur sont relativement rares. Ici, une seule plume, celle de Fred Duval, relie des univers graphiques très différents : huit signatures, huit regards, une seule fresque.</p>
+      <p class="quote">« Huit histoires pour une grande fresque par les plus grands noms de la SF »<cite>Quatrième de couverture</cite></p>
+      <div class="big">
+        <div><b data-count="1">1</b><span>scénariste</span></div>
+        <div><b data-count="8">8</b><span>dessinateurs</span></div>
+        <div><b data-count="1000">1000</b><span>ans</span></div>
+      </div>
+    </div>
+
+    <div class="orbit reveal" aria-label="Les huit dessinateurs en orbite autour du scénariste">
+      <div class="orbit__ring orbit__ring--1"></div>
+      <div class="orbit__ring orbit__ring--2"></div>
+      <a class="orbit__core" href="#auteur-duval"><span>DUVAL</span><small>scénario</small></a>
+      <ul class="orbit__list">
+<li style="--a:0.00deg"><a href="#auteur-armand" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">ARMAND</span></a></li>
+<li style="--a:45.00deg"><a href="#auteur-bajram" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">BAJRAM</span></a></li>
+<li style="--a:90.00deg"><a href="#auteur-buchet" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">BUCHET</span></a></li>
+<li style="--a:135.00deg"><a href="#auteur-grun" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">GRUN</span></a></li>
+<li style="--a:180.00deg"><a href="#auteur-ricci" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">RICCI</span></a></li>
+<li style="--a:225.00deg"><a href="#auteur-salaun" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">SALAÜN</span></a></li>
+<li style="--a:270.00deg"><a href="#auteur-toulhoat" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">TOULHOAT</span></a></li>
+<li style="--a:315.00deg"><a href="#auteur-vignaux" class="orbit__node"><span class="orbit__dot"></span><span class="orbit__label">VIGNAUX</span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CHRONOLOGIE -->
+<section class="sec" id="chrono">
+  <header class="sec__head reveal">
+    <p class="eyebrow">03 · Journal de bord</p>
+    <h2>Mille ans, <em>huit récits</em></h2>
+    <p class="sec__sub">Les premières transmissions de l'album sont déchiffrées ; les suivantes le seront bientôt.</p>
+  </header>
+
+  <div class="tl" tabindex="0" aria-label="Chronologie, faire défiler horizontalement">
+    <article class="tl__item tl__item--open">
+      <p class="tl__year">2056</p>
+      <h3>La catastrophe</h3>
+      <p>Conflits, surpopulation, épuisement des ressources naturelles : une catastrophe écologique majeure. Pour sauver la planète, une seule solution.</p>
+    </article>
+
+    <article class="tl__item tl__item--open tl__item--img">
+      <img src="assets/img/prologue.webp" alt="Page de titre du Prologue, année 0 : la station en dessin technique sur fond bleu nuit" loading="lazy" width="1000" height="1335">
+      <div class="tl__cap">
+        <p class="tl__year">Année 0</p>
+        <h3>Prologue</h3>
+        <p class="tl__by">Duval <i>×</i> Bajram</p>
+      </div>
+    </article>
+
+    <article class="tl__item tl__item--open">
+      <p class="tl__year">Année +0005</p>
+      <h3>Première relève</h3>
+      <p class="tl__by">Duval <i>×</i> Buchet</p>
+    </article>
+
+    <article class="tl__item tl__item--locked">
+      <p class="tl__year">Année +????</p>
+      <h3>Signal chiffré</h3>
+      <p>Transmission en cours de décryptage.</p>
+    </article>
+    <article class="tl__item tl__item--locked">
+      <p class="tl__year">Année +????</p>
+      <h3>Signal chiffré</h3>
+      <p>Transmission en cours de décryptage.</p>
+    </article>
+    <article class="tl__item tl__item--locked">
+      <p class="tl__year">Année +????</p>
+      <h3>Signal chiffré</h3>
+      <p>Transmission en cours de décryptage.</p>
+    </article>
+  </div>
+</section>
+
+<!-- AUTEURS -->
+<section class="sec sec--alt" id="auteurs">
+  <header class="sec__head reveal">
+    <p class="eyebrow">04 · Équipage</p>
+    <h2>Neuf auteurs, <em>neuf trajectoires</em></h2>
+    <p class="sec__sub">Du thriller à la fantasy, de la hard SF à la fresque historique : un équipage aux parcours très différents, réuni pour un même voyage.</p>
+  </header>
+
+  <div class="authors">
+
+    <article class="author author--lead reveal" id="auteur-duval" data-author="duval">
+      <div class="author__media"><img src="assets/authors/duval-fred.jpg" alt="Portrait de Fred Duval" loading="lazy" decoding="async"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">01/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Scénario</span><span class="chip chip--hot">Seul scénariste</span></div>
+        <h3 class="author__name"><span class="author__first">Fred</span><span class="decode" data-text="DUVAL">DUVAL</span></h3>
+        <p class="author__born">Né à Rouen en janvier 1965</p><p class="author__bio">Scénariste français passé par le thriller, le récit historique et la science-fiction, Fred Duval est le fil rouge de la fresque : c&#x27;est lui qui écrit les huit récits de Mille Ans. On lui doit notamment Carmen Mc Callum, Le Casse, Jour J, L&#x27;Homme de l&#x27;année, Renaissance ou Néoforest. Il s&#x27;est aussi vu confier un one-shot Thorgal (Thorgal Saga). Chevalier de l&#x27;ordre des Arts et des Lettres depuis 2020.</p><div class="author__works"><h4>Repères</h4><ul><li>Carmen Mc Callum</li><li>Le Casse</li><li>Jour J</li><li>L&#x27;Homme de l&#x27;année</li><li>Renaissance</li><li>Néoforest</li><li>Thorgal Saga – Wendigo</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/duval-fred" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-armand" data-author="armand">
+      <div class="author__media"><img src="assets/authors/armand.jpg" alt="Portrait de Dimitri Armand" loading="lazy" decoding="async"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">02/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="author__first">Dimitri</span><span class="decode" data-text="ARMAND">ARMAND</span></h3>
+        <p class="author__bio">Dessinateur d&#x27;une génération nourrie à la fois d&#x27;animation et de manga japonais, de comics américains et de tradition franco-belge, Armand se destinait d&#x27;abord au dessin animé avant de choisir la bande dessinée. Il a développé l&#x27;univers mystico-technologique de Salamandre, puis travaillé sur Angor, Bob Morane – Renaissance, Sykes et Texas Jack pour Le Lombard, avant de s&#x27;attaquer à la série de science-fiction Le Convoyeur avec Tristan Roulot.</p><div class="author__works"><h4>Repères</h4><ul><li>Salamandre</li><li>Angor</li><li>Bob Morane – Renaissance</li><li>Sykes</li><li>Texas Jack</li><li>Le Convoyeur</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/armand" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-bajram" data-author="bajram">
+      <div class="author__media"><div class="author__mono" role="img" aria-label="Portrait à venir"><span>DB</span><small>Signal en attente</small></div><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">03/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="author__first">Denis</span><span class="decode" data-text="BAJRAM">BAJRAM</span></h3>
+        <p class="author__born">Né en 1970, en région parisienne</p><p class="author__chapter">Signe le Prologue – Année 0 (avec Duval)</p><p class="author__bio">Figure de la science-fiction en bande dessinée, Denis Bajram a d&#x27;abord étudié les sciences avant de se tourner vers les arts, après un passage marquant par le fanzinat. Il signe Cryozone (scénario de Thierry Cailleteau) puis, scénario et dessin, la saga Universal War One, prolongée par Universal War Two chez Casterman. Installé à Bruxelles depuis 2001, il y a fondé l&#x27;Atelier Virtuel avec Valérie Mangin et dessine ses albums en numérique.</p><div class="author__works"><h4>Repères</h4><ul><li>Cryozone</li><li>Universal War One</li><li>Universal War Two</li><li>Mémoires Mortes (scénario)</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/bajram-denis" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-buchet" data-author="buchet">
+      <div class="author__media"><div class="author__mono" role="img" aria-label="Portrait à venir"><span>PB</span><small>Signal en attente</small></div><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">04/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="author__first">Philippe</span><span class="decode" data-text="BUCHET">BUCHET</span></h3>
+        <p class="author__born">Né en 1962 à Juniville (Ardennes)</p><p class="author__chapter">Signe « Première relève » – Année +0005 (avec Duval)</p><p class="author__bio">Installé à Reims comme illustrateur indépendant, puis directeur artistique dans une agence de bande dessinée de communication, Philippe Buchet y rencontre Jean-David Morvan et Sylvain Savoïa, avec qui il fonde l&#x27;atelier 510 TTC en 1994. Il participe à la série Nomad (Glénat) avant de s&#x27;imposer comme le dessinateur de Sillage, grande saga d&#x27;aventure spatiale écrite par Morvan.</p><div class="author__works"><h4>Repères</h4><ul><li>Sillage</li><li>Nomad</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/philippe-buchet" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-grun" data-author="grun">
+      <div class="author__media"><div class="author__mono" role="img" aria-label="Portrait à venir"><span>GR</span><small>Signal en attente</small></div><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">05/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="decode" data-text="GRUN">GRUN</span></h3>
+        <p class="author__bio author__bio--wait">Fiche détaillée en cours de décryptage.</p>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/grun" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-ricci" data-author="ricci">
+      <div class="author__media"><div class="author__mono" role="img" aria-label="Portrait à venir"><span>RR</span><small>Signal en attente</small></div><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">06/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="author__first">Roberto</span><span class="decode" data-text="RICCI">RICCI</span></h3>
+        <p class="author__born">Né à Rome en 1976</p><p class="author__bio">Après huit années d&#x27;études musicales interrompues par une blessure, Roberto Ricci se forme à l&#x27;École internationale de comics de Rome. Il collabore dans les années 2000 avec Philippe Saimbert sur Les Âmes d&#x27;Hélios (Delcourt), puis dessine notamment Moksha, Delta et June Christy.</p><div class="author__works"><h4>Repères</h4><ul><li>Les Âmes d&#x27;Hélios</li><li>Moksha</li><li>Delta</li><li>June Christy</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/ricci-roberto" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-salaun" data-author="salaun">
+      <div class="author__media"><div class="author__mono" role="img" aria-label="Portrait à venir"><span>JS</span><small>Signal en attente</small></div><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">07/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="author__first">Jaouen</span><span class="decode" data-text="SALAÜN">SALAÜN</span></h3>
+        <p class="author__born">Né en 1979</p><p class="author__bio">Passé par l&#x27;école Émile Cohl de Lyon (diplômé en 2003, sélectionné à la Foire internationale d&#x27;illustration de Bologne), Jaouen Salaün travaille d&#x27;abord pour l&#x27;édition jeunesse. Sa première bande dessinée, Nova, paraît chez Soleil en 2006 sur un scénario de Julien Blondel. Il collabore ensuite avec Christophe Bec (spin-off de Carthago, puis Eternum chez Casterman) et signe Juste une fois et la dystopie de science-fiction Elecboy.</p><div class="author__works"><h4>Repères</h4><ul><li>Nova</li><li>Carthago (spin-off)</li><li>Eternum</li><li>Juste une fois</li><li>Elecboy</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/salaun-jaouen" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-toulhoat" data-author="toulhoat">
+      <div class="author__media"><img src="assets/authors/toulhoat-ronan.jpg" alt="Portrait de Ronan Toulhoat" loading="lazy" decoding="async"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">08/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="author__first">Ronan</span><span class="decode" data-text="TOULHOAT">TOULHOAT</span></h3>
+        <p class="author__born">Né en 1984</p><p class="author__bio">Après un baccalauréat orienté ingénierie, Ronan Toulhoat se réoriente vers l&#x27;illustration indépendante : couvertures de livres, cinéma, jeux vidéo. Avec le scénariste Vincent Brugeas, il signe l&#x27;uchronie Block 109 (Akileos, 2010) puis Ira Dei, située à Byzance en 1040 (Dargaud). Il dessine ensuite Cosaques (Le Lombard) et Daemon, avec Brugeas et Yoann Guillo.</p><div class="author__works"><h4>Repères</h4><ul><li>Block 109</li><li>Ira Dei</li><li>Cosaques</li><li>Daemon</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/toulhoat-ronan" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+
+    <article class="author reveal" id="auteur-vignaux" data-author="vignaux">
+      <div class="author__media"><img src="assets/authors/vignaux-fred.jpg" alt="Portrait de Fred Vignaux" loading="lazy" decoding="async"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <span class="author__idx">09/09</span></div>
+      <div class="author__body">
+        <div class="chips"><span class="chip">Dessin</span></div>
+        <h3 class="author__name"><span class="author__first">Fred</span><span class="decode" data-text="VIGNAUX">VIGNAUX</span></h3>
+        <p class="author__born">Né à Toulouse en 1972</p><p class="author__bio">Frédéric Vignaux a étudié les sciences à Toulouse, Montpellier et Lille avant de se consacrer à la bande dessinée, à Paris. Sa première œuvre, L&#x27;Ombre des Anciens (2002), est suivie de bandes dessinées publicitaires, dont Cassini-Huygens : Objectif Titan pour l&#x27;Agence spatiale européenne, puis de Time Twins, Le Pendule de Foucault ou Vercingétorix. Depuis 2017, il fait partie de l&#x27;équipe de l&#x27;univers Thorgal, à commencer par Kriss de Valnor.</p><div class="author__works"><h4>Repères</h4><ul><li>L&#x27;Ombre des Anciens</li><li>Cassini-Huygens : Objectif Titan</li><li>Time Twins</li><li>Le Pendule de Foucault</li><li>Vercingétorix</li><li>Kriss de Valnor</li></ul></div>
+        <a class="link-out" href="https://www.lelombard.com/auteur-bd/vignaux-fred" target="_blank" rel="noopener">Fiche sur lelombard.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- EXTRAIT -->
+<section class="sec sec--end" id="extrait">
+  <div class="end reveal">
+    <p class="eyebrow">05 · Prêt pour le décollage</p>
+    <h2>Entrez dans <em>Mille Ans</em></h2>
+    <p>Feuilletez les premières planches de l'album, puis retrouvez-le en librairie le 23 octobre 2026.</p>
+    <div class="cta cta--center">
+      <a class="btn btn--solid" href="https://www.westory.fr/player-display?do=html&amp;token=h2vpJGKDGRFZ2ZW82QiItS426PvpIhfq#excerpt" target="_blank" rel="noopener">Lire l'extrait <span aria-hidden="true">↗</span></a>
+      <a class="btn" href="https://www.lelombard.com/bd/pour-mille-ans/mille-ans" target="_blank" rel="noopener">Voir sur lelombard.com <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p><b>MILLE ANS</b> · Duval, Armand, Bajram, Buchet, Grun, Ricci, Salaün, Toulhoat, Vignaux · Éditions Le Lombard · ISBN 978-2-8082-1782-8</p>
+  <p class="foot__small">Visuels © Le Lombard. Portraits d'auteurs © leurs ayants droit / Le Lombard. Site promotionnel de l'album.</p>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
