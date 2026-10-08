@@ -71,7 +71,7 @@ const set1 = [
     <img src="${A}/couverture-tome-30.jpg" style="height:430px;margin-top:26px;border:6px solid var(--black);border-radius:8px;transform:rotate(-3deg);box-shadow:10px 10px 0 var(--orange)" alt="">
     <p class="sub" style="margin-top:30px">Saint-Potache est hantée.<br>Garderas-tu ton sang-froid&nbsp;?</p>
   `, 1, T1),
-  question(1, 7, 2, T1, "Qui est la voisine de classe que Ducobu adore «&nbsp;s'inspirer&nbsp;» en contrôle&nbsp;?",
+  question(1, 7, 2, T1, "Qui est la voisine de classe dont Ducobu adore «&nbsp;s'inspirer&nbsp;» en contrôle&nbsp;?",
     ["Nénèss", "Léonie Gratin", "Rotule", "La directrice"], "leonie.png"),
   question(2, 7, 3, T1, "Comment s'appelle l'école de Ducobu&nbsp;?",
     ["Sainte-Cancre", "Saint-Cartable", "Saint-Potache", "Saint-Zéro-Pointé"], "ducobu-visage.png", false, 300),
