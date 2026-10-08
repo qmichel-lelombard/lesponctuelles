@@ -123,3 +123,12 @@ a.film:hover .film-cta,a.film:focus-visible .film-cta{background:var(--yellow);c
 .legal{font-size:.78rem;opacity:.8;margin:4px 0 0;text-align:center}
 .draw-done{text-align:center}.draw-done h3{font-family:"Bangers","Impact",sans-serif;font-size:1.8rem;margin:.2em 0}
 .card.draw h2{text-align:center}.card.draw .kicker{display:block;width:max-content;margin-inline:auto}
+
+/* Bas de page : fond orange continu, assorti à la bannière du film */
+:root{--orange-film:#ec6500}
+.bottom{background:var(--orange-film);margin-top:24px}
+.bottom .frise.f2{background-color:transparent;border:0;margin:0;height:70px;background-position:center bottom}
+.bottom a.film{background:transparent;border:0;margin:0 auto;color:var(--black)}
+.bottom .film-cta{padding:12px;font-size:1.3rem}
+.bottom a.film:hover .film-cta,.bottom a.film:focus-visible .film-cta{background:var(--black);color:var(--yellow)}
+.bottom footer{background:transparent;color:var(--black);padding:6px 16px 22px}
