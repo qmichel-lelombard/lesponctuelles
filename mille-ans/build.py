@@ -79,5 +79,31 @@ def versioned(m):
 
 # anti-cache : CSS/JS/polices référencés avec une empreinte du contenu
 html = re.sub(r'(assets/(?:css/style\.css|js/main\.js|fonts/fonts\.css))(?=")', versioned, html)
+
+
+def typo(text):
+    """Espace insécable avant ; : ! ? » et après « (typographie française)."""
+    text = re.sub(r"[ \u202f]+(?=[;:!?»])", "\u00a0", text)
+    return re.sub(r"(?<=«)[ \u202f]+", "\u00a0", text)
+
+
+def typo_html(doc):
+    # ne touche ni aux balises/attributs, ni aux blocs <style> ; traite le texte et le JSON du carnet
+    parts = re.split(r"(<[^>]+>)", doc)
+    out, skip = [], False
+    for p in parts:
+        if p.startswith("<"):
+            low = p.lower()
+            if low.startswith("<style"):
+                skip = True
+            elif low.startswith("</style"):
+                skip = False
+            out.append(p)
+        else:
+            out.append(p if skip else typo(p))
+    return "".join(out)
+
+
+html = typo_html(html)
 (ROOT / "index.html").write_text(html, encoding="utf-8")
 print(f"index.html généré ({len(html)//1024} Ko, {len(authors)} auteurs)")
