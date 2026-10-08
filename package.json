@@ -1,0 +1,8 @@
+{
+  "name": "quiz-ducobu",
+  "private": true,
+  "description": "Quiz Ducobu : site statique (quiz-ducobu/) + fonctions Netlify pour le suivi (netlify/functions/)",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.4"
+  }
+}

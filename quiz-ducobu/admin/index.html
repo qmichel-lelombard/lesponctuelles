@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Suivi du quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#ffd400;--black:#141414;--paper:#fff8dc;--orange:#ff7a00;--purple:#4b1d6b}
+*{box-sizing:border-box}
+body{margin:0;color:var(--black);font:17px/1.4 "Comic Neue","Comic Sans MS",system-ui,sans-serif;background:repeating-linear-gradient(135deg,var(--yellow) 0 28px,var(--black) 28px 56px);background-attachment:fixed}
+h1,h2,.num{font-family:"Bangers","Impact",sans-serif;font-weight:400;letter-spacing:.03em}
+header{background:var(--black);color:var(--yellow);padding:12px 18px;border-bottom:4px solid var(--orange);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{margin:0;font-size:1.9rem}
+header small{color:#ddd;font:inherit;font-size:.85rem}
+main{max-width:1000px;margin:0 auto;padding:18px 14px 40px;display:grid;gap:18px}
+.card{background:var(--paper);border:5px solid var(--black);border-radius:16px;box-shadow:7px 7px 0 var(--black);padding:18px}
+h2{margin:0 0 10px;font-size:1.7rem}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:#fff;border:4px solid var(--black);border-radius:12px;padding:10px 12px;text-align:center}
+.kpi .num{font-size:2.6rem;line-height:1;color:var(--purple)}
+.kpi span{font-size:.9rem}
+.bars{display:grid;gap:6px}
+.bar{display:grid;grid-template-columns:70px 1fr 60px;gap:10px;align-items:center}
+.bar .t{height:22px;background:#fff;border:3px solid var(--black);border-radius:8px;overflow:hidden}
+.bar .t i{display:block;height:100%;background:repeating-linear-gradient(135deg,var(--yellow) 0 10px,var(--orange) 10px 20px)}
+.bar b{text-align:right}
+.profiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin-top:14px}
+.profiles div{background:var(--yellow);border:3px solid var(--black);border-radius:10px;padding:6px 10px;font-size:.92rem}
+.profiles b{font-family:"Bangers";font-weight:400;font-size:1.5rem;display:block}
+table{width:100%;border-collapse:collapse;background:#fff;border:3px solid var(--black);font-size:.95rem}
+th,td{padding:6px 10px;border-bottom:2px solid #ddd;text-align:left}
+th{background:var(--black);color:var(--yellow);font-weight:700;position:sticky;top:0}
+td.r,th.r{text-align:right}
+.scroll{max-height:420px;overflow:auto;border:3px solid var(--black);border-radius:8px}
+.scroll table{border:0}
+.btn{font:inherit;font-family:"Bangers";font-size:1.2rem;letter-spacing:.03em;background:var(--orange);color:var(--black);border:3px solid var(--black);border-radius:10px;padding:4px 14px;cursor:pointer;box-shadow:3px 3px 0 var(--black);text-decoration:none;display:inline-block}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--black)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+input[type=search]{font:inherit;padding:5px 10px;border:3px solid var(--black);border-radius:8px;flex:1;min-width:160px}
+.note{font-size:.85rem;opacity:.75}
+#msg{padding:18px;text-align:center;font-weight:700}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <h1>Suivi du quiz · Duco… Bouh&nbsp;!</h1>
+  <span><small id="stamp"></small> <button class="btn" id="refresh" type="button">Actualiser</button></span>
+</header>
+<main>
+  <div id="msg" class="card">Chargement…</div>
+
+  <section class="card" id="s-kpi" hidden>
+    <h2>Participations</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="num" id="k-starts">–</div><span>parties lancées</span></div>
+      <div class="kpi"><div class="num" id="k-fin">–</div><span>parties terminées</span></div>
+      <div class="kpi"><div class="num" id="k-rate">–</div><span>taux de fin</span></div>
+      <div class="kpi"><div class="num" id="k-avg">–</div><span>score moyen /10</span></div>
+      <div class="kpi"><div class="num" id="k-subs">–</div><span>inscriptions au tirage</span></div>
+      <div class="kpi"><div class="num" id="k-conv">–</div><span>inscrits / parties terminées</span></div>
+    </div>
+  </section>
+
+  <section class="card" id="s-scores" hidden>
+    <h2>Répartition des scores</h2>
+    <div class="bars" id="bars"></div>
+    <div class="profiles" id="profiles"></div>
+  </section>
+
+  <section class="card" id="s-clicks" hidden>
+    <h2>Clics sur les liens</h2>
+    <table><thead><tr><th>Lien</th><th class="r">Clics</th></tr></thead><tbody id="clicks"></tbody></table>
+  </section>
+
+  <section class="card" id="s-days" hidden>
+    <h2>Par jour (30 derniers jours)</h2>
+    <div class="scroll"><table><thead><tr><th>Jour</th><th class="r">Lancées</th><th class="r">Terminées</th><th class="r">Inscriptions</th></tr></thead><tbody id="days"></tbody></table></div>
+  </section>
+
+  <section class="card" id="s-subs" hidden>
+    <h2>Inscrits au tirage au sort</h2>
+    <div class="row">
+      <input type="search" id="q" placeholder="Rechercher un prénom ou un e-mail">
+      <button class="btn" id="csv" type="button">Exporter en CSV</button>
+    </div>
+    <div class="scroll"><table><thead><tr><th>Date</th><th>Prénom</th><th>E-mail</th></tr></thead><tbody id="subs"></tbody></table></div>
+    <p class="note">Inscriptions saisies sur le site. La confirmation par e-mail (double opt-in) se vérifie dans Brevo : cette liste ne dit pas qui a confirmé.</p>
+  </section>
+</main>
+
+<script>
+const token = decodeURIComponent(location.hash.slice(1));
+const $ = id => document.getElementById(id);
+const LABELS = { brand: "Logo « Tome 30 » (haut de page)", decouvrir: "Découvrir Duco… Bouh ! (résultat)", jeux: "Jeux Ducobu gratuits", film: "Bannière du film", partage: "Bouton « Défier un copain »" };
+const PROFILES = [["10", "Sans-faute", s => s === 10], ["8–9", "Premier de la classe", s => s >= 8 && s <= 9], ["6–7", "Élève très honorable", s => s >= 6 && s <= 7], ["3–5", "Cancre en progrès", s => s >= 3 && s <= 5], ["0–2", "Champion du zéro pointé", s => s <= 2]];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fmtDate = iso => new Date(iso).toLocaleString("fr-BE", { timeZone: "Europe/Brussels", dateStyle: "short", timeStyle: "short" });
+let data = null;
+
+function msg(t){ $("msg").hidden = false; $("msg").textContent = t; ["s-kpi","s-scores","s-clicks","s-days","s-subs"].forEach(i => $(i).hidden = true); }
+
+async function load(){
+  if (!token) return msg("Adresse incomplète : le lien d'accès doit se terminer par #… (jeton).");
+  $("refresh").disabled = true;
+  try {
+    const res = await fetch("/api/stats", { headers: { "x-admin-token": token }, cache: "no-store" });
+    if (res.status === 401) return msg("Accès refusé : jeton invalide.");
+    if (!res.ok) return msg("Erreur du serveur (" + res.status + "). Réessayez dans un instant.");
+    data = await res.json();
+    render();
+  } catch (e) { msg("Impossible de joindre le serveur."); }
+  finally { $("refresh").disabled = false; }
+}
+
+function render(){
+  $("msg").hidden = true;
+  ["s-kpi","s-scores","s-clicks","s-days","s-subs"].forEach(i => $(i).hidden = false);
+  const fin = data.finishes, subs = data.subscribers.length;
+  const total = data.scores.reduce((a, n, s) => a + n * s, 0);
+  $("k-starts").textContent = data.starts;
+  $("k-fin").textContent = fin;
+  $("k-rate").textContent = data.starts ? Math.round(fin / data.starts * 100) + " %" : "–";
+  $("k-avg").textContent = fin ? (total / fin).toFixed(1).replace(".", ",") : "–";
+  $("k-subs").textContent = subs;
+  $("k-conv").textContent = fin ? Math.round(subs / fin * 100) + " %" : "–";
+
+  const max = Math.max(1, ...data.scores);
+  $("bars").innerHTML = data.scores.map((n, s) => `<div class="bar"><span>${s}/10</span><div class="t"><i style="width:${n / max * 100}%"></i></div><b>${n}</b></div>`).reverse().join("");
+  $("profiles").innerHTML = PROFILES.map(([r, name, f]) => {
+    const n = data.scores.reduce((a, c, s) => a + (f(s) ? c : 0), 0);
+    return `<div><b>${n}${fin ? ` · ${Math.round(n / fin * 100)} %` : ""}</b>${esc(name)} (${r})</div>`;
+  }).join("");
+
+  const links = Object.keys(LABELS).map(k => [k, data.clicks[k] || 0]);
+  $("clicks").innerHTML = links.map(([k, n]) => `<tr><td>${esc(LABELS[k])}</td><td class="r"><b>${n}</b></td></tr>`).join("");
+  $("days").innerHTML = data.days.length ? data.days.map(d => `<tr><td>${esc(d.day)}</td><td class="r">${d.starts}</td><td class="r">${d.finishes}</td><td class="r">${d.subs}</td></tr>`).join("") : '<tr><td colspan="4">Aucune donnée pour l\'instant.</td></tr>';
+  renderSubs();
+  $("stamp").textContent = "Mis à jour : " + fmtDate(data.generatedAt);
+}
+
+function renderSubs(){
+  const q = $("q").value.trim().toLowerCase();
+  const rows = data.subscribers.filter(s => !q || s.prenom.toLowerCase().includes(q) || s.email.includes(q));
+  $("subs").innerHTML = rows.length ? rows.map(s => `<tr><td>${fmtDate(s.at)}</td><td>${esc(s.prenom)}</td><td>${esc(s.email)}</td></tr>`).join("") : '<tr><td colspan="3">Aucun inscrit.</td></tr>';
+}
+
+$("q").addEventListener("input", () => data && renderSubs());
+$("refresh").onclick = load;
+$("csv").onclick = async () => {
+  const res = await fetch("/api/stats?format=csv", { headers: { "x-admin-token": token } });
+  if (!res.ok) return;
+  const url = URL.createObjectURL(await res.blob());
+  const a = Object.assign(document.createElement("a"), { href: url, download: "inscrits-quiz-ducobu.csv" });
+  document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+};
+load();
+</script>
+</body>
+</html>

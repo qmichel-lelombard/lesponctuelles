@@ -74,6 +74,18 @@ const $ = id => document.getElementById(id);
 const nb = t => t.replace(/«\s+/g, "«\u00a0").replace(/\s+»/g, "\u00a0»").replace(/\s+([?!:;])/g, "\u00a0$1");
 let i = 0, score = 0, locked = false, readyAt = 0;
 
+// Suivi anonyme (parties, scores, clics, inscriptions) : voir netlify/functions/track.mjs et la page /admin/.
+// Désactivé en local (file://) et dans l'aperçu #tirage.
+const TRACKING = location.protocol.startsWith("http") && location.hash !== "#tirage";
+function track(ev){
+  if (!TRACKING) return;
+  try { fetch("/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(ev), keepalive: true }).catch(() => {}); } catch (e) {}
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest && e.target.closest("[data-track]");
+  if (a) track({ type: "click", link: a.dataset.track });
+});
+
 function show(id){
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   $(id).classList.add("active");
@@ -139,6 +151,7 @@ function pick(btn, idx){
 
 function finish(){
   const p = PROFILES.find(p => score >= p.min);
+  track({ type: "finish", score });
   $("bar").style.width = "100%";
   $("result-title").textContent = nb(p.title);
   $("result-score").textContent = score;
@@ -148,10 +161,11 @@ function finish(){
   show("screen-result");
 }
 
-$("start").onclick = () => { i = 0; score = 0; show("screen-quiz"); render(); };
+$("start").onclick = () => { track({ type: "start" }); i = 0; score = 0; show("screen-quiz"); render(); };
 $("next").onclick = () => { if ($("feedback").hidden) return; i++; i < QUESTIONS.length ? render() : finish(); };
-$("again").onclick = () => { i = 0; score = 0; show("screen-quiz"); render(); };
+$("again").onclick = () => { track({ type: "start" }); i = 0; score = 0; show("screen-quiz"); render(); };
 $("share").onclick = async () => {
+  track({ type: "click", link: "partage" });
   const text = `J'ai fait ${score}/10 au quiz Duco… Bouh ! Et toi, tu fais mieux que moi ?`;
   try {
     if (navigator.share) await navigator.share({ title: "Duco… Bouh ! Le Quiz", text, url: location.href });
@@ -195,6 +209,7 @@ $("share").onclick = async () => {
       } else {
         $("draw-done-text").textContent = "Mode test : ton inscription n'a pas été enregistrée.";
       }
+      track({ type: "subscribe", prenom, email });
       form.hidden = true;
       $("draw-done").hidden = false;
     } catch (x) {
