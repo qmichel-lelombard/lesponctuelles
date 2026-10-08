@@ -74,10 +74,14 @@
   <div class="album">
     <figure class="album__cover reveal" id="cover" aria-label="Couverture de l'album Mille Ans">
       <div class="album__tilt">
-        <img src="assets/img/cover-front.webp" alt="Couverture de Mille Ans : une astronaute et son petit robot face à une ville en ruines reprise par la végétation, dominée par une immense tour" width="950" height="1310">
+        <img id="cover-img" src="assets/img/cover-front.webp" alt="Couverture de Mille Ans : une astronaute et son petit robot face à une ville en ruines reprise par la végétation, dominée par une immense tour" width="950" height="1310">
         <span class="album__glare" aria-hidden="true"></span>
       </div>
-      <figcaption>Couverture · © Le Lombard</figcaption>
+      <div class="switch" role="group" aria-label="Choisir la couverture">
+        <button type="button" class="on" data-src="assets/img/cover-front.webp" data-alt="Couverture de Mille Ans : une astronaute et son petit robot face à une ville en ruines reprise par la végétation, dominée par une immense tour" data-cap="Couverture · © Le Lombard" aria-pressed="true">Édition courante</button>
+        <button type="button" data-src="assets/img/cover-collector.webp" data-alt="Couverture collector de Mille Ans : vue plongeante sur des explorateurs en combinaison avançant entre des caissons de cryogénisation, sur un sol gravé de la station" data-cap="Couverture collector · © Le Lombard" aria-pressed="false">Édition collector</button>
+      </div>
+      <figcaption id="cover-cap">Couverture · © Le Lombard</figcaption>
     </figure>
 
     <div class="album__text">
@@ -188,6 +192,13 @@
       <p>Transmission en cours de décryptage.</p>
     </article>
   </div>
+</section>
+
+<!-- DIPTYQUE -->
+<section class="dip" aria-label="Deux planches de l'album">
+  <figure class="dip__a reveal"><img src="assets/img/planche-ville.webp" alt="Planche : l'astronaute et son robot contemplent la ville en ruines et la tour, entre brume et végétation" loading="lazy" width="1000" height="1333"></figure>
+  <figure class="dip__b reveal"><img src="assets/img/planche-orange.webp" alt="Planche : vue plongeante sur des explorateurs entre des caissons de cryogénisation, sur un sol orangé gravé de la station" loading="lazy" width="1100" height="1222"></figure>
+  <p class="dip__cap eyebrow">Deux ambiances · planches © Le Lombard</p>
 </section>
 
 <!-- AUTEURS -->

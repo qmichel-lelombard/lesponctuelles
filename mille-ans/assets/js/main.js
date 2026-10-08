@@ -120,4 +120,16 @@
     const t = $(a.getAttribute('href')); if (!t) return;
     t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
   }));
+
+  /* ---------- Bascule de couverture ---------- */
+  const cimg = $('#cover-img'), ccap = $('#cover-cap');
+  $$('.switch button').forEach(b => b.addEventListener('click', () => {
+    if (b.classList.contains('on')) return;
+    $$('.switch button').forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', x === b); });
+    cimg.classList.add('fade');
+    setTimeout(() => {
+      cimg.src = b.dataset.src; cimg.alt = b.dataset.alt; ccap.textContent = b.dataset.cap;
+      cimg.onload = () => cimg.classList.remove('fade'); setTimeout(() => cimg.classList.remove('fade'), 600);
+    }, 250);
+  }));
 })();
