@@ -4,7 +4,9 @@
 Usage : python3 build.py
 Pour modifier un auteur (bio, photo, œuvres), éditer authors.json puis relancer.
 """
+import hashlib
 import json
+import re
 from html import escape
 from pathlib import Path
 
@@ -68,5 +70,14 @@ def orbit_nodes():
 
 cards = "\n".join(card(a, i + 1, len(authors)) for i, a in enumerate(authors))
 html = tpl.replace("{{AUTHORS}}", cards).replace("{{ORBIT}}", orbit_nodes())
+
+
+def versioned(m):
+    f = ROOT / m.group(1)
+    return f'{m.group(1)}?v={hashlib.md5(f.read_bytes()).hexdigest()[:8]}'
+
+
+# anti-cache : CSS/JS/polices référencés avec une empreinte du contenu
+html = re.sub(r'(assets/(?:css/style\.css|js/main\.js|fonts/fonts\.css))(?=")', versioned, html)
 (ROOT / "index.html").write_text(html, encoding="utf-8")
 print(f"index.html généré ({len(html)//1024} Ko, {len(authors)} auteurs)")
