@@ -47,7 +47,7 @@ def card(a, i, total):
     return f'''
     <article class="{cls} reveal" id="auteur-{a["id"]}" data-author="{a["id"]}">
       <div class="author__media">{media}<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <span class="author__idx">{i:02d}/{total:02d}</span>{credit}</div>
+        {credit}</div>
       <div class="author__body">
         <div class="chips"><span class="chip">{escape(a["role"])}</span>{badge}</div>
         <h3 class="author__name">{first}<span class="decode" data-text="{escape(a["name"].upper())}">{escape(a["name"].upper())}</span></h3>
