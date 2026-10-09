@@ -110,8 +110,9 @@
     "born": "",
     "bio": "",
     "works": [],
-    "photo": "",
-    "link": "https://www.lelombard.com/auteur-bd/grun"
+    "photo": "assets/authors/grun.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/grun",
+    "credit": "Photo © Dargaud / Alexis Haulot"
   },
   {
     "id": "ricci",

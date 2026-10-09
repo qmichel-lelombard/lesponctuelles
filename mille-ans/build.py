@@ -42,11 +42,12 @@ def card(a, i, total):
     if a["works"]:
         works = ('<div class="author__works"><h4>Repères</h4><ul>'
                  + "".join(f"<li>{escape(w)}</li>" for w in a["works"]) + "</ul></div>")
+    credit = f'<span class="author__credit">{escape(a["credit"])}</span>' if a.get("credit") else ""
     first = f'<span class="author__first">{escape(a["first"])}</span>' if a["first"] else ""
     return f'''
     <article class="{cls} reveal" id="auteur-{a["id"]}" data-author="{a["id"]}">
       <div class="author__media">{media}<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        <span class="author__idx">{i:02d}/{total:02d}</span></div>
+        <span class="author__idx">{i:02d}/{total:02d}</span>{credit}</div>
       <div class="author__body">
         <div class="chips"><span class="chip">{escape(a["role"])}</span>{badge}</div>
         <h3 class="author__name">{first}<span class="decode" data-text="{escape(a["name"].upper())}">{escape(a["name"].upper())}</span></h3>
