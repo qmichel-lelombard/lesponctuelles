@@ -309,16 +309,71 @@ void main(){
   /* ---------- Compte à rebours ---------- */
   const cd = $('#count'), target = new Date(cd.dataset.target).getTime();
   const pad = n => String(n).padStart(2, '0');
+  let released = false;
   function count() {
     const d = target - Date.now();
-    if (d <= 0) { $('.count__grid').hidden = true; $('#count-done').hidden = false; return false; }
+    if (d <= 0) {
+      if (!released) {
+        released = true;
+        $('.count__grid').hidden = true; $('#count-done').hidden = false; $('#ics').hidden = true;
+        $('.count__label').textContent = 'Disponible en librairie';
+      }
+      return false;
+    }
     $('#c-d').textContent = pad(Math.floor(d / 864e5));
     $('#c-h').textContent = pad(Math.floor(d % 864e5 / 36e5));
     $('#c-m').textContent = pad(Math.floor(d % 36e5 / 6e4));
     $('#c-s').textContent = pad(Math.floor(d % 6e4 / 1e3));
     return true;
   }
-  if (count()) setInterval(count, 1000);
+  if (count()) { const iv = setInterval(() => { if (!count()) clearInterval(iv); }, 1000); }
+
+  /* rappel : fichier agenda (.ics) généré dans le navigateur */
+  $('#ics').addEventListener('click', () => {
+    const L = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Le Lombard//Mille Ans//FR', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
+      'UID:mille-ans-20261023@lelombard.com', 'DTSTAMP:20261008T000000Z',
+      'SUMMARY:Parution de Mille Ans (Le Lombard)', 'DTSTART;VALUE=DATE:20261023', 'DTEND;VALUE=DATE:20261024',
+      'DESCRIPTION:Un scénariste (Duval)\\, huit dessinateurs : Mille Ans paraît aujourd\'hui en librairie.',
+      'URL:https://www.lelombard.com/bd/pour-mille-ans/mille-ans',
+      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Demain : parution de Mille Ans', 'END:VALARM',
+      'END:VEVENT', 'END:VCALENDAR'];
+    const blob = new Blob([L.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mille-ans-parution.ics';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  });
+
+  /* ---------- Paroles : carrousel de citations ---------- */
+  const qt = $('#qt'), slides = $$('.qt__slide', qt), dotsBox = $('.qt__dots', qt), qbar = $('#qt-bar');
+  let qi = 0, qStart = 0, qRaf = 0, qPause = false, qVis = false;
+  const QMS = 8000;
+  const dots = slides.map((_, k) => {
+    const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', 'Citation ' + (k + 1));
+    b.addEventListener('click', () => qGo(k)); dotsBox.appendChild(b); return b;
+  });
+  function qGo(k) {
+    qi = (k + slides.length) % slides.length; qStart = performance.now();
+    slides.forEach((s, x) => { s.classList.toggle('on', x === qi); s.setAttribute('aria-hidden', x !== qi); });
+    dots.forEach((d, x) => { d.classList.toggle('on', x === qi); d.setAttribute('aria-selected', x === qi); });
+    qbar.style.width = '0%';
+  }
+  function qTick(t) {
+    if (!qPause && qVis) {
+      const p = clamp((t - qStart) / QMS); qbar.style.width = p * 100 + '%';
+      if (p >= 1) qGo(qi + 1);
+    } else qStart = t - (parseFloat(qbar.style.width) || 0) / 100 * QMS;
+    qRaf = requestAnimationFrame(qTick);
+  }
+  $('#qt-prev').addEventListener('click', () => qGo(qi - 1));
+  $('#qt-next').addEventListener('click', () => qGo(qi + 1));
+  qt.addEventListener('pointerenter', () => { qPause = true; }); qt.addEventListener('pointerleave', () => { qPause = false; });
+  qt.addEventListener('focusin', () => { qPause = true; }); qt.addEventListener('focusout', () => { qPause = false; });
+  let sx = 0;
+  qt.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+  qt.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) qGo(qi + (dx < 0 ? 1 : -1)); }, { passive: true });
+  new IntersectionObserver(es => { qVis = es[0].isIntersecting; }, { threshold: .4 }).observe(qt);
+  qGo(0);
+  if (!reduce) qRaf = requestAnimationFrame(qTick); else qbar.parentElement.hidden = true;
 
   /* ---------- Logo : inclinaison à la souris ---------- */
   const logo = $('#logo');

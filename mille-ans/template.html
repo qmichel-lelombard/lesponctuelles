@@ -31,8 +31,9 @@
     <a href="#fresque" data-s="fresque"><b>02</b> La fresque</a>
     <a href="#auteurs" data-s="auteurs"><b>03</b> Les auteurs</a>
     <a href="#chrono" data-s="chrono"><b>04</b> Chronologie</a>
-    <a href="#carnet" data-s="carnet"><b>05</b> Carnet</a>
-    <a href="#extrait" data-s="extrait"><b>06</b> Extrait</a>
+    <a href="#paroles" data-s="paroles"><b>05</b> Paroles</a>
+    <a href="#carnet" data-s="carnet"><b>06</b> Carnet</a>
+    <a href="#extrait" data-s="extrait"><b>07</b> Extrait</a>
   </nav>
   <button class="top__burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
 </header>
@@ -63,7 +64,11 @@
         <div><b id="c-m">--</b><span>minutes</span></div>
         <div><b id="c-s">--</b><span>secondes</span></div>
       </div>
-      <p class="count__done" id="count-done" hidden>L'album est disponible en librairie.</p>
+      <div class="count__done" id="count-done" hidden>
+        <p>L'album est disponible en librairie.</p>
+        <a class="btn btn--solid" href="https://9e-store.fr/6/le-lombard/livres/pour-mille-ans-0de58f" target="_blank" rel="noopener">Acheter l'album <span aria-hidden="true">↗</span></a>
+      </div>
+      <button type="button" class="count__ics" id="ics">+ Ajouter la parution à mon agenda</button>
     </div>
 
   </div>
@@ -242,10 +247,43 @@
   </div>
 </section>
 
+<!-- PAROLES -->
+<section class="sec sec--alt" id="paroles">
+  <header class="sec__head reveal">
+    <p class="eyebrow">05 · Paroles</p>
+    <h2>La parole aux <em>créateurs</em></h2>
+  </header>
+
+  <div class="qt reveal" id="qt" role="group" aria-roledescription="carrousel" aria-label="Citations de Fred Duval">
+    <div class="qt__stage" aria-live="polite">
+      <figure class="qt__slide on" data-i="0"><blockquote><p>La solution n'est pas dans la préservation du passé mais dans sa remise en question radicale.</p></blockquote></figure>
+      <figure class="qt__slide" data-i="1"><blockquote><p>Je pratique une science-fiction humaniste, j'essaie donc de préserver un minimum d'espoir…</p></blockquote></figure>
+      <figure class="qt__slide" data-i="2"><blockquote><p>L'être humain peut disposer de tous les gadgets imaginables, il est toujours face à lui-même.</p></blockquote></figure>
+      <figure class="qt__slide" data-i="3"><blockquote><p>Mille Ans pose la question : ces 800&nbsp;000 privilégiés réussiront-ils à trouver une solution et la nature reprendra-t-elle ses droits ?</p></blockquote></figure>
+    </div>
+    <p class="qt__by"><b>Fred Duval</b><span>scénariste · extrait de l'interview du dossier de presse</span></p>
+    <div class="qt__ctl">
+      <button type="button" class="qt__btn" id="qt-prev" aria-label="Citation précédente">←</button>
+      <div class="qt__dots" role="tablist" aria-label="Choisir une citation"></div>
+      <button type="button" class="qt__btn" id="qt-next" aria-label="Citation suivante">→</button>
+    </div>
+    <i class="qt__bar" aria-hidden="true"><b id="qt-bar"></b></i>
+  </div>
+
+  <div class="ed reveal">
+    <p class="ed__pull">« Créer un album collectif réunissant les grands auteurs de la SF »</p>
+    <div class="ed__txt">
+      <h3>Le mot de l'éditeur <span>Félix Pirovano</span></h3>
+      <p>Tout a démarré il y a deux ans lors d'un déjeuner avec Grun, qui dessine l'histoire intitulée <em>Le Chant des sirènes</em>. Alors que nous cherchions un moyen de travailler ensemble, entre différentes idées lancées en l'air, il m'a soufflé cette envie : créer un collectif de science-fiction réunissant les grands auteurs contemporains du genre. Son idée m'a tout de suite séduit, et j'ai voulu lui donner vie avec l'ambition de proposer un collectif avec une cohésion tant scénaristique que graphique.</p>
+      <p class="ed__qa"><b>Pourquoi Fred Duval ?</b> « C'était simplement le meilleur pour relever cet incroyable défi ! »</p>
+    </div>
+  </div>
+</section>
+
 <!-- CARNET -->
 <section class="sec" id="carnet">
   <header class="sec__head reveal">
-    <p class="eyebrow">05 · Recherches graphiques</p>
+    <p class="eyebrow">06 · Recherches graphiques</p>
     <h2>Le carnet <em>de l'univers</em></h2>
     <p class="sec__sub">Station, caissons, navette, scaphandres, robots et unités autonomes : les recherches graphiques qui ont servi à inventer le monde de Mille Ans.</p>
   </header>
@@ -273,7 +311,7 @@
 <!-- EXTRAIT -->
 <section class="sec sec--end" id="extrait">
   <div class="end reveal">
-    <p class="eyebrow">06 · Prêt pour le décollage</p>
+    <p class="eyebrow">07 · Prêt pour le décollage</p>
     <h2>Entrez dans<br><em class="nw">Mille Ans</em></h2>
     <p>Feuilletez les premières planches de l'album, puis retrouvez-le en librairie le 23 octobre 2026.</p>
     <div class="cta cta--center">
