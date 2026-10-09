@@ -5,36 +5,39 @@
     "first": "Fred",
     "role": "Scénariste",
     "born": "Né à Rouen en janvier 1965",
-    "bio": "Scénariste français passé par le thriller, le récit historique et la science-fiction, Fred Duval est le fil rouge de la fresque : c'est lui qui écrit les huit récits de Mille Ans. On lui doit notamment Carmen Mc Callum, Le Casse, Jour J, L'Homme de l'année, Renaissance ou Néoforest. Il s'est aussi vu confier un one-shot Thorgal (Thorgal Saga). Chevalier de l'ordre des Arts et des Lettres depuis 2020.",
+    "bio": "En 1995, il publie Les 500 fusils et le premier tome d'une saga de science-fiction, Carmen Mc Callum. Viendront ensuite des séries comme Travis, Hauteville House ou, avec Jean-Pierre Pécau, Jour J, une série-concept en forme d'uchronie. Auteur d'un titre de la série XIII Mystery, il a adapté Nymphéas noirs, un roman de Michel Bussi, et scénarisé Wendigo, un album de la collection « Thorgal Saga » dessiné par Corentin Rouge. Il a récemment signé plusieurs séries d'anticipation remarquées, de Renaissance à NeoForest et de Metropolia à Apogée. Chevalier de l'ordre des Arts et des Lettres depuis 2020.",
     "works": [
       "Carmen Mc Callum",
-      "Le Casse",
+      "Travis",
+      "Hauteville House",
       "Jour J",
-      "L'Homme de l'année",
+      "XIII Mystery",
+      "Nymphéas noirs",
+      "Thorgal Saga – Wendigo",
       "Renaissance",
-      "Néoforest",
-      "Thorgal Saga – Wendigo"
+      "NeoForest",
+      "Metropolia",
+      "Apogée"
     ],
     "photo": "assets/authors/duval.jpg",
     "link": "https://www.lelombard.com/auteur-bd/duval-fred",
-    "credit_note": "Photo © Chloé Vollmer-Lo"
+    "credit_note": "Photo © Chloé Vollmer-Lo",
+    "chapter": "Scénariste des huit récits et du fil rouge"
   },
   {
     "id": "bajram",
     "name": "Bajram",
     "first": "Denis",
     "role": "Dessin",
-    "born": "Né en 1970, en région parisienne",
-    "bio": "Figure de la science-fiction en bande dessinée, Denis Bajram a d'abord étudié les sciences avant de se tourner vers les arts, après un passage marquant par le fanzinat. Il signe Cryozone (scénario de Thierry Cailleteau) puis, scénario et dessin, la saga Universal War One, prolongée par Universal War Two chez Casterman. Installé à Bruxelles depuis 2001, il y a fondé l'Atelier Virtuel avec Valérie Mangin et dessine ses albums en numérique.",
+    "born": "Né en 1970",
+    "bio": "Il publie son premier album en 1996, Cryozone, d'après un scénario de Cailleteau. Deux ans plus tard, il signe le scénario et le dessin de Universal War One, référence marquante de la science-fiction, dont il prépare l'adaptation au cinéma et une suite en bande dessinée. Il est le cofondateur des éditions Quadrants avec sa compagne, Valérie Mangin.",
     "works": [
       "Cryozone",
-      "Universal War One",
-      "Universal War Two",
-      "Mémoires Mortes (scénario)"
+      "Universal War One"
     ],
     "photo": "assets/authors/bajram.jpg",
     "link": "https://www.lelombard.com/auteur-bd/bajram-denis",
-    "chapter": "Signe le Prologue – Année 0 (avec Duval)"
+    "chapter": "Signe le Prologue (année 0) et l'Épilogue (année +1000)"
   },
   {
     "id": "vignaux",
@@ -42,33 +45,38 @@
     "first": "Fred",
     "role": "Dessin",
     "born": "Né à Toulouse en 1972",
-    "bio": "Frédéric Vignaux a étudié les sciences à Toulouse, Montpellier et Lille avant de se consacrer à la bande dessinée, à Paris. Sa première œuvre, L'Ombre des Anciens (2002), est suivie de bandes dessinées publicitaires, dont Cassini-Huygens : Objectif Titan pour l'Agence spatiale européenne, puis de Time Twins, Le Pendule de Foucault ou Vercingétorix. Depuis 2017, il fait partie de l'équipe de l'univers Thorgal, à commencer par Kriss de Valnor.",
+    "bio": "Il participe à des fanzines avant de réaliser sa première bande dessinée, L'Ombre des anciens, d'après un scénario d'Éric Pailharey. Il enchaîne avec la série Time Twins, écrite par Jean-Christophe Derrien, puis les trois tomes de Neige Origines, d'Éric Adam et Didier Convard. Après avoir dessiné les deux derniers albums de Kriss de Valnor, il succède à Grzegorz Rosinski sur la série Thorgal en 2019.",
     "works": [
-      "L'Ombre des Anciens",
-      "Cassini-Huygens : Objectif Titan",
+      "L'Ombre des anciens",
       "Time Twins",
-      "Le Pendule de Foucault",
-      "Vercingétorix",
-      "Kriss de Valnor"
+      "Neige Origines",
+      "Kriss de Valnor",
+      "Thorgal"
     ],
     "photo": "assets/authors/vignaux-fred.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/vignaux-fred"
+    "link": "https://www.lelombard.com/auteur-bd/vignaux-fred",
+    "chapter": "Signe « Le Nord retrouvé » (année +0976)"
   },
   {
     "id": "toulhoat",
     "name": "Toulhoat",
     "first": "Ronan",
     "role": "Dessin",
-    "born": "Né en 1984",
-    "bio": "Après un baccalauréat orienté ingénierie, Ronan Toulhoat se réoriente vers l'illustration indépendante : couvertures de livres, cinéma, jeux vidéo. Avec le scénariste Vincent Brugeas, il signe l'uchronie Block 109 (Akileos, 2010) puis Ira Dei, située à Byzance en 1040 (Dargaud). Il dessine ensuite Cosaques (Le Lombard) et Daemon, avec Brugeas et Yoann Guillo.",
+    "born": "",
+    "bio": "Il publie son premier album en 2008, Block 109, écrit par Vincent Brugeas, avec lequel il réalise ensuite Le Roy des ribauds, Ira Dei, La République du Crâne, Tête de chien, Cosaques, Daemon et Bomb X, auquel participe un autre dessinateur, Brice Cossu. Il est aussi illustrateur et concept artist pour le cinéma et le jeu vidéo.",
     "works": [
       "Block 109",
+      "Le Roy des ribauds",
       "Ira Dei",
+      "La République du Crâne",
+      "Tête de chien",
       "Cosaques",
-      "Daemon"
+      "Daemon",
+      "Bomb X"
     ],
     "photo": "assets/authors/toulhoat-ronan.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/toulhoat-ronan"
+    "link": "https://www.lelombard.com/auteur-bd/toulhoat-ronan",
+    "chapter": "Signe « Le Royaume de Siam » (année +0439)"
   },
   {
     "id": "armand",
@@ -76,32 +84,37 @@
     "first": "Dimitri",
     "role": "Dessin",
     "born": "",
-    "bio": "Dessinateur d'une génération nourrie à la fois d'animation et de manga japonais, de comics américains et de tradition franco-belge, Armand se destinait d'abord au dessin animé avant de choisir la bande dessinée. Il a développé l'univers mystico-technologique de Salamandre, puis travaillé sur Angor, Bob Morane – Renaissance, Sykes et Texas Jack pour Le Lombard, avant de s'attaquer à la série de science-fiction Le Convoyeur avec Tristan Roulot.",
+    "bio": "Grand admirateur d'Enrico Marini, il débute dans la BD avec Angor, une série d'heroic fantasy, puis dessine pour Le Lombard les nouvelles aventures de Bob Morane. Dessinateur de Sykes et de Texas Jack, d'après des scénarios de Pierre Dubois, il cosigne avec le scénariste Tristan Roulot la série Le Convoyeur.",
     "works": [
-      "Salamandre",
       "Angor",
-      "Bob Morane – Renaissance",
+      "Bob Morane",
       "Sykes",
       "Texas Jack",
       "Le Convoyeur"
     ],
     "photo": "assets/authors/armand.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/armand"
+    "link": "https://www.lelombard.com/auteur-bd/armand",
+    "chapter": "Signe « La Déserteuse » (année +0653)"
   },
   {
     "id": "buchet",
     "name": "Buchet",
     "first": "Philippe",
     "role": "Dessin",
-    "born": "Né en 1962 à Juniville (Ardennes)",
-    "bio": "Installé à Reims comme illustrateur indépendant, puis directeur artistique dans une agence de bande dessinée de communication, Philippe Buchet y rencontre Jean-David Morvan et Sylvain Savoïa, avec qui il fonde l'atelier 510 TTC en 1994. Il participe à la série Nomad (Glénat) avant de s'imposer comme le dessinateur de Sillage, grande saga d'aventure spatiale écrite par Morvan.",
+    "born": "",
+    "bio": "Après avoir signé les deux premiers tomes de la série Nomad, il se lance en 1998 avec le scénariste Jean-David Morvan dans la saga Sillage, puis dans les séries dérivées Nävis et Les Chroniques de Sillage. Dessinateur de La Quête des réponses, du premier tome de Jour J et de Saudade, une adaptation du personnage de Wolverine, il est aussi l'auteur de Petite épopée nippone, recueil de croquis inspirés par ses voyages au Japon.",
     "works": [
+      "Nomad",
       "Sillage",
-      "Nomad"
+      "Nävis",
+      "Les Chroniques de Sillage",
+      "Jour J",
+      "Saudade",
+      "Petite épopée nippone"
     ],
     "photo": "assets/authors/buchet.jpg",
     "link": "https://www.lelombard.com/auteur-bd/philippe-buchet",
-    "chapter": "Signe « Première relève » – Année +0005 (avec Duval)"
+    "chapter": "Signe « Première relève » (année +0005)"
   },
   {
     "id": "grun",
@@ -109,43 +122,53 @@
     "first": "",
     "role": "Dessin",
     "born": "",
-    "bio": "",
-    "works": [],
+    "bio": "Designer de décors et de personnages 3D pour le jeu vidéo, il débute dans la bande dessinée avec une histoire co-écrite par Éric Corbeyran et Nicolas Hamm, La Conjuration d'Opale. Dessinateur de la série Métronom', écrite par Corbeyran, il signe On Mars, d'après un scénario de Sylvain Runberg.",
+    "works": [
+      "La Conjuration d'Opale",
+      "Métronom'",
+      "On Mars"
+    ],
     "photo": "assets/authors/grun.jpg",
     "link": "https://www.lelombard.com/auteur-bd/grun",
-    "credit_note": "Photo © Dargaud / Alexis Haulot"
+    "credit_note": "Photo © Dargaud / Alexis Haulot",
+    "chapter": "Signe « Le Chant des sirènes » (année +0200)"
   },
   {
     "id": "ricci",
     "name": "Ricci",
     "first": "Roberto",
     "role": "Dessin",
-    "born": "Né à Rome en 1976",
-    "bio": "Après huit années d'études musicales interrompues par une blessure, Roberto Ricci se forme à l'École internationale de comics de Rome. Il collabore dans les années 2000 avec Philippe Saimbert sur Les Âmes d'Hélios (Delcourt), puis dessine notamment Moksha, Delta et June Christy.",
+    "born": "",
+    "bio": "Après avoir étudié la musique, il se tourne vers le dessin. Il publie ses premières histoires dans le magazine américain Heavy Metal, puis dessine les quatre tomes de la série Les Âmes d'Helios, écrite par Philippe Saimbert et récompensée par le prix « Coup de cœur » au festival d'Illzach en 2008. Dessinateur de Moksha, L'Ombre du temps, Delta et June Christy, il signe aussi Urban, avec le scénariste Luc Brunschwig, et Le Cœur de l'ombre.",
     "works": [
-      "Les Âmes d'Hélios",
+      "Les Âmes d'Helios",
       "Moksha",
+      "L'Ombre du temps",
       "Delta",
-      "June Christy"
+      "June Christy",
+      "Urban",
+      "Le Cœur de l'ombre"
     ],
     "photo": "assets/authors/ricci.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/ricci-roberto"
+    "link": "https://www.lelombard.com/auteur-bd/ricci-roberto",
+    "chapter": "Signe « Vivre et mourir à Mexico City » (année +0489)"
   },
   {
     "id": "salaun",
     "name": "Salaün",
     "first": "Jaouen",
     "role": "Dessin",
-    "born": "Né en 1979",
-    "bio": "Passé par l'école Émile Cohl de Lyon (diplômé en 2003, sélectionné à la Foire internationale d'illustration de Bologne), Jaouen Salaün travaille d'abord pour l'édition jeunesse. Sa première bande dessinée, Nova, paraît chez Soleil en 2006 sur un scénario de Julien Blondel. Il collabore ensuite avec Christophe Bec (spin-off de Carthago, puis Eternum chez Casterman) et signe Juste une fois et la dystopie de science-fiction Elecboy.",
+    "born": "",
+    "bio": "Il aurait pu devenir sportif professionnel ; il a finalement choisi de se consacrer au dessin. Après avoir débuté dans l'illustration, il publie sa première bande dessinée, Nova, en 2006 (scénario de Julien Blondel). Puis il s'associe à Christophe Bec avec un spin-off de la série Carthago et la saga Eternum. Il est aussi l'auteur complet d'Elecboy et de Juste une fois.",
     "works": [
       "Nova",
       "Carthago (spin-off)",
       "Eternum",
-      "Juste une fois",
-      "Elecboy"
+      "Elecboy",
+      "Juste une fois"
     ],
     "photo": "assets/authors/salaun.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/salaun-jaouen"
+    "link": "https://www.lelombard.com/auteur-bd/salaun-jaouen",
+    "chapter": "Signe « Cent ans de solitude » (années +0651 à +0753)"
   }
 ]
