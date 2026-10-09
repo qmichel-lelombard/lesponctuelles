@@ -15,7 +15,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css?v=0a5d614f">
-<link rel="stylesheet" href="assets/css/style.css?v=77fcd6eb">
+<link rel="stylesheet" href="assets/css/style.css?v=e7d8fa8c">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -265,21 +265,16 @@
   </div>
 </section>
 
-<!-- DUO : deux décors en écran partagé -->
+<!-- DUO : un seul écran, transition prismatique entre deux décors -->
 <section class="duo" id="duo" aria-label="Deux décors de l'album : les caissons de cryogénisation et la ville en ruines">
   <i class="snap-end" aria-hidden="true"></i>
   <div class="duo__stick">
-    <div class="duo__a" id="duo-a">
-      <div class="duo__img"><img src="assets/img/scene-cryo-2.webp" alt="Vue plongeante : des explorateurs en combinaison avancent entre des caissons de cryogénisation, sur un sol orangé gravé du plan de la station" width="1500" height="1469" loading="lazy"></div>
-      <canvas class="duo__fx" data-kind="embers" aria-hidden="true"></canvas>
-    </div>
-    <div class="duo__b" id="duo-b">
-      <div class="duo__img"><img src="assets/img/scene-ville.webp" alt="Une astronaute et son petit robot contemplent une ville en ruines reprise par la végétation, dominée par une immense tour" width="1450" height="1933" loading="lazy"></div>
-      <canvas class="duo__fx" data-kind="pollen" aria-hidden="true"></canvas>
-    </div>
-    <i class="duo__line" id="duo-line" aria-hidden="true"></i>
-    <div class="duo__t duo__t1" id="duo-t1"><p>Une poignée d'humains privilégiés a été cryogénisée…</p></div>
-    <div class="duo__t duo__t2" id="duo-t2"><p>… pour laisser la Terre se régénérer… pendant mille ans&nbsp;!</p></div>
+    <img class="duo__fb duo__fb--a" id="fb-a" src="assets/img/scene-cryo-2.webp" alt="Vue plongeante : des explorateurs en combinaison avancent entre des caissons de cryogénisation, sur un sol orangé gravé du plan de la station" width="1500" height="1469" loading="lazy">
+    <img class="duo__fb duo__fb--b" id="fb-b" src="assets/img/scene-ville.webp" alt="Une astronaute et son petit robot contemplent une ville en ruines reprise par la végétation, dominée par une immense tour" width="1450" height="1933" loading="lazy">
+    <canvas class="duo__gl" id="duo-gl" aria-hidden="true"></canvas>
+    <div class="duo__shade" aria-hidden="true"></div>
+    <div class="duo__t" id="duo-t1"><p>Une poignée d'humains privilégiés a été cryogénisée…</p></div>
+    <div class="duo__t" id="duo-t2"><p>… pour laisser la Terre se régénérer… pendant mille ans&nbsp;!</p></div>
   </div>
 </section>
 
@@ -410,6 +405,6 @@
 </dialog>
 
 <script src="assets/js/music.js?v=e2a876d5" defer></script>
-<script src="assets/js/main.js?v=1926e1b1" defer></script>
+<script src="assets/js/main.js?v=ea74c276" defer></script>
 </body>
 </html>

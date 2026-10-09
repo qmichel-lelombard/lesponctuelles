@@ -155,56 +155,110 @@
       c.shadowBlur = 0; c.globalAlpha = 1;
     }
   }
-  /* ---------- Duo : deux décors en écran partagé ---------- */
-  const duo = $('#duo');
-  const duoParts = ['#duo-a', '#duo-b'].map(s => {
-    const el = $(s), cvs = $('canvas', el), img = $('img', el);
-    return { el, cvs, img, c: cvs.getContext('2d'), kind: cvs.dataset.kind, parts: [], vis: false };
-  });
-  const [dA, dB] = duoParts, line = $('#duo-line'), t1 = $('#duo-t1'), t2 = $('#duo-t2');
-  const stacked = () => innerWidth <= 760;
-  function layoutDuo() {
-    for (const d of duoParts) {
-      const w = d.el.offsetWidth, h = d.el.offsetHeight;
-      d.cvs.width = w; d.cvs.height = h;
-      d.parts = Array.from({ length: d.kind === 'embers' ? 45 : 35 }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.8 + .5, v: Math.random() * .5 + .15, sw: Math.random() * 6.28, a: Math.random() * .6 + .3 }));
-    }
+  /* ---------- Duo : transition prismatique (WebGL) entre deux décors ---------- */
+  const duo = $('#duo'), glc = $('#duo-gl'), t1 = $('#duo-t1'), t2 = $('#duo-t2');
+  const fbA = $('#fb-a'), fbB = $('#fb-b');
+  let gl = null, prog = null, U = {}, texA = null, texB = null, ready = 0, dP = 0, dVis = false;
+  const VS = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+  const FS = `precision highp float;
+uniform sampler2D A,B;uniform vec2 R;uniform vec2 IA;uniform float P,T,FA,FB,ZA,ZB;
+float h(float n){return fract(sin(n*91.345)*47453.5453);}
+vec2 cov(vec2 uv,vec2 im,float fy,float z){float ra=R.x/R.y,ia=im.x/im.y;vec2 s=ra>ia?vec2(1.,ia/ra):vec2(ra/ia,1.);s*=z;vec2 o=(1.-s)*vec2(.5,fy);return uv*s+o;}
+vec3 pal(float t){return .5+.5*cos(6.2831*(t+vec3(0.,.33,.67)));}
+vec3 smp(vec2 uv,float k){ /* k : 0 = A, 1 = B */
+  vec3 a=texture2D(A,cov(uv,vec2(1500.,1469.),FA,ZA)).rgb;
+  vec3 b=texture2D(B,cov(uv,vec2(1450.,1933.),FB,ZB)).rgb;
+  return mix(a,b,k);}
+void main(){
+  vec2 uv=gl_FragCoord.xy/R;
+  float W=.2, front=P*(1.+2.*W)-W;                     /* le front va de gauche à droite */
+  float row=floor(uv.y*34.);
+  float jag=(h(row+floor(T*6.))-.5)*.10*sin(3.14159*clamp(P,0.,1.));
+  float d=uv.x-front+jag;                               /* <0 : derrière le front */
+  float band=1.-smoothstep(0.,W,abs(d));                /* profil de la bande de verre */
+  band=band*band*(3.-2.*band);
+  float amp=band*sin(3.14159*clamp(P,0.,1.));
+  /* réfraction : décalage horizontal + vertical onduleux */
+  vec2 off=vec2(sin(uv.y*26.+T*3.)*.035+ (uv.x-front)*.25,cos(uv.y*18.-T*2.)*.012)*amp;
+  /* traînées : étirement horizontal par bandes de lignes */
+  float sm=step(.72,h(row*1.7+floor(T*4.)))*amp*(.8+.2*sin(T));
+  vec2 uvs=vec2(mix(uv.x,front-jag,sm*.85),uv.y);
+  /* séparation chromatique */
+  float ca=.022*amp;
+  float kr=step(0.,-(uvs.x+off.x+ca-front+jag)), kg=step(0.,-(uvs.x+off.x-front+jag)), kb=step(0.,-(uvs.x+off.x-ca-front+jag));
+  float r=smp(uvs+off+vec2(ca,0.),kr).r;
+  float g=smp(uvs+off,kg).g;
+  float b=smp(uvs+off-vec2(ca,0.),kb).b;
+  vec3 col=vec3(r,g,b);
+  /* éclat irisé du prisme */
+  vec3 rain=pal(d*5.+uv.y*.6+T*.15);
+  col=mix(col,col+rain*.65,band*.75*amp*1.6);
+  col+=vec3(.55,.8,1.)*pow(band,5.)*amp*.9;             /* arête lumineuse */
+  /* bloc glitch final */
+  float gb=step(.9,h(row*3.1+floor(T*9.)))*smoothstep(0.,.35,band)*amp;
+  col=mix(col,smp(vec2(fract(uv.x*1.15+h(row)),uv.y),1.),gb*.7);
+  gl_FragColor=vec4(col,1.);
+}`;
+  function glInit() {
+    try { gl = glc.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' }); } catch (e) { gl = null; }
+    if (!gl) return false;
+    const sh = (ty, src) => { const s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; };
+    const vs = sh(gl.VERTEX_SHADER, VS), fs = sh(gl.FRAGMENT_SHADER, FS);
+    if (!vs || !fs) { gl = null; return false; }
+    prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { gl = null; return false; }
+    gl.useProgram(prog);
+    const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    ['A', 'B', 'R', 'IA', 'P', 'T', 'FA', 'FB', 'ZA', 'ZB'].forEach(n => U[n] = gl.getUniformLocation(prog, n));
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    const load = (img, unit, key) => {
+      const go = () => {
+        const tex = gl.createTexture(); gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.uniform1i(U[key], unit); ready++; if (ready === 2) { duo.classList.add('gl'); drawDuo(performance.now()); }
+      };
+      img.complete && img.naturalWidth ? go() : img.addEventListener('load', go, { once: true });
+    };
+    load(fbA, 0, 'A'); load(fbB, 1, 'B');
+    return true;
+  }
+  function sizeDuo() {
+    if (!gl) return;
+    const d = Math.min(devicePixelRatio || 1, 1.5);
+    const w = Math.round(glc.clientWidth * d), h = Math.round(glc.clientHeight * d);
+    if (glc.width !== w || glc.height !== h) { glc.width = w; glc.height = h; gl.viewport(0, 0, w, h); }
+  }
+  function drawDuo(t) {
+    if (!gl || ready < 2) return;
+    sizeDuo();
+    const p = dP, pa = clamp(p / .5), pb = clamp((p - .5) / .5);
+    gl.uniform2f(U.R, glc.width, glc.height);
+    gl.uniform1f(U.P, smooth(.36, .64, p) * 1.0);
+    gl.uniform1f(U.T, t / 1000);
+    const portrait = innerWidth < innerHeight;
+    gl.uniform1f(U.FA, portrait ? .55 - pa * .25 : .75 - pa * .5);       /* balayage vertical de l'orange */
+    gl.uniform1f(U.FB, portrait ? .85 - pb * .6 : .95 - pb * .75);       /* de la tour vers l'astronaute */
+    gl.uniform1f(U.ZA, 1 - .08 * pa); gl.uniform1f(U.ZB, .92 + .08 * pb);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
   function updateDuo() {
     const r = duo.getBoundingClientRect(), vh = innerHeight;
-    dA.vis = dB.vis = r.bottom > 0 && r.top < vh;
-    if (!dA.vis) return;
-    const p = clamp(-r.top / (r.height - vh)), st = stacked();
-    const ea = smooth(0, .2, p), eb = smooth(.46, .68, p);
-    dA.el.style.transform = `translate3d(${-(1 - ea) * 101}%,0,0)`;
-    dB.el.style.transform = `translate3d(${(1 - eb) * 101}%,0,0)`;
-    const W = dA.el.offsetWidth, H = dA.el.offsetHeight;
-    // balayage lent des images pendant tout le défilement
-    dA.img.style.transform = `translate3d(${-p * .28 * W}px,${-p * .1 * H}px,0)`;
-    dB.img.style.transform = `translate3d(${-p * .06 * W}px,${-(0.15 + p * .85) * .28 * H}px,0)`;
-    const l = smooth(.04, .2, p) * (1 - smooth(.9, 1, p) * .6);
-    line.style.opacity = l; line.style.transform = st ? `scaleX(${ea})` : `scaleY(${ea})`;
-    const o1 = smooth(.14, .27, p) * (1 - smooth(.4, .5, p)), o2 = smooth(.64, .76, p) * (1 - smooth(.96, 1, p));
+    dVis = r.bottom > 0 && r.top < vh;
+    if (!dVis) return;
+    dP = clamp(-r.top / (r.height - vh));
+    const o1 = smooth(.04, .16, dP) * (1 - smooth(.3, .4, dP)), o2 = smooth(.62, .74, dP) * (1 - smooth(.96, 1, dP));
     t1.style.opacity = o1; t1.style.transform = `translateY(${(1 - o1) * 22}px)`;
     t2.style.opacity = o2; t2.style.transform = `translateY(${(1 - o2) * 22}px)`;
+    if (!gl) { const e = smooth(.36, .64, dP); fbB.style.opacity = e; fbA.style.opacity = 1 - e * .6; }
+    else drawDuo(performance.now());
   }
-  function fxDuo(t) {
-    for (const d of duoParts) {
-      if (!d.vis) continue;
-      const c = d.c, w = d.cvs.width, h = d.cvs.height; c.clearRect(0, 0, w, h);
-      for (const q of d.parts) {
-        if (d.kind === 'embers') { q.y -= q.v; q.x += Math.sin(t / 1500 + q.sw) * .3; if (q.y < -5) { q.y = h + 5; q.x = Math.random() * w; } }
-        else { q.y += q.v * .4; q.x += Math.sin(t / 2200 + q.sw) * .5 + .15; if (q.y > h + 5) { q.y = -5; q.x = Math.random() * w; } if (q.x > w + 5) q.x = -5; }
-        c.globalAlpha = q.a * (.4 + .6 * (.5 + .5 * Math.sin(t / 700 + q.sw))) * .8;
-        c.fillStyle = d.kind === 'embers' ? '#ffcf8a' : '#ffffff'; c.shadowColor = d.kind === 'embers' ? '#ff9a3c' : '#bfe0ff'; c.shadowBlur = 8;
-        c.beginPath(); c.arc(q.x, q.y, q.r, 0, 6.283); c.fill();
-      }
-      c.shadowBlur = 0; c.globalAlpha = 1;
-    }
-  }
-  layoutDuo();
-  addEventListener('resize', () => { layoutDuo(); updateDuo(); });
-  if (!reduce) (function dloop(t) { fxDuo(t); requestAnimationFrame(dloop); })(0);
+  glInit();
+  addEventListener('resize', () => { sizeDuo(); updateDuo(); });
+  if (!reduce) (function dloop(t) { if (dVis && gl && dP > .3 && dP < .7) drawDuo(t); requestAnimationFrame(dloop); })(0);
   scenes.forEach(layoutScene);
   addEventListener('resize', () => { scenes.forEach(layoutScene); updateScenes(); });
 
