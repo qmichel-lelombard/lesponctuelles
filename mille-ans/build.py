@@ -42,20 +42,12 @@ def card(a, i, total):
     if a["works"]:
         works = ('<div class="author__works"><h4>Repères</h4><ul>'
                  + "".join(f"<li>{escape(w)}</li>" for w in a["works"]) + "</ul></div>")
-    plate_rel = f"assets/authors/plate-{a['id']}.webp"
-    plate = ""
-    if (ROOT / plate_rel).exists():
-        plate = (f'<button type="button" class="author__media author__plate" data-zoom="{plate_rel}" '
-                 f'aria-label="Agrandir une planche de {escape(fullname(a))}">'
-                 f'<img src="{plate_rel}" alt="Planche de {escape(fullname(a))} extraite de l\'album" loading="lazy" decoding="async">'
-                 f'<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>'
-                 f'<span class="author__plate-t">Une planche · agrandir</span></button>')
     credit = f'<span class="author__credit">{escape(a["credit"])}</span>' if a.get("credit") else ""
     first = f'<span class="author__first">{escape(a["first"])}</span>' if a["first"] else ""
     return f'''
     <article class="{cls} reveal" id="auteur-{a["id"]}" data-author="{a["id"]}">
       <div class="author__col"><div class="author__media">{media}<i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-        {credit}</div>{plate}</div>
+        {credit}</div></div>
       <div class="author__body">
         <div class="chips"><span class="chip">{escape(a["role"])}</span>{badge}</div>
         <h3 class="author__name">{first}<span class="decode" data-text="{escape(a["name"].upper())}">{escape(a["name"].upper())}</span></h3>
