@@ -15,8 +15,9 @@
       "Néoforest",
       "Thorgal Saga – Wendigo"
     ],
-    "photo": "",
-    "link": "https://www.lelombard.com/auteur-bd/duval-fred"
+    "photo": "assets/authors/duval.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/duval-fred",
+    "credit": "Photo © Chloé Vollmer-Lo"
   },
   {
     "id": "bajram",
