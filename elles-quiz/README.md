@@ -40,3 +40,7 @@ de faible définition) : à remplacer par les PNG détourés HD en gardant les n
 - Mesure **anonyme** (aucun cookie, aucune IP, aucune donnée personnelle) : démarrages, résultats obtenus, clics sur « Découvrir le tome 4 », encart couverture, « Partager », « Télécharger ma carte », « Refaire le test », « Découvrir la série », ouvertures de liens partagés.
 - Fonctions : `netlify/functions/track.mjs` (enregistre) et `stats.mjs` (agrège, protégée). Stockage : Netlify Blobs.
 - Déploiement (fonctions incluses) : `cd netlify && npm install` puis `NETLIFY_SITE_ID=… python3 tools/deploy_netlify.py`.
+
+## Partage réseaux sociaux
+- Image générique : `img/og-image.jpg` (`tools/make_og_image.py`). Une vignette par résultat : `img/og/<couleur>.jpg` + une page `r/<couleur>/` portant les balises Open Graph (`tools/make_og_results.py`). Le bouton « Partager » envoie l'adresse `https://elles.lelombard.com/r/<couleur>/` ; ouverte par un humain, elle redirige vers le résultat.
+- Pour forcer la mise à jour d'un aperçu mis en cache : outil « Sharing Debugger » de Facebook.

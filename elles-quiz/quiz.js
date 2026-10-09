@@ -366,7 +366,9 @@
 
   async function share() {
     const E = ELLES[state.result];
-    const url = location.origin && location.origin !== "null" ? location.origin + location.pathname + "#resultat-" + state.result : location.href;
+    // adresse dédiée à chaque résultat : les réseaux sociaux y lisent la vignette de la couleur
+    const SLUG = { brune: "chatain" };
+    const url = /^https?:/.test(location.protocol) ? `${location.origin}/r/${SLUG[state.result] || state.result}/` : location.href;
     const text = `Je suis Elle ${E.name} ! « ${E.mantra} » Et toi, quelle Elle se cache en toi ? Le tome 4, Intemporelle(s), est en librairie !`;
     try {
       if (navigator.share) { await navigator.share({ title: "Le test ELLES", text, url }); return; }
