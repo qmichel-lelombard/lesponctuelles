@@ -29,8 +29,8 @@
   <nav class="top__nav" id="nav" aria-label="Navigation principale">
     <a href="#album" data-s="album"><b>01</b> L'album</a>
     <a href="#fresque" data-s="fresque"><b>02</b> La fresque</a>
-    <a href="#chrono" data-s="chrono"><b>03</b> Chronologie</a>
-    <a href="#auteurs" data-s="auteurs"><b>04</b> Les auteurs</a>
+    <a href="#auteurs" data-s="auteurs"><b>03</b> Les auteurs</a>
+    <a href="#chrono" data-s="chrono"><b>04</b> Chronologie</a>
     <a href="#carnet" data-s="carnet"><b>05</b> Carnet</a>
     <a href="#extrait" data-s="extrait"><b>06</b> Extrait</a>
   </nav>
@@ -147,10 +147,23 @@
   </div>
 </section>
 
-<!-- CHRONOLOGIE -->
-<section class="sec" id="chrono">
+<!-- AUTEURS -->
+<section class="sec" id="auteurs">
   <header class="sec__head reveal">
-    <p class="eyebrow">03 · Journal de bord</p>
+    <p class="eyebrow">03 · Équipage</p>
+    <h2>Neuf auteurs, <em>neuf trajectoires</em></h2>
+    <p class="sec__sub">Du thriller à la fantasy, de la hard SF à la fresque historique : un équipage aux parcours très différents, réuni pour un même voyage.</p>
+  </header>
+
+  <div class="authors">
+{{AUTHORS}}
+  </div>
+</section>
+
+<!-- CHRONOLOGIE -->
+<section class="sec sec--alt" id="chrono">
+  <header class="sec__head reveal">
+    <p class="eyebrow">04 · Journal de bord</p>
     <h2>Mille ans, <em>huit récits</em></h2>
     <p class="sec__sub">Du prologue à l'épilogue, les huit récits jalonnent les mille ans. Effectifs relevés sur les pages-titres de chaque chapitre.</p>
   </header>
@@ -218,6 +231,7 @@
 
 <!-- SCENES -->
 <section class="scene scene--cryo" id="scene-cryo" data-fx="embers" data-fx0="0.5" aria-label="Décor : des explorateurs avancent entre des caissons de cryogénisation, sur un sol gravé de la station">
+  <i class="snap-end" aria-hidden="true"></i>
   <div class="scene__stick">
     <div class="scene__pan" data-ratio="1.0204">
       <img src="assets/img/scene-cryo-2.webp" alt="Vue plongeante : des explorateurs en combinaison avancent entre des caissons de cryogénisation, sur un sol orangé gravé du plan de la station" width="1500" height="1470" loading="lazy">
@@ -243,17 +257,8 @@
   </div>
 </section>
 
-<section class="fly" id="fly" aria-label="Transition : la navette SB05 traverse l'espace">
-  <div class="fly__stick">
-    <div class="fly__ship" id="ship">
-      <span class="fly__trail" aria-hidden="true"></span>
-      <span class="fly__glow" aria-hidden="true"></span>
-      <img src="assets/img/navette.webp" alt="La navette SB05, illustration en couleur" width="1600" height="965" loading="lazy">
-    </div>
-  </div>
-</section>
-
 <section class="scene scene--ville" id="scene-ville" data-fx="pollen" data-fx0="0.62" aria-label="Décor : une astronaute et son robot contemplent la ville en ruines reprise par la végétation">
+  <i class="snap-end" aria-hidden="true"></i>
   <div class="scene__stick">
     <div class="scene__pan" data-ratio="0.7499">
       <img src="assets/img/scene-ville.webp" alt="Une astronaute et son petit robot contemplent une ville en ruines reprise par la végétation, dominée par une immense tour, sous le passage de trois vaisseaux" width="1450" height="1933" loading="lazy">
@@ -270,19 +275,6 @@
     <canvas class="scene__fx" aria-hidden="true"></canvas>
     <div class="scene__vig scene__vig--light" aria-hidden="true"></div>
     <div class="scene__text scene__text--dark"><p data-a="0.02" data-b="0.8">… pour laisser la Terre se régénérer… pendant mille ans !</p></div>
-  </div>
-</section>
-
-<!-- AUTEURS -->
-<section class="sec sec--alt" id="auteurs">
-  <header class="sec__head reveal">
-    <p class="eyebrow">04 · Équipage</p>
-    <h2>Neuf auteurs, <em>neuf trajectoires</em></h2>
-    <p class="sec__sub">Du thriller à la fantasy, de la hard SF à la fresque historique : un équipage aux parcours très différents, réuni pour un même voyage.</p>
-  </header>
-
-  <div class="authors">
-{{AUTHORS}}
   </div>
 </section>
 
