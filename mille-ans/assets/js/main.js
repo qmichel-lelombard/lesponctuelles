@@ -155,6 +155,56 @@
       c.shadowBlur = 0; c.globalAlpha = 1;
     }
   }
+  /* ---------- Duo : deux décors en écran partagé ---------- */
+  const duo = $('#duo');
+  const duoParts = ['#duo-a', '#duo-b'].map(s => {
+    const el = $(s), cvs = $('canvas', el), img = $('img', el);
+    return { el, cvs, img, c: cvs.getContext('2d'), kind: cvs.dataset.kind, parts: [], vis: false };
+  });
+  const [dA, dB] = duoParts, line = $('#duo-line'), t1 = $('#duo-t1'), t2 = $('#duo-t2');
+  const stacked = () => innerWidth <= 760;
+  function layoutDuo() {
+    for (const d of duoParts) {
+      const w = d.el.offsetWidth, h = d.el.offsetHeight;
+      d.cvs.width = w; d.cvs.height = h;
+      d.parts = Array.from({ length: d.kind === 'embers' ? 45 : 35 }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 1.8 + .5, v: Math.random() * .5 + .15, sw: Math.random() * 6.28, a: Math.random() * .6 + .3 }));
+    }
+  }
+  function updateDuo() {
+    const r = duo.getBoundingClientRect(), vh = innerHeight;
+    dA.vis = dB.vis = r.bottom > 0 && r.top < vh;
+    if (!dA.vis) return;
+    const p = clamp(-r.top / (r.height - vh)), st = stacked();
+    const ea = smooth(0, .2, p), eb = smooth(.46, .68, p);
+    dA.el.style.transform = `translate3d(${-(1 - ea) * 101}%,0,0)`;
+    dB.el.style.transform = `translate3d(${(1 - eb) * 101}%,0,0)`;
+    const W = dA.el.offsetWidth, H = dA.el.offsetHeight;
+    // balayage lent des images pendant tout le défilement
+    dA.img.style.transform = `translate3d(${-p * .28 * W}px,${-p * .1 * H}px,0)`;
+    dB.img.style.transform = `translate3d(${-p * .06 * W}px,${-(0.15 + p * .85) * .28 * H}px,0)`;
+    const l = smooth(.04, .2, p) * (1 - smooth(.9, 1, p) * .6);
+    line.style.opacity = l; line.style.transform = st ? `scaleX(${ea})` : `scaleY(${ea})`;
+    const o1 = smooth(.14, .27, p) * (1 - smooth(.4, .5, p)), o2 = smooth(.64, .76, p) * (1 - smooth(.96, 1, p));
+    t1.style.opacity = o1; t1.style.transform = `translateY(${(1 - o1) * 22}px)`;
+    t2.style.opacity = o2; t2.style.transform = `translateY(${(1 - o2) * 22}px)`;
+  }
+  function fxDuo(t) {
+    for (const d of duoParts) {
+      if (!d.vis) continue;
+      const c = d.c, w = d.cvs.width, h = d.cvs.height; c.clearRect(0, 0, w, h);
+      for (const q of d.parts) {
+        if (d.kind === 'embers') { q.y -= q.v; q.x += Math.sin(t / 1500 + q.sw) * .3; if (q.y < -5) { q.y = h + 5; q.x = Math.random() * w; } }
+        else { q.y += q.v * .4; q.x += Math.sin(t / 2200 + q.sw) * .5 + .15; if (q.y > h + 5) { q.y = -5; q.x = Math.random() * w; } if (q.x > w + 5) q.x = -5; }
+        c.globalAlpha = q.a * (.4 + .6 * (.5 + .5 * Math.sin(t / 700 + q.sw))) * .8;
+        c.fillStyle = d.kind === 'embers' ? '#ffcf8a' : '#ffffff'; c.shadowColor = d.kind === 'embers' ? '#ff9a3c' : '#bfe0ff'; c.shadowBlur = 8;
+        c.beginPath(); c.arc(q.x, q.y, q.r, 0, 6.283); c.fill();
+      }
+      c.shadowBlur = 0; c.globalAlpha = 1;
+    }
+  }
+  layoutDuo();
+  addEventListener('resize', () => { layoutDuo(); updateDuo(); });
+  if (!reduce) (function dloop(t) { fxDuo(t); requestAnimationFrame(dloop); })(0);
   scenes.forEach(layoutScene);
   addEventListener('resize', () => { scenes.forEach(layoutScene); updateScenes(); });
 
@@ -165,12 +215,12 @@
     requestAnimationFrame(() => {
       const h = document.documentElement.scrollHeight - innerHeight;
       bar.style.width = (h > 0 ? scrollY / h * 100 : 0) + '%';
-      updateScenes();
+      updateScenes(); updateDuo();
       if (reduce) draw(0, 16);
       tick = false;
     });
   }, { passive: true });
-  updateScenes();
+  updateScenes(); updateDuo();
   if (!reduce) (function sloop(t) { fxScenes(t); requestAnimationFrame(sloop); })(0);
 
   /* ---------- Apparition au scroll ---------- */
