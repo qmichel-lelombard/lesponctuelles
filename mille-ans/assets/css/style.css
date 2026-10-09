@@ -403,13 +403,3 @@ button.btn--solid{background:var(--blue)}
 #duo-t2 p{text-shadow:0 2px 34px #000,0 0 16px rgba(0,0,0,.95),0 0 6px #000}
 .duo__shade{background:linear-gradient(transparent 45%,rgba(5,8,15,.7)),linear-gradient(rgba(5,8,15,.55),transparent 38%),linear-gradient(#05080f 0,transparent 12%,transparent 90%,#05080f 100%)}
 @media(max-width:760px){#duo-t2{top:12vh}}
-
-/* bandeau Terre pleine largeur */
-.earth{position:relative;width:100%;height:clamp(240px,46vw,640px);overflow:hidden;margin:clamp(-30px,-3vw,0px) 0;
-  -webkit-mask:linear-gradient(180deg,transparent 0,#000 34%,#000 100%);mask:linear-gradient(180deg,transparent 0,#000 34%,#000 100%)}
-.earth__in{position:absolute;left:0;right:0;bottom:-12%;height:124%;will-change:transform}
-.earth__in img{width:100%;height:100%;object-fit:cover;object-position:50% 100%;display:block}
-.earth__atmo{position:absolute;inset:0;pointer-events:none;background:radial-gradient(90% 70% at 50% 108%,rgba(90,150,255,.35),transparent 70%);mix-blend-mode:screen;animation:atmo 7s ease-in-out infinite alternate}
-@keyframes atmo{to{opacity:.55}}
-@media(max-width:600px){.earth{height:230px}.earth__in img{object-position:62% 100%}}
-@media(prefers-reduced-motion:reduce){.earth__atmo{animation:none}}

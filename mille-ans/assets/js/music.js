@@ -1,83 +1,70 @@
-/* Thème d'ambiance original, synthétisé en direct (aucun fichier audio).
-   Esprit « space opera » : cordes amples, cor héroïque, harpe, quintes ouvertes.
-   Boucle de 32 s en ré majeur : Dmaj9 – Bm(add11) – Gmaj7#11 – Asus4. */
+/* Ambiance « space ambient » originale, synthétisée en direct (aucun fichier audio).
+   Nappes sombres, basse profonde, séquenceur lent en écho, cloches cristallines.
+   Boucle de 64 s en ré mineur : Dm9 – Bbmaj7 – Gm9 – A(sus4). */
 (function () {
   'use strict';
-  const BAR = 8, LOOP = BAR * 4;
-  const hz = m => 440 * Math.pow(2, (m - 69) / 12);          // note MIDI -> Hz
-  const N = { D2: 38, B1: 35, G1: 31, A1: 33, D3: 50, A3: 57, E4: 64, F4s: 66, B3: 59, D4: 62, G3: 55, A4: 69, D5: 74, F5s: 78, E5: 76, B4: 71, C5s: 73, F3s: 54, E3: 52, G4: 67, A5: 81, B5: 83 };
-  const CHORDS = [
-    { bass: N.D2, pad: [N.D3, N.A3, N.E4, N.F4s, N.A4], arp: [50, 57, 62, 64, 66, 69, 74] },        // Dmaj9
-    { bass: N.B1, pad: [N.B3, N.D4, N.F4s, N.A4, 76], arp: [47, 59, 62, 66, 69, 71, 74] },          // Bm(add11)
-    { bass: N.G1, pad: [N.G3, N.B3, N.D4, N.F4s, N.C5s], arp: [43, 55, 59, 62, 66, 71, 73] },       // Gmaj7#11
-    { bass: N.A1, pad: [N.A3, N.D4, N.E4, N.A4, N.E5], arp: [45, 57, 62, 64, 69, 74, 76] }          // Asus4
-  ];
-  // mélodie : [mesure, décalage (s), note, durée (s)]
-  const MELODY = [
-    [0, 0, N.A4, 3.2], [0, 3.6, N.D5, 2.2], [0, 6, N.F5s, 2],
-    [1, 0, N.E5, 2.8], [1, 3.2, N.D5, 1.6], [1, 5, N.B4, 3],
-    [2, 0, N.B4, 2.6], [2, 3, N.D5, 2], [2, 5.2, N.C5s, 2.8],
-    [3, 0, N.E5, 4.2], [3, 4.6, N.D5, 1.6], [3, 6.4, N.A4, 1.6]
+  const BAR = 16, LOOP = BAR * 4;
+  const hz = m => 440 * Math.pow(2, (m - 69) / 12);
+  const CH = [
+    { bass: 38, pad: [50, 57, 60, 64, 69], seq: [62, 65, 69, 72, 74, 72, 69, 65], bell: [81, 84, 88] },   // Dm9
+    { bass: 34, pad: [46, 53, 57, 62, 65], seq: [58, 62, 65, 69, 70, 69, 65, 62], bell: [77, 81, 86] },   // Bbmaj7
+    { bass: 31, pad: [43, 50, 55, 58, 62], seq: [55, 58, 62, 65, 67, 65, 62, 58], bell: [79, 82, 86] },   // Gm9
+    { bass: 33, pad: [45, 50, 52, 57, 64], seq: [57, 61, 64, 69, 71, 69, 64, 61], bell: [81, 85, 88] }    // Asus4
   ];
 
-  function voice(ac, out, o) {
-    // o : f, t0, dur, type, gain, lp, att, rel, vib, detune
-    const g = ac.createGain(), lp = ac.createBiquadFilter();
-    lp.type = 'lowpass'; lp.frequency.value = o.lp; lp.Q.value = .5;
-    const end = o.t0 + o.dur;
-    g.gain.setValueAtTime(0.0001, o.t0);
-    g.gain.exponentialRampToValueAtTime(o.gain, o.t0 + o.att);
-    g.gain.setValueAtTime(o.gain, Math.max(o.t0 + o.att, end - o.rel * .4));
-    g.gain.exponentialRampToValueAtTime(0.0001, end + o.rel);
-    const oscs = (o.detune || [0]).map(d => {
-      const os = ac.createOscillator(); os.type = o.type; os.frequency.value = o.f; os.detune.value = d;
-      if (o.vib) {
-        const l = ac.createOscillator(), lg = ac.createGain();
-        l.frequency.value = 4.8 + Math.random() * .8; lg.gain.value = o.f * .004; l.connect(lg); lg.connect(os.frequency);
-        l.start(o.t0 + o.att); l.stop(end + o.rel + .1);
-      }
-      os.connect(lp); os.start(o.t0); os.stop(end + o.rel + .1); return os;
+  function pad(ac, out, f, t0, dur, g, cut) {
+    const lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.Q.value = 1.2;
+    lp.frequency.setValueAtTime(cut * .35, t0);
+    lp.frequency.linearRampToValueAtTime(cut, t0 + dur * .5);
+    lp.frequency.linearRampToValueAtTime(cut * .4, t0 + dur);
+    const gn = ac.createGain();
+    gn.gain.setValueAtTime(.0001, t0);
+    gn.gain.exponentialRampToValueAtTime(g, t0 + 4);
+    gn.gain.setValueAtTime(g, t0 + dur - 4);
+    gn.gain.exponentialRampToValueAtTime(.0001, t0 + dur + 3);
+    [-11, 0, 9].forEach(d => {
+      const o = ac.createOscillator(); o.type = 'sawtooth'; o.frequency.value = f; o.detune.value = d;
+      o.connect(lp); o.start(t0); o.stop(t0 + dur + 3.2);
     });
-    lp.connect(g); g.connect(out); return oscs;
+    lp.connect(gn); gn.connect(out);
+  }
+  function note(ac, out, f, t0, g, len, type, cut) {
+    const o = ac.createOscillator(), gn = ac.createGain(), lp = ac.createBiquadFilter();
+    o.type = type; o.frequency.value = f; lp.type = 'lowpass'; lp.Q.value = 6;
+    lp.frequency.setValueAtTime(cut, t0); lp.frequency.exponentialRampToValueAtTime(Math.max(200, cut * .2), t0 + len);
+    gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(g, t0 + .02); gn.gain.exponentialRampToValueAtTime(.0001, t0 + len);
+    o.connect(lp); lp.connect(gn); gn.connect(out); o.start(t0); o.stop(t0 + len + .1);
+  }
+  function bell(ac, out, f, t0, g) {
+    [1, 2.76, 5.4].forEach((r, i) => {
+      const o = ac.createOscillator(), gn = ac.createGain();
+      o.type = 'sine'; o.frequency.value = f * r;
+      gn.gain.setValueAtTime(.0001, t0); gn.gain.exponentialRampToValueAtTime(g / (i + 1), t0 + .01); gn.gain.exponentialRampToValueAtTime(.0001, t0 + 5 - i);
+      o.connect(gn); gn.connect(out); o.start(t0); o.stop(t0 + 5.2);
+    });
   }
 
-  function pluck(ac, out, f, t0, gain) {
-    const o = ac.createOscillator(), o2 = ac.createOscillator(), g = ac.createGain();
-    o.type = 'triangle'; o2.type = 'sine'; o.frequency.value = f; o2.frequency.value = f * 2;
-    g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(gain, t0 + .012);
-    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.9);
-    o.connect(g); o2.connect(g); g.connect(out); o.start(t0); o2.start(t0); o.stop(t0 + 2); o2.stop(t0 + 2);
-  }
-
-  /* Programme une boucle complète à partir de t0 (temps du contexte audio).
-     dry : bus direct, wet : bus réverbéré, echo : bus d'écho (harpe). */
   function schedule(ac, buses, t0) {
     const { dry, wet, echo } = buses;
-    CHORDS.forEach((c, i) => {
+    CH.forEach((c, i) => {
       const s = t0 + i * BAR;
-      // cordes : accord tenu, attaque lente (swell)
-      c.pad.forEach((m, k) => voice(ac, wet, { f: hz(m), t0: s, dur: BAR - .2, type: 'sawtooth', gain: .016, lp: 1500 + k * 120, att: 2.4, rel: 2.8, vib: true, detune: [-9, 8] }));
-      // violoncelles / contrebasses
-      voice(ac, dry, { f: hz(c.bass), t0: s, dur: BAR - .4, type: 'triangle', gain: .09, lp: 420, att: 1.6, rel: 2.2, detune: [0] });
-      voice(ac, wet, { f: hz(c.bass + 12), t0: s, dur: BAR - .4, type: 'sawtooth', gain: .018, lp: 520, att: 1.8, rel: 2.2, vib: true, detune: [-6, 6] });
-      // harpe : arpège ascendant puis descendant
-      const seq = c.arp.concat(c.arp.slice(1, -1).reverse());
-      seq.forEach((m, k) => pluck(ac, echo, hz(m + 12), s + .5 + k * .52, .03 + (k % 3 === 0 ? .012 : 0)));
-      // timbales douces et soupir de cymbale au début de la boucle
-      if (i === 0) {
-        const th = ac.createOscillator(), tg = ac.createGain();
-        th.type = 'sine'; th.frequency.setValueAtTime(95, s); th.frequency.exponentialRampToValueAtTime(48, s + .6);
-        tg.gain.setValueAtTime(.0001, s); tg.gain.exponentialRampToValueAtTime(.16, s + .02); tg.gain.exponentialRampToValueAtTime(.0001, s + 2.4);
-        th.connect(tg); tg.connect(wet); th.start(s); th.stop(s + 2.6);
+      c.pad.forEach((m, k) => pad(ac, wet, hz(m), s, BAR, .02, 900 + k * 220));
+      // sub-basse : deux notes tenues
+      [0, 8].forEach(off => note(ac, dry, hz(c.bass), s + off, .16, 7.5, 'sine', 400));
+      note(ac, dry, hz(c.bass + 12), s, .035, 15, 'triangle', 500);
+      // séquenceur croche lente, accentué un pas sur quatre
+      for (let n = 0; n < 24; n++) {
+        const m = c.seq[n % c.seq.length] + (n % 8 === 7 ? 12 : 0);
+        note(ac, echo, hz(m), s + 1 + n * .66, n % 4 === 0 ? .05 : .028, .6, 'sawtooth', 1900 + 600 * Math.sin(n / 4));
       }
+      // cloches
+      c.bell.forEach((m, k) => bell(ac, echo, hz(m), s + 2.5 + k * 4.7, .018));
     });
-    // cor héroïque : mélodie
-    MELODY.forEach(([bar, off, m, d]) => {
-      const s = t0 + bar * BAR + off;
-      voice(ac, wet, { f: hz(m), t0: s, dur: d, type: 'sawtooth', gain: .034, lp: 1150, att: .35, rel: .9, vib: true, detune: [-4, 4] });
-      voice(ac, dry, { f: hz(m), t0: s, dur: d, type: 'triangle', gain: .02, lp: 1800, att: .3, rel: .8, vib: true, detune: [0] });
-    });
+    // grosse pulsation grave au début de la boucle
+    const s = t0, o = ac.createOscillator(), gn = ac.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(70, s); o.frequency.exponentialRampToValueAtTime(34, s + 1.6);
+    gn.gain.setValueAtTime(.0001, s); gn.gain.exponentialRampToValueAtTime(.22, s + .03); gn.gain.exponentialRampToValueAtTime(.0001, s + 4);
+    o.connect(gn); gn.connect(wet); o.start(s); o.stop(s + 4.2);
   }
-
   window.MilleMusic = { schedule, LOOP };
 })();

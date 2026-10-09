@@ -259,13 +259,6 @@ void main(){
   glInit();
   addEventListener('resize', () => { sizeDuo(); updateDuo(); });
   if (!reduce) (function dloop(t) { if (dVis && gl && dP > .3 && dP < .7) drawDuo(t); requestAnimationFrame(dloop); })(0);
-  const earth = $('#earth'), earthIn = $('.earth__in', earth);
-  function updateEarth() {
-    const r = earth.getBoundingClientRect(), vh = innerHeight;
-    if (r.bottom < 0 || r.top > vh) return;
-    const k = clamp((vh - r.top) / (vh + r.height));
-    earthIn.style.transform = `translate3d(0,${((.5 - k) * 70).toFixed(1)}px,0) scale(${(1.04 + k * .06).toFixed(3)})`;
-  }
   scenes.forEach(layoutScene);
   addEventListener('resize', () => { scenes.forEach(layoutScene); updateScenes(); });
 
@@ -276,12 +269,12 @@ void main(){
     requestAnimationFrame(() => {
       const h = document.documentElement.scrollHeight - innerHeight;
       bar.style.width = (h > 0 ? scrollY / h * 100 : 0) + '%';
-      updateScenes(); updateDuo(); updateEarth();
+      updateScenes(); updateDuo();
       if (reduce) draw(0, 16);
       tick = false;
     });
   }, { passive: true });
-  updateScenes(); updateDuo(); updateEarth();
+  updateScenes(); updateDuo();
   if (!reduce) (function sloop(t) { fxScenes(t); requestAnimationFrame(sloop); })(0);
 
   /* ---------- Apparition au scroll ---------- */
