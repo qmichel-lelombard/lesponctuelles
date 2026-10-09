@@ -17,7 +17,7 @@
     ],
     "photo": "assets/authors/duval.jpg",
     "link": "https://www.lelombard.com/auteur-bd/duval-fred",
-    "credit": "Photo © Chloé Vollmer-Lo"
+    "credit_note": "Photo © Chloé Vollmer-Lo"
   },
   {
     "id": "bajram",
@@ -113,7 +113,7 @@
     "works": [],
     "photo": "assets/authors/grun.jpg",
     "link": "https://www.lelombard.com/auteur-bd/grun",
-    "credit": "Photo © Dargaud / Alexis Haulot"
+    "credit_note": "Photo © Dargaud / Alexis Haulot"
   },
   {
     "id": "ricci",
