@@ -155,8 +155,19 @@
       c.shadowBlur = 0; c.globalAlpha = 1;
     }
   }
+  const fly = $('#fly'), ship = $('#ship');
+  function updateFly() {
+    const r = fly.getBoundingClientRect(), vh = innerHeight;
+    if (r.bottom < -50 || r.top > vh + 50) return;
+    const p = clamp(-r.top / (r.height - vh)), e = p * p * (3 - 2 * p);
+    const x = 45 + (-50 - 45) * e, y = -40 + (36 + 40) * e, s = .3 + 1.05 * e;
+    const o = smooth(0, .08, p) * (1 - smooth(.93, 1, p));
+    ship.style.opacity = o;
+    ship.style.setProperty('--trail', (.35 + .5 * Math.sin(Math.PI * p)).toFixed(2));
+    ship.style.transform = `translate(-50%,-50%) translate3d(${x}vw,${y}vh,0) scale(${s.toFixed(3)}) rotate(${(-2 + 4 * e).toFixed(2)}deg)`;
+  }
   scenes.forEach(layoutScene);
-  addEventListener('resize', () => { scenes.forEach(layoutScene); updateScenes(); });
+  addEventListener('resize', () => { scenes.forEach(layoutScene); updateScenes(); updateFly(); });
 
   let tick = false;
   addEventListener('scroll', () => {
@@ -165,12 +176,12 @@
     requestAnimationFrame(() => {
       const h = document.documentElement.scrollHeight - innerHeight;
       bar.style.width = (h > 0 ? scrollY / h * 100 : 0) + '%';
-      updateScenes();
+      updateScenes(); updateFly();
       if (reduce) draw(0, 16);
       tick = false;
     });
   }, { passive: true });
-  updateScenes();
+  updateScenes(); updateFly();
   if (!reduce) (function sloop(t) { fxScenes(t); requestAnimationFrame(sloop); })(0);
 
   /* ---------- Apparition au scroll ---------- */
