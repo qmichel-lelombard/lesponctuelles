@@ -159,9 +159,9 @@
   function updateFly() {
     const r = fly.getBoundingClientRect(), vh = innerHeight;
     if (r.bottom < -50 || r.top > vh + 50) return;
-    const p = clamp(-r.top / (r.height - vh)), e = p * p * (3 - 2 * p);
+    const p = clamp(-r.top / (r.height - vh)), q = clamp(p * 1.35), e = q * q * (3 - 2 * q);
     const x = 45 + (-50 - 45) * e, y = -40 + (36 + 40) * e, s = .3 + 1.05 * e;
-    const o = smooth(0, .08, p) * (1 - smooth(.93, 1, p));
+    const o = smooth(0, .05, p) * (1 - smooth(.9, .98, p));
     ship.style.opacity = o;
     ship.style.setProperty('--trail', (.35 + .5 * Math.sin(Math.PI * p)).toFixed(2));
     ship.style.transform = `translate(-50%,-50%) translate3d(${x}vw,${y}vh,0) scale(${s.toFixed(3)}) rotate(${(-2 + 4 * e).toFixed(2)}deg)`;

@@ -386,3 +386,8 @@ button.btn--solid{background:var(--blue)}
 .fly__trail{position:absolute;right:2%;top:2%;width:140%;height:6%;transform-origin:100% 50%;transform:rotate(-24deg) translateX(100%);background:linear-gradient(270deg,rgba(160,210,255,.7),rgba(120,170,255,.25) 40%,transparent);filter:blur(6px);opacity:var(--trail,.6);pointer-events:none}
 @media(max-width:600px){.fly{height:200vh}.fly__ship{width:104vw}}
 @media(prefers-reduced-motion:reduce){.fly__ship img,.fly__glow{animation:none}}
+
+/* v1.2 : rythme plus court */
+.scene{height:175vh}
+.fly{height:150vh}
+@media(max-width:600px){.scene{height:165vh}.fly{height:140vh}}
