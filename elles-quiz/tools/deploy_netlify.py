@@ -30,6 +30,8 @@ for d, _, fs in os.walk(ROOT):
         files[key] = open(p, "rb").read()
 headers = b"/gestion-elles/*\n  X-Robots-Tag: noindex, nofollow\n  Cache-Control: no-store\n/.netlify/functions/*\n  Cache-Control: no-store\n"
 files["/_headers"] = headers
+# l'ancienne adresse .netlify.app redirige vers le domaine officiel (le #resultat-… est conservé)
+files["/_redirects"] = b"https://quelle-elles-es-tu.netlify.app/* https://elles.lelombard.com/:splat 301!\nhttp://quelle-elles-es-tu.netlify.app/* https://elles.lelombard.com/:splat 301!\n"
 
 body = {"files": {k: hashlib.sha1(v).hexdigest() for k, v in files.items()},
         "functions": {k: hashlib.sha256(v).hexdigest() for k, v in fn.items()}}
