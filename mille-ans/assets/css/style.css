@@ -457,3 +457,6 @@ button.btn--solid{background:var(--blue)}
 @media(max-width:860px){.ed{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.qt__slide{transition:none;filter:none}}
 .count__grid[hidden],.count__done[hidden],.count__ics[hidden]{display:none!important}
+
+.qt__slide{display:block;grid-area:auto}
+.qt{padding-bottom:clamp(28px,5vw,56px)}

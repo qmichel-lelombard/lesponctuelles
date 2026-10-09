@@ -343,37 +343,6 @@ void main(){
     document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
   });
 
-  /* ---------- Paroles : carrousel de citations ---------- */
-  const qt = $('#qt'), slides = $$('.qt__slide', qt), dotsBox = $('.qt__dots', qt), qbar = $('#qt-bar');
-  let qi = 0, qStart = 0, qRaf = 0, qPause = false, qVis = false;
-  const QMS = 8000;
-  const dots = slides.map((_, k) => {
-    const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.setAttribute('aria-label', 'Citation ' + (k + 1));
-    b.addEventListener('click', () => qGo(k)); dotsBox.appendChild(b); return b;
-  });
-  function qGo(k) {
-    qi = (k + slides.length) % slides.length; qStart = performance.now();
-    slides.forEach((s, x) => { s.classList.toggle('on', x === qi); s.setAttribute('aria-hidden', x !== qi); });
-    dots.forEach((d, x) => { d.classList.toggle('on', x === qi); d.setAttribute('aria-selected', x === qi); });
-    qbar.style.width = '0%';
-  }
-  function qTick(t) {
-    if (!qPause && qVis) {
-      const p = clamp((t - qStart) / QMS); qbar.style.width = p * 100 + '%';
-      if (p >= 1) qGo(qi + 1);
-    } else qStart = t - (parseFloat(qbar.style.width) || 0) / 100 * QMS;
-    qRaf = requestAnimationFrame(qTick);
-  }
-  $('#qt-prev').addEventListener('click', () => qGo(qi - 1));
-  $('#qt-next').addEventListener('click', () => qGo(qi + 1));
-  qt.addEventListener('pointerenter', () => { qPause = true; }); qt.addEventListener('pointerleave', () => { qPause = false; });
-  qt.addEventListener('focusin', () => { qPause = true; }); qt.addEventListener('focusout', () => { qPause = false; });
-  let sx = 0;
-  qt.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
-  qt.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) qGo(qi + (dx < 0 ? 1 : -1)); }, { passive: true });
-  new IntersectionObserver(es => { qVis = es[0].isIntersecting; }, { threshold: .4 }).observe(qt);
-  qGo(0);
-  if (!reduce) qRaf = requestAnimationFrame(qTick); else qbar.parentElement.hidden = true;
 
   /* ---------- Logo : inclinaison à la souris ---------- */
   const logo = $('#logo');
