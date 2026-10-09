@@ -79,7 +79,7 @@ def versioned(m):
 
 
 # anti-cache : CSS/JS/polices référencés avec une empreinte du contenu
-html = re.sub(r'(assets/(?:css/style\.css|js/main\.js|js/music\.js|fonts/fonts\.css))(?=")', versioned, html)
+html = re.sub(r'(assets/(?:css/style\.css|js/main\.js|fonts/fonts\.css))(?=")', versioned, html)
 
 
 def typo(text):

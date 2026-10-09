@@ -456,58 +456,49 @@ void main(){
   $('#ex-x').addEventListener('click', () => ex.close());
   ex.addEventListener('click', e => { if (e.target === ex) ex.close(); });
 
-  /* ---------- Ambiance sonore (synthèse Web Audio, aucun fichier) ---------- */
+  /* ---------- Ambiance sonore (fichier audio, boucle avec fondus) ---------- */
   const snd = $('#snd');
-  let ac = null, master = null, started = false, enabled = store.get('milleans-sound') !== 'off';
-  let nextLoop = 0.3, sched = 0;
-  function buses(ctx, out) {
-    const len = ctx.sampleRate * 4.5, ir = ctx.createBuffer(2, len, ctx.sampleRate);
-    for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.4); }
-    const rev = ctx.createConvolver(); rev.buffer = ir;
-    const wet = ctx.createGain(); wet.gain.value = 1; wet.connect(rev);
-    const revOut = ctx.createGain(); revOut.gain.value = .9; rev.connect(revOut); revOut.connect(out);
-    const dry = ctx.createGain(); dry.gain.value = 1; dry.connect(out);
-    wet.connect(out); wet.gain.value = .7;
-    const echo = ctx.createGain(); echo.connect(dry); echo.connect(rev);
-    const dl = ctx.createDelay(2); dl.delayTime.value = .62; const fb = ctx.createGain(); fb.gain.value = .38;
-    echo.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(rev); dl.connect(out);
-    return { dry, wet, echo };
+  const TOP = .55, EDGE = 3;                       // volume maximal, durée des fondus de boucle (s)
+  let audio = null, enabled = store.get('milleans-sound') !== 'off', playing = false, vol = 0, goal = 0, timer = 0;
+  function loopGain() {
+    if (!audio || !isFinite(audio.duration)) return 1;
+    const t = audio.currentTime, d = audio.duration;
+    return clamp(Math.min(t / EDGE, (d - t) / EDGE));
   }
-  function build() {
-    const AC = window.AudioContext || window.webkitAudioContext; if (!AC || !window.MilleMusic) return false;
-    ac = new AC(); master = ac.createGain(); master.gain.value = 0;
-    const comp = ac.createDynamicsCompressor(); comp.threshold.value = -18; comp.ratio.value = 3;
-    master.connect(comp); comp.connect(ac.destination);
-    const b = buses(ac, master);
-    nextLoop = ac.currentTime + .4;
-    const tick = () => {
-      if (ac.currentTime > nextLoop - 12) { window.MilleMusic.schedule(ac, b, nextLoop); nextLoop += window.MilleMusic.LOOP; }
-    };
-    tick(); sched = setInterval(tick, 2000);
-    return true;
+  function step() {
+    vol += (goal - vol) * .06;
+    if (audio) audio.volume = clamp(vol * loopGain() * TOP);
+    if (!goal && vol < .005 && audio) { audio.pause(); clearInterval(timer); timer = 0; }
   }
-  function fadeTo(v, s) { master.gain.cancelScheduledValues(ac.currentTime); master.gain.setValueAtTime(master.gain.value, ac.currentTime); master.gain.linearRampToValueAtTime(v, ac.currentTime + s); }
+  function ensure() {
+    if (audio) return;
+    audio = new Audio('assets/audio/ambiance.mp3');
+    audio.loop = true; audio.preload = 'auto'; audio.volume = 0;
+  }
   async function soundOn() {
-    if (!started) { if (!build()) { snd.hidden = true; return; } started = true; }
-    try { await ac.resume(); } catch (e) { /* ignoré */ }
-    fadeTo(.8, 4); enabled = true; snd.classList.add('on'); snd.classList.remove('wait'); snd.setAttribute('aria-pressed', 'true'); store.set('milleans-sound', 'on');
+    ensure();
+    goal = 1; enabled = true;
+    try { await audio.play(); } catch (e) { goal = 0; snd.classList.add('wait'); return; }
+    playing = true; if (!timer) timer = setInterval(step, 60);
+    snd.classList.add('on'); snd.classList.remove('wait'); snd.setAttribute('aria-pressed', 'true'); store.set('milleans-sound', 'on');
   }
   function soundOff() {
-    enabled = false; snd.classList.remove('on', 'wait'); snd.setAttribute('aria-pressed', 'false'); store.set('milleans-sound', 'off');
-    if (ac) { fadeTo(0, .6); setTimeout(() => { if (!enabled) ac.suspend(); }, 700); }
+    enabled = false; goal = 0; playing = false;
+    snd.classList.remove('on', 'wait'); snd.setAttribute('aria-pressed', 'false'); store.set('milleans-sound', 'off');
+    if (audio && !timer) timer = setInterval(step, 60);
   }
   snd.addEventListener('click', e => { e.stopPropagation(); snd.classList.contains('on') ? soundOff() : soundOn(); });
   if (enabled) {
-    snd.classList.add('wait'); snd.title = 'Cliquez ou touchez la page pour lancer l’ambiance sonore';
+    snd.classList.add('wait'); snd.title = 'Cliquez ou touchez la page pour lancer l\u2019ambiance sonore';
     const first = e => {
       removeEventListener('pointerdown', first); removeEventListener('keydown', first);
       if (e.target.closest && e.target.closest('#snd')) return;
-      if (enabled && !started) soundOn();
+      if (enabled && !playing) soundOn();
     };
     addEventListener('pointerdown', first); addEventListener('keydown', first);
   }
   document.addEventListener('visibilitychange', () => {
-    if (!ac || !enabled || !started) return;
-    if (document.hidden) { fadeTo(0, .3); setTimeout(() => ac.suspend(), 350); } else { ac.resume(); fadeTo(.8, 1.5); }
+    if (!audio || !playing) return;
+    if (document.hidden) { goal = 0; } else { goal = 1; audio.play().catch(() => {}); if (!timer) timer = setInterval(step, 60); }
   });
 })();
