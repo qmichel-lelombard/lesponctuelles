@@ -387,6 +387,11 @@ void main(){
   $('#lb-x').addEventListener('click', () => lb.close());
   lb.addEventListener('click', e => { if (e.target === lb || e.target.id === 'lb-img') lb.close(); });
 
+  $$('[data-zoom]').forEach(b => b.addEventListener('click', () => {
+    $('#lb-img').src = b.dataset.zoom; $('#lb-img').alt = $('img', b).alt;
+    if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
+  }));
+
   /* ---------- Extrait WeStory en fenêtre ---------- */
   const ex = $('#ex'), frame = $('#ex-frame');
   $$('[data-open=excerpt]').forEach(b => b.addEventListener('click', () => {
