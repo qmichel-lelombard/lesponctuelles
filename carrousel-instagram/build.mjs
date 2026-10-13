@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const A = "../../../../quiz-ducobu/assets"; // vu depuis out/<dossier>/html/
-const URL_SITE = "duco-bouh.netlify.app";
+const URL_SITE = "ducobu.lelombard.com";
 
 const css = `
 :root{--yellow:#ffd400;--black:#141414;--paper:#fff8dc;--orange:#ff7a00;--purple:#4b1d6b}
