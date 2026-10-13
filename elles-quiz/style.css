@@ -247,3 +247,4 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
   .peek{height:auto;width:min(250px,calc((100vw - 720px)/2 + 20px));aspect-ratio:1;bottom:16px;object-position:center bottom;filter:drop-shadow(0 12px 22px rgba(10,0,40,.5))}
   .peek.left{object-position:center bottom}
 }
+.bg[data-bg=mondes] .kb{background-image:url(img/bg-mondes.webp)}
