@@ -415,7 +415,7 @@
       x.fillStyle = "#fff"; x.font = "600 44px Fredoka, Trebuchet MS, sans-serif"; x.fillText("MON MONDE INTÉRIEUR EST…", W / 2, 1520);
       x.fillStyle = E.color; x.font = "700 130px Fredoka, Trebuchet MS, sans-serif";
       x.shadowColor = "rgba(0,0,0,.35)"; x.shadowBlur = 18; x.fillText(`Elle ${E.name}`, W / 2, 1650); x.shadowBlur = 0;
-      x.fillStyle = "#fff"; x.font = "500 44px Fredoka, Trebuchet MS, sans-serif"; wrap(x, `« ${E.mantra} »`, W / 2, 1735, 900, 56);
+      x.fillStyle = "#fff"; x.font = "500 44px Fredoka, Trebuchet MS, sans-serif"; wrap(x, `«\u00A0${E.mantra.replace(/ ([^ ]+)$/, "\u00A0$1")}\u00A0»`, W / 2, 1735, 900, 56);
       x.font = "600 36px Fredoka, Trebuchet MS, sans-serif"; x.globalAlpha = .9;
       x.fillText("Tome 4 · Intemporelle(s) · En librairie !", W / 2, 1860); x.globalAlpha = 1;
       const a = document.createElement("a");

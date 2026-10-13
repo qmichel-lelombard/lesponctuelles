@@ -51,7 +51,7 @@ for key, (slug, name, col, tag, mantra, imgname) in E.items():
     big = F(fred, 100); d.text((60, 245), f"Elle {name}" if len(name) < 8 else f"Elle {name}", font=big, fill=col)
     d.text((60, 365), tag, font=F(fred, 32), fill=(255, 255, 255))
     y = 420
-    for line in wrap(d, f"« {mantra} »", F(nun, 28), 560): d.text((60, y), line, font=F(nun, 28), fill=(255, 225, 240)); y += 38
+    for line in wrap(d, "«\u00A0" + mantra.rsplit(" ", 1)[0] + " " + mantra.rsplit(" ", 1)[1] + "\u00A0»", F(nun, 28), 560): d.text((60, y), line, font=F(nun, 28), fill=(255, 225, 240)); y += 38
     d.rounded_rectangle((60, 545, 60 + 560, 545 + 54), 27, fill=(255, 79, 147))
     d.text((60 + 24, 545 + 10), "Et toi, quelle Elle se cache en toi ?", font=F(fred, 27), fill=(255, 255, 255))
     os.makedirs("img/og", exist_ok=True); im.convert("RGB").save(f"img/og/{slug}.jpg", quality=88, optimize=True)
