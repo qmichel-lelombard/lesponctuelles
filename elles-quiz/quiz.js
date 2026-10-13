@@ -392,7 +392,7 @@
   async function downloadCard() {
     const E = ELLES[state.result];
     try {
-      const [bg, girl, logo] = await Promise.all([loadImg("img/bg-pyramides.webp"), loadImg(E.img), loadImg("img/logo.png")]);
+      const [bg, girl, logo] = await Promise.all([loadImg("img/bg-pyramides.webp"), loadImg(E.full || E.img), loadImg("img/logo.png")]);
       const W = 1080, H = 1920, c = document.createElement("canvas"); c.width = W; c.height = H;
       const x = c.getContext("2d");
       const s = Math.max(W / bg.width, H / bg.height);
