@@ -242,7 +242,7 @@
     card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
 
     const peek = $("#peek");
-    peek.src = ELLES[peekOrder[state.idx % 6]].img;
+    peek.src = ELLES[peekOrder[state.idx % 6]].rond;
     peek.classList.toggle("left", state.idx % 2 === 1);
     peek.classList.remove("swap"); void peek.offsetWidth; peek.classList.add("swap");
   }

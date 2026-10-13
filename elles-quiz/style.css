@@ -241,3 +241,9 @@ h3{font-size:.95rem;font-weight:600;color:var(--accent);margin-bottom:4px;letter
 .loader::before{content:"";position:absolute;left:50%;top:75px;width:min(110vw,560px);aspect-ratio:1;translate:-50% -50%;z-index:-1;border-radius:50%;opacity:.75;filter:blur(14px);
   background:repeating-conic-gradient(from 0deg,var(--verte) 0 8deg,transparent 8deg 30deg,var(--bleue) 30deg 38deg,transparent 38deg 60deg,var(--violette) 60deg 68deg,transparent 68deg 90deg,var(--rose) 90deg 98deg,transparent 98deg 120deg,var(--blonde) 120deg 128deg,transparent 128deg 150deg,var(--brune) 150deg 158deg,transparent 158deg 180deg);
   -webkit-mask-image:radial-gradient(closest-side,transparent 8%,#000 30%,transparent 100%);mask-image:radial-gradient(closest-side,transparent 8%,#000 30%,transparent 100%);animation:spin 9s linear infinite}
+
+/* ronds des personnalités à côté des questions : cercle complet posé en bas, débordant très légèrement */
+@media (min-width:860px){
+  .peek{height:auto;width:min(250px,calc((100vw - 720px)/2 + 20px));aspect-ratio:1;bottom:16px;object-position:center bottom;filter:drop-shadow(0 12px 22px rgba(10,0,40,.5))}
+  .peek.left{object-position:center bottom}
+}
