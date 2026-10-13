@@ -86,9 +86,14 @@ document.addEventListener("click", e => {
   if (a) track({ type: "click", link: a.dataset.track });
 });
 
+// Pastille « Concours ↓ » : visible sur l'écran de résultat tant que le tirage au sort n'est pas à l'écran
+let drawVisible = false;
+function updateFlag(){ $("draw-flag").classList.toggle("on", $("screen-result").classList.contains("active") && !drawVisible); }
+
 function show(id){
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   $(id).classList.add("active");
+  updateFlag();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -160,6 +165,9 @@ function finish(){
   setImg($("result-img"), p.img);
   show("screen-result");
 }
+
+if ("IntersectionObserver" in window) new IntersectionObserver(es => { drawVisible = es[0].isIntersecting; updateFlag(); }, { threshold: 0.15 }).observe($("draw"));
+$("draw-flag").onclick = () => $("draw").scrollIntoView({ behavior: "smooth", block: "start" });
 
 $("start").onclick = () => { track({ type: "start" }); i = 0; score = 0; show("screen-quiz"); render(); };
 $("next").onclick = () => { if ($("feedback").hidden) return; i++; i < QUESTIONS.length ? render() : finish(); };
