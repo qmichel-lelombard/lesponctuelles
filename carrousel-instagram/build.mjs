@@ -72,11 +72,11 @@ const set1 = [
     <p class="sub" style="margin-top:30px">Saint-Potache est hantée.<br>Garderas-tu ton sang-froid&nbsp;?</p>
   `, 1, T1),
   question(1, 7, 2, T1, "Qui est la voisine de classe dont Ducobu adore «&nbsp;s'inspirer&nbsp;» en contrôle&nbsp;?",
-    ["Nénèss", "Léonie Gratin", "Rotule", "La directrice"], "leonie.png"),
+    ["Néness", "Léonie Gratin", "Rotule", "La directrice"], "leonie.png"),
   question(2, 7, 3, T1, "Comment s'appelle l'école de Ducobu&nbsp;?",
     ["Sainte-Cancre", "Saint-Cartable", "Saint-Potache", "Saint-Zéro-Pointé"], "ducobu-visage.png", false, 300),
   question(3, 7, 4, T1, "Qui est le squelette de la classe, complice de Ducobu&nbsp;?",
-    ["Nénèss", "Casper", "Os-car", "Monsieur Tibia"], "neness.png"),
+    ["Néness", "Casper", "Os-car", "Monsieur Tibia"], "neness.png"),
   question(4, 7, 5, T1, "Et comment s'appelle le chien-squelette&nbsp;?",
     ["Fémur", "Médiator", "Toutou-Crâne", "Rotule"], "ducobu-guette.png", false, 290),
   question(5, 7, 6, T1, "Qui est l'instit' à bout de nerfs face aux combines de Ducobu&nbsp;?",
@@ -88,7 +88,7 @@ const set1 = [
   page(`
     <span class="k">Les réponses</span>
     <div style="width:100%;display:grid;gap:12px;margin-top:22px;text-align:left;font-size:41px">
-      ${[["1", "Léonie Gratin", "B"], ["2", "Saint-Potache", "C"], ["3", "Nénèss", "A"], ["4", "Rotule", "D"], ["5", "Monsieur Latouche", "B"], ["6", "Drones, IA et commandes en ligne", "C"], ["7", "Godi (dessin) et Zidrou (scénario)", "A"]]
+      ${[["1", "Léonie Gratin", "B"], ["2", "Saint-Potache", "C"], ["3", "Néness", "A"], ["4", "Rotule", "D"], ["5", "Monsieur Latouche", "B"], ["6", "Drones, IA et commandes en ligne", "C"], ["7", "Godi (dessin) et Zidrou (scénario)", "A"]]
         .map(([q, r, l]) => `<div class="a" style="min-height:0;padding:8px 20px 8px 12px;font-size:40px"><span class="letter" style="background:var(--orange);width:56px;height:56px;font-size:38px">${q}</span><span><b style="font-family:Bangers;font-weight:400;color:var(--purple)">${l}.</b> ${r}</span></div>`).join("")}
     </div>
     <div style="margin-top:26px;display:grid;gap:6px;font-size:40px;line-height:1.2">

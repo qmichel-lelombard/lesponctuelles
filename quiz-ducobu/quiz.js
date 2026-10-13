@@ -8,7 +8,7 @@ const MASCOT = {
 
 const QUESTIONS = [
   { q: "Qui est la voisine de classe de Ducobu… celle dont il adore « s'inspirer » pendant les contrôles ?",
-    img: "assets/leonie.png", a: ["Léonie Gratin", "Nénèss", "Rotule", "La directrice"], c: 0,
+    img: "assets/leonie.png", a: ["Léonie Gratin", "Néness", "Rotule", "La directrice"], c: 0,
     ok: "Bravo ! Léonie, la première de la classe, aimerait bien qu'on arrête de lui regarder par-dessus l'épaule.",
     ko: "Raté ! C'est Léonie Gratin, la première de la classe. Ducobu a toujours un œil sur sa copie." },
   { q: "Comment s'appelle l'école où se passent toutes les aventures de Ducobu ?",
@@ -16,10 +16,10 @@ const QUESTIONS = [
     ok: "Exact : Saint-Potache ! Une école où, ce coup-ci, il se passe de drôles de choses…",
     ko: "Non, c'est Saint-Potache. (Saint-Zéro-Pointé, c'est le nom de ses bulletins.)" },
   { q: "Qui est le squelette qui sert de « matériel pédagogique » en classe… et de complice à Ducobu ?",
-    img: "assets/neness.png", a: ["Nénèss", "Casper", "Os-car", "Monsieur Tibia"], c: 0,
-    ok: "Nénèss ! Il n'a plus que les os, mais il a toujours un bon conseil à glisser.",
-    ko: "C'était Nénèss ! Un squelette, c'est le meilleur des complices : il ne balance jamais." },
-  { q: "Et comment s'appelle le chien-squelette de Nénèss ?",
+    img: "assets/neness.png", a: ["Néness", "Casper", "Os-car", "Monsieur Tibia"], c: 0,
+    ok: "Néness ! Il n'a plus que les os, mais il a toujours un bon conseil à glisser.",
+    ko: "C'était Néness ! Un squelette, c'est le meilleur des complices : il ne balance jamais." },
+  { q: "Et comment s'appelle le chien-squelette de Néness ?",
     a: ["Rotule", "Fémur", "Médiator", "Toutou-Crâne"], c: 0,
     ok: "Rotule ! Il court toujours après son os. Enfin… après un os.",
     ko: "Raté ! C'est Rotule. Pas de panique : lui aussi a séché sur cette question, il n'a vraiment pas la tête… ni la chair pour ça." },
@@ -44,7 +44,7 @@ const QUESTIONS = [
     ok: "Godi (dessin) et Zidrou (scénario) : le duo qui fait rire Saint-Potache depuis plus de 30 ans.",
     ko: "Ce sont Godi (dessin) et Zidrou (scénario) ! Les autres, c'est une autre classe." },
   { q: "Dernière question : pour réussir un contrôle, la meilleure méthode est…",
-    img: "assets/ducobu-guette.png", a: ["Réviser !", "Copier sur Léonie", "Demander à Rotule", "Corrompre Nénèss avec un os"], c: 0,
+    img: "assets/ducobu-guette.png", a: ["Réviser !", "Copier sur Léonie", "Demander à Rotule", "Corrompre Néness avec un os"], c: 0,
     ok: "Réviser ! Latouche est fier de toi. Ducobu, lui, fait semblant de ne pas avoir entendu.",
     ko: "Réviser, bien sûr ! Mais dans la BD, on te laisse rigoler des autres méthodes." }
 ];
