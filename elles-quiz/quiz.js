@@ -30,7 +30,7 @@
     brune: {
       fort: "Une forêt enneigée et endormie", name: "Châtain", rond: "img/rond-brune.webp", color: "#c0764a", img: "img/brune.webp", full: "img/brune.webp",
       tag: "La plus sensible, avec un cœur d'artiste.",
-      desc: "Tu ressens tout, plus fort que les autres. Timide et introvertie, tu doutes souvent de toi, mais tu as un grand secret : tes talents artistiques, qui t'aident à trouver un peu d'apaisement face au tumulte extérieur. Ta sensibilité est un vrai super-pouvoir, même si tu ne le sais pas encore.",
+      desc: "Tu ressens tout plus fort que les autres. Timide et introvertie, tu doutes souvent de toi, mais tu as un grand secret : tes talents artistiques, qui t'aident à trouver un peu d'apaisement face au tumulte extérieur. Ta sensibilité est un vrai super-pouvoir, même si tu ne le sais pas encore.",
       strengths: ["Une sensibilité hors du commun", "Une créativité qui apaise", "Une loyauté en béton"],
       flaws: ["Tu doutes beaucoup de toi", "Tu as tendance à te replier sur toi-même"],
       mantra: "Je ressens tout… et c'est ma force.",
@@ -73,7 +73,7 @@
     { world: "Rosie's Diner", bg: "diner",
       q: "Ton réveil sonne. Ta première pensée, c'est…",
       a: [["rose", "Allez, voyons comment la journée se présente !"],
-          ["blonde", "Aujourd'hui, je vais tout gagner. Qui veut m'en empêcher ?"],
+          ["blonde", "Aujourd'hui, je vais tout gagner. Qui peut m'en empêcher ?"],
           ["brune", "Est-ce que je suis prête pour aujourd'hui ? Je doute déjà de tout…"],
           ["violette", "Cinq minutes de plus, le temps de me raconter une blague."]] },
     { world: "Rosie's Diner", bg: "diner",
