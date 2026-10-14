@@ -100,7 +100,7 @@ const set1 = [
     <span class="k">🎁 Tirage au sort</span>
     <h2 style="margin:14px 0 4px;font-size:120px">Concours</h2>
     <p class="sub" style="font-size:40px">Joue sur le site et tente de gagner<br><span style="color:var(--purple)">le tome&nbsp;30 + le jeu de cartes Ducobu</span></p>
-    <img src="${A}/lot-tome30-jeu-v3.png" style="height:430px;margin:10px 0" alt="">
+    <img src="${A}/lot-tome30-jeu-v4.webp" style="height:450px;margin:10px 0" alt="">
     <span class="btn" style="font-size:54px">🔗 Lien dans la bio</span>
     <p class="sub" style="font-size:36px;margin-top:14px">${URL_SITE}</p>
   `, 10, T1, { swipe: false }),
