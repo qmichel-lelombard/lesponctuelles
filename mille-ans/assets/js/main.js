@@ -315,7 +315,7 @@ void main(){
     if (d <= 0) {
       if (!released) {
         released = true;
-        $('.count__grid').hidden = true; $('#count-done').hidden = false; $('#ics').hidden = true;
+        $('.count__grid').hidden = true; $('#count-done').hidden = false;
         $('.count__label').textContent = 'Disponible en librairie';
       }
       return false;
@@ -328,20 +328,6 @@ void main(){
   }
   if (count()) { const iv = setInterval(() => { if (!count()) clearInterval(iv); }, 1000); }
 
-  /* rappel : fichier agenda (.ics) généré dans le navigateur */
-  $('#ics').addEventListener('click', () => {
-    const L = [
-      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Le Lombard//Mille Ans//FR', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
-      'UID:mille-ans-20261023@lelombard.com', 'DTSTAMP:20261008T000000Z',
-      'SUMMARY:Parution de Mille Ans (Le Lombard)', 'DTSTART;VALUE=DATE:20261023', 'DTEND;VALUE=DATE:20261024',
-      'DESCRIPTION:Un scénariste (Duval)\\, huit dessinateurs : Mille Ans paraît aujourd\'hui en librairie.',
-      'URL:https://www.lelombard.com/bd/pour-mille-ans/mille-ans',
-      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Demain : parution de Mille Ans', 'END:VALARM',
-      'END:VEVENT', 'END:VCALENDAR'];
-    const blob = new Blob([L.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'mille-ans-parution.ics';
-    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-  });
 
 
   /* ---------- Logo : inclinaison à la souris ---------- */
@@ -372,6 +358,7 @@ void main(){
     cimg.classList.add('fade');
     setTimeout(() => {
       cimg.src = b.dataset.src; cimg.alt = b.dataset.alt; ccap.textContent = b.dataset.cap;
+      if (b.dataset.date) $('#spec-date').textContent = b.dataset.date;
       cimg.onload = () => cimg.classList.remove('fade'); setTimeout(() => cimg.classList.remove('fade'), 600);
     }, 250);
   }));
