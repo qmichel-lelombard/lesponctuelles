@@ -40,63 +40,6 @@
     "chapter": "Signe le Prologue (année 0) et l'Épilogue (année +1000)"
   },
   {
-    "id": "vignaux",
-    "name": "Vignaux",
-    "first": "Fred",
-    "role": "Dessin",
-    "born": "Né à Toulouse en 1972",
-    "bio": "Il participe à des fanzines avant de réaliser sa première bande dessinée, L'Ombre des anciens, d'après un scénario d'Éric Pailharey. Il enchaîne avec la série Time Twins, écrite par Jean-Christophe Derrien, puis les trois tomes de Neige Origines, d'Éric Adam et Didier Convard. Après avoir dessiné les deux derniers albums de Kriss de Valnor, il succède à Grzegorz Rosinski sur la série Thorgal en 2019.",
-    "works": [
-      "L'Ombre des anciens",
-      "Time Twins",
-      "Neige Origines",
-      "Kriss de Valnor",
-      "Thorgal"
-    ],
-    "photo": "assets/authors/vignaux-fred.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/vignaux-fred",
-    "chapter": "Signe « Le Nord retrouvé » (année +0976)"
-  },
-  {
-    "id": "toulhoat",
-    "name": "Toulhoat",
-    "first": "Ronan",
-    "role": "Dessin",
-    "born": "",
-    "bio": "Il publie son premier album en 2008, Block 109, écrit par Vincent Brugeas, avec lequel il réalise ensuite Le Roy des ribauds, Ira Dei, La République du Crâne, Tête de chien, Cosaques, Daemon et Bomb X, auquel participe un autre dessinateur, Brice Cossu. Il est aussi illustrateur et concept artist pour le cinéma et le jeu vidéo.",
-    "works": [
-      "Block 109",
-      "Le Roy des ribauds",
-      "Ira Dei",
-      "La République du Crâne",
-      "Tête de chien",
-      "Cosaques",
-      "Daemon",
-      "Bomb X"
-    ],
-    "photo": "assets/authors/toulhoat-ronan.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/toulhoat-ronan",
-    "chapter": "Signe « Le Royaume de Siam » (année +0439)"
-  },
-  {
-    "id": "armand",
-    "name": "Armand",
-    "first": "Dimitri",
-    "role": "Dessin",
-    "born": "",
-    "bio": "Grand admirateur d'Enrico Marini, il débute dans la BD avec Angor, une série d'heroic fantasy, puis dessine pour Le Lombard les nouvelles aventures de Bob Morane. Dessinateur de Sykes et de Texas Jack, d'après des scénarios de Pierre Dubois, il cosigne avec le scénariste Tristan Roulot la série Le Convoyeur.",
-    "works": [
-      "Angor",
-      "Bob Morane",
-      "Sykes",
-      "Texas Jack",
-      "Le Convoyeur"
-    ],
-    "photo": "assets/authors/armand.jpg",
-    "link": "https://www.lelombard.com/auteur-bd/armand",
-    "chapter": "Signe « La Déserteuse » (année +0653)"
-  },
-  {
     "id": "buchet",
     "name": "Buchet",
     "first": "Philippe",
@@ -132,6 +75,27 @@
     "link": "https://www.lelombard.com/auteur-bd/grun",
     "credit_note": "Photo © Dargaud / Alexis Haulot",
     "chapter": "Signe « Le Chant des sirènes » (année +0200)"
+  },
+  {
+    "id": "toulhoat",
+    "name": "Toulhoat",
+    "first": "Ronan",
+    "role": "Dessin",
+    "born": "",
+    "bio": "Il publie son premier album en 2008, Block 109, écrit par Vincent Brugeas, avec lequel il réalise ensuite Le Roy des ribauds, Ira Dei, La République du Crâne, Tête de chien, Cosaques, Daemon et Bomb X, auquel participe un autre dessinateur, Brice Cossu. Il est aussi illustrateur et concept artist pour le cinéma et le jeu vidéo.",
+    "works": [
+      "Block 109",
+      "Le Roy des ribauds",
+      "Ira Dei",
+      "La République du Crâne",
+      "Tête de chien",
+      "Cosaques",
+      "Daemon",
+      "Bomb X"
+    ],
+    "photo": "assets/authors/toulhoat-ronan.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/toulhoat-ronan",
+    "chapter": "Signe « Le Royaume de Siam » (année +0439)"
   },
   {
     "id": "ricci",
@@ -170,5 +134,41 @@
     "photo": "assets/authors/salaun.jpg",
     "link": "https://www.lelombard.com/auteur-bd/salaun-jaouen",
     "chapter": "Signe « Cent ans de solitude » (années +0651 à +0753)"
+  },
+  {
+    "id": "armand",
+    "name": "Armand",
+    "first": "Dimitri",
+    "role": "Dessin",
+    "born": "",
+    "bio": "Grand admirateur d'Enrico Marini, il débute dans la BD avec Angor, une série d'heroic fantasy, puis dessine pour Le Lombard les nouvelles aventures de Bob Morane. Dessinateur de Sykes et de Texas Jack, d'après des scénarios de Pierre Dubois, il cosigne avec le scénariste Tristan Roulot la série Le Convoyeur.",
+    "works": [
+      "Angor",
+      "Bob Morane",
+      "Sykes",
+      "Texas Jack",
+      "Le Convoyeur"
+    ],
+    "photo": "assets/authors/armand.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/armand",
+    "chapter": "Signe « La Déserteuse » (année +0653)"
+  },
+  {
+    "id": "vignaux",
+    "name": "Vignaux",
+    "first": "Fred",
+    "role": "Dessin",
+    "born": "Né à Toulouse en 1972",
+    "bio": "Il participe à des fanzines avant de réaliser sa première bande dessinée, L'Ombre des anciens, d'après un scénario d'Éric Pailharey. Il enchaîne avec la série Time Twins, écrite par Jean-Christophe Derrien, puis les trois tomes de Neige Origines, d'Éric Adam et Didier Convard. Après avoir dessiné les deux derniers albums de Kriss de Valnor, il succède à Grzegorz Rosinski sur la série Thorgal en 2019.",
+    "works": [
+      "L'Ombre des anciens",
+      "Time Twins",
+      "Neige Origines",
+      "Kriss de Valnor",
+      "Thorgal"
+    ],
+    "photo": "assets/authors/vignaux-fred.jpg",
+    "link": "https://www.lelombard.com/auteur-bd/vignaux-fred",
+    "chapter": "Signe « Le Nord retrouvé » (année +0976)"
   }
 ]
