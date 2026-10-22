@@ -1,4 +1,4 @@
-// Image de partage 1200x630 (Open Graph) : node build-og.mjs  ->  ../../quiz-ducobu/assets/og-ducobu-quiz.jpg
+// Image de partage 1200x630 (Open Graph) : node build-og.mjs  ->  ../../quiz-ducobu/assets/og-ducobu-quiz-v2.jpg
 import { chromium } from "/opt/node-tools/node_modules/playwright/index.mjs";
 import path from "node:path";
 import fs from "node:fs";
@@ -42,5 +42,5 @@ const f = path.join(here, "og.html");
 fs.writeFileSync(f, html);
 await p.goto("file://" + f, { waitUntil: "networkidle" });
 await p.evaluate(() => document.fonts.ready);
-await p.screenshot({ path: path.resolve(here, process.argv[2] || "../../quiz-ducobu/assets/og-ducobu-quiz.jpg"), type: "jpeg", quality: 90 });
+await p.screenshot({ path: path.resolve(here, process.argv[2] || "../../quiz-ducobu/assets/og-ducobu-quiz-v2.jpg"), type: "jpeg", quality: 90 });
 await b.close();
