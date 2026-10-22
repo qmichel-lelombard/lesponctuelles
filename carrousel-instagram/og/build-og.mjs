@@ -1,0 +1,46 @@
+// Image de partage 1200x630 (Open Graph) : node build-og.mjs  ->  ../../quiz-ducobu/assets/og-ducobu-quiz.jpg
+import { chromium } from "/opt/node-tools/node_modules/playwright/index.mjs";
+import path from "node:path";
+import fs from "node:fs";
+import { fileURLToPath } from "node:url";
+const here = path.dirname(fileURLToPath(import.meta.url));
+const A = "file://" + path.resolve(here, "../../quiz-ducobu/assets");
+const html = `<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#ffd400;--black:#141414;--paper:#fff8dc;--orange:#ff7a00;--purple:#4b1d6b}
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:630px;overflow:hidden;position:relative;font:700 26px/1.2 "Comic Neue",sans-serif;color:var(--black);
+ background:repeating-linear-gradient(135deg,var(--yellow) 0 44px,var(--black) 44px 88px)}
+.card{position:absolute;left:48px;top:45px;width:682px;height:466px;background:var(--paper);border:8px solid var(--black);border-radius:30px;
+ box-shadow:14px 14px 0 var(--black);padding:26px 40px}
+.logo{height:76px;display:block;margin:0 0 10px -4px}
+.k{display:inline-block;margin-top:6px;background:var(--orange);color:var(--black);font-family:Bangers;font-weight:400;font-size:26px;letter-spacing:.03em;padding:3px 20px;border-radius:999px;transform:rotate(-2deg)}
+h1{font-family:Bangers;font-weight:400;letter-spacing:.03em;font-size:104px;line-height:.95;margin-top:4px;text-shadow:5px 5px 0 var(--yellow)}
+h1 em{font-style:normal;color:var(--purple);text-shadow:5px 5px 0 var(--orange)}
+.q{font-family:Bangers;font-weight:400;font-size:36px;letter-spacing:.03em;text-shadow:3px 3px 0 var(--yellow);margin-top:2px}
+.btn{display:inline-block;margin-top:14px;background:var(--orange);border:6px solid var(--black);border-radius:16px;padding:4px 24px;font-family:Bangers;font-weight:400;font-size:36px;letter-spacing:.03em;box-shadow:5px 5px 0 var(--black)}
+.prize{margin-top:14px;font-family:Bangers;font-weight:400;font-size:28px;letter-spacing:.03em}
+.book{position:absolute;right:20px;top:38px;height:512px}
+.band{position:absolute;left:0;right:0;bottom:0;height:74px;background:var(--orange);border-top:4px solid var(--black);overflow:hidden}
+.band img{position:absolute;left:0;bottom:0;width:1200px}
+</style></head><body>
+<div class="card">
+ <img class="logo" src="${A}/logo-ducobu.png" alt="">
+ <span class="k">🎃 SPÉCIAL HALLOWEEN</span>
+ <h1>DUCO… <em>BOUH&nbsp;!</em></h1>
+ <div class="q">LE QUIZ</div>
+ <span class="btn">FAIS 10/10 SANS TRICHER&nbsp;!</span>
+ <div class="prize">🎁 À GAGNER&nbsp;: LE TOME 30 + LE JEU DE CARTES</div>
+</div>
+<img class="book" src="${A}/og-album-3d.png" alt="">
+<div class="band"><img src="${A}/halloween-frise1.png" alt=""></div>
+</body></html>`;
+const b = await chromium.launch({ executablePath: "/opt/pw-browsers/chromium", args: ["--no-sandbox"] });
+const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
+const f = path.join(here, "og.html");
+fs.writeFileSync(f, html);
+await p.goto("file://" + f, { waitUntil: "networkidle" });
+await p.evaluate(() => document.fonts.ready);
+await p.screenshot({ path: path.resolve(here, process.argv[2] || "../../quiz-ducobu/assets/og-ducobu-quiz.jpg"), type: "jpeg", quality: 90 });
+await b.close();
