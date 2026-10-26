@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Le Lombard — Parutions octobre 2026</title>
+<style>
+  @font-face { font-family: "Akro"; font-weight: 100; src: url(assets/fonts/barlow-condensed-latin-100-normal.woff2); }
+  @font-face { font-family: "Akro"; font-weight: 200; src: url(assets/fonts/barlow-condensed-latin-200-normal.woff2); }
+  @font-face { font-family: "Akro"; font-weight: 300; src: url(assets/fonts/barlow-condensed-latin-300-normal.woff2); }
+  @font-face { font-family: "Akro"; font-weight: 400; src: url(assets/fonts/barlow-condensed-latin-400-normal.woff2); }
+  @font-face { font-family: "Akro"; font-weight: 500; src: url(assets/fonts/barlow-condensed-latin-500-normal.woff2); }
+  @font-face { font-family: "Akro"; font-weight: 600; src: url(assets/fonts/barlow-condensed-latin-600-normal.woff2); }
+  @font-face { font-family: "Bari"; font-weight: 200; font-style: italic; src: url(assets/fonts/nunito-latin-200-italic.woff2); }
+  @font-face { font-family: "Bari"; font-weight: 300; font-style: italic; src: url(assets/fonts/nunito-latin-300-italic.woff2); }
+  @font-face { font-family: "Bari"; font-weight: 400; font-style: italic; src: url(assets/fonts/nunito-latin-400-italic.woff2); }
+  @font-face { font-family: "Bari"; font-weight: 300; font-style: normal; src: url(assets/fonts/nunito-latin-300-normal.woff2); }
+
+  html, body { margin: 0; padding: 0; background: #000; }
+  #stage { position: relative; overflow: hidden; color: #fff; }
+  #stage * { box-sizing: border-box; }
+  .abs { position: absolute; left: 0; top: 0; }
+  canvas#bg { position: absolute; left: 0; top: 0; }
+
+  .cover { position: absolute; display: block; box-shadow: 0 30px 60px rgba(20, 0, 30, .45), 0 8px 18px rgba(0,0,0,.25); }
+  .ghost { position: absolute; border: 3px solid rgba(255,255,255,.9); border-radius: 4px; }
+  .deco { position: absolute; overflow: visible; }
+
+  .txt { position: absolute; }
+  .serie { font-family: "Akro"; font-weight: 200; text-transform: uppercase; line-height: .92; letter-spacing: .01em; }
+  .serie .w { display: inline-block; white-space: nowrap; }
+  .serie .cw { display: inline-block; overflow: hidden; vertical-align: top; padding-top: .06em; margin-top: -.06em; }
+  .serie .c { display: inline-block; will-change: transform; }
+  .sub { font-family: "Bari"; font-style: italic; font-weight: 300; line-height: 1.15; margin-top: .55em; }
+  .date { display: inline-flex; align-items: center; position: relative; margin-top: 34px;
+          font-family: "Akro"; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
+  .date svg { position: absolute; left: 0; top: 0; overflow: visible; }
+  .date span { position: relative; padding: 0 30px; white-space: nowrap; }
+
+  .bigdate { position: absolute; font-family: "Akro"; font-weight: 100; line-height: 1; overflow: hidden; display: flex; }
+  .bigdate .col { position: relative; overflow: hidden; }
+  .bigdate .strip { position: absolute; left: 0; top: 0; display: flex; flex-direction: column; }
+  .bigdate .strip div { text-align: center; }
+
+  #hud .logo { position: absolute; }
+  #hud .lbl { position: absolute; font-family: "Akro"; font-weight: 400; letter-spacing: .28em; text-transform: uppercase; white-space: nowrap; }
+
+  #intro { position: absolute; left: 0; top: 0; }
+  #intro .word { position: absolute; font-family: "Akro"; font-weight: 100; white-space: nowrap; line-height: 1; }
+  #intro .L { display: inline-block; }
+  #intro .year { position: absolute; font-family: "Bari"; font-style: italic; font-weight: 200; white-space: nowrap; }
+  #intro .kicker { position: absolute; font-family: "Akro"; font-weight: 400; letter-spacing: .32em; white-space: nowrap; text-transform: uppercase; }
+
+  #outro .oc { position: absolute; box-shadow: 0 16px 34px rgba(0,0,0,.35); }
+  #outro .od { position: absolute; font-family: "Akro"; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; text-align: center; white-space: nowrap; }
+  #outro .tag { position: absolute; font-family: "Bari"; font-style: italic; font-weight: 300; text-align: center; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+/* =========================================================================
+   Le Lombard — vidéo promo des parutions d'octobre 2026 (30 s, 128 BPM)
+   Rendu déterministe : window.render(t) dessine l'image à l'instant t (s).
+   ?format=h (1920x1080, défaut) | v (1080x1920)
+   ========================================================================= */
+const FORMAT = new URLSearchParams(location.search).get('format') === 'v' ? 'v' : 'h';
+const W = FORMAT === 'h' ? 1920 : 1080, H = FORMAT === 'h' ? 1080 : 1920;
+const BEAT = 60 / 128;               // 0.46875 s
+const INTRO = 8 * BEAT;              // 3.75 s
+const SLOT = 4 * BEAT;               // 1.875 s par album
+const OUTRO0 = INTRO + 12 * SLOT;    // 26.25 s
+const DURATION = 64 * BEAT;          // 30 s
+
+const ALBUMS = [
+  { s: "Un Noël à Paris", sub: "Tome 2", d: 2 },
+  { s: "Elles", sub: "Tome 4 — Intemporelle(s)", d: 2 },
+  { s: "BD de l'Avent", sub: "Le polar BD de l'Avent 2026", d: 9 },
+  { s: "BD de l'Avent", sub: "Jeunesse 2026", d: 9 },
+  { s: "La bibliothèque du père Noël", sub: "Tome 1 — Le Merveilleux week-end de madame Julbocken", d: 9 },
+  { s: "Le Territoire", sub: "Édition collector", d: 9 },
+  { s: "Ducobu", sub: "Tome 30 — Duco... Bouh !", d: 9 },
+  { s: "Le Lien", sub: "Récit complet", d: 16 },
+  { s: "Le Territoire", sub: "Récit complet", d: 16 },
+  { s: "Mille Ans", sub: "Récit complet", d: 23 },
+  { s: "Aylin", sub: "Tome 2 — L'elfe perdu", d: 23 },
+  { s: "Alpha", sub: "Tome 21 — Caméléon", d: 23 },
+].map((a, i) => ({ ...a, img: `assets/covers/${String(i).padStart(2, '0')}.jpg`, i }));
+const DAYS = [2, 9, 16, 23];
+
+/* Palettes « fonds chatoyants » de la charte */
+const PAL = [
+  { base: '#1d8fae', blobs: ['#2aa3a0', '#1a8fb8', '#53b7a8', '#3a86b4', '#178a9c'] },  // turquoise
+  { base: '#c9264f', blobs: ['#e2532c', '#7d2a6a', '#d82a4c', '#b8297a', '#ef6a2a'] },  // magenta / orange
+  { base: '#e0482d', blobs: ['#f2c21b', '#d42a4f', '#f08a24', '#b8297a', '#ef5a2a'] },  // orange / jaune
+  { base: '#d93a40', blobs: ['#2a9ca8', '#e8484c', '#3a8fb0', '#e46a4c', '#1f97a3'] },  // rouge / turquoise
+  { base: '#6a2c6c', blobs: ['#d4294c', '#e2532c', '#3b2a5c', '#b02a7a', '#e8873a'] },  // pourpre
+];
+
+/* ---------------------------------------------------------------- layout */
+const L = FORMAT === 'h' ? {
+  coverH: 780, coverCx: 610, coverCy: 500,
+  txtX: 1060, txtW: 760, txtCy: 470, serieMax: 160, subSize: 44, dateSize: 21, align: 'left',
+  big: { x: 1180, y: 60, size: 900, op: .22 },
+  tl: { x0: 150, x1: 1770, y: 1000 },
+  hud: { logoH: 44, logoX: 64, logoY: 52, lblX: 1856, lblY: 62, lblSize: 20 },
+  intro: { size: 400, y: 300, yearSize: 120, kickerSize: 24 },
+  outro: { cols: 6, ch: 300, gapX: 30, y0: 92, rowGap: 74, logoH: 78, logoY: 852, tagY: 958, tagSize: 32 },
+  deco: 980,
+} : {
+  coverH: 940, coverCx: 540, coverCy: 640,
+  txtX: 80, txtW: 920, txtCy: 1440, serieMax: 150, subSize: 44, dateSize: 22, align: 'center',
+  big: { x: 120, y: 1050, size: 760, op: .2 },
+  tl: { x0: 90, x1: 990, y: 1790 },
+  hud: { logoH: 44, logoX: 340, logoY: 70, lblX: 540, lblY: 136, lblSize: 20, center: true },
+  intro: { size: 300, y: 650, yearSize: 120, kickerSize: 24 },
+  outro: { cols: 3, ch: 300, gapX: 36, y0: 150, rowGap: 64, logoH: 70, logoY: 1620, tagY: 1725, tagSize: 32 },
+  deco: 1000,
+};
+
+/* ---------------------------------------------------------------- utils */
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, k) => a + (b - a) * k;
+const prog = (t, t0, d) => clamp((t - t0) / d);
+const E = {
+  outExpo: k => k >= 1 ? 1 : 1 - Math.pow(2, -10 * k),
+  inExpo: k => k <= 0 ? 0 : Math.pow(2, 10 * k - 10),
+  outCubic: k => 1 - Math.pow(1 - k, 3),
+  inCubic: k => k * k * k,
+  inOutCubic: k => k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2,
+  outQuint: k => 1 - Math.pow(1 - k, 5),
+  outBack: k => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(k - 1, 3) + c1 * Math.pow(k - 1, 2); },
+  outElastic: k => k === 0 ? 0 : k === 1 ? 1 : Math.pow(2, -9 * k) * Math.sin((k * 10 - .75) * (2 * Math.PI) / 3.2) + 1,
+};
+function hash(a, b = 0, c = 0) {
+  let h = (a * 374761393 + b * 668265263 + c * 2147483647) | 0;
+  h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16;
+  return (h >>> 0) / 4294967296;
+}
+const el = (tag, cls, parent, html) => {
+  const e = document.createElement(tag); if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html; if (parent) parent.appendChild(e); return e;
+};
+const svgEl = (tag, attrs, parent) => {
+  const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e;
+};
+const MONTH = 'octobre';
+const longDate = d => `Sortie le ${d} ${MONTH} 2026`;
+const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+/* ---------------------------------------------------------------- stage */
+const stage = document.getElementById('stage');
+stage.style.width = W + 'px'; stage.style.height = H + 'px';
+const bg = el('canvas', null, stage); bg.id = 'bg'; bg.width = W; bg.height = H;
+const ctx = bg.getContext('2d');
+
+/* grain */
+const grain = document.createElement('canvas'); grain.width = grain.height = 256;
+{
+  const g = grain.getContext('2d'), id = g.createImageData(256, 256);
+  for (let i = 0; i < 256 * 256; i++) {
+    const v = Math.floor(hash(i, 7) * 255);
+    id.data[i * 4] = id.data[i * 4 + 1] = id.data[i * 4 + 2] = v; id.data[i * 4 + 3] = 255;
+  }
+  g.putImageData(id, 0, 0);
+}
+const grainPat = ctx.createPattern(grain, 'repeat');
+
+function drawPalette(p, t) {
+  const P = PAL[p];
+  ctx.fillStyle = P.base; ctx.fillRect(0, 0, W, H);
+  P.blobs.forEach((c, i) => {
+    const ph = i * 1.7 + p * 0.9;
+    const x = W * (0.5 + 0.42 * Math.sin(t * 0.33 + ph) * Math.cos(t * 0.12 + i));
+    const y = H * (0.5 + 0.42 * Math.cos(t * 0.27 + ph * 1.3));
+    const r = Math.max(W, H) * (0.45 + 0.12 * Math.sin(t * 0.4 + i));
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, c + 'ee'); g.addColorStop(0.55, c + '66'); g.addColorStop(1, c + '00');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  });
+}
+
+/* bulle de BD : cercle + queue pointant vers (px,py) ; k = longueur relative de la queue */
+function bubblePath(px, py, R, k, dir = -1) {
+  const ang = Math.atan2(-1.15, 0.75 * -dir);          // queue vers bas-gauche (dir=-1) ou bas-droite
+  const d = R * (1 + k);
+  const cx = px - Math.cos(ang) * d, cy = py - Math.sin(ang) * d;
+  const th = Math.atan2(py - cy, px - cx), gap = 0.42 * (k > 0 ? 1 : 0);
+  const p = new Path2D();
+  p.moveTo(cx + R * Math.cos(th + gap), cy + R * Math.sin(th + gap));
+  p.arc(cx, cy, R, th + gap, th - gap + Math.PI * 2);
+  const bx = cx + R * Math.cos(th - gap), by = cy + R * Math.sin(th - gap);
+  p.quadraticCurveTo(lerp(bx, px, .55) + R * .08 * Math.cos(th + 1.57), lerp(by, py, .55) + R * .08 * Math.sin(th + 1.57), px, py);
+  const ax = cx + R * Math.cos(th + gap), ay = cy + R * Math.sin(th + gap);
+  p.quadraticCurveTo(lerp(ax, px, .35), lerp(ay, py, .35), ax, ay);
+  p.closePath();
+  return p;
+}
+
+/* transitions de fond (bulle qui grandit) — remplies plus bas une fois le layout connu */
+const WIPES = [];
+function drawBackground(t) {
+  let cur = 0, wipe = null;
+  for (const w of WIPES) {
+    if (t >= w.t0 + w.dur) cur = w.to;
+    else if (t >= w.t0) { wipe = w; break; }
+  }
+  if (!wipe) { drawPalette(cur, t); }
+  else {
+    drawPalette(wipe.from, t);
+    const k = E.inCubic(prog(t, wipe.t0, wipe.dur));
+    const R = lerp(10, Math.hypot(W, H) * 1.15, k);
+    ctx.save(); ctx.clip(bubblePath(wipe.x, wipe.y, R, 0.38 * (1 - k * k), wipe.dir || -1));
+    drawPalette(wipe.to, t); ctx.restore();
+    // liseré blanc de la bulle
+    ctx.save(); ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(255,255,255,.85)';
+    ctx.stroke(bubblePath(wipe.x, wipe.y, R, 0.38 * (1 - k * k), wipe.dir || -1)); ctx.restore();
+  }
+  // grain
+  const f = Math.floor(t * 30);
+  ctx.save(); ctx.globalAlpha = 0.11; ctx.globalCompositeOperation = 'overlay';
+  ctx.translate(-Math.floor(hash(f, 1) * 256), -Math.floor(hash(f, 2) * 256));
+  ctx.fillStyle = grainPat; ctx.fillRect(0, 0, W + 256, H + 256); ctx.restore();
+  // vignette douce
+  const v = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .35, W / 2, H / 2, Math.hypot(W, H) * .62);
+  v.addColorStop(0, 'rgba(20,0,30,0)'); v.addColorStop(1, 'rgba(20,0,30,.32)');
+  ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+}
+
+/* ---------------------------------------------------------------- big date (odomètre) */
+const big = el('div', 'bigdate', stage);
+big.style.left = L.big.x + 'px'; big.style.top = L.big.y + 'px';
+big.style.fontSize = L.big.size + 'px';
+const bigCols = [0, 1].map(() => {
+  const col = el('div', 'col', big); const strip = el('div', 'strip', col);
+  for (let d = 0; d <= 10; d++) el('div', null, strip, String(d % 10));
+  return { col, strip };
+});
+
+/* ---------------------------------------------------------------- deco shapes (charte : bulles, ogives, navettes) */
+const decoLayer = el('div', 'abs', stage);
+function shapeSVG(kind, s) {
+  // dessinés dans une boîte s x s, contour blanc
+  const svg = svgEl('svg', { width: s, height: s, viewBox: `0 0 ${s} ${s}`, class: 'deco' }, decoLayer);
+  let d;
+  const m = s / 2;
+  if (kind === 'ogive') d = `M ${m} ${s * .04} C ${s * .9} ${s * .3}, ${s * .9} ${s * .7}, ${m} ${s * .96} C ${s * .1} ${s * .7}, ${s * .1} ${s * .3}, ${m} ${s * .04} Z`;
+  else if (kind === 'navette') d = `M ${s * .02} ${m} C ${s * .1} ${s * .38}, ${s * .2} ${s * .34}, ${s * .3} ${s * .34} L ${s * .7} ${s * .34} C ${s * .8} ${s * .34}, ${s * .9} ${s * .38}, ${s * .98} ${m} C ${s * .9} ${s * .62}, ${s * .8} ${s * .66}, ${s * .7} ${s * .66} L ${s * .3} ${s * .66} C ${s * .2} ${s * .66}, ${s * .1} ${s * .62}, ${s * .02} ${m} Z`;
+  else { // bulle
+    const r = s * .4, cx = s * .54, cy = s * .44;
+    d = `M ${cx - r * .62} ${cy + r * .78} A ${r} ${r} 0 1 1 ${cx - r * .2} ${cy + r * .98} C ${cx - r * .4} ${s * .98}, ${s * .14} ${s * .98}, ${s * .04} ${s * .98} C ${s * .14} ${s * .92}, ${cx - r * .6} ${cy + r * 1.0}, ${cx - r * .62} ${cy + r * .78} Z`;
+  }
+  const path = svgEl('path', { d, fill: 'none', stroke: 'white', 'stroke-width': 3, 'vector-effect': 'non-scaling-stroke' }, svg);
+  const len = path.getTotalLength();
+  path.style.strokeDasharray = len;
+  return { svg, path, len };
+}
+
+/* ---------------------------------------------------------------- albums */
+const albumLayer = el('div', 'abs', stage);
+const decoKinds = ['bulle', 'ogive', 'navette', 'bulle', 'ogive', 'navette', 'bulle', 'navette', 'ogive', 'bulle', 'navette', 'ogive'];
+ALBUMS.forEach((a, i) => {
+  a.deco = shapeSVG(decoKinds[i], L.deco);
+  a.ghost = el('div', 'ghost', albumLayer);
+  a.cover = el('img', 'cover', albumLayer); a.cover.src = a.img;
+  a.txt = el('div', 'txt', albumLayer);
+  a.txt.style.width = L.txtW + 'px'; a.txt.style.textAlign = L.align;
+  a.serie = el('div', 'serie', a.txt);
+  a.chars = [];
+  a.s.split(' ').forEach((word, wi, arr) => {
+    const w = el('span', 'w', a.serie);
+    [...word].forEach(ch => {
+      const cw = el('span', 'cw', w); const c = el('span', 'c', cw, ch);
+      a.chars.push({ c, ch: ch.toUpperCase() });
+    });
+    if (wi < arr.length - 1) a.serie.appendChild(document.createTextNode(' '));
+  });
+  a.subEl = el('div', 'sub', a.txt, a.sub); a.subEl.style.fontSize = L.subSize + 'px';
+  const dateWrap = el('div', null, a.txt);
+  a.date = el('div', 'date', dateWrap); a.date.style.fontSize = L.dateSize + 'px';
+  a.dateSvg = svgEl('svg', {}, a.date);
+  a.dateSpan = el('span', null, a.date, longDate(a.d));
+  a.start = INTRO + i * SLOT;
+});
+
+/* ---------------------------------------------------------------- timeline */
+const tl = svgEl('svg', { width: W, height: 120, style: `position:absolute;left:0;top:${L.tl.y - 60}px;overflow:visible` }, stage);
+const dayX = d => lerp(L.tl.x0, L.tl.x1, (d - 1) / 30);
+const tlBase = svgEl('line', { x1: L.tl.x0, x2: L.tl.x1, y1: 60, y2: 60, stroke: 'rgba(255,255,255,.55)', 'stroke-width': 2 }, tl);
+const tlProg = svgEl('line', { x1: L.tl.x0, x2: L.tl.x0, y1: 60, y2: 60, stroke: '#fff', 'stroke-width': 5, 'stroke-linecap': 'round' }, tl);
+const ticks = [];
+for (let d = 1; d <= 31; d++) {
+  const rel = DAYS.includes(d);
+  const tk = svgEl('line', { x1: dayX(d), x2: dayX(d), y1: rel ? 46 : 54, y2: rel ? 74 : 66, stroke: '#fff', 'stroke-width': rel ? 3 : 1.5, 'stroke-linecap': 'round' }, tl);
+  let lab = null;
+  if (rel || d === 1 || d === 31) {
+    lab = svgEl('text', { x: dayX(d), y: 104, 'text-anchor': 'middle', fill: '#fff', 'font-family': 'Akro', 'font-weight': rel ? 600 : 300, 'font-size': rel ? 24 : 18, 'letter-spacing': '0.08em' }, tl);
+    lab.textContent = String(d).padStart(2, '0');
+  }
+  ticks.push({ d, tk, lab, rel });
+}
+const tlMonth = svgEl('text', { x: L.tl.x0, y: 30, fill: '#fff', 'font-family': 'Akro', 'font-weight': 400, 'font-size': 18, 'letter-spacing': '0.3em' }, tl);
+tlMonth.textContent = 'OCTOBRE 2026';
+const marker = svgEl('g', {}, tl);
+svgEl('circle', { cx: 0, cy: 0, r: 30, fill: 'rgba(255,255,255,.18)' }, marker);
+svgEl('path', { d: 'M -15 0 C -9 -10, 9 -10, 15 0 C 9 10, -9 10, -15 0 Z', fill: '#fff' }, marker);   // ogive « œil »
+const markerHalo = svgEl('circle', { cx: 0, cy: 0, r: 30, fill: 'none', stroke: '#fff', 'stroke-width': 2 }, marker);
+
+/* ---------------------------------------------------------------- HUD */
+const hud = el('div', 'abs', stage); hud.id = 'hud';
+const hudLogo = el('img', 'logo', hud); hudLogo.src = 'assets/logo-blanc.png';
+hudLogo.style.height = L.hud.logoH + 'px'; hudLogo.style.left = L.hud.logoX + 'px'; hudLogo.style.top = L.hud.logoY + 'px';
+const hudLbl = el('div', 'lbl', hud, 'Programme des parutions · Octobre 2026');
+hudLbl.style.fontSize = L.hud.lblSize + 'px'; hudLbl.style.top = L.hud.lblY + 'px';
+
+/* ---------------------------------------------------------------- intro */
+const intro = el('div', null, stage); intro.id = 'intro';
+intro.style.width = W + 'px'; intro.style.height = H + 'px';
+const word = el('div', 'word', intro); word.style.fontSize = L.intro.size + 'px';
+const LETTERS = [...'OCTOBRE'].map(ch => el('span', 'L', word, ch));
+const year = el('div', 'year', intro); year.style.fontSize = L.intro.yearSize + 'px';
+const yearChars = [...'2026'].map(ch => el('span', null, year, ch));
+const kicker = el('div', 'kicker', intro, 'Le Lombard · Programme des parutions'); kicker.style.fontSize = L.intro.kickerSize + 'px';
+const kickSvg = svgEl('svg', { style: 'position:absolute;left:0;top:0;overflow:visible' }, intro);
+const linesSvg = svgEl('svg', { width: W, height: H, style: 'position:absolute;left:0;top:0;overflow:visible' }, intro);
+let introLines = [], oCenter = { x: W / 2, y: H / 2 }, kickPath = null;
+
+/* ---------------------------------------------------------------- outro */
+const outro = el('div', 'abs', stage); outro.id = 'outro';
+const outCovers = ALBUMS.map(a => { const im = el('img', 'oc', outro); im.src = a.img; return im; });
+const outDates = ALBUMS.map(a => el('div', 'od', outro, `${String(a.d).padStart(2, '0')}.10`));
+const outLogo = el('img', 'oc', outro); outLogo.src = 'assets/logo-blanc.png'; outLogo.style.boxShadow = 'none';
+const outTag = el('div', 'tag', outro, 'Les nouveautés d’octobre, en librairie · lelombard.com');
+
+/* ======================================================================== */
+/* layout (après chargement des polices et images)                          */
+/* ======================================================================== */
+function navettePath(w, h) {
+  const c = h * .55;
+  return `M 0 ${h / 2} C ${c * .35} ${h * .06}, ${c * .6} 0, ${c} 0 L ${w - c} 0 C ${w - c * .6} 0, ${w - c * .35} ${h * .06}, ${w} ${h / 2} C ${w - c * .35} ${h * .94}, ${w - c * .6} ${h}, ${w - c} ${h} L ${c} ${h} C ${c * .6} ${h}, ${c * .35} ${h * .94}, 0 ${h / 2} Z`;
+}
+
+function layout() {
+  // albums
+  ALBUMS.forEach(a => {
+    const ratio = a.cover.naturalWidth / a.cover.naturalHeight;
+    a.cw = L.coverH * ratio; a.ch = L.coverH;
+    a.cover.style.width = a.cw + 'px'; a.cover.style.height = a.ch + 'px';
+    a.cover.style.left = (L.coverCx - a.cw / 2) + 'px'; a.cover.style.top = (L.coverCy - a.ch / 2) + 'px';
+    a.ghost.style.width = a.cw + 'px'; a.ghost.style.height = a.ch + 'px';
+    a.ghost.style.left = (L.coverCx - a.cw / 2) + 'px'; a.ghost.style.top = (L.coverCy - a.ch / 2) + 'px';
+    a.deco.svg.style.left = (L.coverCx - L.deco / 2) + 'px'; a.deco.svg.style.top = (L.coverCy - L.deco / 2) + 'px';
+    // taille de la série : max 2 lignes, aucun mot ne déborde
+    let fs = L.serieMax;
+    a.txt.style.left = L.txtX + 'px';
+    for (; fs > 50; fs -= 4) {
+      a.serie.style.fontSize = fs + 'px';
+      const words = [...a.serie.querySelectorAll('.w')];
+      const tooWide = words.some(w => w.getBoundingClientRect().width > L.txtW);
+      const lines = Math.round(a.serie.getBoundingClientRect().height / (fs * .92));
+      if (!tooWide && lines <= 2) break;
+    }
+    a.serieFs = fs;
+    const h = a.txt.getBoundingClientRect().height;
+    a.txt.style.top = (L.txtCy - h / 2) + 'px';
+    // navette de la date
+    const r = a.date.getBoundingClientRect();
+    const dw = r.width, dh = r.height + 22;
+    a.dateSvg.setAttribute('width', dw); a.dateSvg.setAttribute('height', dh);
+    a.dateSvg.style.top = (-11) + 'px';
+    a.datePath = svgEl('path', { d: navettePath(dw, dh), fill: 'none', stroke: '#fff', 'stroke-width': 2 }, a.dateSvg);
+    a.dateLen = a.datePath.getTotalLength(); a.datePath.style.strokeDasharray = a.dateLen;
+  });
+
+  // big date
+  const dig = bigCols[0].strip.children[0].getBoundingClientRect();
+  bigCols.forEach(b => { b.col.style.width = dig.width + 'px'; b.col.style.height = dig.height + 'px'; });
+  big.style.webkitTextStroke = '3px rgba(255,255,255,1)'; big.style.color = 'transparent';
+  big.digitH = dig.height;
+
+  // HUD label
+  const lw = hudLbl.getBoundingClientRect().width;
+  hudLbl.style.left = (L.hud.center ? L.hud.lblX - lw / 2 : L.hud.lblX - lw) + 'px';
+
+  // intro
+  const wr = word.getBoundingClientRect();
+  word.style.left = (W - wr.width) / 2 + 'px'; word.style.top = L.intro.y + 'px';
+  const yr = year.getBoundingClientRect();
+  const lr = LETTERS.map(s => s.getBoundingClientRect());
+  const capTop = L.intro.y + L.intro.size * 0.21, base = L.intro.y + L.intro.size * 0.915;
+  const capH = base - capTop;
+  year.style.left = (lr[4].left + lr[6].right) / 2 - yr.width / 2 + 'px';
+  year.style.top = base + 40 + 'px';
+  oCenter = { x: (lr[0].left + lr[0].right) / 2, y: (capTop + base) / 2 };
+  // lettres enlacées : connecteurs entre lettres + descentes vers l'année
+  const sw = Math.max(3, L.intro.size * 0.012);
+  const segs = [];
+  const hh = [0.5, 0.5, 0.0, 0.5, 0.5, 0.5];   // hauteur relative des barres (0 = haut, 1 = base)
+  for (let i = 0; i < 6; i++) {
+    const y = capTop + capH * hh[i];
+    segs.push([lr[i].right - lr[i].width * .25, y, lr[i + 1].left + lr[i + 1].width * .25, y]);
+  }
+  segs.push([lr[2].left - lr[2].width * .1, capTop, lr[3].right - lr[3].width * .5, capTop]);
+  const ybar = base + 20;
+  segs.push([(lr[0].left + lr[0].right) / 2, base, (lr[0].left + lr[0].right) / 2, ybar]);
+  segs.push([(lr[0].left + lr[0].right) / 2, ybar, (lr[4].left + lr[4].right) / 2 - L.intro.yearSize * .9, ybar]);
+  segs.push([(lr[3].left + lr[3].right) / 2, base, (lr[3].left + lr[3].right) / 2, ybar]);
+  segs.push([(lr[6].left + lr[6].right) / 2 + L.intro.yearSize * 1.2, ybar, W - (lr[0].left) + 20, ybar]);
+  segs.push([(lr[6].left + lr[6].right) / 2 + L.intro.yearSize * 1.2, ybar, (lr[6].left + lr[6].right) / 2 + L.intro.yearSize * 1.2, ybar + L.intro.yearSize * .7]);
+  introLines = segs.map((s, i) => {
+    const ln = svgEl('line', { x1: s[0], y1: s[1], x2: s[2], y2: s[3], stroke: '#fff', 'stroke-width': sw, 'stroke-linecap': 'round' }, linesSvg);
+    const len = Math.hypot(s[2] - s[0], s[3] - s[1]); ln.style.strokeDasharray = len; ln.len = len; return ln;
+  });
+  // kicker dans une navette
+  const kr = kicker.getBoundingClientRect();
+  const kw = kr.width + 80, kh = kr.height + 34;
+  const kx = (W - kw) / 2, ky = L.intro.y - kh - 10;
+  kicker.style.left = kx + 40 + 'px'; kicker.style.top = ky + 17 + 'px';
+  kickSvg.setAttribute('width', kw); kickSvg.setAttribute('height', kh);
+  kickSvg.style.left = kx + 'px'; kickSvg.style.top = ky + 'px';
+  kickPath = svgEl('path', { d: navettePath(kw, kh), fill: 'none', stroke: '#fff', 'stroke-width': 2.5 }, kickSvg);
+  kickPath.len = kickPath.getTotalLength(); kickPath.style.strokeDasharray = kickPath.len;
+
+  // outro grid
+  const O = L.outro;
+  const cw = O.ch * 0.75;
+  const rows = Math.ceil(12 / O.cols);
+  const gw = O.cols * cw + (O.cols - 1) * O.gapX;
+  ALBUMS.forEach((a, i) => {
+    const c = i % O.cols, r = Math.floor(i / O.cols);
+    const w = O.ch * a.cover.naturalWidth / a.cover.naturalHeight;
+    const cx = (W - gw) / 2 + c * (cw + O.gapX) + cw / 2;
+    const y = O.y0 + r * (O.ch + O.rowGap);
+    const im = outCovers[i];
+    im.style.width = w + 'px'; im.style.height = O.ch + 'px';
+    im.style.left = cx - w / 2 + 'px'; im.style.top = y + 'px';
+    im.gx = cx; im.gy = y + O.ch / 2;
+    const od = outDates[i]; od.style.fontSize = '20px';
+    od.style.width = '200px'; od.style.left = cx - 100 + 'px'; od.style.top = y + O.ch + 14 + 'px';
+  });
+  const lw2 = O.logoH * outLogo.naturalWidth / outLogo.naturalHeight;
+  outLogo.style.height = O.logoH + 'px'; outLogo.style.width = lw2 + 'px';
+  outLogo.style.left = (W - lw2) / 2 + 'px'; outLogo.style.top = O.logoY + 'px';
+  outTag.style.fontSize = O.tagSize + 'px';
+  const tw = outTag.getBoundingClientRect().width;
+  outTag.style.left = (W - tw) / 2 + 'px'; outTag.style.top = O.tagY + 'px';
+
+  // transitions de fond
+  WIPES.push({ t0: INTRO - 0.62, dur: 0.62, from: 0, to: 1, x: oCenter.x, y: oCenter.y + capH * .45, dir: -1 });
+  WIPES.push({ t0: ALBUMS[2].start - 0.42, dur: 0.6, from: 1, to: 2, x: dayX(9), y: L.tl.y, dir: -1 });
+  WIPES.push({ t0: ALBUMS[7].start - 0.42, dur: 0.6, from: 2, to: 3, x: dayX(16), y: L.tl.y, dir: 1 });
+  WIPES.push({ t0: ALBUMS[9].start - 0.42, dur: 0.6, from: 3, to: 4, x: dayX(23), y: L.tl.y, dir: 1 });
+  WIPES.push({ t0: OUTRO0 - 0.3, dur: 0.7, from: 4, to: 0, x: W / 2, y: H * .55, dir: -1 });
+}
+
+/* ======================================================================== */
+/* render(t)                                                                */
+/* ======================================================================== */
+const set = (e, tf, op) => { e.style.transform = tf; if (op !== undefined) e.style.opacity = op; };
+
+function renderIntro(t) {
+  if (t > INTRO + 0.05) { intro.style.display = 'none'; return; }
+  intro.style.display = '';
+  // kicker
+  kickPath.style.strokeDashoffset = kickPath.len * (1 - E.outCubic(prog(t, 0.05, 0.7)));
+  const kk = E.outExpo(prog(t, 0.3, 0.6));
+  kicker.style.opacity = kk; kicker.style.letterSpacing = lerp(1.2, .32, kk) + 'em';
+  // lettres
+  LETTERS.forEach((s, i) => {
+    const k = prog(t, 0.35 + i * 0.07, 0.55);
+    const e = E.outBack(k);
+    set(s, `translateY(${lerp(-L.intro.size * .9, 0, e)}px) rotate(${lerp(i % 2 ? 14 : -14, 0, E.outCubic(k))}deg)`, clamp(k * 3));
+  });
+  introLines.forEach((ln, i) => {
+    ln.style.strokeDashoffset = ln.len * (1 - E.outExpo(prog(t, 1.05 + i * 0.07, 0.5)));
+  });
+  // année : décodage
+  yearChars.forEach((s, i) => {
+    const t0 = 1.35 + i * 0.12, f = Math.floor(t * 30);
+    if (t < t0 - 0.35) { s.style.opacity = 0; return; }
+    s.style.opacity = 1;
+    s.textContent = t < t0 ? String(Math.floor(hash(f, i, 3) * 10)) : '2026'[i];
+  });
+  // zoom à travers le « O »
+  const z = E.inExpo(prog(t, INTRO - 0.62, 0.62));
+  const sc = lerp(1, 38, z);
+  intro.style.transformOrigin = `${oCenter.x}px ${oCenter.y}px`;
+  intro.style.transform = `scale(${sc})`;
+  intro.style.opacity = 1 - prog(t, INTRO - 0.18, 0.18);
+}
+
+function renderAlbum(a, t) {
+  const u = t - a.start, i = a.i;
+  const visible = u > -0.35 && u < SLOT + 0.35;
+  const disp = visible ? '' : 'none';
+  a.cover.style.display = a.ghost.style.display = a.txt.style.display = a.deco.svg.style.display = disp;
+  if (!visible) return;
+  const isLastOfAll = i === ALBUMS.length - 1;
+  // ---------- entrée de la couverture (4 styles en rotation)
+  const ke = prog(u, -0.12, 0.62);
+  const style = i % 4;
+  let tx = 0, ty = 0, sc = 1, rot = 0, ry = 0, op = 1;
+  if (style === 0) { const e = E.outExpo(ke); tx = lerp(W * .75, 0, e); rot = lerp(-6, 0, e); }
+  else if (style === 1) { const e = E.outBack(ke); sc = lerp(0.35, 1, e); op = clamp(ke * 4); rot = lerp(9, 0, E.outCubic(ke)); }
+  else if (style === 2) { const e = E.outCubic(ke); ry = lerp(-96, 0, e); tx = lerp(-120, 0, e); op = clamp(ke * 6); }
+  else { const e = E.outQuint(ke); ty = lerp(H * .9, 0, e); rot = lerp(10, 0, e); }
+  // ---------- sortie (vers la gauche : le temps file)
+  const kx = E.inExpo(prog(u, SLOT - 0.3, 0.4));
+  if (!isLastOfAll) { tx += lerp(0, -W * .85, kx); rot += lerp(0, -4, kx); sc *= lerp(1, .88, kx); }
+  else { // dernier album : il rejoint la mosaïque de l'outro
+    const ko = E.inOutCubic(prog(t, OUTRO0 - 0.3, 0.55));
+    const im = outCovers[i];
+    const tsc = L.outro.ch / L.coverH;
+    tx += (im.gx - L.coverCx) * ko; ty += (im.gy - L.coverCy) * ko; sc *= lerp(1, tsc, ko);
+    op = ko >= 1 ? 0 : op;
+  }
+  // flottement léger
+  const fl = Math.sin(u * 2.2 + i) * 6;
+  a.cover.style.transform = `perspective(2200px) translate(${tx}px, ${ty + fl}px) rotate(${rot}deg) rotateY(${ry}deg) scale(${sc})`;
+  a.cover.style.opacity = op;
+  // ---------- cadre fantôme décalé (parallaxe)
+  const kg = E.outExpo(prog(u, 0.12, 0.6));
+  const off = lerp(0, 34, kg);
+  a.ghost.style.transform = `translate(${tx * 1.15 + off}px, ${ty * 1.1 + off + fl * .4}px) rotate(${rot * 1.4}deg) scale(${sc})`;
+  a.ghost.style.opacity = kg * (1 - kx) * (isLastOfAll ? 1 - prog(t, OUTRO0 - 0.35, 0.2) : 1);
+  // ---------- forme de la charte derrière
+  const kd = prog(u, -0.05, 0.9);
+  a.deco.path.style.strokeDashoffset = a.deco.len * (1 - E.outCubic(kd));
+  a.deco.svg.style.transform = `translate(${tx * .55}px, ${ty * .5}px) rotate(${lerp(-25, 8, E.outCubic(kd)) + u * 4 + i * 20}deg) scale(${lerp(.7, 1.05, E.outCubic(kd))})`;
+  a.deco.svg.style.opacity = .55 * (1 - kx) * (isLastOfAll ? 1 - prog(t, OUTRO0 - 0.35, 0.2) : 1);
+
+  // ---------- texte
+  const kOut = prog(u, SLOT - 0.32, 0.3);
+  const txtStyle = i % 3;
+  const n = a.chars.length;
+  a.chars.forEach((o, j) => {
+    const kin = prog(u, 0.12 + j * 0.022, 0.5);
+    const ko = E.inCubic(prog(u, SLOT - 0.34 + j * 0.008, 0.26));
+    if (txtStyle === 0) {        // montée masquée
+      const e = E.outExpo(kin);
+      set(o.c, `translateY(${lerp(110, 0, e) - ko * 110}%)`);
+      o.c.textContent = o.ch;
+    } else if (txtStyle === 1) { // décodage (lettres qui défilent)
+      const lock = 0.12 + (j / n) * 0.45;
+      const f = Math.floor(t * 30);
+      if (u < lock && o.ch.trim() && /[A-ZÀ-Ü]/i.test(o.ch)) o.c.textContent = GLYPHS[Math.floor(hash(f, j, i) * 26)];
+      else o.c.textContent = o.ch;
+      set(o.c, `translateY(${-ko * 110}%)`, u < 0.1 + (j / n) * 0.3 ? 0 : 1);
+    } else {                    // pop élastique
+      const e = E.outElastic(prog(u, 0.12 + hash(i, j) * 0.25, 0.7));
+      set(o.c, `translateY(${(1 - Math.min(1, e)) * 40 - ko * 110}%) scale(${e})`, clamp(e * 2));
+      o.c.textContent = o.ch;
+    }
+  });
+  if (txtStyle === 1) a.serie.style.letterSpacing = lerp(.25, .01, E.outExpo(prog(u, 0.12, 0.7))) + 'em';
+  // sous-titre : révélation par masque
+  const ks = E.outExpo(prog(u, 0.32, 0.6));
+  const ksOut = E.inCubic(kOut);
+  a.subEl.style.clipPath = L.align === 'center'
+    ? `inset(-10% ${50 - ks * 50}% -10% ${50 - ks * 50}%)`
+    : `inset(-10% ${100 - ks * 100}% -10% 0)`;
+  a.subEl.style.transform = `translateX(${lerp(30, 0, ks) - ksOut * 60}px)`;
+  a.subEl.style.opacity = 1 - ksOut;
+  // date (petite) dans une navette
+  const kdt = prog(u, 0.45, 0.5);
+  a.datePath.style.strokeDashoffset = a.dateLen * (1 - E.outCubic(kdt));
+  a.dateSpan.style.opacity = E.outCubic(prog(u, 0.6, 0.3)) * (1 - ksOut);
+  a.date.style.transform = `translateY(${lerp(14, 0, E.outCubic(kdt))}px)`;
+  a.dateSvg.style.opacity = 1 - ksOut;
+  // parallaxe globale du bloc texte
+  a.txt.style.transform = `translateX(${-E.inExpo(prog(u, SLOT - 0.25, 0.4)) * 120}px)`;
+}
+
+function dayAt(t) {
+  // jour courant (interpolé pendant les changements de date)
+  let d = 1;
+  if (t < INTRO) return lerp(1, 2, E.inOutCubic(prog(t, INTRO - 0.8, 0.8)));
+  for (let i = 0; i < ALBUMS.length; i++) {
+    const a = ALBUMS[i], prev = i ? ALBUMS[i - 1].d : 1;
+    if (t >= a.start - 0.45) d = a.d === prev ? a.d : lerp(prev, a.d, E.inOutCubic(prog(t, a.start - 0.45, 0.6)));
+  }
+  if (t > OUTRO0) d = lerp(23, 31, E.inOutCubic(prog(t, OUTRO0, 0.9)));
+  return d;
+}
+
+function renderTimeline(t) {
+  const kin = E.outExpo(prog(t, INTRO - 0.2, 0.7));
+  const kout = E.inCubic(prog(t, OUTRO0 + 0.2, 0.5));
+  tl.style.opacity = kin * (1 - kout);
+  tl.style.transform = `translateY(${lerp(40, 0, kin) + kout * 40}px)`;
+  const d = dayAt(t), x = dayX(d);
+  tlProg.setAttribute('x2', x);
+  marker.setAttribute('transform', `translate(${x} 60)`);
+  const beat = (t / BEAT) % 1;
+  markerHalo.setAttribute('r', 16 + 22 * E.outCubic(beat));
+  markerHalo.setAttribute('opacity', 1 - beat);
+  ticks.forEach(k => {
+    const past = k.d <= d + 0.01;
+    k.tk.setAttribute('opacity', past ? 1 : .55);
+    if (k.lab) {
+      const near = clamp(1 - Math.abs(k.d - d) / 1.5);
+      k.lab.setAttribute('transform', `translate(0 ${-near * 8})`);
+      k.lab.setAttribute('opacity', k.rel ? .6 + .4 * near : .5);
+    }
+  });
+}
+
+function renderBigDate(t) {
+  const kin = E.outExpo(prog(t, INTRO - 0.1, 0.8));
+  const kout = E.inCubic(prog(t, OUTRO0 - 0.3, 0.4));
+  big.style.opacity = L.big.op * kin * (1 - kout);
+  const d = Math.max(2, Math.min(23, dayAt(t)));
+  // odomètre : unités qui roulent (bande 0…9,0), dizaines qui basculent quand l'unité passe 9 → 0
+  const dh = big.digitH, fd = Math.floor(d), frac = d - fd;
+  const units = (fd % 10) + frac;
+  const tens = Math.floor(fd / 10) + (fd % 10 === 9 ? frac : 0);
+  bigCols[0].strip.style.transform = `translateY(${-tens * dh}px)`;
+  bigCols[1].strip.style.transform = `translateY(${-units * dh}px)`;
+  big.style.transform = `translateY(${Math.sin(t * 0.8) * 10}px)`;
+}
+
+function renderHud(t) {
+  const k = E.outExpo(prog(t, INTRO - 0.1, 0.6));
+  const ko = E.inCubic(prog(t, OUTRO0 - 0.2, 0.4));
+  hud.style.opacity = k * (1 - ko);
+  hudLogo.style.transform = `translateY(${lerp(-30, 0, k)}px)`;
+  hudLbl.style.transform = `translateY(${lerp(-30, 0, k)}px)`;
+}
+
+function renderOutro(t) {
+  const u = t - OUTRO0;
+  outro.style.display = u > -0.4 ? '' : 'none';
+  if (u <= -0.4) return;
+  outCovers.forEach((im, i) => {
+    if (i === ALBUMS.length - 1) { // arrive depuis la scène précédente
+      im.style.opacity = prog(t, OUTRO0 + 0.25, 0.01);
+      im.style.transform = `translateY(${Math.sin(u * 2 + i) * 3}px)`;
+      return;
+    }
+    const k = prog(u, 0.05 + i * 0.045, 0.6);
+    const e = E.outBack(k);
+    const fromX = (hash(i, 9) - .5) * W * 1.2, fromY = H * .8 + hash(i, 10) * H * .3;
+    im.style.opacity = clamp(k * 5);
+    im.style.transform = `translate(${lerp(fromX, 0, E.outExpo(k))}px, ${lerp(fromY, 0, e) + Math.sin(u * 2 + i) * 3}px) rotate(${lerp((hash(i, 11) - .5) * 60, 0, E.outCubic(k))}deg)`;
+  });
+  outDates.forEach((od, i) => {
+    const k = E.outCubic(prog(u, 0.7 + i * 0.03, 0.4));
+    od.style.opacity = k; od.style.transform = `translateY(${lerp(10, 0, k)}px)`;
+  });
+  const kl = E.outExpo(prog(u, 1.15, 0.8));
+  outLogo.style.clipPath = `inset(0 ${(1 - kl) * 50}% 0 ${(1 - kl) * 50}%)`;
+  outLogo.style.transform = `scale(${lerp(1.15, 1, kl)})`;
+  const kt = E.outCubic(prog(u, 1.6, 0.6));
+  outTag.style.opacity = kt; outTag.style.transform = `translateY(${lerp(16, 0, kt)}px)`;
+}
+
+window.render = function (t) {
+  drawBackground(t);
+  renderBigDate(t);
+  ALBUMS.forEach(a => renderAlbum(a, t));
+  renderTimeline(t);
+  renderHud(t);
+  renderIntro(t);
+  renderOutro(t);
+};
+window.DURATION = DURATION; window.W = W; window.H = H;
+
+window.ready = (async () => {
+  await document.fonts.ready;
+  await Promise.all(['100', '200', '400', '500', '600'].map(w => document.fonts.load(`${w} 40px Akro`)));
+  await Promise.all(['200', '300'].map(w => document.fonts.load(`italic ${w} 40px Bari`)));
+  await Promise.all([...document.images].map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; })));
+  layout();
+  render(0);
+  return true;
+})();
+
+/* lecture en temps réel quand on ouvre la page dans un navigateur */
+if (!new URLSearchParams(location.search).has('capture')) {
+  window.ready.then(() => {
+    const t0 = performance.now();
+    const loop = () => { render(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); };
+    loop();
+  });
+}
+</script>
+</body>
+</html>
