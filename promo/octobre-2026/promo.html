@@ -4,16 +4,17 @@
 <meta charset="utf-8">
 <title>Le Lombard — Parutions octobre 2026</title>
 <style>
-  @font-face { font-family: "Akro"; font-weight: 100; src: url(assets/fonts/barlow-condensed-latin-100-normal.woff2); }
-  @font-face { font-family: "Akro"; font-weight: 200; src: url(assets/fonts/barlow-condensed-latin-200-normal.woff2); }
-  @font-face { font-family: "Akro"; font-weight: 300; src: url(assets/fonts/barlow-condensed-latin-300-normal.woff2); }
-  @font-face { font-family: "Akro"; font-weight: 400; src: url(assets/fonts/barlow-condensed-latin-400-normal.woff2); }
-  @font-face { font-family: "Akro"; font-weight: 500; src: url(assets/fonts/barlow-condensed-latin-500-normal.woff2); }
-  @font-face { font-family: "Akro"; font-weight: 600; src: url(assets/fonts/barlow-condensed-latin-600-normal.woff2); }
-  @font-face { font-family: "Bari"; font-weight: 200; font-style: italic; src: url(assets/fonts/nunito-latin-200-italic.woff2); }
-  @font-face { font-family: "Bari"; font-weight: 300; font-style: italic; src: url(assets/fonts/nunito-latin-300-italic.woff2); }
-  @font-face { font-family: "Bari"; font-weight: 400; font-style: italic; src: url(assets/fonts/nunito-latin-400-italic.woff2); }
-  @font-face { font-family: "Bari"; font-weight: 300; font-style: normal; src: url(assets/fonts/nunito-latin-300-normal.woff2); }
+  /* Polices de la charte : Akrobat (titres, textes techniques) et Bariol (sous-titres, chapeaux) */
+  @font-face { font-family: "Akro"; font-weight: 100; src: url(assets/fonts/charte/Akrobat-ExtraLight.otf); }
+  @font-face { font-family: "Akro"; font-weight: 200; src: url(assets/fonts/charte/Akrobat-ExtraLight.otf); }
+  @font-face { font-family: "Akro"; font-weight: 300; src: url(assets/fonts/charte/Akrobat-Light.otf); }
+  @font-face { font-family: "Akro"; font-weight: 400; src: url(assets/fonts/charte/Akrobat-Regular.otf); }
+  @font-face { font-family: "Akro"; font-weight: 500; src: url(assets/fonts/charte/Akrobat-SemiBold.otf); }
+  @font-face { font-family: "Akro"; font-weight: 600; src: url(assets/fonts/charte/Akrobat-Bold.otf); }
+  @font-face { font-family: "Bari"; font-weight: 200; font-style: italic; src: url(assets/fonts/charte/bariol_thin_italic-webfont.ttf); }
+  @font-face { font-family: "Bari"; font-weight: 300; font-style: italic; src: url(assets/fonts/charte/bariol_light_italic-webfont.ttf); }
+  @font-face { font-family: "Bari"; font-weight: 400; font-style: italic; src: url(assets/fonts/charte/bariol_regular_italic-webfont.ttf); }
+  @font-face { font-family: "Bari"; font-weight: 300; font-style: normal; src: url(assets/fonts/charte/bariol_light-webfont.ttf); }
 
   html, body { margin: 0; padding: 0; background: #000; }
   #stage { position: relative; overflow: hidden; color: #fff; }
@@ -112,7 +113,7 @@ const L = FORMAT === 'h' ? {
   big: { x: 120, y: 1050, size: 760, op: .2 },
   tl: { x0: 90, x1: 990, y: 1790 },
   hud: { logoH: 44, logoX: 340, logoY: 70, lblX: 540, lblY: 136, lblSize: 20, center: true },
-  intro: { size: 300, y: 650, yearSize: 120, kickerSize: 24 },
+  intro: { size: 245, y: 680, yearSize: 120, kickerSize: 24 },
   outro: { cols: 3, ch: 300, gapX: 36, y0: 150, rowGap: 64, logoH: 70, logoY: 1620, tagY: 1725, tagSize: 32 },
   deco: 1000,
 };
@@ -622,7 +623,7 @@ function renderBigDate(t) {
 function renderHud(t) {
   const k = E.outExpo(prog(t, INTRO - 0.1, 0.6));
   const ko = E.inCubic(prog(t, OUTRO0 - 0.2, 0.4));
-  hud.style.opacity = k * (1 - ko);
+  hud.style.opacity = FORMAT === 'v' ? 0 : k * (1 - ko);   // pas de logo ni de titre en tête sur la version verticale
   hudLogo.style.transform = `translateY(${lerp(-30, 0, k)}px)`;
   hudLbl.style.transform = `translateY(${lerp(-30, 0, k)}px)`;
 }
