@@ -272,7 +272,7 @@ ALBUMS.forEach((a, i) => {
     const w = el('span', 'w', a.serie);
     [...word].forEach(ch => {
       const cw = el('span', 'cw', w); const c = el('span', 'c', cw, ch);
-      a.chars.push({ c, ch: ch.toUpperCase() });
+      a.chars.push({ c, cw, ch: ch.toUpperCase() });
     });
     if (wi < arr.length - 1) a.serie.appendChild(document.createTextNode(' '));
   });
@@ -362,6 +362,12 @@ function layout() {
       if (!tooWide && lines <= 2) break;
     }
     a.serieFs = fs;
+    // largeur de chaque lettre figée : les glyphes aléatoires du décodage ne font jamais changer la mise en ligne
+    a.chars.forEach(o => { o.cw.style.width = o.cw.getBoundingClientRect().width + 'px'; o.cw.style.textAlign = 'center'; });
+    // position de chaque lettre dans sa ligne (pour l'effet d'écartement)
+    const lines = {};
+    a.chars.forEach(o => { const k = Math.round(o.c.getBoundingClientRect().top); (lines[k] = lines[k] || []).push(o); });
+    Object.values(lines).forEach(ln => ln.forEach((o, p) => { o.pos = p; o.lineLen = ln.length; }));
     const h = a.txt.getBoundingClientRect().height;
     a.txt.style.top = (L.txtCy - h / 2) + 'px';
     // navette de la date
@@ -546,6 +552,10 @@ function renderAlbum(a, t) {
       const f = Math.floor(t * 30);
       if (u < lock && o.ch.trim() && /[A-ZÀ-Ü]/i.test(o.ch)) o.c.textContent = GLYPHS[Math.floor(hash(f, j, i) * 26)];
       else o.c.textContent = o.ch;
+      // écartement des lettres par transform (ne change jamais la mise en ligne)
+      const sp = lerp(.25, 0, E.outExpo(prog(u, 0.12, 0.7))) * a.serieFs;
+      const dx = (L.align === 'center' ? o.pos - (o.lineLen - 1) / 2 : o.pos) * sp;
+      o.cw.style.transform = `translateX(${dx}px)`;
       set(o.c, `translateY(${-ko * 110}%)`, u < 0.1 + (j / n) * 0.3 ? 0 : 1);
     } else {                    // pop élastique
       const e = E.outElastic(prog(u, 0.12 + hash(i, j) * 0.25, 0.7));
@@ -553,7 +563,6 @@ function renderAlbum(a, t) {
       o.c.textContent = o.ch;
     }
   });
-  if (txtStyle === 1) a.serie.style.letterSpacing = lerp(.25, .01, E.outExpo(prog(u, 0.12, 0.7))) + 'em';
   // sous-titre : révélation par masque
   const ks = E.outExpo(prog(u, 0.32, 0.6));
   const ksOut = E.inCubic(kOut);
