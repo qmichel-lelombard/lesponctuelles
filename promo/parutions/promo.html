@@ -63,10 +63,13 @@
 /* =========================================================================
    Le Lombard — vidéo promo des parutions du mois (30 s, 128 BPM)
    Rendu déterministe : window.render(t) dessine l'image à l'instant t (s).
-   ?month=2026-10 (données dans months.js) & format=h (1920x1080, défaut) | v (1080x1920)
+   ?month=2026-10 (données dans months.js) & format=h (1920x1080, défaut) | v (1080x1920) | p (1080x1440)
    ========================================================================= */
-const FORMAT = new URLSearchParams(location.search).get('format') === 'v' ? 'v' : 'h';
-const W = FORMAT === 'h' ? 1920 : 1080, H = FORMAT === 'h' ? 1080 : 1920;
+// h = 1920x1080, v = 1080x1920 (stories), p = 1080x1440 (posts 3:4, même mise en page que v)
+const FMT_Q = new URLSearchParams(location.search).get('format');
+const FORMAT = ['v', 'p'].includes(FMT_Q) ? FMT_Q : 'h';
+const VERT = FORMAT !== 'h';
+const W = VERT ? 1080 : 1920, H = { h: 1080, v: 1920, p: 1440 }[FORMAT];
 const QS = new URLSearchParams(location.search);
 const MKEY = QS.get('month') || '2026-10';
 const M = window.MONTHS[MKEY];
@@ -101,7 +104,7 @@ const PAL = [
 ];
 
 /* ---------------------------------------------------------------- layout */
-const L = FORMAT === 'h' ? {
+const L = !VERT ? {
   coverH: 780, coverCx: 610, coverCy: 500,
   txtX: 1060, txtW: 760, txtCy: 470, serieMax: 160, subSize: 44, dateSize: 21, align: 'left',
   big: { x: 1180, y: 60, size: 900, op: .22 },
@@ -441,7 +444,7 @@ function layout() {
   const O = { ...L.outro, cols: L.outro.cols(N_ALB) };
   const cw = O.ch * 0.75;
   const rows = Math.ceil(N_ALB / O.cols);
-  if (FORMAT === 'v') {   // mosaïque + logo centrés verticalement
+  if (VERT) {   // mosaïque + logo centrés verticalement
     const blockH = rows * (O.ch + O.rowGap) + 60 + O.logoH + 100;
     O.y0 = (H - blockH) / 2; O.logoY = O.y0 + rows * (O.ch + O.rowGap) + 60; O.tagY = O.logoY + O.logoH + 40;
   }
@@ -649,7 +652,7 @@ function renderBigDate(t) {
 function renderHud(t) {
   const k = E.outExpo(prog(t, INTRO - 0.1, 0.6));
   const ko = E.inCubic(prog(t, OUTRO0 - 0.2, 0.4));
-  hud.style.opacity = FORMAT === 'v' ? 0 : k * (1 - ko);   // pas de logo ni de titre en tête sur la version verticale
+  hud.style.opacity = VERT ? 0 : k * (1 - ko);   // pas de logo ni de titre en tête sur la version verticale
   hudLogo.style.transform = `translateY(${lerp(-30, 0, k)}px)`;
   hudLbl.style.transform = `translateY(${lerp(-30, 0, k)}px)`;
 }
