@@ -1,6 +1,6 @@
 // Rendu image par image de promo.html puis encodage MP4 (H.264) avec la bande-son.
-// usage : node capture.js <mois, ex. 2026-11> [h|v] [fps] [--preview t1,t2,...]
-// (générer d'abord la bande-son : python3 soundtrack.py <mois>)
+// usage : node capture.js <mois, ex. 2026-11> [h|v] [fps] [--slot 6] [--preview t1,t2,...]
+// (générer d'abord la bande-son : python3 soundtrack.py <mois> [temps par album])
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const path = require('path');
@@ -9,6 +9,9 @@ const path = require('path');
   const month = process.argv[2] || '2026-10';
   const format = process.argv[3] || 'h';
   const fps = +(process.argv[4] || 30);
+  const si = process.argv.indexOf('--slot');
+  const slot = si > 0 ? +process.argv[si + 1] : 4;
+  const sfx = slot === 4 ? '' : `-long`;
   const pi = process.argv.indexOf('--preview');
   const preview = pi > 0 ? process.argv[pi + 1].split(',').map(Number) : null;
   const W = format === 'v' ? 1080 : 1920, H = format === 'v' ? 1920 : 1080;
@@ -16,21 +19,21 @@ const path = require('path');
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   page.on('console', m => console.log('[page]', m.text()));
   page.on('pageerror', e => console.error('[pageerror]', e));
-  await page.goto('file://' + path.resolve(__dirname, 'promo.html') + `?capture=1&month=${month}&format=${format}`);
+  await page.goto('file://' + path.resolve(__dirname, 'promo.html') + `?capture=1&month=${month}&format=${format}&slot=${slot}`);
   await page.evaluate(() => window.ready);
   if (preview) {
     for (const t of preview) {
       await page.evaluate(t => render(t), t);
-      await page.screenshot({ path: path.resolve(__dirname, `out/preview-${month}-${format}-${t}.jpg`), quality: 85, type: 'jpeg' });
+      await page.screenshot({ path: path.resolve(__dirname, `out/preview-${month}${sfx}-${format}-${t}.jpg`), quality: 85, type: 'jpeg' });
     }
     await browser.close(); return;
   }
   const dur = await page.evaluate(() => window.DURATION);
   const n = Math.round(dur * fps);
   const name = await page.evaluate(() => `${MONTH}-${M.year}`);
-  const out = path.resolve(__dirname, `out/lombard-${name}-${format === 'v' ? '1080x1920' : '1920x1080'}.mp4`);
+  const out = path.resolve(__dirname, `out/lombard-${name}${sfx}-${format === 'v' ? '1080x1920' : '1920x1080'}.mp4`);
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-i', '-',
-    '-i', path.resolve(__dirname, `out/soundtrack-${month}.wav`),
+    '-i', path.resolve(__dirname, `out/soundtrack-${month}${sfx}.wav`),
     '-c:v', 'libx264', '-preset', 'slow', '-b:v', '14M', '-maxrate', '18M', '-bufsize', '28M', '-pix_fmt', 'yuv420p', '-profile:v', 'high',
     '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
   for (let f = 0; f < n; f++) {

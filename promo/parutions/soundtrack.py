@@ -2,7 +2,8 @@
 
 Un album = une mesure de 4 temps ; changement d'accord à chaque album,
 souffle (whoosh) avant chaque entrée, impact à la fin de l'intro et sur le logo.
-usage : python3 soundtrack.py 2026-11   (écrit out/soundtrack-2026-11.wav, données dans months.js)
+usage : python3 soundtrack.py 2026-11 [6]   (écrit out/soundtrack-2026-11[-long].wav, données dans months.js ;
+        le 2e argument = temps par album, 4 par défaut)
 """
 import json
 import pathlib
@@ -14,6 +15,8 @@ import numpy as np
 
 HERE = pathlib.Path(__file__).resolve().parent
 MONTH = sys.argv[1] if len(sys.argv) > 1 else '2026-10'
+SLOT_BEATS = int(sys.argv[2]) if len(sys.argv) > 2 else 4
+SFX = '' if SLOT_BEATS == 4 else '-long'
 albums = json.loads(subprocess.check_output(
     ['node', '-e', 'global.window={};require(process.argv[1]);'
      'console.log(JSON.stringify(window.MONTHS[process.argv[2]].albums))',
@@ -21,14 +24,14 @@ albums = json.loads(subprocess.check_output(
 N_ALB = len(albums)
 GROUP_STARTS = [i for i in range(1, N_ALB) if albums[i]['d'] != albums[i - 1]['d']]
 
-# même découpage que promo.html : 4 temps par album, le reste partagé entre intro et outro
+# même découpage que promo.html : SLOT_BEATS temps par album, le reste partagé entre intro et outro
 SR = 44100
 BEAT = 60 / 128
-SPARE = max(0, 64 - 4 * N_ALB - 16)
+SPARE = max(0, 64 - SLOT_BEATS * N_ALB - 16)
 INTRO_BEATS = 8 + (SPARE // 8) * 4
-DUR = max(64, INTRO_BEATS + 4 * N_ALB + 8) * BEAT
+DUR = max(64, INTRO_BEATS + SLOT_BEATS * N_ALB + 8) * BEAT
 INTRO = INTRO_BEATS * BEAT
-SLOT = 4 * BEAT
+SLOT = SLOT_BEATS * BEAT
 OUTRO = INTRO + N_ALB * SLOT
 STRETCH = INTRO / (8 * BEAT)
 N = int(DUR * SR) + SR
@@ -158,13 +161,15 @@ for a, (b, ch) in enumerate(PROG):
     add(whoosh(0.45), t0 - 0.45, 0.22, pan=0.3 if a % 2 else -0.3)
     add(pluck(MELO[a], 0.7), t0 + 0.12, 0.16)
     add(pluck(MELO[a] - 12, 0.7), t0 + 0.12 + BEAT * 1.5, 0.08)
-    for k in range(4):
+    if SLOT_BEATS > 4:   # version longue : la mélodie revient sur la 2e moitié de l'album
+        add(pluck(MELO[a] + 7, 0.7), t0 + 4 * BEAT + 0.12, 0.1)
+    for k in range(SLOT_BEATS):
         tb = t0 + k * BEAT
         add(kick(), tb, 0.8)
         add(bass(b, BEAT * 0.9), tb + BEAT / 2, 0.22)
         add(hat(), tb + BEAT / 2, 0.22, pan=0.25)
         add(hat(0.03), tb + BEAT * 0.75, 0.09, pan=-0.25)
-        if k in (1, 3):
+        if k % 2 == 1:
             add(clap(), tb, 0.32)
 
 # --- changements de date : petit impact
@@ -191,7 +196,7 @@ mix = np.tanh(mix * 1.2)
 mix /= np.abs(mix).max() / 0.89
 pcm = (mix * 32767).astype(np.int16)
 (HERE / 'out').mkdir(exist_ok=True)
-with wave.open(str(HERE / 'out' / f'soundtrack-{MONTH}.wav'), 'wb') as w:
+with wave.open(str(HERE / 'out' / f'soundtrack-{MONTH}{SFX}.wav'), 'wb') as w:
     w.setnchannels(2)
     w.setsampwidth(2)
     w.setframerate(SR)
