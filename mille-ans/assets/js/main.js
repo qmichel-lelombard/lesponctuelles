@@ -403,14 +403,14 @@ void main(){
     if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
   }));
 
-  /* ---------- Extrait WeStory en fenêtre ---------- */
-  const ex = $('#ex'), frame = $('#ex-frame');
+  /* ---------- Extrait WeStory : fenêtre dédiée (le lecteur a besoin de ses cookies, bloqués en iframe) ---------- */
+  const EX_URL = $('#ex-frame').dataset.src;
   $$('[data-open=excerpt]').forEach(b => b.addEventListener('click', () => {
-    if (!frame.getAttribute('src')) frame.src = frame.dataset.src;
-    if (ex.showModal) ex.showModal(); else ex.setAttribute('open', '');
+    const w = Math.min(1200, screen.availWidth - 40), h = Math.min(950, screen.availHeight - 60);
+    const l = Math.max(0, (screen.availWidth - w) / 2), tp = Math.max(0, (screen.availHeight - h) / 2);
+    const win = window.open(EX_URL, 'milleans-extrait', `popup=yes,width=${w},height=${h},left=${l},top=${tp}`);
+    if (win) win.focus(); else location.href = EX_URL;
   }));
-  $('#ex-x').addEventListener('click', () => ex.close());
-  ex.addEventListener('click', e => { if (e.target === ex) ex.close(); });
 
   /* ---------- Ambiance sonore (fichier audio, boucle avec fondus) ---------- */
   const snd = $('#snd');
