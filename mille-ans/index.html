@@ -35,7 +35,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/fonts/fonts.css?v=0a5d614f">
-<link rel="stylesheet" href="assets/css/style.css?v=db6beccd">
+<link rel="stylesheet" href="assets/css/style.css?v=4205ad4d">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -453,11 +453,16 @@
 
 <dialog class="ex" id="ex" aria-label="Extrait de l'album">
   <div class="ex__bar"><span class="eyebrow">Extrait · Mille Ans</span>
-    <a class="link-out" href="https://www.westory.fr/player-display?do=html&amp;token=h2vpJGKDGRFZ2ZW82QiItS426PvpIhfq#excerpt" target="_blank" rel="noopener">Ouvrir dans un nouvel onglet ↗</a>
+    <span class="ex__count" id="ex-count" aria-live="polite"></span>
     <button type="button" class="ex__x" id="ex-x" aria-label="Fermer l'extrait">×</button></div>
-  <iframe id="ex-frame" title="Premières planches de Mille Ans" data-src="https://www.westory.fr/player-display?do=html&amp;token=h2vpJGKDGRFZ2ZW82QiItS426PvpIhfq#excerpt" allow="fullscreen" allowfullscreen></iframe>
+  <div class="rd" id="rd">
+    <button type="button" class="rd__nav rd__prev" id="rd-prev" aria-label="Page précédente">‹</button>
+    <div class="rd__stage" id="rd-stage"></div>
+    <button type="button" class="rd__nav rd__next" id="rd-next" aria-label="Page suivante">›</button>
+  </div>
+  <p class="ex__hint">© Le Lombard · Feuilletez avec les flèches, le clavier ou en glissant</p>
 </dialog>
 
-<script src="assets/js/main.js?v=ac83f35a" defer></script>
+<script src="assets/js/main.js?v=0ce1e907" defer></script>
 </body>
 </html>

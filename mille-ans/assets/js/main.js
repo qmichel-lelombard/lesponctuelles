@@ -403,14 +403,43 @@ void main(){
     if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
   }));
 
-  /* ---------- Extrait WeStory : fenêtre dédiée (le lecteur a besoin de ses cookies, bloqués en iframe) ---------- */
-  const EX_URL = $('#ex-frame').dataset.src;
+  /* ---------- Liseuse d'extrait (pages hébergées sur le site) ---------- */
+  const ex = $('#ex'), stage = $('#rd-stage'), cnt = $('#ex-count');
+  const PAGES = Array.from({ length: 16 }, (_, i) => `assets/extrait/p${String(i + 1).padStart(2, '0')}.webp`);
+  let pg = 0;
+  const dual = () => innerWidth >= 900 && innerWidth > innerHeight;
+  const rdStep = () => dual() ? 2 : 1;
+  const preload = i => { if (PAGES[i]) { const im = new Image(); im.src = PAGES[i]; } };
+  function showPage(i, dir = 0) {
+    const s = rdStep(); pg = Math.max(0, Math.min(PAGES.length - 1, i - (i % s)));
+    stage.classList.toggle('single', s === 1);
+    stage.innerHTML = '';
+    for (let k = 0; k < s && pg + k < PAGES.length; k++) {
+      const im = new Image(); im.src = PAGES[pg + k]; im.alt = `Extrait de Mille Ans, page ${pg + k + 1}`;
+      im.style.setProperty('--dx', (dir * 40) + 'px'); stage.appendChild(im);
+      const go = () => requestAnimationFrame(() => im.classList.add('in'));
+      im.complete ? go() : im.addEventListener('load', go, { once: true });
+    }
+    const last = Math.min(PAGES.length, pg + s);
+    cnt.textContent = s === 2 ? `Pages ${pg + 1}–${last} / ${PAGES.length}` : `Page ${pg + 1} / ${PAGES.length}`;
+    $('#rd-prev').disabled = pg === 0; $('#rd-next').disabled = last >= PAGES.length;
+    for (let k = 1; k <= 2 * s; k++) preload(pg + s + k - 1);
+  }
+  const next = () => { if (pg + rdStep() < PAGES.length) showPage(pg + rdStep(), 1); };
+  const prev = () => { if (pg > 0) showPage(pg - rdStep(), -1); };
+  $('#rd-next').addEventListener('click', next); $('#rd-prev').addEventListener('click', prev);
+  stage.addEventListener('click', e => { const r = stage.getBoundingClientRect(); (e.clientX - r.left > r.width / 2) ? next() : prev(); });
+  let tx = 0;
+  stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', e => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 40) (d < 0 ? next : prev)(); }, { passive: true });
+  ex.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } });
+  addEventListener('resize', () => { if (ex.open) showPage(pg); });
   $$('[data-open=excerpt]').forEach(b => b.addEventListener('click', () => {
-    const w = Math.min(1200, screen.availWidth - 40), h = Math.min(950, screen.availHeight - 60);
-    const l = Math.max(0, (screen.availWidth - w) / 2), tp = Math.max(0, (screen.availHeight - h) / 2);
-    const win = window.open(EX_URL, 'milleans-extrait', `popup=yes,width=${w},height=${h},left=${l},top=${tp}`);
-    if (win) win.focus(); else location.href = EX_URL;
+    if (ex.showModal) ex.showModal(); else ex.setAttribute('open', '');
+    showPage(pg);
   }));
+  $('#ex-x').addEventListener('click', () => ex.close());
+  ex.addEventListener('click', e => { if (e.target === ex) ex.close(); });
 
   /* ---------- Ambiance sonore (fichier audio, boucle avec fondus) ---------- */
   const snd = $('#snd');
