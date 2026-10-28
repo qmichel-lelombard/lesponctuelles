@@ -112,7 +112,7 @@ def plates(doc):
         rel = f"assets/authors/plate-{m.group(1)}.webp"
         if not (ROOT / rel).exists():
             return m.group(0)
-        return m.group(0) + f'\n      <img class="tl__plate" src="{rel}" alt="" aria-hidden="true" loading="lazy">'
+        return m.group(0) + f'\n      <img class="tl__plate" src="{rel}" alt="" aria-hidden="true" decoding="async" fetchpriority="low">'
     return re.sub(r'<article class="tl__item tl__item--open" data-plate="([a-z]+)"[^>]*>', rep, doc)
 
 
