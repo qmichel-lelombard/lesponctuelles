@@ -425,20 +425,83 @@ void main(){
     $('#rd-prev').disabled = pg === 0; $('#rd-next').disabled = last >= PAGES.length;
     for (let k = 1; k <= 2 * s; k++) preload(pg + s + k - 1);
   }
-  const next = () => { if (pg + rdStep() < PAGES.length) showPage(pg + rdStep(), 1); };
-  const prev = () => { if (pg > 0) showPage(pg - rdStep(), -1); };
+  const next = () => { if (zoomed()) { if (zPage < PAGES.length - 1) openZoom(zPage + 1, zLevel, .5, 0); return; } if (pg + rdStep() < PAGES.length) showPage(pg + rdStep(), 1); };
+  const prev = () => { if (zoomed()) { if (zPage > 0) openZoom(zPage - 1, zLevel, .5, 0); return; } if (pg > 0) showPage(pg - rdStep(), -1); };
   $('#rd-next').addEventListener('click', next); $('#rd-prev').addEventListener('click', prev);
-  stage.addEventListener('click', e => { const r = stage.getBoundingClientRect(); (e.clientX - r.left > r.width / 2) ? next() : prev(); });
+  let clickT = 0;
+  stage.addEventListener('click', e => {
+    const r = stage.getBoundingClientRect(), x = e.clientX, img = e.target.closest('img');
+    clearTimeout(clickT);
+    clickT = setTimeout(() => { if (!zoomed()) (x - r.left > r.width / 2) ? next() : prev(); }, 260);
+  });
+  stage.addEventListener('dblclick', e => {
+    clearTimeout(clickT);
+    const img = e.target.closest('img'); if (!img) return;
+    const b = img.getBoundingClientRect();
+    openZoom(pg + [...stage.children].indexOf(img), 2, (e.clientX - b.left) / b.width, (e.clientY - b.top) / b.height);
+  });
+
+  /* zoom */
+  const zm = $('#zm'), zmImg = $('#zm-img'), zmVal = $('#zm-val');
+  const LEVELS = [1, 1.5, 2, 3, 4];
+  let zLevel = 1, zPage = 0;
+  const zoomed = () => !zm.hidden;
+  function zoomUi() {
+    zmVal.textContent = Math.round(zLevel * 100) + ' %';
+    $('#zm-out').disabled = zLevel <= 1; $('#zm-in').disabled = zLevel >= LEVELS[LEVELS.length - 1];
+  }
+  function applyZoom(fx = .5, fy = .5) {
+    // largeur de base : la page entière tient dans la fenêtre
+    const W = zm.clientWidth, H = zm.clientHeight, ratio = 2638 / 2000;
+    const base = Math.min(W, H / ratio), w = base * zLevel;
+    zmImg.style.width = w + 'px';
+    zmImg.style.marginTop = Math.max(0, (H - w * ratio) / 2) + 'px';
+    requestAnimationFrame(() => {
+      zm.scrollLeft = Math.max(0, w * fx - W / 2);
+      zm.scrollTop = Math.max(0, w * ratio * fy - H / 2 + (parseFloat(zmImg.style.marginTop) || 0));
+    });
+    zoomUi();
+  }
+  function openZoom(i, level, fx, fy) {
+    zPage = Math.max(0, Math.min(PAGES.length - 1, i));
+    zmImg.src = PAGES[zPage].replace('.webp', '-hd.webp'); zmImg.alt = `Page ${zPage + 1} agrandie`;
+    zm.hidden = false; zLevel = level; applyZoom(fx, fy);
+    cnt.textContent = `Page ${zPage + 1} / ${PAGES.length} · zoom`;
+  }
+  function closeZoom() { zm.hidden = true; zLevel = 1; zoomUi(); showPage(zPage); }
+  function setZoom(dir) {
+    const cur = LEVELS.indexOf(zLevel), n = LEVELS[Math.max(0, Math.min(LEVELS.length - 1, (cur < 0 ? 0 : cur) + dir))];
+    if (n <= 1) return closeZoom();
+    if (!zoomed()) return openZoom(pg, n, .5, .3);
+    const W = zm.clientWidth, H = zm.clientHeight, cw = zmImg.offsetWidth, ch = zmImg.offsetHeight;
+    const fx = (zm.scrollLeft + W / 2) / cw, fy = (zm.scrollTop + H / 2 - (parseFloat(zmImg.style.marginTop) || 0)) / ch;
+    zLevel = n; applyZoom(fx, fy);
+  }
+  $('#zm-in').addEventListener('click', () => setZoom(1));
+  $('#zm-out').addEventListener('click', () => setZoom(-1));
+  zm.addEventListener('dblclick', closeZoom);
+  zm.addEventListener('wheel', e => { if (e.ctrlKey) { e.preventDefault(); setZoom(e.deltaY < 0 ? 1 : -1); } }, { passive: false });
+  let dg = null;
+  zm.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; dg = { x: e.clientX, y: e.clientY, l: zm.scrollLeft, t: zm.scrollTop }; zm.classList.add('drag'); zm.setPointerCapture(e.pointerId); });
+  zm.addEventListener('pointermove', e => { if (!dg) return; zm.scrollLeft = dg.l - (e.clientX - dg.x); zm.scrollTop = dg.t - (e.clientY - dg.y); });
+  zm.addEventListener('pointerup', () => { dg = null; zm.classList.remove('drag'); });
+  zoomUi();
   let tx = 0;
   stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   stage.addEventListener('touchend', e => { const d = e.changedTouches[0].clientX - tx; if (Math.abs(d) > 40) (d < 0 ? next : prev)(); }, { passive: true });
-  ex.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); } });
-  addEventListener('resize', () => { if (ex.open) showPage(pg); });
+  ex.addEventListener('keydown', e => {
+    if (e.key === '+' || e.key === '=') { e.preventDefault(); setZoom(1); return; }
+    if (e.key === '-') { e.preventDefault(); setZoom(-1); return; }
+    if (zoomed() && e.key === 'Escape') { e.preventDefault(); closeZoom(); return; }
+    if (e.key === 'ArrowRight') { e.preventDefault(); next(); } if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+  });
+  addEventListener('resize', () => { if (!ex.open) return; zoomed() ? applyZoom() : showPage(pg); });
   $$('[data-open=excerpt]').forEach(b => b.addEventListener('click', () => {
     if (ex.showModal) ex.showModal(); else ex.setAttribute('open', '');
     showPage(pg);
   }));
   $('#ex-x').addEventListener('click', () => ex.close());
+  ex.addEventListener('close', () => { if (zoomed()) { zm.hidden = true; zLevel = 1; zoomUi(); } });
   ex.addEventListener('click', e => { if (e.target === ex) ex.close(); });
 
   /* ---------- Ambiance sonore (fichier audio, boucle avec fondus) ---------- */
