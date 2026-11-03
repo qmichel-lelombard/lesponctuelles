@@ -412,6 +412,7 @@ void main(){
   const preload = i => { if (PAGES[i]) { const im = new Image(); im.src = PAGES[i]; } };
   function showPage(i, dir = 0) {
     const s = rdStep(); pg = Math.max(0, Math.min(PAGES.length - 1, i - (i % s)));
+    if (pg + s >= PAGES.length) window.maTrack?.('c', "Extrait · dernière page atteinte");
     stage.classList.toggle('single', s === 1);
     stage.innerHTML = '';
     for (let k = 0; k < s && pg + k < PAGES.length; k++) {
@@ -549,4 +550,39 @@ void main(){
     if (!audio || !playing) return;
     if (document.hidden) { goal = 0; } else { goal = 1; audio.play().catch(() => {}); if (!timer) timer = setInterval(step, 60); }
   });
+})();
+
+/* ---------- Mesure d'audience (anonyme, sans cookie) ---------- */
+(() => {
+  let off = navigator.webdriver;
+  try { off = off || localStorage.getItem('ma-notrack') === '1'; } catch (e) {}
+  if (off || !/^https?:$/.test(location.protocol) || location.hostname === 'localhost') return;
+  const q = new URLSearchParams(location.search);
+  let r = q.get('utm_source') || '';
+  if (!r && document.referrer) { try { const h = new URL(document.referrer).hostname.replace(/^www\./, ''); if (h !== location.hostname) r = h; } catch (e) {} }
+  const send = (t, l) => {
+    const body = JSON.stringify({ t, l, r });
+    if (!(navigator.sendBeacon && navigator.sendBeacon('/api/t', body))) fetch('/api/t', { method: 'POST', body, keepalive: true }).catch(() => {});
+  };
+  window.maTrack = send;
+  send('v', location.pathname);
+
+  // sections réellement affichées (une fois chacune)
+  const seen = new Set();
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const id = e.target.id;
+    if (e.isIntersecting && !seen.has(id)) { seen.add(id); send('s', id); io.unobserve(e.target); }
+  }), { threshold: .35 });
+  document.querySelectorAll('section[id]').forEach(s => io.observe(s));
+
+  // clics sur liens et boutons (hors navigation interne de la liseuse)
+  document.addEventListener('click', e => {
+    const el = e.target.closest('a,button');
+    if (!el || el.closest('.rd, .ex__zoom')) return;
+    const txt = (el.dataset.track || el.getAttribute('aria-label') || [...el.childNodes].map(n => n.textContent).join(' '))
+      .replace(/[↗▸›‹×]/g, '').replace(/\s+/g, ' ').trim();
+    const where = el.closest('section[id], dialog[id], footer, #top');
+    const zone = where ? (where.id || where.tagName.toLowerCase()) : '';
+    send('c', zone ? `${txt} · ${zone}` : txt);
+  }, true);
 })();
