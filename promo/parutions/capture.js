@@ -1,5 +1,5 @@
 // Rendu image par image de promo.html puis encodage MP4 (H.264) avec la bande-son.
-// usage : node capture.js <mois, ex. 2026-11> [h|v|p] [fps] [--slot 6] [--preview t1,t2,...] [--still]
+// usage : node capture.js <mois, ex. 2026-11> [h|v|p] [fps] [--slot 6] [--dur 29] [--preview t1,t2,...] [--still]
 //   --still : seulement l'image de fin en PNG (out/fin-<mois>-<LxH>.png)
 // (générer d'abord la bande-son : python3 soundtrack.py <mois> [temps par album])
 const { chromium } = require('playwright');
@@ -12,7 +12,9 @@ const path = require('path');
   const fps = +(process.argv[4] || 30);
   const si = process.argv.indexOf('--slot');
   const slot = si > 0 ? +process.argv[si + 1] : 4;
-  const sfx = slot === 4 ? '' : `-long`;
+  const di = process.argv.indexOf('--dur');
+  const forcedDur = di > 0 ? +process.argv[di + 1] : 0;
+  const sfx = (slot === 4 ? '' : '-long') + (forcedDur ? `-${forcedDur}s` : '');
   const pi = process.argv.indexOf('--preview');
   const preview = pi > 0 ? process.argv[pi + 1].split(',').map(Number) : null;
   const W = format === 'h' ? 1920 : 1080, H = { h: 1080, v: 1920, p: 1440 }[format];
@@ -20,7 +22,7 @@ const path = require('path');
   const page = await browser.newPage({ viewport: { width: W, height: H } });
   page.on('console', m => console.log('[page]', m.text()));
   page.on('pageerror', e => console.error('[pageerror]', e));
-  await page.goto('file://' + path.resolve(__dirname, 'promo.html') + `?capture=1&month=${month}&format=${format}&slot=${slot}`);
+  await page.goto('file://' + path.resolve(__dirname, 'promo.html') + `?capture=1&month=${month}&format=${format}&slot=${slot}${forcedDur ? `&dur=${forcedDur}` : ''}`);
   await page.evaluate(() => window.ready);
   if (process.argv.includes('--still')) {
     const t = await page.evaluate(() => window.DURATION - 1 / 30);

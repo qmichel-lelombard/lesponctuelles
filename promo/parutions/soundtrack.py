@@ -3,7 +3,7 @@
 Un album = une mesure de 4 temps ; changement d'accord à chaque album,
 souffle (whoosh) avant chaque entrée, impact à la fin de l'intro et sur le logo.
 usage : python3 soundtrack.py 2026-11 [6]   (écrit out/soundtrack-2026-11[-long].wav, données dans months.js ;
-        le 2e argument = temps par album, 4 par défaut)
+        le 2e argument = temps par album, 4 par défaut ; 3e argument optionnel = durée imposée en s, ex. 29)
 """
 import json
 import pathlib
@@ -16,7 +16,8 @@ import numpy as np
 HERE = pathlib.Path(__file__).resolve().parent
 MONTH = sys.argv[1] if len(sys.argv) > 1 else '2026-10'
 SLOT_BEATS = int(sys.argv[2]) if len(sys.argv) > 2 else 4
-SFX = '' if SLOT_BEATS == 4 else '-long'
+FORCED_DUR = float(sys.argv[3]) if len(sys.argv) > 3 else 0
+SFX = ('' if SLOT_BEATS == 4 else '-long') + (f'-{sys.argv[3]}s' if FORCED_DUR else '')
 albums = json.loads(subprocess.check_output(
     ['node', '-e', 'global.window={};require(process.argv[1]);'
      'console.log(JSON.stringify(window.MONTHS[process.argv[2]].albums))',
@@ -29,7 +30,7 @@ SR = 44100
 BEAT = 60 / 128
 SPARE = max(0, 64 - SLOT_BEATS * N_ALB - 16)
 INTRO_BEATS = 8 + (SPARE // 8) * 4
-DUR = max(64, INTRO_BEATS + SLOT_BEATS * N_ALB + 8) * BEAT
+DUR = FORCED_DUR or max(64, INTRO_BEATS + SLOT_BEATS * N_ALB + 8) * BEAT
 INTRO = INTRO_BEATS * BEAT
 SLOT = SLOT_BEATS * BEAT
 OUTRO = INTRO + N_ALB * SLOT

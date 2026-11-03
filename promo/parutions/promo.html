@@ -85,7 +85,8 @@ const SPARE = Math.max(0, 64 - SLOT_BEATS * N_ALB - 16);
 const INTRO_BEATS = 8 + Math.floor(SPARE / 8) * 4;
 const INTRO = INTRO_BEATS * BEAT;
 const OUTRO0 = INTRO + N_ALB * SLOT;
-const DURATION = Math.max(64, INTRO_BEATS + SLOT_BEATS * N_ALB + 8) * BEAT;   // 30 s (ou plus en version longue)
+// ?dur=29 : durée imposée (ex. story Instagram) ; l'outro est raccourcie d'autant
+const DURATION = +(QS.get('dur') || 0) || Math.max(64, INTRO_BEATS + SLOT_BEATS * N_ALB + 8) * BEAT;   // 30 s par défaut
 const INTRO_STRETCH = INTRO / (8 * BEAT);                            // intro plus longue = animation ralentie
 
 const ALBUMS = M.albums.map((a, i) => ({ ...a, img: `assets/covers/${MKEY}/${String(i).padStart(2, '0')}.jpg`, i }));
