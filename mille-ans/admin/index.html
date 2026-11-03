@@ -43,6 +43,7 @@ button,select,input{font:inherit;color:inherit}
 .list .n{font-variant-numeric:tabular-nums;color:var(--ink2)}
 .list .bar{grid-column:1/-1;height:4px;background:#111c30;border-radius:2px;overflow:hidden}
 .list .bar i{display:block;height:100%;background:var(--blue2);border-radius:2px}
+.before{margin-top:12px;border-style:dashed}
 .empty{color:var(--mute);font-size:.95rem;margin:0}
 details{margin-top:10px;color:var(--ink2);font-size:.9rem}
 details table{width:100%;border-collapse:collapse;margin-top:8px}
@@ -94,6 +95,33 @@ details td:first-child,details th:first-child{text-align:left}
     <h2>Visites par jour</h2>
     <div class="chart" id="chart"><svg id="svg" role="img" aria-label="Visites par jour"></svg><div class="tip" id="tip"></div></div>
     <details><summary>Voir les données</summary><table id="tbl"></table></details>
+  </div>
+
+  <div class="panel before">
+    <h2>Avant la mise en service · 27 oct. – 2 nov. 2026</h2>
+    <p class="note" style="margin:0 0 14px">Estimation à partir des journaux de connexion Netlify (conservés 7 jours) : pages chargées par des navigateurs, robots déguisés inclus. Pas de clics ni de sections pour cette période ; avant le 27 octobre, rien n'est récupérable.</p>
+    <div class="grid" style="margin-top:0">
+      <div><ul class="list">
+        <li><span class="lbl">Mar. 27 oct. <small>(dès 11 h)</small></span><span class="n">41</span><span class="bar"><i style="width:100%"></i></span></li>
+        <li><span class="lbl">Mer. 28 oct.</span><span class="n">23</span><span class="bar"><i style="width:56.1%"></i></span></li>
+        <li><span class="lbl">Jeu. 29 oct.</span><span class="n">5</span><span class="bar"><i style="width:12.2%"></i></span></li>
+        <li><span class="lbl">Ven. 30 oct.</span><span class="n">12</span><span class="bar"><i style="width:29.3%"></i></span></li>
+        <li><span class="lbl">Sam. 31 oct.</span><span class="n">2</span><span class="bar"><i style="width:4.9%"></i></span></li>
+        <li><span class="lbl">Dim. 1er nov.</span><span class="n">3</span><span class="bar"><i style="width:7.3%"></i></span></li>
+        <li><span class="lbl">Lun. 2 nov.</span><span class="n">6</span><span class="bar"><i style="width:14.6%"></i></span></li>
+      </ul></div>
+      <div>
+        <div class="kpi" style="margin-bottom:16px"><span>Pages chargées</span><b>92</b><em>dont environ 40 visiteurs réels estimés</em></div>
+        <ul class="list">
+          <li><span class="lbl">Accès direct ou inconnu</span><span class="n">majorité</span></li>
+          <li><span class="lbl">Facebook <small>(fil, mobile, Messenger)</small></span><span class="n">≈ 18</span></li>
+          <li><span class="lbl">jeu-concours.biz</span><span class="n">2</span></li>
+          <li><span class="lbl">Google</span><span class="n">1</span></li>
+          <li><span class="lbl">Gmail</span><span class="n">1</span></li>
+        </ul>
+        <p class="note">Pays : France, Belgique, Allemagne, Suède.</p>
+      </div>
+    </div>
   </div>
 
   <div class="grid">
