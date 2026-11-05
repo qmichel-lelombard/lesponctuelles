@@ -11,6 +11,8 @@ Chaque jour est décrit par un fichier `jours/jourNN.json` :
 - `date` : numéro du jour (1 à 24), police, couleur (#C12D2E), angle (+5° = sens horaire) et `fill`.
   La taille est calculée automatiquement : 90 % (`fill`) de la taille maximale qui tient dans la partie dorée de la boule, sous le houx.
 
+`mention` : petite phrase sous la boule, alignée à droite (`text`, `font`, `size`, `color`, `x`, `y` = coin bas droit).
+
 Mockup 3D : calques extraits de `bd_debout_droite_bas.psd` (Shadow, Book, Cover en Overlay avec la même perspective, Shine),
 dans `assets/mockup/`.
 

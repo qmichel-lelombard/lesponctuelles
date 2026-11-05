@@ -150,6 +150,11 @@ def main(cfg_path, out_path):
     size = round(size_max * d.get('fill', .9))
     t_im = layer(size)
     bg.alpha_composite(t_im, (round(cx - diam + gx - t_im.width / 2), round(cy - diam + gy - t_im.height / 2)))
+    # mention légale sous la boule (alignée à droite)
+    mt = cfg.get('mention')
+    if mt:
+        f = ImageFont.truetype(p(mt['font']), mt.get('size', 22))
+        ImageDraw.Draw(bg).text((mt['x'], mt['y']), mt['text'], font=f, fill=mt.get('color', '#C12D2E'), anchor='rs')
     bg.convert('RGB').save(out_path)
     print(out_path, f'police {size}px (max {size_max}px), texte {t_im.size}')
 
