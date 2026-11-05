@@ -16,7 +16,18 @@ Chaque jour est décrit par un fichier `jours/jourNN.json` :
 Mockup 3D : calques extraits de `bd_debout_droite_bas.psd` (Shadow, Book, Cover en Overlay avec la même perspective, Shine),
 dans `assets/mockup/`.
 
-Rendu en 1080×1350 (format portrait Instagram) :
+Fonds en alternance rouge → jaune → bleu (jour 1 rouge, 2 jaune, 3 bleu…), champ `theme` :
+- rouge : numéro et mention en rouge #C12D2E ;
+- jaune : numéro en jaune du titre #D4AF37 (boule bleue), mention en mauve #8F6FCE ;
+- bleu : numéro et mention en bleu du titre #004AAD (boule argentée).
+
+Les 24 jours (fichiers JSON + visuels) sont générés par `planning.py` à partir du planning qui y est recopié :
+
+    python3 planning.py
+
+Deux albums : -3° / +3°, celui de droite à 102 % et derrière, chevauchement 10 %, ombre portée. Un album : droit, centré.
+
+Rendu d'un seul jour en 1080×1350 (format portrait Instagram) :
 
     pip install pillow numpy
     python3 compose.py jours/jour01.json sorties/jour01.png

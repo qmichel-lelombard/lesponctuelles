@@ -1,5 +1,5 @@
 {
-  "bg": "../assets/fond.png",
+  "theme": "rouge",
   "layout": {
     "y": 600,
     "h": 520,
@@ -20,7 +20,6 @@
   "date": {
     "text": "1",
     "font": "../assets/polices/DancingScript.ttf",
-    "color": "#C12D2E",
     "angle": 5,
     "cx": 959,
     "cy": 1201,
@@ -30,7 +29,6 @@
   "mention": {
     "text": "* voir conditions de participation",
     "font": "../assets/polices/DancingScript.ttf",
-    "color": "#C12D2E",
     "size": 24,
     "x": 1050,
     "y": 1318

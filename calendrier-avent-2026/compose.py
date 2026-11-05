@@ -75,10 +75,19 @@ def render_book(cover_path):
     return canvas.crop(CROP), book.getchannel('A').crop(CROP)
 
 
+# Fonds : rouge -> jaune -> bleu (couleurs relevées sur les fonds)
+THEMES = {
+    'rouge': {'bg': 'assets/fond_rouge.png', 'number': '#C12D2E', 'mention': '#C12D2E'},
+    'jaune': {'bg': 'assets/fond_jaune.png', 'number': '#D4AF37', 'mention': '#8F6FCE'},  # numéro jaune titre, mention mauve
+    'bleu':  {'bg': 'assets/fond_bleu.png',  'number': '#004AAD', 'mention': '#004AAD'},  # bleu du titre
+}
+
+
 def main(cfg_path, out_path):
     cfg = json.load(open(cfg_path)); base = os.path.dirname(os.path.abspath(cfg_path))
     p = lambda f: os.path.join(base, f)
-    bg = Image.open(p(cfg['bg'])).convert('RGBA')
+    th = THEMES[cfg.get('theme', 'rouge')]
+    bg = Image.open(os.path.join(HERE, th['bg'])).convert('RGBA')
     lay = cfg.get('layout', {})
     h = lay.get('h', 520); s = h / (CROP[3] - CROP[1])
     book_w = (1635 - 743) * s; off = (743 - CROP[0]) * s     # largeur du livre / décalage dans le mockup
@@ -126,16 +135,22 @@ def main(cfg_path, out_path):
         f = ImageFont.truetype(font_path, size)
         l, t, r, bt = f.getbbox(d['text'])
         t_im = Image.new('RGBA', (r - l + 40, bt - t + 40), (0, 0, 0, 0))
-        ImageDraw.Draw(t_im).text((20 - l, 20 - t), d['text'], font=f, fill=d.get('color', '#C12D2E'))
+        ImageDraw.Draw(t_im).text((20 - l, 20 - t), d['text'], font=f, fill=d.get('color', th['number']))
         rot = t_im.rotate(-d.get('angle', 5), resample=Image.BICUBIC, expand=True)  # + = sens horaire
         return rot.crop(rot.getbbox())
     # zone dorée libre de la boule (hors houx/baies), légèrement rétrécie
-    reg = bg.crop((cx - diam, cy - diam, cx + diam, cy + diam)).convert('RGB')
+    # houx et baies identiques sur les 3 fonds : on les détecte sur le fond rouge (boule dorée, sans ambiguïté)
+    ref = Image.open(os.path.join(HERE, THEMES['rouge']['bg'])).convert('RGB')
+    reg = ref.crop((cx - diam, cy - diam, cx + diam, cy + diam))
     g = np.asarray(reg).astype(int)
-    gold = (g[..., 0] > 150) & (g[..., 1] > 110) & (g[..., 2] < 140) & (g[..., 0] - g[..., 2] > 60)
-    yy, xx = np.mgrid[:gold.shape[0], :gold.shape[1]]
-    gold &= (xx - diam) ** 2 + (yy - diam) ** 2 <= (diam / 2) ** 2
-    gm = Image.fromarray((gold * 255).astype('uint8')).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(11))
+    # boule = disque, moins le houx (vert foncé) et les baies (rouge), quelle que soit la couleur de la boule
+    r_, g_, b_ = g[..., 0], g[..., 1], g[..., 2]
+    holly = (g_ > r_ + 15) & (r_ < 120) & (g_ < 170) & (b_ < g_)
+    berry = (r_ > 150) & (g_ < 110) & (b_ < 110)
+    excl = Image.fromarray(((holly | berry) * 255).astype('uint8')).filter(ImageFilter.MaxFilter(13))
+    yy, xx = np.mgrid[:g.shape[0], :g.shape[1]]
+    gold = ((xx - diam) ** 2 + (yy - diam) ** 2 <= (diam / 2 - 5) ** 2) & ~(np.asarray(excl) > 0)
+    gm = Image.fromarray((gold * 255).astype('uint8')).filter(ImageFilter.MinFilter(3))
     gold = np.asarray(gm) > 0
     # centre = barycentre de la zone dorée libre ; taille max qui tient, puis x fill (90 %)
     ys, xs = np.nonzero(gold); gx, gy = xs.mean(), ys.mean()
@@ -154,7 +169,7 @@ def main(cfg_path, out_path):
     mt = cfg.get('mention')
     if mt:
         f = ImageFont.truetype(p(mt['font']), mt.get('size', 22))
-        ImageDraw.Draw(bg).text((mt['x'], mt['y']), mt['text'], font=f, fill=mt.get('color', '#C12D2E'), anchor='rs')
+        ImageDraw.Draw(bg).text((mt['x'], mt['y']), mt['text'], font=f, fill=mt.get('color', th['mention']), anchor='rs')
     bg.convert('RGB').save(out_path)
     print(out_path, f'police {size}px (max {size_max}px), texte {t_im.size}')
 

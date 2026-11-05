@@ -1,0 +1,30 @@
+{
+  "theme": "jaune",
+  "layout": {
+    "y": 600,
+    "h": 520,
+    "overlap": 0.1,
+    "cx": 540
+  },
+  "books": [
+    {
+      "img": "../assets/couvertures/9782808212588-mitsuo-2.jpg"
+    }
+  ],
+  "date": {
+    "text": "17",
+    "font": "../assets/polices/DancingScript.ttf",
+    "angle": 5,
+    "cx": 959,
+    "cy": 1201,
+    "diam": 147,
+    "fill": 0.9
+  },
+  "mention": {
+    "text": "* voir conditions de participation",
+    "font": "../assets/polices/DancingScript.ttf",
+    "size": 24,
+    "x": 1050,
+    "y": 1318
+  }
+}
