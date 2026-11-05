@@ -82,7 +82,7 @@ def main(cfg_path, out_path):
     lay = cfg.get('layout', {})
     h = lay.get('h', 520); s = h / (CROP[3] - CROP[1])
     book_w = (1635 - 743) * s; off = (743 - CROP[0]) * s     # largeur du livre / décalage dans le mockup
-    n = len(cfg['books']); step = book_w * (1 - lay.get('overlap', .2))
+    n = len(cfg['books']); step = book_w * (1 - lay.get('overlap', .1))
     left = lay.get('cx', 540) - (book_w + step * (n - 1)) / 2
     # même taille pour tous ; on dessine de droite à gauche : l'album de droite est à l'arrière-plan
     for i, b in reversed(list(enumerate(cfg['books']))):

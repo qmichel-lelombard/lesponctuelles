@@ -3,7 +3,7 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.2,
+    "overlap": 0.1,
     "cx": 540
   },
   "books": [
