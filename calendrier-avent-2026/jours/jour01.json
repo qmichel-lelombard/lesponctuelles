@@ -1,6 +1,6 @@
 {
   "bg": "../assets/fond.png",
-  "layout": {"y": 600, "h": 520, "overlap": 0.12, "cx": 540},
+  "layout": {"y": 600, "h": 520, "overlap": 0.2, "cx": 540},
   "books": [
     {"img": "../assets/couvertures/9782808217989-bd-de-l-avent-polar-2026.jpg"},
     {"img": "../assets/couvertures/9782808217972-bd-de-l-avent-jeunesse-2026.jpg"}
