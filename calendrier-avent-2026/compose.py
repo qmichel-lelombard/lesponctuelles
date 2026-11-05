@@ -79,14 +79,18 @@ def main(cfg_path, out_path):
     cfg = json.load(open(cfg_path)); base = os.path.dirname(os.path.abspath(cfg_path))
     p = lambda f: os.path.join(base, f)
     bg = Image.open(p(cfg['bg'])).convert('RGBA')
-    for b in cfg['books']:
+    lay = cfg.get('layout', {})
+    h = lay.get('h', 520); s = h / (CROP[3] - CROP[1])
+    book_w = (1635 - 743) * s; off = (743 - CROP[0]) * s     # largeur du livre / décalage dans le mockup
+    n = len(cfg['books']); step = book_w * (1 - lay.get('overlap', .12))
+    left = lay.get('cx', 540) - (book_w + step * (n - 1)) / 2
+    for i, b in enumerate(cfg['books']):                       # de gauche à droite : le suivant passe devant
         im = render_book(p(b['img']))
-        s = b['h'] / (1545 - 120)   # h = hauteur de la zone mockup en px
         im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
-        bg.alpha_composite(im, (b['x'], b['y']))
+        x = b.get('x', round(left + i * step - off)); y = b.get('y', lay.get('y', 600))
+        bg.alpha_composite(im, (x, y))
     # date dans la boule
     d = cfg['date']; cx, cy, diam = d['cx'], d['cy'], d['diam']
-    target = d.get('fill', .9) * diam
     font_path = p(d['font'])
     def layer(size):
         f = ImageFont.truetype(font_path, size)
@@ -104,22 +108,21 @@ def main(cfg_path, out_path):
     gold &= (xx - diam) ** 2 + (yy - diam) ** 2 <= (diam / 2) ** 2
     gm = Image.fromarray((gold * 255).astype('uint8')).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(11))
     gold = np.asarray(gm) > 0
-    best = None
-    for size in range(20, 200):
-        t_im = layer(size)
-        if t_im.width > target: break
+    # centre = barycentre de la zone dorée libre ; taille max qui tient, puis x fill (90 %)
+    ys, xs = np.nonzero(gold); gx, gy = xs.mean(), ys.mean()
+    def fits(t_im):
         ink = np.asarray(t_im.getchannel('A')) > 40
-        ok = None
-        for dy in range(0, round(diam / 4)):       # descend le texte si besoin (sous le houx)
-            x0 = round(diam - t_im.width / 2); y0 = round(diam - t_im.height / 2 + dy)
-            sub = gold[y0:y0 + t_im.height, x0:x0 + t_im.width]
-            if sub.shape == ink.shape and not (ink & ~sub).any(): ok = dy; break
-        if ok is None: continue
-        best = (size, t_im, ok)
-    size, t_im, dy = best
-    bg.alpha_composite(t_im, (round(cx - t_im.width / 2), round(cy - t_im.height / 2 + dy)))
+        x0 = round(gx - t_im.width / 2); y0 = round(gy - t_im.height / 2)
+        if x0 < 0 or y0 < 0: return False
+        sub = gold[y0:y0 + t_im.height, x0:x0 + t_im.width]
+        return sub.shape == ink.shape and not (ink & ~sub).any()
+    size_max = 20
+    while fits(layer(size_max + 1)): size_max += 1
+    size = round(size_max * d.get('fill', .9))
+    t_im = layer(size)
+    bg.alpha_composite(t_im, (round(cx - diam + gx - t_im.width / 2), round(cy - diam + gy - t_im.height / 2)))
     bg.convert('RGB').save(out_path)
-    print(out_path, f'police {size}px, texte {t_im.size}, largeur = {t_im.width / diam:.0%} de la boule')
+    print(out_path, f'police {size}px (max {size_max}px), texte {t_im.size}')
 
 
 if __name__ == '__main__':
