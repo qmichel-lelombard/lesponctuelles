@@ -8,7 +8,8 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808211260-lonesome-dove-1.jpg"
+      "img": "../assets/couvertures/9782808211260-lonesome-dove-1.jpg",
+      "scale": 1.1
     }
   ],
   "date": {

@@ -18,6 +18,25 @@ SO_W, SO_H, HINGE = 2550, 3300, 125   # bande de charnière à gauche
 CROP = (505, 120, 1740, 1545)           # zone utile du mockup (livre + ombre)
 
 
+def prerendered(path, body_h):
+    """Charge une simulation 3D détourée, la met à la hauteur voulue et ajoute une ombre au sol."""
+    src = Image.open(path).convert('RGBA'); src = src.crop(src.getchannel('A').getbbox())
+    k = body_h / src.height
+    src = src.resize((round(src.width * k), round(src.height * k)), Image.LANCZOS)
+    pad = round(src.width * .35)
+    W, H = src.width + 2 * pad, src.height + pad
+    canvas = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+    sh = Image.new('L', (W, H), 0)
+    ImageDraw.Draw(sh).ellipse((pad - src.width * .3, src.height - src.width * .07,
+                                pad + src.width * 1.0, src.height + src.width * .06), fill=255)
+    sh = sh.filter(ImageFilter.GaussianBlur(src.width * .05))
+    shadow = Image.new('RGBA', (W, H), (40, 30, 20, 0)); shadow.putalpha(sh.point(lambda v: int(v * .4)))
+    canvas.alpha_composite(shadow)
+    canvas.alpha_composite(src, (pad, 0))
+    body = Image.new('L', (W, H), 0); body.paste(src.getchannel('A'), (pad, 0))
+    return canvas, body, pad + src.width / 2, src.height / 2
+
+
 def perspective_coeffs(dst, src):
     """Coefficients pour Image.transform(PERSPECTIVE) : point dst -> point src."""
     A, b = [], []
@@ -96,15 +115,18 @@ def main(cfg_path, out_path):
     # même taille pour tous ; on dessine de droite à gauche : l'album de droite est à l'arrière-plan
     bodies = None
     for i, b in reversed(list(enumerate(cfg['books']))):
-        im, body = render_book(p(b['img']))
-        w0, h0 = im.width * s, im.height * s
         x = b.get('x', round(left + i * step - off)); y = b.get('y', lay.get('y', 600))
         # centre du livre (hors ombre) : point fixe pour l'échelle et la rotation
         bx = x + (743 + 1635) / 2 * s - CROP[0] * s; by = y + (129 + 1533) / 2 * s - CROP[1] * s
-        k = s * b.get('scale', 1)
-        im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
-        body = body.resize(im.size, Image.LANCZOS)
-        ccx = ((743 + 1635) / 2 - CROP[0]) * k; ccy = ((129 + 1533) / 2 - CROP[1]) * k
+        if 'png' in b:
+            # simulation 3D fournie (PNG détouré) : même hauteur que le livre du mockup + ombre au sol
+            im, body, ccx, ccy = prerendered(p(b['png']), (1533 - 129) * s * b.get('scale', 1))
+        else:
+            im, body = render_book(p(b['img']))
+            k = s * b.get('scale', 1)
+            im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
+            body = body.resize(im.size, Image.LANCZOS)
+            ccx = ((743 + 1635) / 2 - CROP[0]) * k; ccy = ((129 + 1533) / 2 - CROP[1]) * k
         ang = b.get('angle', 0)                        # + = sens horaire (comme le numéro)
         if ang:
             W0, H0 = im.size

@@ -8,7 +8,8 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808219211-le-territoire.jpg"
+      "img": "../assets/couvertures/9782808219211-le-territoire.jpg",
+      "scale": 1.1
     }
   ],
   "date": {

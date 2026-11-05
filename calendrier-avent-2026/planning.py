@@ -45,6 +45,7 @@ def cover(isbn):
     return '../assets/couvertures/' + os.path.basename(f[0])
 
 
+SEUL_SCALE = 1.10      # album seul à 110 %
 SERIE_OVERLAP = 0.6    # chaque album de la série décalé de 40 % de largeur
 ONLY = [int(a) for a in sys.argv[1:]]
 for n, entry in enumerate(PLANNING, 1):
@@ -60,6 +61,12 @@ for n, entry in enumerate(PLANNING, 1):
     elif len(books) == 2:                   # réglages validés au jour 1
         books[0]['angle'] = -3
         books[1].update(angle=3, scale=1.02)
+    elif len(books) == 1:                   # album seul : plus grand
+        books[0]['scale'] = SEUL_SCALE
+    for b, i in zip(books, isbns):          # simulation 3D fournie : remplace le mockup
+        f = glob.glob(os.path.join(HERE, 'assets', 'simu3d', i + '-*.png'))
+        if f:
+            b['png'] = '../assets/simu3d/' + os.path.basename(f[0]); del b['img']
     cx = 525 if len(books) >= 4 else 540   # 4 albums : léger décalage pour dégager le houx
     cfg = {
         'theme': THEMES[(n - 1) % 3],

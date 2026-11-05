@@ -8,7 +8,8 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808216326-apres-arthur-1-le-trone-et-l-epee.jpg"
+      "img": "../assets/couvertures/9782808216326-apres-arthur-1-le-trone-et-l-epee.jpg",
+      "scale": 1.1
     }
   ],
   "date": {

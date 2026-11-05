@@ -29,7 +29,9 @@ Les 24 jours (fichiers JSON + visuels) sont générés par `planning.py` à part
 Même série (`{'serie': [...]}` dans `planning.py`) : albums en éventail l'un derrière l'autre, le plus récent devant à gauche,
 angles -5°, -2°, +1°, +4°… (+3° par album), chaque album décalé de 40 % de largeur.
 
-Deux albums (séries différentes) : -3° / +3°, celui de droite à 102 % et derrière, chevauchement 10 %, ombre portée. Un album : droit, centré.
+Deux albums (séries différentes) : -3° / +3°, celui de droite à 102 % et derrière, chevauchement 10 %, ombre portée. Un album : droit, centré, à 110 %.
+
+Simulation 3D fournie (PNG détouré dans `assets/simu3d/<ISBN>-….png`) : utilisée automatiquement à la place du mockup (jour 9 : Betty, Le Gang de la clef à molette).
 
 Rendu d'un seul jour en 1080×1350 (format portrait Instagram) :
 

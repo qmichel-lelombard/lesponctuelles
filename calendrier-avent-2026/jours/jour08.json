@@ -8,7 +8,8 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808218726-bibliotheque-du-pere-noel-1-julbocken.jpg"
+      "img": "../assets/couvertures/9782808218726-bibliotheque-du-pere-noel-1-julbocken.jpg",
+      "scale": 1.1
     }
   ],
   "date": {

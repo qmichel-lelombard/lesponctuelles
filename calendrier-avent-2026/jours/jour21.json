@@ -8,7 +8,8 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808216937-enfants-de-la-resistance-10-la-guerre-n-est-pas-finie.jpg"
+      "img": "../assets/couvertures/9782808216937-enfants-de-la-resistance-10-la-guerre-n-est-pas-finie.jpg",
+      "scale": 1.1
     }
   ],
   "date": {

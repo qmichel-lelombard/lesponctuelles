@@ -8,13 +8,13 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808212809-betty.jpg",
-      "angle": -3
+      "angle": -3,
+      "png": "../assets/simu3d/9782808212809-betty.png"
     },
     {
-      "img": "../assets/couvertures/9782808219358-le-gang-de-la-clef-a-molette.jpg",
       "angle": 3,
-      "scale": 1.02
+      "scale": 1.02,
+      "png": "../assets/simu3d/9782808219358-le-gang-de-la-clef-a-molette.png"
     }
   ],
   "date": {

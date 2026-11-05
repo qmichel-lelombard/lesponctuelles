@@ -8,7 +8,8 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808217460-le-soleil-va-se-lever.jpg"
+      "img": "../assets/couvertures/9782808217460-le-soleil-va-se-lever.jpg",
+      "scale": 1.1
     }
   ],
   "date": {

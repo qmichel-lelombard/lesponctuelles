@@ -8,7 +8,8 @@
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808211604-le-lien.jpg"
+      "img": "../assets/couvertures/9782808211604-le-lien.jpg",
+      "scale": 1.1
     }
   ],
   "date": {
