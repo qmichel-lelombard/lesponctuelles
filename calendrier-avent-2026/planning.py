@@ -20,7 +20,7 @@ PLANNING = [
     ['9782808218726'],                    # 8  La bibliothèque du père Noël 1 – Julbocken
     ['9782808212809', '9782808219358'],   # 9  Gallmeister : Betty + Le Gang de la clef à molette
     ['9782808217460'],                    # 10 Le soleil va se lever
-    ['9782808217828'],                    # 11 Mille Ans
+    ['9782808217828', '9782808220804'],   # 11 Mille Ans + édition spéciale (normale devant)
     ['9782808211604'],                    # 12 Le Lien
     ['9782808219211'],                    # 13 Le Territoire
     ['9782808201292'],                    # 14 Resurrection Hill

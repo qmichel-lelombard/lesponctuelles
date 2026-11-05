@@ -9,7 +9,12 @@
   "books": [
     {
       "img": "../assets/couvertures/9782808217828-mille-ans.jpg",
-      "scale": 1.1
+      "angle": -3
+    },
+    {
+      "img": "../assets/couvertures/9782808220804-mille-ans-edition-speciale.jpg",
+      "angle": 3,
+      "scale": 1.02
     }
   ],
   "date": {
