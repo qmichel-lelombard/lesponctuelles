@@ -3,12 +3,21 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.1,
+    "overlap": 0.6,
     "cx": 540
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808218535-thorgal-44-yggdrasil.jpg"
+      "img": "../assets/couvertures/9782808218535-thorgal-44-yggdrasil.jpg",
+      "angle": -5
+    },
+    {
+      "img": "../assets/couvertures/9782808214865-thorgal-43-la-vengeance-de-la-deesse-skaedhi.jpg",
+      "angle": -2
+    },
+    {
+      "img": "../assets/couvertures/9782808212939-thorgal-42-ozurr-le-varegue.jpg",
+      "angle": 1
     }
   ],
   "date": {

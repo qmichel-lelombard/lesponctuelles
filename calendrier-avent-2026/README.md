@@ -23,9 +23,13 @@ Fonds en alternance rouge → jaune → bleu (jour 1 rouge, 2 jaune, 3 bleu…),
 
 Les 24 jours (fichiers JSON + visuels) sont générés par `planning.py` à partir du planning qui y est recopié :
 
-    python3 planning.py
+    python3 planning.py          # les 24 jours
+    python3 planning.py 2 3 4    # seulement certains jours
 
-Deux albums : -3° / +3°, celui de droite à 102 % et derrière, chevauchement 10 %, ombre portée. Un album : droit, centré.
+Même série (`{'serie': [...]}` dans `planning.py`) : albums en éventail l'un derrière l'autre, le plus récent devant à gauche,
+angles -5°, -2°, +1°, +4°… (+3° par album), chaque album décalé de 40 % de largeur.
+
+Deux albums (séries différentes) : -3° / +3°, celui de droite à 102 % et derrière, chevauchement 10 %, ombre portée. Un album : droit, centré.
 
 Rendu d'un seul jour en 1080×1350 (format portrait Instagram) :
 

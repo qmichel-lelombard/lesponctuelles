@@ -3,12 +3,25 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.1,
-    "cx": 540
+    "overlap": 0.6,
+    "cx": 525
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808218504-elles-4-intemporelles.jpg"
+      "img": "../assets/couvertures/9782808218504-elles-4-intemporelles.jpg",
+      "angle": -5
+    },
+    {
+      "img": "../assets/couvertures/9782808206181-elles-3-plurielles.jpg",
+      "angle": -2
+    },
+    {
+      "img": "../assets/couvertures/9782808200004-elles-2-universelles.jpg",
+      "angle": 1
+    },
+    {
+      "img": "../assets/couvertures/9782803678242-elles-1-la-nouvelles.jpg",
+      "angle": 4
     }
   ],
   "date": {

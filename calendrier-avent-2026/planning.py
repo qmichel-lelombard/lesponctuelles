@@ -1,4 +1,4 @@
-"""Génère jours/jourNN.json pour les 24 jours puis les visuels : python3 planning.py
+"""Génère jours/jourNN.json pour les 24 jours puis les visuels : python3 planning.py [n° de jours…]
 
 Planning = onglet « Planning » de Calendrier_Avent_AVANT_2026.xlsx (ligne du 1/11 = jour 1 = 7/11),
 avec la ligne 9 (Gallmeister) = Betty + Le Gang de la clef à molette.
@@ -6,11 +6,14 @@ avec la ligne 9 (Gallmeister) = Betty + Le Gang de la clef à molette.
 import json, os, glob, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-PLANNING = [  # jour : ISBN des albums, de gauche à droite
+# jour : ISBN des albums, de gauche (devant) à droite (derrière).
+# {'serie': [...]} = même série : albums en éventail l'un derrière l'autre, le plus récent devant,
+#                   angles -5°, -2°, +1°, +4°…
+PLANNING = [
     ['9782808217989', '9782808217972'],   # 1  BD de l'Avent polar + jeunesse 2026
-    ['9782808218535'],                    # 2  Thorgal 44 – Yggdrasil
-    ['9782808218504'],                    # 3  Elles 4 – Intemporelle(s)
-    ['9782808217958'],                    # 4  Le Schtroumpf qui plantait de la salsepareille
+    {'serie': ['9782808218535', '9782808214865', '9782808212939']},                  # 2  Thorgal 44, 43, 42
+    {'serie': ['9782808218504', '9782808206181', '9782808200004', '9782803678242']}, # 3  Elles 4, 3, 2, 1
+    {'serie': ['9782808217958', '9782808214957', '9782808213097']},                  # 4  Schtroumpfs 44, 43, 42
     ['9782808216326'],                    # 5  Après Arthur 1 – Le trône et l'épée
     ['9782808217804'],                    # 6  Chroniques de fer et d'écailles 1 – Le vol des gobelins
     ['9782808215367'],                    # 7  Edgar et les guimauves 1
@@ -42,14 +45,25 @@ def cover(isbn):
     return '../assets/couvertures/' + os.path.basename(f[0])
 
 
-for n, isbns in enumerate(PLANNING, 1):
+SERIE_OVERLAP = 0.6    # chaque album de la série décalé de 40 % de largeur
+ONLY = [int(a) for a in sys.argv[1:]]
+for n, entry in enumerate(PLANNING, 1):
+    if ONLY and n not in ONLY: continue
+    serie = isinstance(entry, dict)
+    isbns = entry['serie'] if serie else entry
     books = [{'img': cover(i)} for i in isbns]
-    if len(books) == 2:                     # réglages validés au jour 1
+    overlap = 0.1
+    if serie:
+        for k, b in enumerate(books):
+            b['angle'] = -5 + 3 * k
+        overlap = SERIE_OVERLAP
+    elif len(books) == 2:                   # réglages validés au jour 1
         books[0]['angle'] = -3
         books[1].update(angle=3, scale=1.02)
+    cx = 525 if len(books) >= 4 else 540   # 4 albums : léger décalage pour dégager le houx
     cfg = {
         'theme': THEMES[(n - 1) % 3],
-        'layout': {'y': 600, 'h': 520, 'overlap': 0.1, 'cx': 540},
+        'layout': {'y': 600, 'h': 520, 'overlap': overlap, 'cx': cx},
         'books': books,
         'date': {'text': str(n), 'font': FONT, 'angle': 5, 'cx': 959, 'cy': 1201, 'diam': 147, 'fill': 0.9},
         'mention': {'text': '* voir conditions de participation', 'font': FONT, 'size': 24, 'x': 1050, 'y': 1318},

@@ -3,12 +3,21 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.1,
+    "overlap": 0.6,
     "cx": 540
   },
   "books": [
     {
-      "img": "../assets/couvertures/9782808217958-schtroumpfs-44-salsepareille.jpg"
+      "img": "../assets/couvertures/9782808217958-schtroumpfs-44-salsepareille.jpg",
+      "angle": -5
+    },
+    {
+      "img": "../assets/couvertures/9782808214957-schtroumpfs-43-le-trophee-des-schtroumpfs.jpg",
+      "angle": -2
+    },
+    {
+      "img": "../assets/couvertures/9782808213097-schtroumpfs-42-la-cape-magique.jpg",
+      "angle": 1
     }
   ],
   "date": {
