@@ -40,3 +40,7 @@ Rendu d'un seul jour en 1080×1350 (format portrait Instagram) :
 
 Police du numéro : `DancingScript.ttf` (Google Fonts, OFL) remplace temporairement Railey (police commerciale, pas disponible ici).
 Pour passer à la vraie police, ajoute `Railey.otf` dans `assets/polices/` et modifie le champ `font`.
+
+Format story 1080×1920 (dans `sorties/story/`), à relancer après `planning.py` :
+
+    python3 story.py
