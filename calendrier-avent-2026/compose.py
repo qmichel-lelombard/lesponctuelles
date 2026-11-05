@@ -4,7 +4,7 @@ Mockup : calques extraits de bd_debout_droite_bas.psd (Shadow, Book, Cover en Ov
 """
 import json, sys, os
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageChops
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 M = os.path.join(HERE, 'assets', 'mockup')
@@ -72,7 +72,7 @@ def render_book(cover_path):
     shine.putalpha(Image.fromarray(sa.astype('uint8')))
     book.alpha_composite(shine)
     canvas.alpha_composite(book)
-    return canvas.crop(CROP)
+    return canvas.crop(CROP), book.getchannel('A').crop(CROP)
 
 
 def main(cfg_path, out_path):
@@ -85,25 +85,40 @@ def main(cfg_path, out_path):
     n = len(cfg['books']); step = book_w * (1 - lay.get('overlap', .1))
     left = lay.get('cx', 540) - (book_w + step * (n - 1)) / 2
     # même taille pour tous ; on dessine de droite à gauche : l'album de droite est à l'arrière-plan
+    bodies = None
     for i, b in reversed(list(enumerate(cfg['books']))):
-        im = render_book(p(b['img']))
+        im, body = render_book(p(b['img']))
         w0, h0 = im.width * s, im.height * s
         x = b.get('x', round(left + i * step - off)); y = b.get('y', lay.get('y', 600))
         # centre du livre (hors ombre) : point fixe pour l'échelle et la rotation
         bx = x + (743 + 1635) / 2 * s - CROP[0] * s; by = y + (129 + 1533) / 2 * s - CROP[1] * s
         k = s * b.get('scale', 1)
         im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
+        body = body.resize(im.size, Image.LANCZOS)
         ccx = ((743 + 1635) / 2 - CROP[0]) * k; ccy = ((129 + 1533) / 2 - CROP[1]) * k
         ang = b.get('angle', 0)                        # + = sens horaire (comme le numéro)
         if ang:
             W0, H0 = im.size
             im = im.rotate(-ang, resample=Image.BICUBIC, expand=True, center=(ccx, ccy))
+            body = body.rotate(-ang, resample=Image.BICUBIC, expand=True, center=(ccx, ccy))
             # avec expand, PIL tourne autour du centre de l'image : on recalcule la position du point fixe
             import math
             a = math.radians(-ang); dx, dy = ccx - W0 / 2, ccy - H0 / 2
             ccx = im.width / 2 + dx * math.cos(a) + dy * math.sin(a)
             ccy = im.height / 2 - dx * math.sin(a) + dy * math.cos(a)
-        bg.alpha_composite(im, (round(bx - ccx), round(by - ccy)))
+        pos = (round(bx - ccx), round(by - ccy))
+        mask = Image.new('L', bg.size, 0); mask.paste(body, pos)
+        if bodies is not None:
+            # ombre portée de cet album sur les albums déjà posés derrière (seulement sur la partie recouverte)
+            sh = lay.get('shadow', {})
+            ox, oy = sh.get('dx', 6), sh.get('dy', 3)
+            m = Image.new('L', bg.size, 0); m.paste(mask, (ox, oy))
+            m = m.filter(ImageFilter.GaussianBlur(sh.get('blur', 9)))
+            a = np.asarray(m, float) / 255 * sh.get('opacity', .45) * np.asarray(bodies, float) / 255
+            rgb = np.asarray(bg, float); rgb[..., :3] *= (1 - a)[..., None]
+            bg = Image.fromarray(rgb.round().astype('uint8'), 'RGBA')
+        bg.alpha_composite(im, pos)
+        bodies = mask if bodies is None else ImageChops.lighter(bodies, mask)
     # date dans la boule
     d = cfg['date']; cx, cy, diam = d['cx'], d['cy'], d['diam']
     font_path = p(d['font'])
@@ -115,7 +130,6 @@ def main(cfg_path, out_path):
         rot = t_im.rotate(-d.get('angle', 5), resample=Image.BICUBIC, expand=True)  # + = sens horaire
         return rot.crop(rot.getbbox())
     # zone dorée libre de la boule (hors houx/baies), légèrement rétrécie
-    from PIL import ImageFilter
     reg = bg.crop((cx - diam, cy - diam, cx + diam, cy + diam)).convert('RGB')
     g = np.asarray(reg).astype(int)
     gold = (g[..., 0] > 150) & (g[..., 1] > 110) & (g[..., 2] < 140) & (g[..., 0] - g[..., 2] > 60)

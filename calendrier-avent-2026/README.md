@@ -6,6 +6,7 @@ Concours sur 24 jours, du 7/11 au 30/11/2026. Le planning est dans l'onglet « P
 Chaque jour est décrit par un fichier `jours/jourNN.json` :
 - `books` : couvertures (récupérées sur lelombard.com/bd/nouveautes, format M1000x1300), de gauche à droite, tous à la même taille ; chaque album passe derrière celui de gauche ;
 - `layout` : `y` (haut du mockup), `h` (hauteur), `overlap` (chevauchement, 0.1 = 10 % de la largeur d'un album), `cx` (centre horizontal du groupe).
+  `shadow` : ombre portée d'un album sur celui de derrière, uniquement sur la partie recouverte (`dx`, `dy`, `blur`, `opacity`, défaut 6/3/9/0.45).
   Par album : `angle` (en degrés, + = sens horaire), `scale` (1.02 = 102 %), et `x`/`y` pour forcer la position ;
 - `date` : numéro du jour (1 à 24), police, couleur (#C12D2E), angle (+5° = sens horaire) et `fill`.
   La taille est calculée automatiquement : 90 % (`fill`) de la taille maximale qui tient dans la partie dorée de la boule, sous le houx.
