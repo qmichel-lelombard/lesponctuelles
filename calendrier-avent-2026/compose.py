@@ -27,10 +27,10 @@ def prerendered(path, body_h):
     W, H = src.width + 2 * pad, src.height + pad
     canvas = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     sh = Image.new('L', (W, H), 0)
-    ImageDraw.Draw(sh).ellipse((pad - src.width * .3, src.height - src.width * .07,
-                                pad + src.width * 1.0, src.height + src.width * .06), fill=255)
+    ImageDraw.Draw(sh).ellipse((pad - src.width * .15, src.height - src.width * .06,
+                                pad + src.width * .95, src.height + src.width * .03), fill=255)
     sh = sh.filter(ImageFilter.GaussianBlur(src.width * .05))
-    shadow = Image.new('RGBA', (W, H), (40, 30, 20, 0)); shadow.putalpha(sh.point(lambda v: int(v * .4)))
+    shadow = Image.new('RGBA', (W, H), (40, 30, 20, 0)); shadow.putalpha(sh.point(lambda v: int(v * .32)))
     canvas.alpha_composite(shadow)
     canvas.alpha_composite(src, (pad, 0))
     body = Image.new('L', (W, H), 0); body.paste(src.getchannel('A'), (pad, 0))
