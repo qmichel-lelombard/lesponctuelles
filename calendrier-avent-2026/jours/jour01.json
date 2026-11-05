@@ -1,10 +1,30 @@
 {
   "bg": "../assets/fond.png",
-  "layout": {"y": 600, "h": 520, "overlap": 0.2, "cx": 540},
+  "layout": {
+    "y": 600,
+    "h": 520,
+    "overlap": 0.2,
+    "cx": 540
+  },
   "books": [
-    {"img": "../assets/couvertures/9782808217989-bd-de-l-avent-polar-2026.jpg"},
-    {"img": "../assets/couvertures/9782808217972-bd-de-l-avent-jeunesse-2026.jpg"}
+    {
+      "img": "../assets/couvertures/9782808217989-bd-de-l-avent-polar-2026.jpg",
+      "angle": -3
+    },
+    {
+      "img": "../assets/couvertures/9782808217972-bd-de-l-avent-jeunesse-2026.jpg",
+      "angle": 3,
+      "scale": 1.02
+    }
   ],
-  "date": {"text": "1", "font": "../assets/polices/DancingScript.ttf", "color": "#C12D2E",
-           "angle": 5, "cx": 959, "cy": 1201, "diam": 147, "fill": 0.9}
+  "date": {
+    "text": "1",
+    "font": "../assets/polices/DancingScript.ttf",
+    "color": "#C12D2E",
+    "angle": 5,
+    "cx": 959,
+    "cy": 1201,
+    "diam": 147,
+    "fill": 0.9
+  }
 }

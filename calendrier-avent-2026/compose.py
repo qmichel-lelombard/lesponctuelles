@@ -87,9 +87,23 @@ def main(cfg_path, out_path):
     # même taille pour tous ; on dessine de droite à gauche : l'album de droite est à l'arrière-plan
     for i, b in reversed(list(enumerate(cfg['books']))):
         im = render_book(p(b['img']))
-        im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
+        w0, h0 = im.width * s, im.height * s
         x = b.get('x', round(left + i * step - off)); y = b.get('y', lay.get('y', 600))
-        bg.alpha_composite(im, (x, y))
+        # centre du livre (hors ombre) : point fixe pour l'échelle et la rotation
+        bx = x + (743 + 1635) / 2 * s - CROP[0] * s; by = y + (129 + 1533) / 2 * s - CROP[1] * s
+        k = s * b.get('scale', 1)
+        im = im.resize((round(im.width * k), round(im.height * k)), Image.LANCZOS)
+        ccx = ((743 + 1635) / 2 - CROP[0]) * k; ccy = ((129 + 1533) / 2 - CROP[1]) * k
+        ang = b.get('angle', 0)                        # + = sens horaire (comme le numéro)
+        if ang:
+            W0, H0 = im.size
+            im = im.rotate(-ang, resample=Image.BICUBIC, expand=True, center=(ccx, ccy))
+            # avec expand, PIL tourne autour du centre de l'image : on recalcule la position du point fixe
+            import math
+            a = math.radians(-ang); dx, dy = ccx - W0 / 2, ccy - H0 / 2
+            ccx = im.width / 2 + dx * math.cos(a) + dy * math.sin(a)
+            ccy = im.height / 2 - dx * math.sin(a) + dy * math.cos(a)
+        bg.alpha_composite(im, (round(bx - ccx), round(by - ccy)))
     # date dans la boule
     d = cfg['date']; cx, cy, diam = d['cx'], d['cy'], d['diam']
     font_path = p(d['font'])
