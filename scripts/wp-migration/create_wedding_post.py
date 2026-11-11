@@ -46,11 +46,19 @@ def get_auth():
     return HTTPBasicAuth(user, password) if user and password else None
 
 
-def resized_jpeg(path):
-    """Return (bytes, orientation) of the photo scaled to the site's standard size."""
+def resized_jpeg(path, exact=False):
+    """Return (bytes, orientation) of the photo scaled to the site's standard size.
+
+    With exact=True the photo is centre-cropped to exactly that size: the blog
+    grid misaligns when cover images differ by even a pixel or two in ratio.
+    """
     im = ImageOps.exif_transpose(Image.open(path)).convert("RGB")
     orientation = "paysage" if im.width > im.height else "portrait"
-    im.thumbnail(LANDSCAPE if orientation == "paysage" else PORTRAIT, Image.LANCZOS)
+    size = LANDSCAPE if orientation == "paysage" else PORTRAIT
+    if exact:
+        im = ImageOps.fit(im, size, Image.LANCZOS)
+    else:
+        im.thumbnail(size, Image.LANCZOS)
     buf = io.BytesIO()
     im.save(buf, "JPEG", quality=82, optimize=True, progressive=True)
     return buf.getvalue(), orientation
@@ -108,7 +116,10 @@ def main():
     if spec.get("testimonial", {}).get("image"):
         wanted.append(spec["testimonial"]["image"])
     for name in dict.fromkeys(wanted):
-        data, orientation = resized_jpeg(os.path.join(spec["photo_dir"], name))
+        is_hero = name == spec["hero"]
+        data, orientation = resized_jpeg(os.path.join(spec["photo_dir"], name), exact=is_hero)
+        if is_hero and orientation != "paysage":
+            sys.exit(f"Hero image '{name}' must be landscape (it is cropped to {LANDSCAPE[0]}x{LANDSCAPE[1]}).")
         counters[orientation] += 1
         if name in cache:
             continue
