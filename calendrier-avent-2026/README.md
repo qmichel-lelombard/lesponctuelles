@@ -34,7 +34,7 @@ Deux albums (séries différentes) : -3° / +3°, celui de droite à 102 % et de
 Simulation 3D fournie (PNG détouré dans `assets/simu3d/<ISBN>-….png`) : utilisée automatiquement à la place du mockup (jour 9 : Betty, Le Gang de la clef à molette ; jour 10 : Le soleil va se lever).
 Si la simulation a déjà sa propre ombre au sol, elle est gardée telle quelle.
 
-Versions alternatives : liste `VARIANTES` de `planning.py` (ex. `jour14b` : Resurrection Hill, Little Tulip, New York Cannibals – collection Signé Boucq/Charyn)..
+Versions alternatives : liste `VARIANTES` de `planning.py` (ex. `jour14b` : Resurrection Hill, Little Tulip, New York Cannibals – collection Signé Boucq/Charyn ; `jour15b` : Un Noël à Paris 2 devant, 1 derrière)..
 
 Rendu d'un seul jour en 1080×1350 (format portrait Instagram) :
 

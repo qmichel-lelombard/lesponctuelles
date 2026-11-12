@@ -51,6 +51,7 @@ SERIE_OVERLAP = 0.6    # chaque album de la série décalé de 40 % de largeur
 VARIANTES = [
     ('jour14b', 14, {'serie': ['simu:signe-resurrection-hill.png', 'simu:signe-little-tulip.png',
                                'simu:signe-new-york-cannibals.png']}),   # collection Signé Boucq/Charyn
+    ('jour15b', 15, {'serie': ['9782808218115', 'simu:un-noel-a-paris-1.png']}),  # Un Noël à Paris 2 devant, 1 derrière
 ]
 
 
