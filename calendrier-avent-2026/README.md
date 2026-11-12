@@ -34,6 +34,9 @@ Deux albums (séries différentes) : -3° / +3°, celui de droite à 102 % et de
 Simulation 3D fournie (PNG détouré dans `assets/simu3d/<ISBN>-….png`) : utilisée automatiquement à la place du mockup (jour 9 : Betty, Le Gang de la clef à molette ; jour 10 : Le soleil va se lever).
 Si la simulation a déjà sa propre ombre au sol, elle est gardée telle quelle.
 
+Compositions sur mesure : dictionnaire `COMPOSITIONS` de `planning.py` (angle, échelle, profondeur `z` et écarts par album).
+Jour 16 : Jian 1 sous le 2 à gauche (-6°, -3°) | La voie du glaive 3, 2, 1 à droite (+3°, +6°, +9°).
+
 Versions alternatives : liste `VARIANTES` de `planning.py` (ex. `jour14b` : Resurrection Hill, Little Tulip, New York Cannibals – collection Signé Boucq/Charyn ; `jour15b` : Un Noël à Paris 2 devant, 1 derrière)..
 
 Rendu d'un seul jour en 1080×1350 (format portrait Instagram) :

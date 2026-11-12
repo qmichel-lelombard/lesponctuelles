@@ -25,7 +25,7 @@ PLANNING = [
     ['9782808219211'],                    # 13 Le Territoire
     ['9782808201292'],                    # 14 Resurrection Hill
     ['9782808218115'],                    # 15 Un Noël à Paris 2
-    ['9782808217071', '9782808215008'],   # 16 Jian 2 + La voie du glaive 3
+    'jour16',                             # 16 Jian 1-2 | La voie du glaive 1-3 (voir COMPOSITIONS)
     ['9782808212588'],                    # 17 Mitsuo 2
     ['9782808217453', '9782808218092'],   # 18 M.A.D. 3 + Sherlock Holmes contre Arsène Lupin 2
     ['9782808218078', '9782808216821'],   # 19 Pro gamer 2 + Dinodyssée 3
@@ -55,6 +55,18 @@ VARIANTES = [
 ]
 
 
+# Compositions sur mesure : albums de gauche à droite avec angle / échelle / profondeur (z : plus grand = devant),
+# et écarts entre albums (en largeur d'album).
+COMPOSITIONS = {
+    # Jian 1 sous le 2 (à gauche) | séparation | La voie du glaive 3, puis 2 et 1 dessous (à droite)
+    'jour16': {
+        'books': [('9782808211413', -6, 1.0, 1), ('9782808217071', -3, 1.0, 5),
+                  ('9782808215008', 3, 1.02, 4), ('9782808212144', 6, 1.02, 3), ('9782808211192', 9, 1.02, 2)],
+        'steps': [0.4, 0.9, 0.4, 0.4], 'h': 375, 'y': 650,
+    },
+}
+
+
 def book(i):
     if i.startswith('simu:'):
         return {'png': '../assets/simu3d/' + i[5:]}
@@ -65,14 +77,26 @@ ONLY = sys.argv[1:]
 JOBS = [(f'jour{n:02d}', n, e) for n, e in enumerate(PLANNING, 1)] + VARIANTES
 for name, n, entry in JOBS:
     if ONLY and str(n) not in ONLY and name not in ONLY: continue
+    if isinstance(entry, str):               # composition sur mesure
+        c = COMPOSITIONS[entry]
+        books = []
+        for i, ang, sc, z in c['books']:
+            bk = book(i); bk.update(angle=ang, z=z)
+            if sc != 1: bk['scale'] = sc
+            books.append(bk)
+        layout = {'y': c['y'], 'h': c['h'], 'steps': c['steps'], 'cx': 540}
+    else:
+        layout = None
     serie = isinstance(entry, dict)
-    isbns = entry['serie'] if serie else entry
-    books = [book(i) for i in isbns]
+    isbns = entry['serie'] if serie else ([] if layout else entry)
+    if not layout: books = [book(i) for i in isbns]
     overlap = 0.1
     if serie:
         for k, b in enumerate(books):
             b['angle'] = -5 + 3 * k
         overlap = SERIE_OVERLAP
+    elif layout:
+        pass
     elif len(books) == 2:                   # réglages validés au jour 1
         books[0]['angle'] = -3
         books[1].update(angle=3, scale=1.02)
@@ -85,7 +109,7 @@ for name, n, entry in JOBS:
     cx = 525 if len(books) >= 4 else 540   # 4 albums : léger décalage pour dégager le houx
     cfg = {
         'theme': THEMES[(n - 1) % 3],
-        'layout': {'y': 600, 'h': 520, 'overlap': overlap, 'cx': cx},
+        'layout': layout or {'y': 600, 'h': 520, 'overlap': overlap, 'cx': cx},
         'books': books,
         'date': {'text': str(n), 'font': FONT, 'angle': 5, 'cx': 959, 'cy': 1201, 'diam': 147, 'fill': 0.9},
         'mention': {'text': '* voir conditions de participation', 'font': FONT, 'size': 24, 'x': 1050, 'y': 1318},

@@ -117,12 +117,19 @@ def main(cfg_path, out_path):
     lay = cfg.get('layout', {})
     h = lay.get('h', 520); s = h / (CROP[3] - CROP[1])
     book_w = (1635 - 743) * s; off = (743 - CROP[0]) * s     # largeur du livre / décalage dans le mockup
-    n = len(cfg['books']); step = book_w * (1 - lay.get('overlap', .1))
-    left = lay.get('cx', 540) - (book_w + step * (n - 1)) / 2
+    n = len(cfg['books'])
+    # écart entre albums consécutifs (en largeur d'album) : 'steps' explicite, sinon 1 - overlap partout
+    steps = lay.get('steps') or [1 - lay.get('overlap', .1)] * (n - 1)
+    offs = [0.0]
+    for st in steps: offs.append(offs[-1] + st * book_w)
+    left = lay.get('cx', 540) - (offs[-1] + book_w) / 2
     # même taille pour tous ; on dessine de droite à gauche : l'album de droite est à l'arrière-plan
     bodies = None
-    for i, b in reversed(list(enumerate(cfg['books']))):
-        x = b.get('x', round(left + i * step - off)); y = b.get('y', lay.get('y', 600))
+    # ordre de dessin : 'z' croissant (le plus grand devant) ; par défaut l'album de gauche est devant
+    order = sorted(range(n), key=lambda i: cfg['books'][i].get('z', -i))
+    for i in order:
+        b = cfg['books'][i]
+        x = b.get('x', round(left + offs[i] - off)); y = b.get('y', lay.get('y', 600))
         # centre du livre (hors ombre) : point fixe pour l'échelle et la rotation
         bx = x + (743 + 1635) / 2 * s - CROP[0] * s; by = y + (129 + 1533) / 2 * s - CROP[1] * s
         if 'png' in b:
