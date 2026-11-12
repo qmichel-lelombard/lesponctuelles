@@ -35,7 +35,7 @@ Simulation 3D fournie (PNG détouré dans `assets/simu3d/<ISBN>-….png`) : util
 Si la simulation a déjà sa propre ombre au sol, elle est gardée telle quelle.
 
 Compositions sur mesure : dictionnaire `COMPOSITIONS` de `planning.py` (angle, échelle, profondeur `z` et écarts par album).
-Jour 16 : Jian 1 sous le 2 à gauche (-6°, -3°) | La voie du glaive 3, 2, 1 à droite (+3°, +6°, +9°).
+Jour 16 : Jian 2 devant (-5°), Jian 1 derrière à sa droite (-2°) | La voie du glaive 3, 2, 1 à droite (+3°, +6°, +9°).
 
 Versions alternatives : liste `VARIANTES` de `planning.py` (ex. `jour14b` : Resurrection Hill, Little Tulip, New York Cannibals – collection Signé Boucq/Charyn ; `jour15b` : Un Noël à Paris 2 devant, 1 derrière)..
 

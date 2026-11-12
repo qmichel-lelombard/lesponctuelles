@@ -58,10 +58,10 @@ VARIANTES = [
 # Compositions sur mesure : albums de gauche à droite avec angle / échelle / profondeur (z : plus grand = devant),
 # et écarts entre albums (en largeur d'album).
 COMPOSITIONS = {
-    # Jian 1 sous le 2 (à gauche) | séparation | La voie du glaive 3, puis 2 et 1 dessous (à droite)
+    # Jian 2 devant, Jian 1 derrière à sa droite | séparation | La voie du glaive 3, puis 2 et 1 dessous (à droite)
     'jour16': {
-        'books': [('9782808211413', -6, 1.0, 1), ('9782808217071', -3, 1.0, 5),
-                  ('9782808215008', 3, 1.02, 4), ('9782808212144', 6, 1.02, 3), ('9782808211192', 9, 1.02, 2)],
+        'books': [('9782808217071', -5, 1.0, 5), ('9782808211413', -2, 1.0, 4),
+                  ('9782808215008', 3, 1.02, 3), ('9782808212144', 6, 1.02, 2), ('9782808211192', 9, 1.02, 1)],
         'steps': [0.4, 0.9, 0.4, 0.4], 'h': 375, 'y': 650,
     },
 }
