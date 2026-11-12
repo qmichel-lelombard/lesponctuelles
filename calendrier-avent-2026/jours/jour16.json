@@ -1,49 +1,49 @@
 {
   "theme": "rouge",
   "layout": {
-    "y": 620,
-    "h": 425,
+    "y": 600,
+    "h": 460,
     "steps": [
       0.35,
-      0.85,
-      0.35,
-      0.35
+      0.95,
+      0.32,
+      0.32
     ],
-    "cx": 560
+    "cx": 590
   },
   "books": [
     {
       "img": "../assets/couvertures/9782808217071-jian-2-la-peau-de-l-ours.jpg",
       "angle": -5,
       "z": 5,
-      "dy": 45
+      "dy": 20
     },
     {
       "img": "../assets/couvertures/9782808211413-jian-1-ceux-de-la-montagne.jpg",
       "angle": -2,
       "z": 4,
-      "dy": 45
+      "dy": 20
     },
     {
       "img": "../assets/couvertures/9782808215008-la-voie-du-glaive-3-rome.jpg",
       "angle": 3,
       "z": 3,
       "scale": 1.02,
-      "dy": -35
+      "dy": -15
     },
     {
       "img": "../assets/couvertures/9782808212144-la-voie-du-glaive-2-le-legionnaire.jpg",
       "angle": 6,
       "z": 2,
       "scale": 1.02,
-      "dy": -35
+      "dy": -15
     },
     {
       "img": "../assets/couvertures/9782808211192-la-voie-du-glaive-1-les-freres-furieux.jpg",
       "angle": 9,
       "z": 1,
       "scale": 1.02,
-      "dy": -35
+      "dy": -15
     }
   ],
   "date": {
