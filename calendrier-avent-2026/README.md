@@ -36,6 +36,7 @@ Si la simulation a déjà sa propre ombre au sol, elle est gardée telle quelle.
 
 Compositions sur mesure : dictionnaire `COMPOSITIONS` de `planning.py` (angle, échelle, profondeur `z` et écarts par album).
 Jour 16 : Jian 2 devant (-5°), Jian 1 derrière à sa droite (-2°) | La voie du glaive 3, 2, 1 à droite (+3°, +6°, +9°).
+Jour 18 : même mise en page – M.A.D. 3, 2, 1 (-5°, -2°, +1°) | Holmes vs Lupin 2, 1 (+3°, +6°).
 
 Versions alternatives : liste `VARIANTES` de `planning.py` (ex. `jour14b` : Resurrection Hill, Little Tulip, New York Cannibals – collection Signé Boucq/Charyn ; `jour15b` : Un Noël à Paris 2 devant, 1 derrière)..
 
