@@ -1,4 +1,4 @@
-"""Génère jours/jourNN.json pour les 24 jours puis les visuels : python3 planning.py [n° de jours…]
+"""Génère jours/jourNN.json pour les 24 jours puis les visuels : python3 planning.py [n° de jours ou noms, ex. 14 jour14b…]
 
 Planning = onglet « Planning » de Calendrier_Avent_AVANT_2026.xlsx (ligne du 1/11 = jour 1 = 7/11),
 avec la ligne 9 (Gallmeister) = Betty + Le Gang de la clef à molette.
@@ -47,12 +47,26 @@ def cover(isbn):
 
 SEUL_SCALE = 1.10      # album seul à 110 %
 SERIE_OVERLAP = 0.6    # chaque album de la série décalé de 40 % de largeur
-ONLY = [int(a) for a in sys.argv[1:]]
-for n, entry in enumerate(PLANNING, 1):
-    if ONLY and n not in ONLY: continue
+# Versions alternatives : (nom du fichier, n° du jour, albums). 'simu:<fichier>' = simulation 3D de assets/simu3d/
+VARIANTES = [
+    ('jour14b', 14, {'serie': ['simu:signe-resurrection-hill.png', 'simu:signe-little-tulip.png',
+                               'simu:signe-new-york-cannibals.png']}),   # collection Signé Boucq/Charyn
+]
+
+
+def book(i):
+    if i.startswith('simu:'):
+        return {'png': '../assets/simu3d/' + i[5:]}
+    return {'img': cover(i)}
+
+
+ONLY = sys.argv[1:]
+JOBS = [(f'jour{n:02d}', n, e) for n, e in enumerate(PLANNING, 1)] + VARIANTES
+for name, n, entry in JOBS:
+    if ONLY and str(n) not in ONLY and name not in ONLY: continue
     serie = isinstance(entry, dict)
     isbns = entry['serie'] if serie else entry
-    books = [{'img': cover(i)} for i in isbns]
+    books = [book(i) for i in isbns]
     overlap = 0.1
     if serie:
         for k, b in enumerate(books):
@@ -65,7 +79,7 @@ for n, entry in enumerate(PLANNING, 1):
         books[0]['scale'] = SEUL_SCALE
     for b, i in zip(books, isbns):          # simulation 3D fournie : remplace le mockup
         f = glob.glob(os.path.join(HERE, 'assets', 'simu3d', i + '-*.png'))
-        if f:
+        if f and 'img' in b:
             b['png'] = '../assets/simu3d/' + os.path.basename(f[0]); del b['img']
     cx = 525 if len(books) >= 4 else 540   # 4 albums : léger décalage pour dégager le houx
     cfg = {
@@ -75,7 +89,7 @@ for n, entry in enumerate(PLANNING, 1):
         'date': {'text': str(n), 'font': FONT, 'angle': 5, 'cx': 959, 'cy': 1201, 'diam': 147, 'fill': 0.9},
         'mention': {'text': '* voir conditions de participation', 'font': FONT, 'size': 24, 'x': 1050, 'y': 1318},
     }
-    jp = os.path.join(HERE, 'jours', f'jour{n:02d}.json')
+    jp = os.path.join(HERE, 'jours', f'{name}.json')
     json.dump(cfg, open(jp, 'w'), ensure_ascii=False, indent=2)
     subprocess.run([sys.executable, os.path.join(HERE, 'compose.py'), jp,
-                    os.path.join(HERE, 'sorties', f'jour{n:02d}.png')], check=True)
+                    os.path.join(HERE, 'sorties', f'{name}.png')], check=True)

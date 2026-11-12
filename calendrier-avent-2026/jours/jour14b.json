@@ -1,0 +1,39 @@
+{
+  "theme": "jaune",
+  "layout": {
+    "y": 600,
+    "h": 520,
+    "overlap": 0.6,
+    "cx": 540
+  },
+  "books": [
+    {
+      "png": "../assets/simu3d/signe-resurrection-hill.png",
+      "angle": -5
+    },
+    {
+      "png": "../assets/simu3d/signe-little-tulip.png",
+      "angle": -2
+    },
+    {
+      "png": "../assets/simu3d/signe-new-york-cannibals.png",
+      "angle": 1
+    }
+  ],
+  "date": {
+    "text": "14",
+    "font": "../assets/polices/DancingScript.ttf",
+    "angle": 5,
+    "cx": 959,
+    "cy": 1201,
+    "diam": 147,
+    "fill": 0.9
+  },
+  "mention": {
+    "text": "* voir conditions de participation",
+    "font": "../assets/polices/DancingScript.ttf",
+    "size": 24,
+    "x": 1050,
+    "y": 1318
+  }
+}

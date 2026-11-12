@@ -19,22 +19,29 @@ CROP = (505, 120, 1740, 1545)           # zone utile du mockup (livre + ombre)
 
 
 def prerendered(path, body_h):
-    """Charge une simulation 3D détourée, la met à la hauteur voulue et ajoute une ombre au sol."""
+    """Charge une simulation 3D détourée, la met à la hauteur voulue ; ajoute une ombre au sol si elle n'en a pas."""
     src = Image.open(path).convert('RGBA'); src = src.crop(src.getchannel('A').getbbox())
-    k = body_h / src.height
+    al = np.asarray(src.getchannel('A'))
+    ys, xs = np.nonzero(al > 200)                       # le livre (opaque), hors ombre semi-transparente
+    bx0, by0, bx1, by1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
+    own_shadow = bool(((al > 10) & (al < 200)).sum() > .01 * (al > 200).sum())
+    k = float(body_h) / float(by1 - by0)
     src = src.resize((round(src.width * k), round(src.height * k)), Image.LANCZOS)
-    pad = round(src.width * .35)
+    bx0, by0, bx1, by1 = (float(v) * k for v in (bx0, by0, bx1, by1))
+    bw = bx1 - bx0
+    pad = round(bw * .35)
     W, H = src.width + 2 * pad, src.height + pad
     canvas = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-    sh = Image.new('L', (W, H), 0)
-    ImageDraw.Draw(sh).ellipse((pad - src.width * .15, src.height - src.width * .06,
-                                pad + src.width * .95, src.height + src.width * .03), fill=255)
-    sh = sh.filter(ImageFilter.GaussianBlur(src.width * .05))
-    shadow = Image.new('RGBA', (W, H), (40, 30, 20, 0)); shadow.putalpha(sh.point(lambda v: int(v * .32)))
-    canvas.alpha_composite(shadow)
+    if not own_shadow:
+        sh = Image.new('L', (W, H), 0)
+        ImageDraw.Draw(sh).ellipse((pad + bx0 - bw * .15, pad * 0 + by1 - bw * .06,
+                                    pad + bx0 + bw * .95, by1 + bw * .03), fill=255)
+        sh = sh.filter(ImageFilter.GaussianBlur(bw * .05))
+        shadow = Image.new('RGBA', (W, H), (40, 30, 20, 0)); shadow.putalpha(sh.point(lambda v: int(v * .32)))
+        canvas.alpha_composite(shadow)
     canvas.alpha_composite(src, (pad, 0))
-    body = Image.new('L', (W, H), 0); body.paste(src.getchannel('A'), (pad, 0))
-    return canvas, body, pad + src.width / 2, src.height / 2
+    body = Image.new('L', (W, H), 0); body.paste(src.getchannel('A').point(lambda v: 255 if v > 200 else 0), (pad, 0))
+    return canvas, body, pad + (bx0 + bx1) / 2, (by0 + by1) / 2
 
 
 def perspective_coeffs(dst, src):
