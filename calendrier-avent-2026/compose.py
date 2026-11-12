@@ -129,7 +129,7 @@ def main(cfg_path, out_path):
     order = sorted(range(n), key=lambda i: cfg['books'][i].get('z', -i))
     for i in order:
         b = cfg['books'][i]
-        x = b.get('x', round(left + offs[i] - off)); y = b.get('y', lay.get('y', 600))
+        x = b.get('x', round(left + offs[i] - off)); y = b.get('y', lay.get('y', 600)) + b.get('dy', 0)
         # centre du livre (hors ombre) : point fixe pour l'échelle et la rotation
         bx = x + (743 + 1635) / 2 * s - CROP[0] * s; by = y + (129 + 1533) / 2 * s - CROP[1] * s
         if 'png' in b:

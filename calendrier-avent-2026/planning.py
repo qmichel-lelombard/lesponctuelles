@@ -62,7 +62,8 @@ COMPOSITIONS = {
     'jour16': {
         'books': [('9782808217071', -5, 1.0, 5), ('9782808211413', -2, 1.0, 4),
                   ('9782808215008', 3, 1.02, 3), ('9782808212144', 6, 1.02, 2), ('9782808211192', 9, 1.02, 1)],
-        'steps': [0.4, 0.9, 0.4, 0.4], 'h': 375, 'y': 650,
+        'dy': [45, 45, -35, -35, -35],       # Jian plus bas, La voie du glaive plus haut
+        'steps': [0.35, 0.85, 0.35, 0.35], 'h': 425, 'y': 620, 'cx': 560,
     },
 }
 
@@ -84,7 +85,8 @@ for name, n, entry in JOBS:
             bk = book(i); bk.update(angle=ang, z=z)
             if sc != 1: bk['scale'] = sc
             books.append(bk)
-        layout = {'y': c['y'], 'h': c['h'], 'steps': c['steps'], 'cx': 540}
+        for bk, dy in zip(books, c.get('dy', [])): bk['dy'] = dy
+        layout = {'y': c['y'], 'h': c['h'], 'steps': c['steps'], 'cx': c.get('cx', 540)}
     else:
         layout = None
     serie = isinstance(entry, dict)
