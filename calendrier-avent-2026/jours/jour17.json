@@ -3,13 +3,17 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.1,
+    "overlap": 0.6,
     "cx": 540
   },
   "books": [
     {
       "img": "../assets/couvertures/9782808212588-mitsuo-2.jpg",
-      "scale": 1.1
+      "angle": -5
+    },
+    {
+      "img": "../assets/couvertures/9782803676767-mitsuo-1.jpg",
+      "angle": -2
     }
   ],
   "date": {

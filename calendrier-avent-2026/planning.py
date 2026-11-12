@@ -26,7 +26,7 @@ PLANNING = [
     ['9782808201292'],                    # 14 Resurrection Hill
     ['9782808218115'],                    # 15 Un Noël à Paris 2
     'jour16',                             # 16 Jian 1-2 | La voie du glaive 1-3 (voir COMPOSITIONS)
-    ['9782808212588'],                    # 17 Mitsuo 2
+    {'serie': ['9782808212588', '9782803676767']},                                   # 17 Mitsuo 2, 1
     ['9782808217453', '9782808218092'],   # 18 M.A.D. 3 + Sherlock Holmes contre Arsène Lupin 2
     ['9782808218078', '9782808216821'],   # 19 Pro gamer 2 + Dinodyssée 3
     ['9782808216760'],                    # 20 Alpha 21 – Caméléon
