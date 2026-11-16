@@ -21,6 +21,12 @@ def cover(path, focus=(.5, .5)):
     x = round((im.width - W) * focus[0]); y = round((im.height - H) * focus[1])
     return im.crop((x, y, x + W, y + H)).convert("RGBA")
 
+def cover_top(path, frac, fx=.5):
+    """ne garde que le haut du décor (ciel et canyon), recadré : le diner reste hors champ"""
+    im = Image.open(path).convert("RGB"); im = im.crop((0, 0, im.width, round(im.height * frac)))
+    s = max(W / im.width, H / im.height); im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
+    x = round((im.width - W) * fx); return im.crop((x, im.height - H, x + W, im.height)).convert("RGBA")
+
 def veil(im, top=120, bottom=235, start=.45):
     """voile sombre en haut (logo) et en bas (texte)"""
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); px = ov.load()
@@ -68,8 +74,9 @@ def title(d, y, size=104, lead=1.08):
     d.text((x, y), "Elle", font=f, fill=(255, 111, 166))
     center(d, y + size * lead, f"se cache en toi{NB}?", f, (255, 255, 255))
 
-def group_slide(name, cta, with_dots=None, sub=None, gy=235, lead=1.08):
-    im = veil(cover("img/bg-rosies-nuit.webp", (.5, .25)), bottom=245, start=.5)
+def group_slide(name, cta, with_dots=None, sub=None, gy=235, lead=1.08, no_diner=False):
+    bg = cover_top("img/bg-rosies-nuit.webp", .64, .78) if no_diner else cover("img/bg-rosies-nuit.webp", (.5, .25))
+    im = veil(bg, bottom=245, start=.5)
     g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 760)
     halo(im, (255, 79, 147), (140, 240, 940, 900)); logo(im); paste(im, g, (W - g.width) // 2, gy)   # le groupe passe devant le logo
     d = ImageDraw.Draw(im, "RGBA")
@@ -103,4 +110,4 @@ center(d, 1222, f"Tome 4 · Intemporelle(s) · en librairie", F(nun, 32), (255, 
 im.convert("RGB").save("social/carrousel_8_fais-le-test.jpg", quality=92); print(8)
 
 # ---------- Image unique
-group_slide("photo_unique.jpg", "elles.lelombard.com", sub="Fais le test", gy=192, lead=.9)
+group_slide("photo_unique.jpg", "elles.lelombard.com", sub="Fais le test", gy=192, lead=.9, no_diner=True)
