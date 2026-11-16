@@ -138,9 +138,13 @@ section { padding-block: clamp(52px, 8vw, 112px) 0; scroll-margin-top: 60px; }
 /* pets */
 .pets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); margin-top: clamp(24px, 4vw, 44px); }
 .pet { margin: 0; display: grid; gap: 12px; }
-.pet .ph { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 34px; border: 2px dashed var(--line); background: var(--surface); display: grid; place-content: center; justify-items: center; gap: 10px; color: var(--brand); text-align: center; padding: 16px; }
-.pet .ph .paw { font-size: clamp(3rem, 8vw, 5.5rem); color: var(--dim); }
-.pet img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 34px; }
+.pet img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 34px; }
+.album { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 3vw, 32px); margin-top: clamp(20px, 4vw, 40px); max-width: 980px; margin-inline: auto; }
+.album img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border: 6px solid var(--card); box-shadow: 0 10px 30px rgba(43, 16, 56, .16); }
+.album img:nth-child(1) { border-radius: 58% 42% 47% 53% / 46% 55% 45% 54%; transform: rotate(-3deg); }
+.album img:nth-child(2) { border-radius: 44% 56% 52% 48% / 55% 44% 56% 45%; transform: translateY(14px); }
+.album img:nth-child(3) { border-radius: 52% 48% 41% 59% / 49% 58% 42% 51%; transform: rotate(3deg); }
+.pet img { border: 6px solid var(--card); box-shadow: 0 10px 30px rgba(43, 16, 56, .14); }
 .pet figcaption b { display: block; font: 800 clamp(1.8rem, 3.4vw, 2.8rem)/1 var(--f-display); color: var(--brand); }
 
 /* career */
@@ -219,8 +223,8 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
       <span class="label val" id="socval">0 %</span>
     </div>
     <nav class="nav label" aria-label="Sections">
-      <a href="#offre" data-go="offre" data-t="n_offer">L'offre</a>
       <a href="#ia" data-go="ia" data-t="n_ai">IA</a>
+      <a href="#offre" data-go="offre" data-t="n_offer">L'offre</a>
       <a href="#compagnons" data-go="compagnons" data-t="n_pets">Virgile &amp; Cléo</a>
       <a href="#parcours" data-go="parcours" data-t="n_road">Parcours</a>
       <a href="#projets" data-go="projets" data-t="n_work">Projets</a>
@@ -253,26 +257,13 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
       <dl class="spec">
         <div><dt class="label" data-t="s1l">Poste actuel</dt><dd data-t="s1v">Digital Marketing Manager, Le Lombard</dd></div>
         <div><dt class="label" data-t="s2l">Dans le métier</dt><dd data-t="s2v">Depuis 2012</dd></div>
-        <div><dt class="label" data-t="s6l">Audience bâtie</dt><dd data-t="s6v">200 000+ abonnés, partis de zéro</dd></div>
+        <div><dt class="label" data-t="s6l">Audience bâtie</dt><dd data-t="s6v">200 000+ abonnés</dd></div>
         <div><dt class="label" data-t="s3l">Spécialités</dt><dd data-t="s3v">Réseaux sociaux · IA · Web</dd></div>
         <div><dt class="label" data-t="s4l">Langues</dt><dd data-t="s4v">FR · NL · EN</dd></div>
         <div><dt class="label" data-t="s5l">À la maison</dt><dd data-t="s5v">Un chien, un chat</dd></div>
       </dl>
     </div>
   </div>
-
-  <section id="offre">
-    <h2 class="h2"><small class="label" data-t="o_k">Marketing &amp; Business Support Manager · Wavre</small><span data-t="o_h">Votre offre, mes preuves</span></h2>
-    <div class="match">
-      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r1q">Marketing automation</span></p><p class="a" data-t="r1a">E-mailing depuis 2016 : chez Meno, mise en page, contenu et base de données en français et en néerlandais. Chez AddRetail, e-mailings HTML conçus et rédigés pour des marques belges.</p></div>
-      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r2q">L'IA pour les magasins et le reporting</span></p><p class="a" data-t="r2a">La plupart de mes tâches sont aujourd'hui réalisées avec l'IA : Claude Code, ChatGPT, Copilot. Côté chiffres : GA4, rapports de campagne dans Looker Studio et, chez Meno, mises à jour de prix sur l'e-commerce.</p></div>
-      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r3q">Réseaux sociaux et plan annuel</span></p><p class="a" data-t="r3a">Au Lombard : plus de 200 000 abonnés cumulés, partis de zéro, et des vidéos à plusieurs millions de vues. Je maîtrise Meta Ads, TikTok, Snapchat, YouTube, Google Ads et GA4.</p></div>
-      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r4q">Accompagner un réseau de magasins</span></p><p class="a" data-t="r4a">Web marketeer chez Meno, une coopérative de magasins indépendants : 4 sites pour 150 magasins dans toute la Belgique, community management, formation et accompagnement des magasins, dans les deux langues.</p></div>
-      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r5q">Marque propre</span></p><p class="a" data-t="r5a">Pas d'expérience directe à ce jour. J'y apporte la méthode de mes lancements : positionnement, visuels, plan de communication et bilan chiffré.</p></div>
-      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r6q">Initiative, précision, prise de parole</span></p><p class="a" data-t="r6a">Agence et gestion de projets : un budget à consolider, un planning à tenir, des clients à convaincre. Chez Meno, j'ai formé les magasins aux réseaux sociaux.</p></div>
-      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r7q">Néerlandais, français, anglais</span></p><p class="a" data-t="r7a">Français langue maternelle, néerlandais B2, anglais B2/C1. Près de quatre ans dans un environnement bilingue chez Meno. Ce site existe en trois langues.</p></div>
-    </div>
-  </section>
 
   <section id="ia">
     <h2 class="h2"><small class="label" data-t="i_k">Claude Code · ChatGPT · Copilot</small><span data-t="i_h">L'IA, au quotidien</span></h2>
@@ -286,7 +277,20 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
       <div class="card"><h3 data-t="i3h">Documents</h3><p data-t="i3p">Mise en page de présentations PowerPoint et de PDF.</p></div>
       <div class="card"><h3 data-t="i4h">Sites web</h3><p data-t="i4p">Conception de sites web complets, de la maquette à la mise en ligne.</p></div>
       <div class="card"><h3 data-t="i5h">Image, vidéo, 3D</h3><p data-t="i5p">Génération assistée par IA, ou sans IA : je maîtrise la suite Adobe.</p></div>
-      <div class="card"><p class="label mute tl" data-t="i6l">Outils</p><ul class="tags"><li>Claude Code</li><li>ChatGPT</li><li>Copilot</li><li data-t="i6a">IA générative image et vidéo</li><li>Adobe Creative Cloud</li></ul></div>
+      <div class="card"><p class="label mute tl" data-t="i6l">Outils</p><ul class="tags"><li>Claude Code</li><li>ChatGPT</li><li>Copilot</li><li>Grok</li><li>Gemini</li><li>Higgsfield</li><li>Artlist</li><li>Firefly</li><li>Veed</li><li>Adobe Creative Cloud</li></ul></div>
+    </div>
+  </section>
+
+  <section id="offre">
+    <h2 class="h2"><small class="label" data-t="o_k">Marketing &amp; Business Support Manager · Wavre</small><span data-t="o_h">Votre offre, mes preuves</span></h2>
+    <div class="match">
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r1q">Marketing automation</span></p><p class="a" data-t="r1a">E-mailing depuis 2016 : chez Meno, mise en page, contenu et base de données en français et en néerlandais. Chez AddRetail, e-mailings HTML conçus et rédigés pour des marques belges.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r2q">L'IA pour les magasins et le reporting</span></p><p class="a" data-t="r2a">La plupart de mes tâches sont aujourd'hui réalisées avec l'IA : Claude Code, ChatGPT, Copilot. Côté chiffres : GA4, rapports de campagne dans Looker Studio et, chez Meno, mises à jour de prix sur l'e-commerce.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r3q">Réseaux sociaux et plan annuel</span></p><p class="a" data-t="r3a">Au Lombard : plus de 200 000 abonnés cumulés, partis de zéro, et des vidéos à plusieurs millions de vues. Je maîtrise Meta Ads, TikTok, Snapchat, YouTube, Google Ads et GA4.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r4q">Accompagner un réseau de magasins</span></p><p class="a" data-t="r4a">Web marketeer chez Meno, une coopérative de magasins indépendants : 4 sites pour 150 magasins dans toute la Belgique, community management, formation et accompagnement des magasins, dans les deux langues.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r5q">Marque propre</span></p><p class="a" data-t="r5a">Pas d'expérience directe à ce jour. J'y apporte la méthode de mes lancements : positionnement, visuels, plan de communication et bilan chiffré.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r6q">Initiative, précision, prise de parole</span></p><p class="a" data-t="r6a">Agence et gestion de projets : un budget à consolider, un planning à tenir, des clients à convaincre. Chez Meno, j'ai formé les magasins aux réseaux sociaux.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r7q">Néerlandais, français, anglais</span></p><p class="a" data-t="r7a">Français langue maternelle, néerlandais B2, anglais B2/C1. Près de quatre ans dans un environnement bilingue chez Meno. Ce site existe en trois langues.</p></div>
     </div>
   </section>
 
@@ -313,13 +317,18 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     </div>
     <div class="pets">
       <figure class="pet">
-        <div class="ph" role="img" aria-label="Photo de Virgile à venir"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span class="label" data-t="ph">Photo à venir</span></div>
+        <img src="img/virgile.jpg" width="1200" height="900" loading="lazy" alt="Virgile, Berger Blanc Suisse, couché dans l'herbe">
         <figcaption><b>Virgile</b><span class="mute" data-t="pet1">Berger Blanc Suisse · 4 ans</span></figcaption>
       </figure>
       <figure class="pet">
-        <div class="ph" role="img" aria-label="Photo de Cléo à venir"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span class="label" data-t="ph">Photo à venir</span></div>
+        <img src="img/cleo.jpg" width="1200" height="900" loading="lazy" alt="Cléo, chat gris et blanc, endormi sur un coussin">
         <figcaption><b>Cléo</b><span class="mute" data-t="pet2">Chat · 10 ans</span></figcaption>
       </figure>
+    </div>
+    <div class="album">
+      <img src="img/virgile-dos.jpg" width="700" height="700" loading="lazy" alt="Virgile couché sur le dos, les pattes en l'air">
+      <img src="img/duo.jpg" width="700" height="700" loading="lazy" alt="Quentin assis avec Virgile">
+      <img src="img/cleo-dos.jpg" width="700" height="700" loading="lazy" alt="Cléo allongé sur le dos dans le canapé">
     </div>
   </section>
 
@@ -405,9 +414,9 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
   <section id="apropos">
     <h2 class="h2"><small class="label" data-t="a_k">Famille · Passions · Caractère</small><span data-t="a_h">À propos de moi</span></h2>
     <div class="two">
-      <p class="big" data-t="a_big">Marié, papa d'une petite fille. Le reste du temps : voyager, lire, dessiner et rire noir.</p>
+      <p class="big" data-t="a_big">Marié, papa d'une petite fille. Le reste du temps : voyager, lire, dessiner et rire.</p>
       <div class="cols">
-        <p data-t="a_p">Je suis curieux de tout ce qui se crée : un bâtiment, une scène, un livre, un dessin. J'aime les soirées entre amis autour d'une table de poker, et je prends le jeu au sérieux.</p>
+        <p data-t="a_p">Je suis curieux de tout ce qui se crée : un bâtiment, une scène, un livre, un dessin. J'aime les promenades avec mon chien, les soirées entre amis autour d'une table de poker.</p>
         <div><p class="label mute tl" data-t="a2l">Ce que j'aime</p>
         <ul class="tags" data-t="a2r"><li>Les animaux</li><li>Voyager</li><li>Lecture</li><li>Dessin</li><li>Architecture et design</li><li>One-man show et théâtre</li><li>Poker</li><li>Soirées entre amis</li></ul></div>
         <div><p class="label mute tl" data-t="a3l">Caractère</p>
@@ -419,11 +428,11 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
   <section id="outils">
     <h2 class="h2"><small class="label" data-t="b_k">IA · Social · Paid · Analytics · Création</small><span data-t="b_h">Boîte à outils</span></h2>
     <div class="tools">
-      <div><h3 class="label" data-t="b0">Intelligence artificielle</h3><ul><li>Claude Code</li><li>ChatGPT</li><li>Copilot</li><li data-t="b0a">Génération d'images, de vidéos et de 3D</li></ul></div>
-      <div><h3 class="label" data-t="b1">Publication et social</h3><ul><li>Meta Business Suite</li><li>Agorapulse</li><li>Hootsuite</li></ul></div>
+      <div><h3 class="label" data-t="b0">Intelligence artificielle</h3><ul><li>Claude Code</li><li>ChatGPT</li><li>Copilot</li><li>Grok · Gemini</li><li>Higgsfield · Artlist</li><li>Firefly · Veed</li></ul></div>
+      <div><h3 class="label" data-t="b1">Publication et social</h3><ul><li>Meta Business Suite</li><li>TikTok Business Manager</li><li>Agorapulse</li><li>Hootsuite</li></ul></div>
       <div><h3 class="label" data-t="b2">Médias payants</h3><ul><li>Meta Ads · Google Ads</li><li>TikTok Ads · Snapchat Ads</li><li>YouTube · LinkedIn Ads</li></ul></div>
       <div><h3 class="label" data-t="b3">Mesure</h3><ul><li>Google Analytics 4</li><li>Looker Studio</li></ul></div>
-      <div><h3 class="label" data-t="b4">Création et web</h3><ul><li>Adobe Creative Cloud</li><li>WordPress</li><li>PowerPoint</li></ul></div>
+      <div><h3 class="label" data-t="b4">Création et web</h3><ul><li>Adobe Creative Cloud</li><li>WordPress</li><li>HTML / CSS</li></ul></div>
       <div><h3 class="label" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>B2</small></li><li data-t="b5c">Anglais <small>B2/C1</small></li></ul></div>
     </div>
   </section>
@@ -453,7 +462,7 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     lead: "Digital Marketing Manager bij Éditions du Lombard. Een Zwitsers zakmes van webmarketing: sociale media, campagnes, e-mailing, websites en AI-tools. En het baasje van Virgile en Cléo.",
     cta1: "Bekijk de match met de vacature", cta2: "Contact opnemen",
     s1l: "Huidige functie", s1v: "Digital Marketing Manager, Le Lombard", s2l: "In het vak", s2v: "Sinds 2012",
-    s6l: "Opgebouwd bereik", s6v: "200.000+ volgers, vanaf nul", s3l: "Specialiteiten", s3v: "Sociale media · AI · Web",
+    s6l: "Opgebouwd bereik", s6v: "200.000+ volgers", s3l: "Specialiteiten", s3v: "Sociale media · AI · Web",
     s4l: "Talen", s5l: "Thuis", s5v: "Een hond, een kat",
     o_k: "Marketing &amp; Business Support Manager · Waver", o_h: "Uw vacature, mijn bewijzen",
     r1q: "Marketing automation", r1a: "E-mailing sinds 2016: bij Meno opmaak, inhoud en database in het Frans en het Nederlands. Bij AddRetail HTML-mailings ontworpen en geschreven voor Belgische merken.",
@@ -470,7 +479,7 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     i3h: "Documenten", i3p: "Opmaak van PowerPoint-presentaties en pdf's.",
     i4h: "Websites", i4p: "Volledige websites bouwen, van ontwerp tot publicatie.",
     i5h: "Beeld, video, 3D", i5p: "Generatie met AI, of zonder AI: ik beheers de Adobe-suite.",
-    i6l: "Tools", i6a: "Generatieve AI voor beeld en video",
+    i6l: "Tools",
     w_k: "Poils &amp; Plumes", w_h: "Waarom u",
     w_big: "Een keten van meer dan 35 jaar, een veertigtal winkels, en baasjes die het beste willen voor hun dier.",
     w_p1: "Uw vacature brengt samen wat ik al doe en wat ik meer wil doen: AI inzetten voor de marketing en de winkels. In de uitgeverswereld ligt dat gevoelig, door het auteursrecht. Bij u kan het een echte hefboom worden.",
@@ -479,7 +488,7 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     c_k: "Een hond · Een kat", c_h: "Virgile &amp; Cléo", c_big: "Ik heb altijd met honden en katten samengeleefd.",
     c_p1: "Ons gezin telt vandaag Virgile, een Zwitserse Witte Herder van vier jaar, en Cléo, een kat die net tien is geworden.",
     c_p2: "Ik ken dus van binnenuit de vragen die een baasje zich stelt wanneer het een dierenwinkel binnenstapt. Ze zouden allebei ongetwijfeld erg blij zijn met deze kans bij Poils &amp; Plumes.",
-    ph: "Foto volgt", pet1: "Zwitserse Witte Herder · 4 jaar", pet2: "Kat · 10 jaar",
+    pet1: "Zwitserse Witte Herder · 4 jaar", pet2: "Kat · 10 jaar",
     p_k: "Sinds 2012", p_h: "Loopbaan", now: "nu", l_role: "Digital Marketing Manager",
     l0: "Bereik: meer dan 200.000 volgers samen op sociale media, vanaf nul opgebouwd, en video's met meerdere miljoenen weergaven.",
     l1: "AI: de meeste van mijn taken voer ik uit met Claude Code, ChatGPT en Copilot.",
@@ -498,11 +507,11 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     fb_t: "12 jaar ervaring", ig_t: "100K volgers", tt_t: "20 miljoen weergaven", yt_t: "Motion design en Ads",
     grp2: "Websites beheerd als webmaster", cur: "Momenteel beheerd", old: "Eerder beheerd", wp_k: "WordPress-sites ontworpen en gelanceerd",
     x1k: "Huwelijksplanning", x2k: "Literaire vzw", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
-    a_k: "Gezin · Passies · Karakter", a_h: "Over mij", a_big: "Getrouwd, vader van een dochtertje. De rest van de tijd: reizen, lezen, tekenen en zwart lachen.",
-    a_p: "Ik ben nieuwsgierig naar alles wat gemaakt wordt: een gebouw, een toneel, een boek, een tekening. Ik hou van vriendenavonden rond een pokertafel en neem het spel serieus.",
+    a_k: "Gezin · Passies · Karakter", a_h: "Over mij", a_big: "Getrouwd, vader van een dochtertje. De rest van de tijd: reizen, lezen, tekenen en lachen.",
+    a_p: "Ik ben nieuwsgierig naar alles wat gemaakt wordt: een gebouw, een toneel, een boek, een tekening. Ik hou van wandelingen met mijn hond en van vriendenavonden rond een pokertafel.",
     a2l: "Wat ik graag doe", a2r: "<li>Dieren</li><li>Reizen</li><li>Lezen</li><li>Tekenen</li><li>Architectuur en design</li><li>One-manshows en theater</li><li>Poker</li><li>Avonden met vrienden</li>",
     a3l: "Karakter", a3r: "<li>Sociaal</li><li>Competitief</li><li>Pragmatisch</li><li>Zin voor initiatief</li><li>Zwarte humor</li>",
-    b_k: "AI · Social · Paid · Analytics · Creatie", b_h: "Toolbox", b0: "Artificiële intelligentie", b0a: "Generatie van beeld, video en 3D",
+    b_k: "AI · Social · Paid · Analytics · Creatie", b_h: "Toolbox", b0: "Artificiële intelligentie",
     b1: "Publicatie en social", b2: "Betaalde media", b3: "Meting", b4: "Creatie en web", b5: "Talen",
     b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>B2</small>", b5c: "Engels <small>B2/C1</small>",
     k_k: "Sollicitatie Poils &amp; Plumes", k_h: "Laten we praten.", copy: "Adres kopiëren", copied: "Gekopieerd",
@@ -514,7 +523,7 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     lead: "Digital Marketing Manager at Éditions du Lombard. A Swiss army knife of web marketing: social media, campaigns, e-mailing, websites and AI tools. And the owner of Virgile and Cléo.",
     cta1: "See how I match the role", cta2: "Get in touch",
     s1l: "Current role", s1v: "Digital Marketing Manager, Le Lombard", s2l: "In the trade", s2v: "Since 2012",
-    s6l: "Audience built", s6v: "200,000+ followers, from zero", s3l: "Specialities", s3v: "Social media · AI · Web",
+    s6l: "Audience built", s6v: "200,000+ followers", s3l: "Specialities", s3v: "Social media · AI · Web",
     s4l: "Languages", s5l: "At home", s5v: "One dog, one cat",
     o_k: "Marketing &amp; Business Support Manager · Wavre", o_h: "Your brief, my proof",
     r1q: "Marketing automation", r1a: "E-mailing since 2016: at Meno, layout, content and database in French and Dutch. At AddRetail, HTML e-mailings designed and written for Belgian brands.",
@@ -531,7 +540,7 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     i3h: "Documents", i3p: "Laying out PowerPoint presentations and PDFs.",
     i4h: "Websites", i4p: "Building complete websites, from mock-up to launch.",
     i5h: "Image, video, 3D", i5p: "AI-assisted generation, or without AI: I master the Adobe suite.",
-    i6l: "Tools", i6a: "Generative AI for image and video",
+    i6l: "Tools",
     w_k: "Poils &amp; Plumes", w_h: "Why you",
     w_big: "A chain with over 35 years behind it, some forty shops, and owners who want the best for their pet.",
     w_p1: "Your role brings together what I already do and what I want to do more of: putting AI to work for marketing and for the shops. It is a sensitive topic in publishing, because of copyright. With you, it can become a real lever.",
@@ -540,7 +549,7 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     c_k: "One dog · One cat", c_h: "Virgile &amp; Cléo", c_big: "I have always lived with dogs and cats.",
     c_p1: "Our household currently includes Virgile, a four-year-old White Swiss Shepherd, and Cléo, a cat who has just turned ten.",
     c_p2: "So I know from the inside the questions an owner asks when walking into a pet shop. No doubt both of them would be very happy about this opportunity at Poils &amp; Plumes.",
-    ph: "Photo to come", pet1: "White Swiss Shepherd · 4 years old", pet2: "Cat · 10 years old",
+    pet1: "White Swiss Shepherd · 4 years old", pet2: "Cat · 10 years old",
     p_k: "Since 2012", p_h: "Career", now: "now", l_role: "Digital Marketing Manager",
     l0: "Audience: over 200,000 followers combined across social, built from zero, and videos with several million views.",
     l1: "AI: most of my tasks are done with Claude Code, ChatGPT and Copilot.",
@@ -559,11 +568,11 @@ footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content:
     fb_t: "12 years of experience", ig_t: "100K followers", tt_t: "20 million views", yt_t: "Motion design and Ads",
     grp2: "Sites run as webmaster", cur: "Currently managed", old: "Previously managed", wp_k: "WordPress sites designed and launched",
     x1k: "Wedding planning", x2k: "Literary non-profit", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
-    a_k: "Family · Passions · Character", a_h: "About me", a_big: "Married, dad to a little girl. The rest of the time: travelling, reading, drawing and dark humour.",
-    a_p: "I'm curious about anything that gets made: a building, a stage, a book, a drawing. I like evenings with friends around a poker table, and I take the game seriously.",
+    a_k: "Family · Passions · Character", a_h: "About me", a_big: "Married, dad to a little girl. The rest of the time: travelling, reading, drawing and laughing.",
+    a_p: "I'm curious about anything that gets made: a building, a stage, a book, a drawing. I like walks with my dog and evenings with friends around a poker table.",
     a2l: "What I enjoy", a2r: "<li>Animals</li><li>Travel</li><li>Reading</li><li>Drawing</li><li>Architecture and design</li><li>One-man shows and theatre</li><li>Poker</li><li>Evenings with friends</li>",
     a3l: "Character", a3r: "<li>Sociable</li><li>Competitive</li><li>Pragmatic</li><li>Initiative</li><li>Dark humour</li>",
-    b_k: "AI · Social · Paid · Analytics · Creative", b_h: "Toolbox", b0: "Artificial intelligence", b0a: "Image, video and 3D generation",
+    b_k: "AI · Social · Paid · Analytics · Creative", b_h: "Toolbox", b0: "Artificial intelligence",
     b1: "Publishing and social", b2: "Paid media", b3: "Measurement", b4: "Creative and web", b5: "Languages",
     b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>B2</small>", b5c: "English <small>B2/C1</small>",
     k_k: "Poils &amp; Plumes application", k_h: "Let's talk.", copy: "Copy address", copied: "Copied",
