@@ -23,6 +23,7 @@ body { font: 400 8.6pt/1.42 "Nunito", "Trebuchet MS", Arial, sans-serif; -webkit
 .name .first { color: var(--brand); }
 .role { margin: 3mm 0 0; font: 700 12.5pt/1.1 "Baloo 2", sans-serif; color: var(--accent); }
 .coords { margin: 1.6mm 0 0; font-weight: 700; line-height: 1.45; }
+.site { color: var(--accent); font-weight: 800; text-decoration: none; }
 .photo { width: 36mm; height: 36mm; object-fit: cover; border: 1.3mm solid var(--card); border-radius: 44% 56% 52% 48% / 55% 44% 56% 45%; box-shadow: 0 2mm 6mm rgba(43,16,56,.16); flex: none; margin-top: -2mm; }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; margin-top: 3.5mm; }
 .stats div { background: var(--card); border: .25mm solid var(--line); border-radius: 4.5mm; padding: 2.2mm 3.2mm; }
@@ -169,7 +170,7 @@ def page(lang, d):
     return f'''<div class="page" lang="{lang}">
   <div class="blob"></div>
   <div class="head"><div><h1 class="name"><span class="first">Quentin</span><span>Michel</span></h1><p class="role">{d["role"]}</p>
-    <p class="coords">{d["addr"]} · {PHONE} · {EMAIL}</p></div><img class="photo" src="../img/duo.jpg" alt=""></div>
+    <p class="coords">{d["addr"]} · {PHONE} · {EMAIL}<br><a class="site" href="https://quentin-michel.netlify.app/">quentin-michel.netlify.app</a></p></div><img class="photo" src="../img/duo.jpg" alt=""></div>
   <div class="stats">{stats}</div>
   <div class="cols">
     <div class="side">
