@@ -80,7 +80,7 @@ def page(lang, d):
     <div class="to"><div class="meta"><p class="label mute">{d["k_to"]}<b>Felix Delva, Business Lead<br>Poils &amp; Plumes srl<br>Avenue Edison 8, 1300 Wavre</b></p><p class="label mute">{d["k_obj"]}<b>{d["obj"]}</b></p></div>
       <p class="date">{d["date"]}</p></div>
   </div>
-  <div class="body"><p class="hello">{d["hello"]}</p>{paras}<div class="close"><p>{d["bye"]}</p><p class="sig">Quentin Michel</p><img class="photo" src="../img/duo.jpg" alt=""></div></div>
+  <div class="body"><p class="hello">{d["hello"]}</p>{paras}<p>{d["bye"]}</p><div class="close"><p class="sig">Quentin Michel</p><img class="photo" src="../img/duo.jpg" alt=""></div></div>
 </div>'''
 html = f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Quentin Michel · Lettre de motivation Poils &amp; Plumes</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap"><style>{CSS}</style></head><body>{"".join(page(k, L[k]) for k in ("fr","nl","en"))}</body></html>'
 (HERE / "letters.html").write_text(html, encoding="utf-8")
