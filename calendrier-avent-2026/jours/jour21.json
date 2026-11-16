@@ -3,13 +3,21 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.1,
+    "overlap": 0.6,
     "cx": 540
   },
   "books": [
     {
       "img": "../assets/couvertures/9782808216937-enfants-de-la-resistance-10-la-guerre-n-est-pas-finie.jpg",
-      "scale": 1.1
+      "angle": -5
+    },
+    {
+      "img": "../assets/couvertures/9782808210966-enfants-de-la-resistance-9-les-jours-heureux.jpg",
+      "angle": -2
+    },
+    {
+      "img": "../assets/couvertures/9782808204880-enfants-de-la-resistance-8-combattre-ou-mourir.jpg",
+      "angle": 1
     }
   ],
   "date": {
