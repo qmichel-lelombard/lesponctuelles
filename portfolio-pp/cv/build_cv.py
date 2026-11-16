@@ -178,7 +178,6 @@ def page(lang, d):
       <div class="box">{h2(d["h_tools"])}<div class="chips">{chips(d["tools"])}</div></div>
       <div class="box">{h2(d["h_lang"])}<ul>{"".join(f"<li>{a} <small>{b}</small></li>" for a,b in d["langs"])}</ul></div>
       <div class="box edu">{h2(d["h_edu"])}<ul>{"".join(f"<li><b>{a}</b><small>{b}</small></li>" for a,b in d["edu"])}</ul></div>
-      <div class="box">{h2(d["h_home"])}<p style="margin:0;font-weight:600">{d["home"]}</p></div>
     </div>
     <div class="main">{h2(d["h_sum"])}<p class="sum">{d["summary"]}</p>{h2(d["h_exp"])}{jobs}</div>
   </div>
