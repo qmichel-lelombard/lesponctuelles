@@ -26,7 +26,8 @@ body { font: 400 var(--fs)/1.5 "Nunito", "Trebuchet MS", Arial, sans-serif; -web
 .coords { margin: 3.5mm 0 0; font-weight: 700; font-size: 9pt; line-height: 1.45; }
 .to { width: 78mm; flex: none; }
 .date { margin: 3mm 0 0; text-align: right; font-weight: 700; font-size: 9pt; }
-.close { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; margin-top: 1mm; }
+.close { display: flex; flex-direction: column; align-items: flex-end; margin-top: 1mm; }
+.close .photo { margin-top: 3mm; }
 .close p { margin: 0 !important; text-align: right; }
 .meta { display: grid; gap: 2.4mm; padding: 4mm 5mm; background: var(--card); border: .25mm solid var(--line); border-radius: 5mm; }
 .meta p { margin: 0; }
@@ -48,7 +49,7 @@ L = {
   "Mes précédentes expériences en gestion de projets et en agence de communication m'ont également appris à consolider un budget et tenir un planning, à faire preuve de pragmatisme et d'un grand esprit d'initiative, mais aussi à travailler en équipe. Les réseaux sociaux et les campagnes digitales n'ont aucun secret pour moi : je maîtrise Meta Ads, TikTok, Snapchat, YouTube, Google Ads, GA4… et tous les outils inhérents.",
   "Naturellement, si votre offre m'intéresse, c'est avant tout car je suis un grand ami des animaux, qu'ils soient à poils ou à plumes. Même si j'avoue avoir une légère préférence pour les premiers : j'ai en effet toujours vécu avec des chiens et des chats. Je suis marié et j'ai une petite fille de 6 ans. Notre foyer compte pour l'instant un Berger Blanc Suisse de quatre ans prénommé Virgile et un chat qui vient de fêter ses dix ans, prénommé – entre autres surnoms – Cléo. Nul doute qu'ils seraient tous deux très heureux de cette opportunité chez Poils &amp; Plumes !",
   "Je vous remercie pour votre attention et je serais bien sûr ravi de vous rencontrer lors d'un entretien ultérieur."]),
-"nl": dict(tag="Sollicitatie · Marketing &amp; Business Support Manager", k_to="Ter attentie van", to="Felix Delva, Business Lead · Poils &amp; Plumes", k_date="Datum", date="Edingen, 16 november 2026", k_obj="Betreft", obj="Marketing &amp; Business Support Manager",
+"nl": dict(addr="Aatsesteenweg 208a, 7850 Edingen", tag="Sollicitatie · Marketing &amp; Business Support Manager", k_to="Ter attentie van", to="Felix Delva, Business Lead · Poils &amp; Plumes", k_date="Datum", date="Edingen, 16 november 2026", k_obj="Betreft", obj="Marketing &amp; Business Support Manager",
   hello="Beste meneer Delva,", place="Edingen, België", bye="Met vriendelijke groeten,", p=[
   "Graag stel ik me kandidaat voor de functie van Marketing &amp; Business Support Manager: uw vacature lijkt wel voor mij geschreven. Een Zwitsers zakmes van webmarketing en digitale communicatie, dat ben ik! Die uitdrukking stond trouwens al in de omschrijving van mijn huidige functie toen ik werd aangeworven.",
   "Momenteel ben ik Digital Marketing Manager bij Éditions du Lombard (stripverhalen). Het is een boeiende en afwisselende functie in een culturele sector die dat evenzeer is. Toch ben ik vandaag op zoek naar een nieuwe uitdaging, vooral om de nieuwe kracht van AI-tools ten volle te kunnen benutten.",
@@ -75,11 +76,11 @@ def page(lang, d):
   <div class="blob"></div>
   <div class="head">
     <div class="me"><h1 class="name"><span class="first">Quentin</span><span>Michel</span></h1>
-      <p class="coords">{ADDRESS}<br>{PHONE}<br>{EMAIL}</p></div>
+      <p class="coords">{d.get("addr", ADDRESS)}<br>{PHONE}<br>{EMAIL}</p></div>
     <div class="to"><div class="meta"><p class="label mute">{d["k_to"]}<b>Felix Delva, Business Lead<br>Poils &amp; Plumes srl<br>Avenue Edison 8, 1300 Wavre</b></p><p class="label mute">{d["k_obj"]}<b>{d["obj"]}</b></p></div>
       <p class="date">{d["date"]}</p></div>
   </div>
-  <div class="body"><p class="hello">{d["hello"]}</p>{paras}<div class="close"><img class="photo" src="../img/duo.jpg" alt=""><div><p>{d["bye"]}</p><p class="sig">Quentin Michel</p></div></div></div>
+  <div class="body"><p class="hello">{d["hello"]}</p>{paras}<div class="close"><p>{d["bye"]}</p><p class="sig">Quentin Michel</p><img class="photo" src="../img/duo.jpg" alt=""></div></div>
 </div>'''
 html = f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Quentin Michel · Lettre de motivation Poils &amp; Plumes</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap"><style>{CSS}</style></head><body>{"".join(page(k, L[k]) for k in ("fr","nl","en"))}</body></html>'
 (HERE / "letters.html").write_text(html, encoding="utf-8")
