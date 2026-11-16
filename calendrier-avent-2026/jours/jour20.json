@@ -3,13 +3,21 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.1,
+    "overlap": 0.6,
     "cx": 540
   },
   "books": [
     {
       "img": "../assets/couvertures/9782808216760-alpha-21-cameleon.jpg",
-      "scale": 1.1
+      "angle": -5
+    },
+    {
+      "img": "../assets/couvertures/9782808214438-alpha-20-black-holes.jpg",
+      "angle": -2
+    },
+    {
+      "img": "../assets/couvertures/9782808212472-alpha-19-mr-washington.jpg",
+      "angle": 1
     }
   ],
   "date": {

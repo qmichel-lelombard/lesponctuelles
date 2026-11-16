@@ -29,7 +29,7 @@ PLANNING = [
     {'serie': ['9782808212588', '9782803676767']},                                   # 17 Mitsuo 2, 1
     'jour18',                             # 18 M.A.D. 1-3 | Sherlock Holmes contre Arsène Lupin 1-2 (voir COMPOSITIONS)
     'jour19',                             # 19 Pro gamer 1-2 | Dinodyssée 1-3 (voir COMPOSITIONS)
-    ['9782808216760'],                    # 20 Alpha 21 – Caméléon
+    {'serie': ['9782808216760', '9782808214438', '9782808212472']},                  # 20 Alpha 21, 20, 19
     ['9782808216937'],                    # 21 Les Enfants de la Résistance 10 – La guerre n'est pas finie
     ['9782808215121', '9782808214421'],   # 22 Aylin 2 + Elsbeth 2
     ['9782808218740'],                    # 23 Ducobu 30 – Duco... Bouh !
