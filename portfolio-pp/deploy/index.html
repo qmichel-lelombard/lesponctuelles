@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="description" content="Portfolio de Quentin Michel : marketing digital, réseaux sociaux et IA.">
+<meta name="theme-color" content="#662483">
+<meta property="og:title" content="Quentin Michel">
+<meta property="og:description" content="Portfolio de Quentin Michel : marketing digital, réseaux sociaux et IA.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='%23662483'%3E%3Cellipse cx='4.6' cy='10.4' rx='2.2' ry='3'/%3E%3Cellipse cx='9.2' cy='5.4' rx='2.2' ry='3'/%3E%3Cellipse cx='14.8' cy='5.4' rx='2.2' ry='3'/%3E%3Cellipse cx='19.4' cy='10.4' rx='2.2' ry='3'/%3E%3Cpath d='M12 11c-3.5 0-6.5 3.2-6.5 6.3 0 2.2 1.8 3.2 3.6 3.2 1.2 0 1.9-.5 2.9-.5s1.7.5 2.9.5c1.8 0 3.6-1 3.6-3.2C18.5 14.2 15.5 11 12 11z'/%3E%3C/g%3E%3C/svg%3E">
+<title>Quentin Michel</title>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one long, soft page. Big round display type for the name and titles, rounded cards,
+   and a paw-print trail as the recurring motif (scroll progress, bullets, photo slots). */
+:root {
+  --bg: #FAF5FC;
+  --surface: #F1E6F6;
+  --card: #FFFFFF;
+  --ink: #2B1038;
+  --mute: #6D5A7A;
+  --line: rgba(102, 36, 131, .18);
+  --dim: rgba(102, 36, 131, .16);
+  --brand: #662483;
+  --accent: #951272;
+  --tan: #A8713F;
+  --on-brand: #FFFFFF;
+  --pblend: multiply;
+  --pfilter: none;
+  --f-display: "Baloo 2", "Nunito", "Trebuchet MS", sans-serif;
+  --f-body: "Nunito", "Trebuchet MS", Arial, sans-serif;
+  --gut: clamp(16px, 4vw, 56px);
+  --r: 26px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1B0E23; --surface: #2A1736; --card: #24132F; --ink: #F5EDF8; --mute: #B7A3C4;
+    --line: rgba(215, 170, 235, .22); --dim: rgba(215, 170, 235, .2);
+    --brand: #CFA0EA; --accent: #F08FD0; --tan: #E0AF80; --on-brand: #1B0E23;
+    --pblend: screen; --pfilter: invert(1); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1B0E23; --surface: #2A1736; --card: #24132F; --ink: #F5EDF8; --mute: #B7A3C4;
+  --line: rgba(215, 170, 235, .22); --dim: rgba(215, 170, 235, .2);
+  --brand: #CFA0EA; --accent: #F08FD0; --tan: #E0AF80; --on-brand: #1B0E23;
+  --pblend: screen; --pfilter: invert(1); color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--f-body);
+  padding-inline: var(--gut); padding-block: 0;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: 1320px; margin-inline: auto; }
+.label { font: 800 .76rem/1.3 var(--f-body); letter-spacing: .09em; text-transform: uppercase; }
+.mute { color: var(--mute); }
+.paw { width: 1em; height: 1em; fill: currentColor; flex: none; }
+
+/* ---------- header ---------- */
+.top {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  margin-inline: calc(var(--gut) * -1); padding: 10px var(--gut);
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; gap: 18px; }
+.mark { font: 800 1.5rem/1 var(--f-display); color: var(--brand); text-decoration: none; padding-top: 4px; }
+.trail { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.trail .paws { display: flex; gap: 5px; font-size: 1.05rem; color: var(--dim); }
+.trail .paws svg:nth-child(odd) { transform: rotate(-18deg) translateY(-2px); }
+.trail .paws svg:nth-child(even) { transform: rotate(18deg) translateY(2px); }
+.trail .paws svg.on { color: var(--accent); }
+.trail .val { min-width: 4.5ch; font-variant-numeric: tabular-nums; }
+.nav { display: flex; gap: 16px; }
+.nav a { text-decoration: none; padding: 6px 2px; border-bottom: 2px solid transparent; }
+.nav a:hover { border-color: var(--accent); }
+.lang { display: flex; gap: 2px; }
+.lang button {
+  font: 800 .76rem/1 var(--f-body); letter-spacing: .06em; color: var(--mute);
+  background: none; border: 0; border-radius: 999px; padding: 9px 11px; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { color: var(--on-brand); background: var(--brand); }
+.lang button:hover:not([aria-pressed="true"]) { background: var(--surface); color: var(--ink); }
+
+/* ---------- hero ---------- */
+.hero { position: relative; padding-block: clamp(36px, 7vw, 88px) clamp(28px, 5vw, 56px); }
+.blob { position: absolute; z-index: 0; top: clamp(10px, 3vw, 40px); right: calc(var(--gut) * -1); width: min(46%, 560px); aspect-ratio: 1; background: var(--surface); border-radius: 58% 42% 47% 53% / 46% 55% 45% 54%; }
+.hero > :not(.blob) { position: relative; z-index: 1; }
+.tag-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: clamp(16px, 3vw, 32px); }
+.tag { display: inline-flex; align-items: center; gap: 10px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; color: var(--brand); }
+.tag .paw { color: var(--accent); font-size: 1.1rem; }
+.portrait { width: clamp(96px, 13vw, 176px); height: auto; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover; mix-blend-mode: var(--pblend); filter: var(--pfilter); flex: none; }
+.name { margin: 0; font: 800 clamp(3.6rem, 16vw, 14rem)/.8 var(--f-display); letter-spacing: -.02em; }
+.name span { display: block; }
+.name .first { color: var(--brand); }
+.hero-foot { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); margin-top: clamp(28px, 4vw, 52px); align-items: start; }
+.lead { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; font-weight: 600; text-wrap: balance; max-width: 32ch; }
+.spec { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 22px; }
+.spec div { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 14px; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.spec div:last-child { border-bottom: 0; }
+.spec dt { color: var(--mute); padding-top: 3px; }
+.spec dd { margin: 0; font-weight: 700; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.btn {
+  font: 800 .95rem/1 var(--f-body); text-decoration: none; cursor: pointer;
+  padding: 16px 24px; border-radius: 999px; border: 2px solid var(--brand); background: none; color: var(--brand);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.btn.solid { background: var(--brand); color: var(--on-brand); }
+.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-brand); }
+
+/* ---------- sections ---------- */
+section { padding-block: clamp(52px, 8vw, 112px) 0; scroll-margin-top: 60px; }
+.h2 { margin: 0 0 clamp(24px, 3.5vw, 44px); text-wrap: balance; font: 800 clamp(2.5rem, 7.5vw, 6rem)/.92 var(--f-display); letter-spacing: -.015em; color: var(--brand); }
+.h2 small { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; color: var(--accent); }
+
+.match { display: grid; gap: 12px; }
+.match .row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(12px, 3vw, 48px); padding: 20px 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); }
+.match .q { margin: 0; font: 700 clamp(1.25rem, 2.1vw, 1.7rem)/1.15 var(--f-display); display: flex; gap: 12px; align-items: flex-start; }
+.match .q .paw { color: var(--accent); font-size: 1.2em; margin-top: .05em; }
+.match .a { margin: 0; max-width: 62ch; }
+
+.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 72px); }
+.two .big { margin: 0; font: 700 clamp(1.6rem, 3vw, 2.5rem)/1.18 var(--f-display); text-wrap: balance; }
+.two .cols { display: grid; gap: 18px; max-width: 60ch; align-content: start; }
+.two p { margin: 0; }
+
+/* AI */
+.ai { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.ai .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 24px; }
+.ai .card.wide { grid-column: 1 / -1; background: var(--brand); color: var(--on-brand); border-color: transparent; }
+.ai h3 { margin: 0 0 8px; font: 700 1.45rem/1.1 var(--f-display); }
+.ai p { margin: 0; }
+.tags { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.tags li { font: 700 .88rem/1.2 var(--f-body); background: var(--surface); border-radius: 999px; padding: 9px 14px; }
+.ai .wide .tags li { background: color-mix(in srgb, var(--on-brand) 18%, transparent); }
+.tl { margin: 0 0 10px; }
+
+/* pets */
+.pets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 3vw, 32px); margin-top: clamp(24px, 4vw, 44px); }
+.pet { margin: 0; display: grid; gap: 12px; }
+.pet img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 34px; }
+.album { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 3vw, 32px); margin-top: clamp(20px, 4vw, 40px); max-width: 980px; margin-inline: auto; }
+.album img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border: 6px solid var(--card); box-shadow: 0 10px 30px rgba(43, 16, 56, .16); }
+.album img:nth-child(1) { border-radius: 58% 42% 47% 53% / 46% 55% 45% 54%; transform: rotate(-3deg); }
+.album img:nth-child(2) { border-radius: 44% 56% 52% 48% / 55% 44% 56% 45%; transform: translateY(14px); }
+.album img:nth-child(3) { border-radius: 52% 48% 41% 59% / 49% 58% 42% 51%; transform: rotate(3deg); }
+.pet img { border: 6px solid var(--card); box-shadow: 0 10px 30px rgba(43, 16, 56, .14); }
+.pet figcaption b { display: block; font: 800 clamp(1.8rem, 3.4vw, 2.8rem)/1 var(--f-display); color: var(--brand); }
+
+/* career */
+.road { display: grid; gap: 12px; }
+.stage { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 5fr) minmax(0, 6fr); gap: clamp(12px, 3vw, 40px); padding: 22px 24px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); }
+.stage.now { border: 2px solid var(--brand); }
+.stage .when { padding-top: .35rem; }
+.stage .when b { display: block; }
+.stage h3 { margin: 0; font: 800 clamp(1.8rem, 3.6vw, 3rem)/.95 var(--f-display); overflow-wrap: anywhere; }
+.stage .role { margin: 6px 0 0; color: var(--mute); font-weight: 700; }
+.stage ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; max-width: 58ch; }
+.stage li { padding-left: 24px; position: relative; }
+.stage li::before { content: ""; position: absolute; left: 0; top: .55em; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.stage.small h3 { font-size: clamp(1.4rem, 2.4vw, 2rem); }
+.live { color: var(--accent); }
+.co { text-decoration: none; }
+.co span { color: var(--accent); font-size: .5em; vertical-align: top; }
+.co:hover { color: var(--brand); }
+
+/* work */
+.subhead { margin: clamp(28px, 4vw, 44px) 0 12px; }
+.subhead.first { margin-top: 0; }
+.sites { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.site { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 24px; display: flex; flex-direction: column; gap: 6px; text-decoration: none; min-width: 0; }
+.site:hover { border-color: var(--accent); }
+.site b { font: 800 clamp(1.4rem, 2.3vw, 1.95rem)/1.05 var(--f-display); overflow-wrap: anywhere; }
+.site b.hl { color: var(--accent); }
+.site .url { font-weight: 700; font-size: .9rem; color: var(--mute); overflow-wrap: anywhere; }
+
+/* toolbox */
+.tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.tools > div { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 20px 24px; }
+.tools h3 { margin: 0 0 8px; color: var(--accent); }
+.tools ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; font-weight: 700; }
+.tools li small { font-weight: 600; color: var(--mute); }
+
+/* contact */
+.contact { padding-bottom: clamp(44px, 7vw, 88px); }
+.contact .box { background: var(--brand); color: var(--on-brand); border-radius: clamp(28px, 5vw, 56px); padding: clamp(28px, 6vw, 72px); }
+.contact .h2 { color: inherit; font-size: clamp(3rem, 12vw, 10rem); line-height: .85; margin-bottom: clamp(20px, 3vw, 36px); }
+.contact .h2 small { color: inherit; opacity: .85; }
+.contact .row { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; }
+.mail { font: 800 clamp(1.05rem, 2.6vw, 1.7rem)/1.2 var(--f-body); overflow-wrap: anywhere; user-select: all; }
+.contact .btn { border-color: var(--on-brand); color: var(--on-brand); }
+.contact .btn.solid { background: var(--on-brand); color: var(--brand); }
+.contact .btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-brand); }
+footer { padding-block: 0 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+@media (max-width: 960px) {
+  .nav { display: none; }
+  .hero-foot, .two { grid-template-columns: minmax(0, 1fr); }
+  .ai { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stage { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .stage .when { padding-top: 0; }
+  .match .row { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .spec div { grid-template-columns: 8rem minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .trail .paws { display: none; }
+  .trail { flex: none; }
+  .top .wrap { justify-content: space-between; }
+  .sites, .pets, .ai { grid-template-columns: minmax(0, 1fr); }
+  .blob { width: 70%; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="paw" viewBox="0 0 24 24"><ellipse cx="4.6" cy="10.4" rx="2.2" ry="3"/><ellipse cx="9.2" cy="5.4" rx="2.2" ry="3"/><ellipse cx="14.8" cy="5.4" rx="2.2" ry="3"/><ellipse cx="19.4" cy="10.4" rx="2.2" ry="3"/><path d="M12 11c-3.5 0-6.5 3.2-6.5 6.3 0 2.2 1.8 3.2 3.6 3.2 1.2 0 1.9-.5 2.9-.5s1.7.5 2.9.5c1.8 0 3.6-1 3.6-3.2C18.5 14.2 15.5 11 12 11z"/></symbol></svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top" data-go="top" aria-label="Quentin Michel">QM</a>
+    <div class="trail" aria-hidden="true">
+      <span class="label mute" data-t="soc">Balade</span>
+      <span class="paws" id="paws"><svg class="paw"><use href="#paw"/></svg><svg class="paw"><use href="#paw"/></svg><svg class="paw"><use href="#paw"/></svg><svg class="paw"><use href="#paw"/></svg><svg class="paw"><use href="#paw"/></svg><svg class="paw"><use href="#paw"/></svg><svg class="paw"><use href="#paw"/></svg><svg class="paw"><use href="#paw"/></svg></span>
+      <span class="label val" id="socval">0 %</span>
+    </div>
+    <nav class="nav label" aria-label="Sections">
+      <a href="#ia" data-go="ia" data-t="n_ai">IA</a>
+      <a href="#offre" data-go="offre" data-t="n_offer">L'offre</a>
+      <a href="#compagnons" data-go="compagnons" data-t="n_pets">Virgile &amp; Cléo</a>
+      <a href="#parcours" data-go="parcours" data-t="n_road">Parcours</a>
+      <a href="#projets" data-go="projets" data-t="n_work">Projets</a>
+      <a href="#contact" data-go="contact" data-t="n_contact">Contact</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Langue">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+      <button type="button" data-lang="nl" aria-pressed="false">NL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div class="blob" aria-hidden="true"></div>
+    <div class="tag-row">
+      <div class="tag label"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="tag">Candidature · Marketing &amp; Business Support Manager, Poils &amp; Plumes</span></div>
+      <img class="portrait" src="img/portrait.jpg" width="400" height="400" alt="Portrait dessiné de Quentin Michel">
+    </div>
+    <h1 class="name" aria-label="Quentin Michel"><span class="first" aria-hidden="true">Quentin</span><span aria-hidden="true">Michel</span></h1>
+    <div class="hero-foot">
+      <div>
+        <p class="lead" data-t="lead">Digital Marketing Manager aux Éditions du Lombard. Un couteau suisse du web marketing : réseaux sociaux, campagnes, e-mailing, sites web et outils d'IA. Et le maître de Virgile et de Cléo.</p>
+        <div class="cta">
+          <a class="btn solid" href="#offre" data-go="offre"><span data-t="cta1">Voir l'adéquation avec l'offre</span> ↓</a>
+          <a class="btn" href="#contact" data-go="contact" data-t="cta2">Me contacter</a>
+        </div>
+      </div>
+      <dl class="spec">
+        <div><dt class="label" data-t="s1l">Poste actuel</dt><dd data-t="s1v">Digital Marketing Manager, Le Lombard</dd></div>
+        <div><dt class="label" data-t="s2l">Dans le métier</dt><dd data-t="s2v">Depuis 2012</dd></div>
+        <div><dt class="label" data-t="s6l">Audience bâtie</dt><dd data-t="s6v">200 000+ abonnés</dd></div>
+        <div><dt class="label" data-t="s3l">Spécialités</dt><dd data-t="s3v">Réseaux sociaux · IA · Web</dd></div>
+        <div><dt class="label" data-t="s4l">Langues</dt><dd data-t="s4v">FR · NL · EN</dd></div>
+        <div><dt class="label" data-t="s5l">À la maison</dt><dd data-t="s5v">Un chien, un chat</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <section id="ia">
+    <h2 class="h2"><small class="label" data-t="i_k">Claude Code · ChatGPT · Copilot</small><span data-t="i_h">L'IA, au quotidien</span></h2>
+    <div class="ai">
+      <div class="card wide">
+        <h3 data-t="i0h">Ce site a été conçu avec Claude Code.</h3>
+        <p data-t="i0p">Design, textes en trois langues et mise en ligne : je pilote, l'IA exécute, je relis et je corrige.</p>
+      </div>
+      <div class="card"><h3 data-t="i1h">Contenus web</h3><p data-t="i1p">Encodage des actualités, des événements et des citations sur le site.</p></div>
+      <div class="card"><h3 data-t="i2h">Réseaux sociaux</h3><p data-t="i2p">Création de vidéos et de carrousels photos, montage d'interviews et de trailers.</p></div>
+      <div class="card"><h3 data-t="i3h">Documents</h3><p data-t="i3p">Mise en page de présentations PowerPoint et de PDF.</p></div>
+      <div class="card"><h3 data-t="i4h">Sites web</h3><p data-t="i4p">Conception de sites web complets, de la maquette à la mise en ligne.</p></div>
+      <div class="card"><h3 data-t="i5h">Image, vidéo, 3D</h3><p data-t="i5p">Génération assistée par IA, ou sans IA : je maîtrise la suite Adobe.</p></div>
+      <div class="card"><p class="label mute tl" data-t="i6l">Outils</p><ul class="tags"><li>Claude Code</li><li>ChatGPT</li><li>Copilot</li><li>Grok</li><li>Gemini</li><li>Higgsfield</li><li>Artlist</li><li>Firefly</li><li>Veed</li><li>Adobe Creative Cloud</li></ul></div>
+    </div>
+  </section>
+
+  <section id="offre">
+    <h2 class="h2"><small class="label" data-t="o_k">Marketing &amp; Business Support Manager · Wavre</small><span data-t="o_h">Votre offre, mes preuves</span></h2>
+    <div class="match">
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r1q">Marketing automation</span></p><p class="a" data-t="r1a">Différents outils CRM maîtrisés et utilisés depuis 2016, tels que Brevo ou HubSpot. Gestion de bases de données dans le respect du RGPD, conception d'e-mailings (HTML et WYSIWYG), envoi de newsletters B2C et B2B pour différentes marques belges, en FR/NL.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r2q">L'IA pour les magasins et le reporting</span></p><p class="a" data-t="r2a">La plupart de mes tâches sont aujourd'hui réalisées avec l'aide d'outils IA : principalement Claude Code, mais j'ai également travaillé avec ChatGPT, Copilot et Gemini. Maîtrise complète de GA4 et d'autres outils d'analyse, mais les reportings sont désormais réalisés sur mesure par IA.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r3q">Réseaux sociaux et plan annuel</span></p><p class="a" data-t="r3a">Au Lombard : plus de 200 000 abonnés cumulés et des vidéos qui génèrent plusieurs millions de vues. Je maîtrise Meta Ads, TikTok, Snapchat, YouTube, Google Ads et GA4. J'ai été community manager pour un grand nombre de pages Facebook (magasins indépendants) entre 2014 et 2020.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r4q">Accompagner un réseau de magasins</span></p><p class="a" data-t="r4a">J'aide nos auteurs et éditeurs dans leur stratégie digitale. Précédemment web marketeer pour une coopérative de 150 magasins indépendants répartis dans toute la Belgique. Community management, formation et accompagnement des magasins, dans les deux langues.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r5q">Marque propre</span></p><p class="a" data-t="r5a">Expérience en conception d'identité visuelle et en stratégie de marque pour des PME, mais aussi pour des marques nationales (expérience en agence de communication). Accompagnement du développement de marques propres (peinture, outillage) et conception de chartes graphiques.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r6q">Initiative, précision, prise de parole</span></p><p class="a" data-t="r6a">Agence et gestion de projets : un budget à consolider, un planning à tenir, des clients à convaincre. Chez Meno, j'ai formé les magasins aux réseaux sociaux.</p></div>
+      <div class="row"><p class="q"><svg class="paw" aria-hidden="true"><use href="#paw"/></svg><span data-t="r7q">Néerlandais, français, anglais</span></p><p class="a" data-t="r7a">Français langue maternelle, néerlandais B2, anglais B2/C1. Près de quatre ans dans un environnement bilingue chez Meno. Ce site existe en trois langues.</p></div>
+    </div>
+  </section>
+
+  <section id="pourquoi">
+    <h2 class="h2"><small class="label" data-t="w_k">Poils &amp; Plumes</small><span data-t="w_h">Pourquoi vous</span></h2>
+    <div class="two">
+      <p class="big" data-t="w_big">Une enseigne de plus de 35 ans, une quarantaine de magasins, et des maîtres qui veulent le meilleur pour leur animal.</p>
+      <div class="cols">
+        <p data-t="w_p1">Votre offre réunit ce que je fais déjà et ce que je veux faire davantage : mettre l'IA au service du marketing et des magasins. C'est un sujet sensible dans l'édition, à cause des droits d'auteur. Chez vous, il peut devenir un vrai levier.</p>
+        <p data-t="w_p2">Je connais les réseaux de magasins indépendants : chez Meno, j'ai vu de près leurs défis, leurs contraintes et ce qui les aide vraiment.</p>
+        <p data-t="w_p3">Et je suis un grand ami des animaux, à poils ou à plumes, avec une légère préférence pour les premiers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="compagnons">
+    <h2 class="h2"><small class="label" data-t="c_k">Un chien · Un chat</small><span data-t="c_h">Virgile &amp; Cléo</span></h2>
+    <div class="two">
+      <p class="big" data-t="c_big">J'ai toujours vécu avec des chiens et des chats.</p>
+      <div class="cols">
+        <p data-t="c_p1">Notre foyer compte aujourd'hui Virgile, un Berger Blanc Suisse de quatre ans, et Cléo, un chat qui vient de fêter ses dix ans.</p>
+        <p data-t="c_p2">Je connais donc de l'intérieur les questions qu'un maître se pose en poussant la porte d'une animalerie. Nul doute que tous deux seraient très heureux de cette opportunité chez Poils &amp; Plumes.</p>
+      </div>
+    </div>
+    <div class="pets">
+      <figure class="pet">
+        <img src="img/virgile.jpg" width="1200" height="900" loading="lazy" alt="Virgile, Berger Blanc Suisse, couché dans l'herbe">
+        <figcaption><b>Virgile</b><span class="mute" data-t="pet1">Berger Blanc Suisse · 4 ans</span></figcaption>
+      </figure>
+      <figure class="pet">
+        <img src="img/cleo.jpg" width="1200" height="900" loading="lazy" alt="Cléo, chat gris et blanc, endormi sur un coussin">
+        <figcaption><b>Cléo</b><span class="mute" data-t="pet2">Chat · 10 ans</span></figcaption>
+      </figure>
+    </div>
+    <div class="album">
+      <img src="img/virgile-dos.jpg" width="700" height="700" loading="lazy" alt="Virgile allongé dans l'herbe, la langue pendante">
+      <img src="img/duo.jpg" width="700" height="700" loading="lazy" alt="Quentin assis avec Virgile">
+      <img src="img/cleo-dos.jpg" width="700" height="700" loading="lazy" alt="Cléo allongé sur le dos dans le canapé">
+    </div>
+  </section>
+
+  <section id="parcours">
+    <h2 class="h2"><small class="label" data-t="p_k">Depuis 2012</small><span data-t="p_h">Parcours</span></h2>
+    <div class="road">
+      <article class="stage now">
+        <div class="when label"><b>04.2021 → <span class="live" data-t="now">auj.</span></b><span class="mute">Bruxelles</span></div>
+        <div><h3><a class="co" href="https://www.lelombard.com/" target="_blank" rel="noopener">Le Lombard<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="l_role">Digital Marketing Manager</p></div>
+        <ul>
+          <li data-t="l0">Audience : plus de 200 000 abonnés cumulés sur les réseaux, construits de zéro, et des vidéos à plusieurs millions de vues.</li>
+          <li data-t="l1">IA : la plupart de mes tâches sont réalisées avec Claude Code, ChatGPT et Copilot.</li>
+          <li data-t="l2">Lancements : campagnes pilotées avec l'agence, du brief et du budget jusqu'au bilan chiffré.</li>
+          <li data-t="l3">Médias payants : Meta, TikTok, Snapchat et Google Ads, suivis dans des rapports chiffrés.</li>
+          <li data-t="l4">Web et communauté : webmaster de lelombard.com et thorgal.com, animation avec Agorapulse, gestion des situations sensibles.</li>
+        </ul>
+      </article>
+      <article class="stage">
+        <div class="when label"><b>01.2020 → 03.2021</b><span class="mute">Diegem</span></div>
+        <div><h3><a class="co" href="https://www.addretail.com/" target="_blank" rel="noopener">AddRetail<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="f_role">Project &amp; Creative Manager · PubliFast</p></div>
+        <ul>
+          <li data-t="f1">Sites WordPress créés pour des clients.</li>
+          <li data-t="f2">Campagnes Facebook et LinkedIn Ads, animation de communautés.</li>
+          <li data-t="f3">E-mailings HTML : conception et rédaction pour des marques belges.</li>
+          <li data-t="f4">Relation client, prospection et pilotage des projets.</li>
+        </ul>
+      </article>
+      <article class="stage">
+        <div class="when label"><b>03.2016 → 12.2019</b><span class="mute">Nivelles</span></div>
+        <div><h3><a class="co" href="https://www.meno.be/fr/home" target="_blank" rel="noopener">Meno Group<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="m_role">Web marketeer · coopérative de magasins indépendants</p></div>
+        <ul>
+          <li data-t="m1">Web : rédaction SEO et webdesign de 4 sites pour 150 magasins.</li>
+          <li data-t="m2">Magasins : community management, Facebook Ads, formation et accompagnement.</li>
+          <li data-t="m3">E-mailing : mise en page, contenu et base de données, en FR et NL.</li>
+          <li data-t="m4">E-commerce : mises à jour de prix, expérience utilisateur, Google Analytics.</li>
+        </ul>
+      </article>
+      <article class="stage small">
+        <div class="when label"><b>01.2015 → 09.2015</b><span class="mute">Bruxelles</span></div>
+        <div><h3><a class="co" href="https://www.mediamarkt.be/" target="_blank" rel="noopener">Media Markt<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="mm_role">Spécialiste e-content</p></div>
+        <ul><li data-t="mm1">Gestion d'équipe, optimisation de contenu et relation avec les fournisseurs.</li></ul>
+      </article>
+      <article class="stage small">
+        <div class="when label"><b>01.2014 → 10.2014</b><span class="mute">Namur</span></div>
+        <div><h3><a class="co" href="https://www.expansion.be/fr" target="_blank" rel="noopener">Expansion<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="ex_role">Assistant chef de projet</p></div>
+        <ul><li data-t="ex1">Projets de communication, stratégie marketing et organisation d'événements.</li></ul>
+      </article>
+      <article class="stage small">
+        <div class="when label"><b>11.2012 → 12.2013</b><span class="mute">Bruxelles</span></div>
+        <div><h3><a class="co" href="https://www.zenithmedia.com/" target="_blank" rel="noopener">Zenith Media<span aria-hidden="true"> ↗</span></a></h3><p class="role" data-t="z_role">Assistant achat presse</p></div>
+        <ul><li data-t="z1">Media planning, recherche médias et achat d'espaces presse.</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projets">
+    <h2 class="h2"><small class="label" data-t="j_k">Réseaux sociaux · Web</small><span data-t="j_h">Réalisations</span></h2>
+    <p class="label mute subhead first" data-t="grp1">Réseaux sociaux du Lombard</p>
+    <div class="sites">
+      <a class="site" href="https://www.facebook.com/lelombardbd" target="_blank" rel="noopener"><span class="label mute">Facebook</span><b class="hl" data-t="fb_t">12 ans d'expérience</b><span class="url">facebook.com/lelombardbd ↗</span></a>
+      <a class="site" href="https://www.instagram.com/lelombard/" target="_blank" rel="noopener"><span class="label mute">Instagram</span><b class="hl" data-t="ig_t">100k abonnés</b><span class="url">instagram.com/lelombard ↗</span></a>
+      <a class="site" href="https://www.tiktok.com/@lelombard" target="_blank" rel="noopener"><span class="label mute">TikTok</span><b class="hl" data-t="tt_t">20 millions de vues</b><span class="url">tiktok.com/@lelombard ↗</span></a>
+      <a class="site" href="https://www.youtube.com/c/%C3%89ditionsLeLombard" target="_blank" rel="noopener"><span class="label mute">YouTube</span><b class="hl" data-t="yt_t">Motion design et Ads</b><span class="url">youtube.com/Éditions Le Lombard ↗</span></a>
+    </div>
+    <p class="label mute subhead" data-t="grp2">Sites gérés en tant que webmaster</p>
+    <div class="sites">
+      <a class="site" href="https://www.lelombard.com/" target="_blank" rel="noopener"><span class="label mute" data-t="cur">Géré actuellement</span><b>Le Lombard</b><span class="url">lelombard.com ↗</span></a>
+      <a class="site" href="https://www.thorgal.com/" target="_blank" rel="noopener"><span class="label mute" data-t="cur">Géré actuellement</span><b>Thorgal</b><span class="url">thorgal.com ↗</span></a>
+      <a class="site" href="https://www.meno.be/" target="_blank" rel="noopener"><span class="label mute" data-t="old">Géré précédemment</span><b>Meno</b><span class="url">meno.be ↗</span></a>
+      <a class="site" href="https://www.handyhome.be/" target="_blank" rel="noopener"><span class="label mute" data-t="old">Géré précédemment</span><b>HandyHome</b><span class="url">handyhome.be ↗</span></a>
+      <a class="site" href="https://www.menopro.be/" target="_blank" rel="noopener"><span class="label mute" data-t="old">Géré précédemment</span><b>MenoPro</b><span class="url">menopro.be ↗</span></a>
+      <a class="site" href="https://www.mediamarkt.be/" target="_blank" rel="noopener"><span class="label mute" data-t="old">Géré précédemment</span><b>Media Markt</b><span class="url">mediamarkt.be ↗</span></a>
+    </div>
+    <p class="label mute subhead" data-t="wp_k">Sites WordPress conçus et mis en ligne</p>
+    <div class="sites">
+      <a class="site" href="https://unjourencouleurs.be/" target="_blank" rel="noopener"><span class="label mute" data-t="x1k">Organisation de mariages</span><b>Un jour en couleurs</b><span class="url">unjourencouleurs.be ↗</span></a>
+      <a class="site" href="https://lesponctuelles.be/" target="_blank" rel="noopener"><span class="label mute" data-t="x2k">ASBL littéraire</span><b>Les Ponctuelles</b><span class="url">lesponctuelles.be ↗</span></a>
+      <a class="site" href="https://guillaumetessaro.be/" target="_blank" rel="noopener"><span class="label mute" data-t="x3k">Chauffage et sanitaire</span><b>Guillaume Tessaro</b><span class="url">guillaumetessaro.be ↗</span></a>
+      <a class="site" href="https://marcherman.be/" target="_blank" rel="noopener"><span class="label mute" data-t="x4k">Humoriste · vidéos · boutique</span><b>Marc Herman</b><span class="url">marcherman.be ↗</span></a>
+    </div>
+  </section>
+
+  <section id="apropos">
+    <h2 class="h2"><small class="label" data-t="a_k">Famille · Passions · Caractère</small><span data-t="a_h">À propos de moi</span></h2>
+    <div class="two">
+      <p class="big" data-t="a_big">Marié, papa d'une petite fille. Le reste du temps : voyager, lire, dessiner et rire.</p>
+      <div class="cols">
+        <p data-t="a_p">Je suis curieux de tout ce qui se crée : un bâtiment, une scène, un livre, un dessin. J'aime les promenades avec mon chien, les soirées entre amis autour d'une table de poker.</p>
+        <div><p class="label mute tl" data-t="a2l">Ce que j'aime</p>
+        <ul class="tags" data-t="a2r"><li>Les animaux</li><li>Voyager</li><li>Lecture</li><li>Dessin</li><li>Architecture et design</li><li>One-man show et théâtre</li><li>Poker</li><li>Soirées entre amis</li></ul></div>
+        <div><p class="label mute tl" data-t="a3l">Caractère</p>
+        <ul class="tags" data-t="a3r"><li>Sociable</li><li>Compétitif</li><li>Pragmatique</li><li>Esprit d'initiative</li><li>Humour noir</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outils">
+    <h2 class="h2"><small class="label" data-t="b_k">IA · Social · Paid · Analytics · Création</small><span data-t="b_h">Boîte à outils</span></h2>
+    <div class="tools">
+      <div><h3 class="label" data-t="b0">Intelligence artificielle</h3><ul><li>Claude Code</li><li>ChatGPT</li><li>Copilot</li><li>Grok · Gemini</li><li>Higgsfield · Artlist</li><li>Firefly · Veed</li></ul></div>
+      <div><h3 class="label" data-t="b1">Publication et social</h3><ul><li>Meta Business Suite</li><li>TikTok Business Manager</li><li>Agorapulse</li><li>Hootsuite</li></ul></div>
+      <div><h3 class="label" data-t="b2">Médias payants</h3><ul><li>Meta Ads · Google Ads</li><li>TikTok Ads · Snapchat Ads</li><li>YouTube · LinkedIn Ads</li></ul></div>
+      <div><h3 class="label" data-t="b4">Création et web</h3><ul><li>Adobe Creative Cloud</li><li>WordPress</li><li>HTML / CSS</li><li>Google Analytics 4</li></ul></div>
+      <div><h3 class="label" data-t="b5">Langues</h3><ul><li data-t="b5a">Français <small>langue maternelle</small></li><li data-t="b5b">Néerlandais <small>B2</small></li><li data-t="b5c">Anglais <small>B2/C1</small></li></ul></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="box">
+      <h2 class="h2"><small class="label" data-t="k_k">Candidature Poils &amp; Plumes</small><span data-t="k_h">Parlons-en.</span></h2>
+      <div class="row">
+        <span class="mail" id="mail">quentin.michel@outlook.com</span>
+        <button class="btn" type="button" id="copy" data-t="copy">Copier l'adresse</button>
+        <a class="btn solid" href="https://www.linkedin.com/in/quentin-michel/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="label mute">
+    <span>Quentin Michel</span>
+    <span data-t="foot">Site créé pour la candidature Poils &amp; Plumes</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var NL = {
+    soc: "Wandeling", n_offer: "Vacature", n_ai: "AI", n_pets: "Virgile &amp; Cléo", n_road: "Loopbaan", n_work: "Projecten", n_contact: "Contact",
+    tag: "Sollicitatie · Marketing &amp; Business Support Manager, Poils &amp; Plumes",
+    lead: "Digital Marketing Manager bij Éditions du Lombard. Een Zwitsers zakmes van webmarketing: sociale media, campagnes, e-mailing, websites en AI-tools. En het baasje van Virgile en Cléo.",
+    cta1: "Bekijk de match met de vacature", cta2: "Contact opnemen",
+    s1l: "Huidige functie", s1v: "Digital Marketing Manager, Le Lombard", s2l: "In het vak", s2v: "Sinds 2012",
+    s6l: "Opgebouwd bereik", s6v: "200.000+ volgers", s3l: "Specialiteiten", s3v: "Sociale media · AI · Web",
+    s4l: "Talen", s5l: "Thuis", s5v: "Een hond, een kat",
+    o_k: "Marketing &amp; Business Support Manager · Waver", o_h: "Uw vacature, mijn bewijzen",
+    r1q: "Marketing automation", r1a: "Verschillende CRM-tools beheerst en gebruikt sinds 2016, zoals Brevo of HubSpot. Databasebeheer conform de AVG, ontwerp van e-mailings (HTML en WYSIWYG), verzending van B2C- en B2B-nieuwsbrieven voor verschillende Belgische merken, in FR/NL.",
+    r2q: "AI voor de winkels en de rapportering", r2a: "De meeste van mijn taken voer ik vandaag uit met behulp van AI-tools: vooral Claude Code, maar ik heb ook gewerkt met ChatGPT, Copilot en Gemini. Volledige beheersing van GA4 en andere analysetools, maar de rapporten worden nu op maat gemaakt door AI.",
+    r3q: "Sociale media en jaarplan", r3a: "Bij Le Lombard: meer dan 200.000 volgers samen en video's die meerdere miljoenen weergaven halen. Ik beheers Meta Ads, TikTok, Snapchat, YouTube, Google Ads en GA4. Tussen 2014 en 2020 was ik community manager voor een groot aantal Facebook-pagina's (zelfstandige winkels).",
+    r4q: "Een winkelnetwerk ondersteunen", r4a: "Ik help onze auteurs en uitgevers met hun digitale strategie. Eerder web marketeer voor een coöperatie van 150 zelfstandige winkels verspreid over heel België. Community management, opleiding en begeleiding van de winkels, in beide talen.",
+    r5q: "Eigen merk", r5a: "Ervaring met het ontwerpen van visuele identiteiten en merkstrategie voor kmo's, maar ook voor nationale merken (ervaring in een communicatiebureau). Begeleiding van de ontwikkeling van eigen merken (verf, gereedschap) en ontwerp van huisstijlgidsen.",
+    r6q: "Initiatief, precisie, het woord nemen", r6a: "Bureau en projectbeheer: een budget bewaken, een planning halen, klanten overtuigen. Bij Meno heb ik de winkels opgeleid in sociale media.",
+    r7q: "Nederlands, Frans, Engels", r7a: "Frans als moedertaal, Nederlands B2, Engels B2/C1. Bijna vier jaar in een tweetalige omgeving bij Meno. Deze site bestaat in drie talen.",
+    i_k: "Claude Code · ChatGPT · Copilot", i_h: "AI, elke dag",
+    i0h: "Deze site is gemaakt met Claude Code.", i0p: "Design, teksten in drie talen en publicatie: ik stuur, de AI voert uit, ik lees na en verbeter.",
+    i1h: "Webcontent", i1p: "Invoeren van nieuws, evenementen en citaten op de website.",
+    i2h: "Sociale media", i2p: "Video's en fotocarrousels maken, interviews en trailers monteren.",
+    i3h: "Documenten", i3p: "Opmaak van PowerPoint-presentaties en pdf's.",
+    i4h: "Websites", i4p: "Volledige websites bouwen, van ontwerp tot publicatie.",
+    i5h: "Beeld, video, 3D", i5p: "Generatie met AI, of zonder AI: ik beheers de Adobe-suite.",
+    i6l: "Tools",
+    w_k: "Poils &amp; Plumes", w_h: "Waarom u",
+    w_big: "Een keten van meer dan 35 jaar, een veertigtal winkels, en baasjes die het beste willen voor hun dier.",
+    w_p1: "Uw vacature brengt samen wat ik al doe en wat ik meer wil doen: AI inzetten voor de marketing en de winkels. In de uitgeverswereld ligt dat gevoelig, door het auteursrecht. Bij u kan het een echte hefboom worden.",
+    w_p2: "Ik ken netwerken van zelfstandige winkels: bij Meno zag ik van dichtbij hun uitdagingen, hun beperkingen en wat hen echt helpt.",
+    w_p3: "En ik ben een grote dierenvriend, met haren of met pluimen, met een lichte voorkeur voor de eerste.",
+    c_k: "Een hond · Een kat", c_h: "Virgile &amp; Cléo", c_big: "Ik heb altijd met honden en katten samengeleefd.",
+    c_p1: "Ons gezin telt vandaag Virgile, een Zwitserse Witte Herder van vier jaar, en Cléo, een kat die net tien is geworden.",
+    c_p2: "Ik ken dus van binnenuit de vragen die een baasje zich stelt wanneer het een dierenwinkel binnenstapt. Ze zouden allebei ongetwijfeld erg blij zijn met deze kans bij Poils &amp; Plumes.",
+    pet1: "Zwitserse Witte Herder · 4 jaar", pet2: "Kat · 10 jaar",
+    p_k: "Sinds 2012", p_h: "Loopbaan", now: "nu", l_role: "Digital Marketing Manager",
+    l0: "Bereik: meer dan 200.000 volgers samen op sociale media, vanaf nul opgebouwd, en video's met meerdere miljoenen weergaven.",
+    l1: "AI: de meeste van mijn taken voer ik uit met Claude Code, ChatGPT en Copilot.",
+    l2: "Lanceringen: campagnes aangestuurd met het bureau, van briefing en budget tot becijferde evaluatie.",
+    l3: "Betaalde media: Meta, TikTok, Snapchat en Google Ads, opgevolgd in rapporten met cijfers.",
+    l4: "Web en community: webmaster van lelombard.com en thorgal.com, community management met Agorapulse, omgaan met gevoelige situaties.",
+    f_role: "Project &amp; Creative Manager · PubliFast", f1: "WordPress-sites gemaakt voor klanten.", f2: "Campagnes op Facebook en LinkedIn Ads, community management.",
+    f3: "HTML-mailings: ontwerp en copywriting voor Belgische merken.", f4: "Klantrelatie, prospectie en projectopvolging.",
+    m_role: "Web marketeer · coöperatie van zelfstandige winkels", m1: "Web: SEO-copywriting en webdesign van 4 sites voor 150 winkels.",
+    m2: "Winkels: community management, Facebook Ads, opleiding en begeleiding.", m3: "Mailings: opmaak, inhoud en database, in FR en NL.",
+    m4: "E-commerce: prijsupdates, gebruikerservaring, Google Analytics.",
+    mm_role: "E-content specialist", mm1: "Teambeheer, contentoptimalisatie en contact met leveranciers.",
+    ex_role: "Assistent projectmanager", ex1: "Communicatieprojecten, marketingstrategie en organisatie van evenementen.",
+    z_role: "Assistent printbuyer", z1: "Mediaplanning, mediaonderzoek en aankoop van persruimte.",
+    j_k: "Sociale media · Web", j_h: "Realisaties", grp1: "Sociale kanalen van Le Lombard",
+    fb_t: "12 jaar ervaring", ig_t: "100K volgers", tt_t: "20 miljoen weergaven", yt_t: "Motion design en Ads",
+    grp2: "Websites beheerd als webmaster", cur: "Momenteel beheerd", old: "Eerder beheerd", wp_k: "WordPress-sites ontworpen en gelanceerd",
+    x1k: "Huwelijksplanning", x2k: "Literaire vzw", x3k: "Verwarming en sanitair", x4k: "Komiek · video's · winkel",
+    a_k: "Gezin · Passies · Karakter", a_h: "Over mij", a_big: "Getrouwd, vader van een dochtertje. De rest van de tijd: reizen, lezen, tekenen en lachen.",
+    a_p: "Ik ben nieuwsgierig naar alles wat gemaakt wordt: een gebouw, een toneel, een boek, een tekening. Ik hou van wandelingen met mijn hond en van vriendenavonden rond een pokertafel.",
+    a2l: "Wat ik graag doe", a2r: "<li>Dieren</li><li>Reizen</li><li>Lezen</li><li>Tekenen</li><li>Architectuur en design</li><li>One-manshows en theater</li><li>Poker</li><li>Avonden met vrienden</li>",
+    a3l: "Karakter", a3r: "<li>Sociaal</li><li>Competitief</li><li>Pragmatisch</li><li>Zin voor initiatief</li><li>Zwarte humor</li>",
+    b_k: "AI · Social · Paid · Analytics · Creatie", b_h: "Toolbox", b0: "Artificiële intelligentie",
+    b1: "Publicatie en social", b2: "Betaalde media", b4: "Creatie en web", b5: "Talen",
+    b5a: "Frans <small>moedertaal</small>", b5b: "Nederlands <small>B2</small>", b5c: "Engels <small>B2/C1</small>",
+    k_k: "Sollicitatie Poils &amp; Plumes", k_h: "Laten we praten.", copy: "Adres kopiëren", copied: "Gekopieerd",
+    foot: "Site gemaakt voor de sollicitatie bij Poils &amp; Plumes"
+  };
+  var EN = {
+    soc: "Walk", n_offer: "The role", n_ai: "AI", n_pets: "Virgile &amp; Cléo", n_road: "Career", n_work: "Work", n_contact: "Contact",
+    tag: "Application · Marketing &amp; Business Support Manager, Poils &amp; Plumes",
+    lead: "Digital Marketing Manager at Éditions du Lombard. A Swiss army knife of web marketing: social media, campaigns, e-mailing, websites and AI tools. And the owner of Virgile and Cléo.",
+    cta1: "See how I match the role", cta2: "Get in touch",
+    s1l: "Current role", s1v: "Digital Marketing Manager, Le Lombard", s2l: "In the trade", s2v: "Since 2012",
+    s6l: "Audience built", s6v: "200,000+ followers", s3l: "Specialities", s3v: "Social media · AI · Web",
+    s4l: "Languages", s5l: "At home", s5v: "One dog, one cat",
+    o_k: "Marketing &amp; Business Support Manager · Wavre", o_h: "Your brief, my proof",
+    r1q: "Marketing automation", r1a: "Several CRM tools mastered and used since 2016, such as Brevo or HubSpot. Database management in line with GDPR, e-mailing design (HTML and WYSIWYG), B2C and B2B newsletters sent for various Belgian brands, in FR/NL.",
+    r2q: "AI for the shops and reporting", r2a: "Most of my tasks are now done with the help of AI tools: mainly Claude Code, but I have also worked with ChatGPT, Copilot and Gemini. Full command of GA4 and other analytics tools, but reports are now custom-built by AI.",
+    r3q: "Social media and annual plan", r3a: "At Le Lombard: over 200,000 followers combined and videos that generate several million views. I master Meta Ads, TikTok, Snapchat, YouTube, Google Ads and GA4. Between 2014 and 2020 I was community manager for a large number of Facebook pages (independent stores).",
+    r4q: "Supporting a network of shops", r4a: "I help our authors and editors with their digital strategy. Previously web marketeer for a cooperative of 150 independent stores across Belgium. Community management, training and support for the stores, in both languages.",
+    r5q: "Private label", r5a: "Experience in visual identity design and brand strategy for SMEs as well as national brands (communication agency experience). Supported the development of private labels (paint, tools) and designed brand guidelines.",
+    r6q: "Initiative, precision, speaking up", r6a: "Agency and project management: a budget to keep, a schedule to meet, clients to convince. At Meno, I trained the stores in social media.",
+    r7q: "Dutch, French, English", r7a: "French mother tongue, Dutch B2, English B2/C1. Nearly four years in a bilingual environment at Meno. This site exists in three languages.",
+    i_k: "Claude Code · ChatGPT · Copilot", i_h: "AI, every day",
+    i0h: "This site was built with Claude Code.", i0p: "Design, copy in three languages and publishing: I steer, the AI executes, I review and correct.",
+    i1h: "Web content", i1p: "Entering news, events and quotes on the website.",
+    i2h: "Social media", i2p: "Creating videos and photo carousels, editing interviews and trailers.",
+    i3h: "Documents", i3p: "Laying out PowerPoint presentations and PDFs.",
+    i4h: "Websites", i4p: "Building complete websites, from mock-up to launch.",
+    i5h: "Image, video, 3D", i5p: "AI-assisted generation, or without AI: I master the Adobe suite.",
+    i6l: "Tools",
+    w_k: "Poils &amp; Plumes", w_h: "Why you",
+    w_big: "A chain with over 35 years behind it, some forty shops, and owners who want the best for their pet.",
+    w_p1: "Your role brings together what I already do and what I want to do more of: putting AI to work for marketing and for the shops. It is a sensitive topic in publishing, because of copyright. With you, it can become a real lever.",
+    w_p2: "I know networks of independent stores: at Meno, I saw up close their challenges, their constraints and what really helps them.",
+    w_p3: "And I am a great friend of animals, furry or feathered, with a slight preference for the first.",
+    c_k: "One dog · One cat", c_h: "Virgile &amp; Cléo", c_big: "I have always lived with dogs and cats.",
+    c_p1: "Our household currently includes Virgile, a four-year-old White Swiss Shepherd, and Cléo, a cat who has just turned ten.",
+    c_p2: "So I know from the inside the questions an owner asks when walking into a pet shop. No doubt both of them would be very happy about this opportunity at Poils &amp; Plumes.",
+    pet1: "White Swiss Shepherd · 4 years old", pet2: "Cat · 10 years old",
+    p_k: "Since 2012", p_h: "Career", now: "now", l_role: "Digital Marketing Manager",
+    l0: "Audience: over 200,000 followers combined across social, built from zero, and videos with several million views.",
+    l1: "AI: most of my tasks are done with Claude Code, ChatGPT and Copilot.",
+    l2: "Launches: campaigns run with the agency, from brief and budget to a results report.",
+    l3: "Paid media: Meta, TikTok, Snapchat and Google Ads, tracked in reports with real numbers.",
+    l4: "Web and community: webmaster of lelombard.com and thorgal.com, community management with Agorapulse, handling sensitive situations.",
+    f_role: "Project &amp; Creative Manager · PubliFast", f1: "WordPress sites built for clients.", f2: "Facebook and LinkedIn Ads campaigns, community management.",
+    f3: "HTML e-mailings: design and copywriting for Belgian brands.", f4: "Client relations, prospecting and project management.",
+    m_role: "Web marketeer · cooperative of independent stores", m1: "Web: SEO copywriting and web design for 4 sites serving 150 stores.",
+    m2: "Stores: community management, Facebook Ads, training and support.", m3: "E-mailing: layout, content and database, in FR and NL.",
+    m4: "E-commerce: price updates, user experience, Google Analytics.",
+    mm_role: "E-content specialist", mm1: "Team management, content optimisation and supplier contact.",
+    ex_role: "Project manager assistant", ex1: "Communication projects, marketing strategy and event organisation.",
+    z_role: "Print buyer assistant", z1: "Media planning, media research and print buying.",
+    j_k: "Social media · Web", j_h: "Selected work", grp1: "Le Lombard's social channels",
+    fb_t: "12 years of experience", ig_t: "100K followers", tt_t: "20 million views", yt_t: "Motion design and Ads",
+    grp2: "Sites run as webmaster", cur: "Currently managed", old: "Previously managed", wp_k: "WordPress sites designed and launched",
+    x1k: "Wedding planning", x2k: "Literary non-profit", x3k: "Heating and plumbing", x4k: "Comedian · videos · shop",
+    a_k: "Family · Passions · Character", a_h: "About me", a_big: "Married, dad to a little girl. The rest of the time: travelling, reading, drawing and laughing.",
+    a_p: "I'm curious about anything that gets made: a building, a stage, a book, a drawing. I like walks with my dog and evenings with friends around a poker table.",
+    a2l: "What I enjoy", a2r: "<li>Animals</li><li>Travel</li><li>Reading</li><li>Drawing</li><li>Architecture and design</li><li>One-man shows and theatre</li><li>Poker</li><li>Evenings with friends</li>",
+    a3l: "Character", a3r: "<li>Sociable</li><li>Competitive</li><li>Pragmatic</li><li>Initiative</li><li>Dark humour</li>",
+    b_k: "AI · Social · Paid · Analytics · Creative", b_h: "Toolbox", b0: "Artificial intelligence",
+    b1: "Publishing and social", b2: "Paid media", b4: "Creative and web", b5: "Languages",
+    b5a: "French <small>mother tongue</small>", b5b: "Dutch <small>B2</small>", b5c: "English <small>B2/C1</small>",
+    k_k: "Poils &amp; Plumes application", k_h: "Let's talk.", copy: "Copy address", copied: "Copied",
+    foot: "Site made for the Poils &amp; Plumes application"
+  };
+  var dict = { fr: {}, nl: NL, en: EN };
+  var nodes = document.querySelectorAll("[data-t]");
+  nodes.forEach(function (el) { dict.fr[el.getAttribute("data-t")] = el.innerHTML; });
+  dict.fr.copied = "Copié";
+
+  function setLang(l) {
+    var d = dict[l] || dict.fr;
+    nodes.forEach(function (el) {
+      var k = el.getAttribute("data-t");
+      el.innerHTML = d[k] !== undefined ? d[k] : dict.fr[k];
+    });
+    document.documentElement.lang = l;
+    document.querySelectorAll("[data-lang]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === l));
+    });
+    try { localStorage.setItem("qm-pp-lang", l); } catch (e) {}
+  }
+  var start = "";
+  try { start = localStorage.getItem("qm-pp-lang") || ""; } catch (e) {}
+  if (!dict[start]) {
+    var h = (location.hash || "").replace("#", "");
+    var nav = ((navigator.language || "fr").slice(0, 2)).toLowerCase();
+    start = dict[h] ? h : (dict[nav] ? nav : "fr");
+  }
+  if (start !== "fr") setLang(start);
+  document.querySelectorAll("[data-lang]").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.getAttribute("data-lang")); });
+  });
+
+  document.querySelectorAll("[data-go]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var t = document.getElementById(a.getAttribute("data-go"));
+      if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  var paws = document.querySelectorAll("#paws svg"), val = document.getElementById("socval");
+  function onScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(100, Math.max(0, Math.round(window.scrollY / max * 100))) : 0;
+    var n = Math.round(p / 100 * paws.length);
+    paws.forEach(function (s, i) { s.classList.toggle("on", i < n); });
+    val.textContent = p + " %";
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  onScroll();
+
+  var copy = document.getElementById("copy");
+  copy.addEventListener("click", function () {
+    var l = document.documentElement.lang || "fr";
+    var mail = document.getElementById("mail");
+    function sel() { var r = document.createRange(); r.selectNodeContents(mail); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+    function done() {
+      copy.textContent = (dict[l] && dict[l].copied) || "Copié";
+      setTimeout(function () { copy.innerHTML = (dict[l] && dict[l].copy) || dict.fr.copy; }, 1600);
+    }
+    try { navigator.clipboard.writeText(mail.textContent).then(done, sel); } catch (e) { sel(); }
+  });
+})();
+</script>
+</body>
+</html>
