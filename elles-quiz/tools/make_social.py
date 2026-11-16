@@ -73,9 +73,9 @@ def group_slide(name, cta, with_dots=None, sub=None):
     g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 760)
     halo(im, (255, 79, 147), (140, 240, 940, 900)); paste(im, g, (W - g.width) // 2, 235)
     logo(im); d = ImageDraw.Draw(im, "RGBA")
-    title(d, 955, 96)
-    if sub: center(d, 1178, sub, F(nun, 34), (255, 255, 255))
-    pill(d, 1206 if not sub else 1232, cta, F(fred, 38))
+    title(d, 925 if sub else 955, 96)
+    if sub: center(d, 1152, sub, F(fred, 36), (255, 255, 255))
+    pill(d, 1206 if not sub else 1212, cta, F(fred, 40))
     if with_dots is not None: dots(d, with_dots)
     im.convert("RGB").save(f"social/{name}", quality=92); print(name)
 
@@ -103,4 +103,4 @@ center(d, 1222, f"Tome 4 · Intemporelle(s) · en librairie", F(nun, 32), (255, 
 im.convert("RGB").save("social/carrousel_8_fais-le-test.jpg", quality=92); print(8)
 
 # ---------- Image unique
-group_slide("photo_unique.jpg", "Fais le test · elles.lelombard.com")
+group_slide("photo_unique.jpg", "elles.lelombard.com", sub="Fais le test")
