@@ -22,20 +22,20 @@ body { font: 400 var(--fs)/1.5 "Nunito", "Trebuchet MS", Arial, sans-serif; -web
 .paws { display: flex; gap: 1.4mm; font-size: 10pt; color: var(--accent); }
 .paws svg:nth-child(odd) { transform: rotate(-18deg) translateY(-.5mm); }
 .paws svg:nth-child(even) { transform: rotate(18deg) translateY(.5mm); }
-.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 6mm; margin-top: 5mm; }
+.head { display: flex; justify-content: space-between; align-items: flex-start; gap: 6mm; margin-top: 5mm; }
 .tag { display: inline-flex; align-items: center; gap: 2mm; background: var(--card); border: .25mm solid var(--line); border-radius: 99mm; padding: 1.6mm 3.6mm; color: var(--brand); }
 .tag .paw { color: var(--accent); font-size: 9pt; }
 .name { margin: 3mm 0 0; font: 800 50pt/.8 "Baloo 2", sans-serif; letter-spacing: -.02em; }
 .name span { display: block; }
 .name .first { color: var(--brand); }
-.photo { width: 38mm; height: 38mm; object-fit: cover; border: 1.4mm solid var(--card); border-radius: 44% 56% 52% 48% / 55% 44% 56% 45%; box-shadow: 0 2mm 6mm rgba(43,16,56,.16); flex: none; }
+.photo { width: 50mm; height: 50mm; margin-top: -16mm; object-fit: cover; border: 1.4mm solid var(--card); border-radius: 44% 56% 52% 48% / 55% 44% 56% 45%; box-shadow: 0 2mm 6mm rgba(43,16,56,.16); flex: none; }
 .meta { display: flex; flex-wrap: wrap; gap: 1.5mm 8mm; margin-top: 5mm; padding: 3mm 4.5mm; background: var(--card); border: .25mm solid var(--line); border-radius: 5mm; }
 .meta p { margin: 0; }
 .meta b { display: block; font-weight: 800; font-size: 8.6pt; letter-spacing: 0; text-transform: none; color: var(--ink); margin-top: .4mm; }
 .body { margin-top: 5mm; flex: 1; min-height: 0; }
 .body p { margin: 0 0 2.5mm; text-align: left; }
 .body .hello { font: 700 14pt/1.1 "Baloo 2", sans-serif; color: var(--brand); margin-bottom: 2.5mm; }
-.sig { margin-top: 3mm !important; font: 800 15pt/1 "Baloo 2", sans-serif; color: var(--brand); }
+.sig { margin-top: 3mm !important; text-align: right !important; font: 800 15pt/1 "Baloo 2", sans-serif; color: var(--brand); }
 .foot { display: flex; justify-content: space-between; align-items: center; gap: 6mm; border-top: .25mm solid var(--line); padding-top: 2.6mm; margin-top: 2mm; }
 """
 L = {
@@ -74,12 +74,11 @@ def page(lang, d):
     paras = "".join(f"<p>{x}</p>" for x in d["p"])
     return f'''<div class="page" lang="{lang}">
   <div class="blob"></div>
-  <div class="top"><span class="mark">QM</span><span class="paws">{PAW*8}</span></div>
+  <div class="top"><span class="paws">{PAW*8}</span></div>
   <div class="head"><div><span class="tag label">{PAW}{d["tag"]}</span><h1 class="name"><span class="first">Quentin</span><span>Michel</span></h1></div>
     <img class="photo" src="../img/duo.jpg" alt=""></div>
   <div class="meta"><p class="label mute">{d["k_to"]}<b>{d["to"]}</b></p><p class="label mute">{d["k_obj"]}<b>{d["obj"]}</b></p><p class="label mute">{d["k_date"]}<b>{d["date"]}</b></p></div>
   <div class="body"><p class="hello">{d["hello"]}</p>{paras}<p>{d["bye"]}</p><p class="sig">Quentin Michel</p></div>
-  <div class="foot label mute"><span>{EMAIL}</span><span>{LINKEDIN}</span><span>{d["place"]}</span></div>
 </div>'''
 html = f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Quentin Michel · Lettre de motivation Poils &amp; Plumes</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap"><style>{CSS}</style></head><body>{"".join(page(k, L[k]) for k in ("fr","nl","en"))}</body></html>'
 (HERE / "letters.html").write_text(html, encoding="utf-8")
