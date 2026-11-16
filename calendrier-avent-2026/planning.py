@@ -70,7 +70,7 @@ COMPOSITIONS = {
         'books': [('9782808218078', -5, 1.0, 5), ('9782808216784', -2, 1.0, 4),
                   ('9782808216821', 3, 1.02, 3), ('9782808214933', 6, 1.02, 2), ('9782808212496', 9, 1.02, 1)],
         'dy': [20, 20, -15, -15, -15],
-        'steps': [0.35, 0.95, 0.32, 0.32], 'h': 460, 'y': 600, 'cx': 590,
+        'steps': [0.35, 0.80, 0.32, 0.32], 'h': 460, 'y': 600, 'cx': 568,   # Dinodyssée glissé sous Pro gamer
     },
     # même mise en page que le jour 16 : M.A.D. 3 devant, 2 et 1 derrière | Holmes vs Lupin 2, puis 1 derrière
     'jour18': {
