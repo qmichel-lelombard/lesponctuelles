@@ -23,7 +23,7 @@ for name in ("track", "stats"):
 files = {}
 for d, _, fs in os.walk(ROOT):
     rel = os.path.relpath(d, ROOT)
-    if rel.split(os.sep)[0] in ("netlify", "tools", "node_modules", ".git", "video") : continue
+    if rel.split(os.sep)[0] in ("netlify", "tools", "node_modules", ".git", "video", "social") : continue
     for f in fs:
         if f.endswith((".docx", ".md", ".py")): continue
         p = os.path.join(d, f); key = "/" + os.path.normpath(os.path.join(rel, f)).replace(os.sep, "/")
