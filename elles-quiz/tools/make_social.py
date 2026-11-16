@@ -60,20 +60,20 @@ def dots(d, i, n=8):
         x = W / 2 + (k - (n - 1) / 2) * 30; r = 7 if k == i else 5
         d.ellipse((x - r, H - 44 - r, x + r, H - 44 + r), fill=(255, 255, 255, 255 if k == i else 110))
 
-def title(d, y, size=104):
+def title(d, y, size=104, lead=1.08):
     f = F(fred, size)
     center(d, y, "Quelle Elle", f, (255, 255, 255))
     # « Elle » en rose
     w = d.textlength("Quelle Elle", font=f); x = (W - w) / 2 + d.textlength("Quelle ", font=f)
     d.text((x, y), "Elle", font=f, fill=(255, 111, 166))
-    center(d, y + size * 1.08, f"se cache en toi{NB}?", f, (255, 255, 255))
+    center(d, y + size * lead, f"se cache en toi{NB}?", f, (255, 255, 255))
 
-def group_slide(name, cta, with_dots=None, sub=None):
+def group_slide(name, cta, with_dots=None, sub=None, gy=235, lead=1.08):
     im = veil(cover("img/bg-rosies-nuit.webp", (.5, .25)), bottom=245, start=.5)
     g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 760)
-    halo(im, (255, 79, 147), (140, 240, 940, 900)); paste(im, g, (W - g.width) // 2, 235)
-    logo(im); d = ImageDraw.Draw(im, "RGBA")
-    title(d, 925 if sub else 955, 96)
+    halo(im, (255, 79, 147), (140, 240, 940, 900)); logo(im); paste(im, g, (W - g.width) // 2, gy)   # le groupe passe devant le logo
+    d = ImageDraw.Draw(im, "RGBA")
+    title(d, (925 if sub else 955) + round(96 * (1.08 - lead)), 96, lead)
     if sub: center(d, 1152, sub, F(fred, 36), (255, 255, 255))
     pill(d, 1206 if not sub else 1212, cta, F(fred, 40))
     if with_dots is not None: dots(d, with_dots)
@@ -103,4 +103,4 @@ center(d, 1222, f"Tome 4 · Intemporelle(s) · en librairie", F(nun, 32), (255, 
 im.convert("RGB").save("social/carrousel_8_fais-le-test.jpg", quality=92); print(8)
 
 # ---------- Image unique
-group_slide("photo_unique.jpg", "elles.lelombard.com", sub="Fais le test")
+group_slide("photo_unique.jpg", "elles.lelombard.com", sub="Fais le test", gy=192, lead=.9)
