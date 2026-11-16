@@ -87,7 +87,6 @@ def group_slide(name, cta, with_dots=None, sub=None, gy=235, lead=1.08, no_diner
     im.convert("RGB").save(f"social/{name}", quality=92); print(name)
 
 # ---------- Carrousel
-group_slide("carrousel_1_couverture.jpg", f"Découvre les 6 Elles")
 for i, (key, name, col, tag) in enumerate(ELLES, 1):
     im = cover("img/bg-pyramides.webp", (.5, .2)); halo(im, col, (120, 260, 960, 1060)); veil(im, bottom=250, start=.56)
     g = Image.open(f"img/{key}.webp").convert("RGBA")
@@ -109,20 +108,26 @@ center(d, 1150, "elles.lelombard.com", F(fred, 46), (255, 255, 255))
 center(d, 1222, f"Tome 4 · Intemporelle(s) · en librairie", F(nun, 32), (255, 220, 235))
 im.convert("RGB").save("social/carrousel_8_fais-le-test.jpg", quality=92); print(8)
 
-# ---------- Image unique : décor d'origine sans le diner (tools/make_bg_sans_diner.py), les Elles posées au sol
-im = veil(cover("social/_fond_sans_diner.png", (.5, .25)), bottom=235, start=.66)
-g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 860); gx, gy = (W - g.width) // 2, 200
-halo(im, (255, 79, 147), (160, 250, 920, 880)); logo(im)
-sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))                           # ombre de contact au sol
-ImageDraw.Draw(sh).ellipse((gx - 30, gy + g.height - 95, gx + g.width + 30, gy + g.height + 20), fill=(30, 8, 50, 150))
-im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(26)))
-paste(im, g, gx, gy)
-# les textes passent devant les Elles : une ombre douce derrière le titre garde sa lisibilité
-ts = Image.new("RGBA", (W, H), (0, 0, 0, 0)); title(ImageDraw.Draw(ts), 1003, 88, .88)
-dark = Image.new("RGBA", (W, H), (24, 10, 52, 255)); dark.putalpha(ts.split()[3].filter(ImageFilter.GaussianBlur(14)).point(lambda v: min(255, int(v * 1.9))))
-im.alpha_composite(dark)
-d = ImageDraw.Draw(im, "RGBA")
-title(d, 1003, 88, .88)
-center(d, 1178, "Fais le test", F(fred, 36), (255, 255, 255))
-pill(d, 1232, "elles.lelombard.com", F(fred, 40))
-im.convert("RGB").save("social/photo_unique.jpg", quality=92); print("photo_unique.jpg")
+# ---------- Image unique et couverture du carrousel : décor d'origine sans le diner (tools/make_bg_sans_diner.py),
+#            les Elles posées au sol, devant le logo et derrière les textes
+def hero(name, cta, sub=None):
+    im = veil(cover("social/_fond_sans_diner.png", (.5, .25)), bottom=235, start=.66)
+    g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 860); gx, gy = (W - g.width) // 2, 200
+    halo(im, (255, 79, 147), (160, 250, 920, 880)); logo(im)
+    sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))                           # ombre de contact au sol
+    ImageDraw.Draw(sh).ellipse((gx - 30, gy + g.height - 95, gx + g.width + 30, gy + g.height + 20), fill=(30, 8, 50, 150))
+    im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(26)))
+    paste(im, g, gx, gy)
+    ty = 1003 if sub else 1022
+    # les textes passent devant les Elles : une ombre douce derrière le titre garde sa lisibilité
+    ts = Image.new("RGBA", (W, H), (0, 0, 0, 0)); title(ImageDraw.Draw(ts), ty, 88, .88)
+    dark = Image.new("RGBA", (W, H), (24, 10, 52, 255)); dark.putalpha(ts.split()[3].filter(ImageFilter.GaussianBlur(14)).point(lambda v: min(255, int(v * 1.9))))
+    im.alpha_composite(dark)
+    d = ImageDraw.Draw(im, "RGBA")
+    title(d, ty, 88, .88)
+    if sub: center(d, 1178, sub, F(fred, 36), (255, 255, 255))
+    pill(d, 1232 if sub else 1214, cta, F(fred, 40))
+    im.convert("RGB").save(f"social/{name}", quality=92); print(name)
+
+hero("photo_unique.jpg", "elles.lelombard.com", sub="Fais le test")
+hero("carrousel_1_couverture.jpg", "Découvre les 6 Elles")
