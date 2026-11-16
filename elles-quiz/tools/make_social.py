@@ -109,5 +109,16 @@ center(d, 1150, "elles.lelombard.com", F(fred, 46), (255, 255, 255))
 center(d, 1222, f"Tome 4 · Intemporelle(s) · en librairie", F(nun, 32), (255, 220, 235))
 im.convert("RGB").save("social/carrousel_8_fais-le-test.jpg", quality=92); print(8)
 
-# ---------- Image unique
-group_slide("photo_unique.jpg", "elles.lelombard.com", sub="Fais le test", gy=192, lead=.9, no_diner=True)
+# ---------- Image unique : décor d'origine sans le diner (tools/make_bg_sans_diner.py), les Elles posées au sol
+im = veil(cover("social/_fond_sans_diner.png", (.5, .25)), bottom=235, start=.66)
+g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 800); gx, gy = (W - g.width) // 2, 192
+halo(im, (255, 79, 147), (160, 250, 920, 880)); logo(im)
+sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))                           # ombre de contact au sol
+ImageDraw.Draw(sh).ellipse((gx - 30, gy + g.height - 95, gx + g.width + 30, gy + g.height + 20), fill=(30, 8, 50, 150))
+im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(26)))
+paste(im, g, gx, gy)
+d = ImageDraw.Draw(im, "RGBA")
+title(d, 1003, 88, .88)
+center(d, 1178, "Fais le test", F(fred, 36), (255, 255, 255))
+pill(d, 1232, "elles.lelombard.com", F(fred, 40))
+im.convert("RGB").save("social/photo_unique.jpg", quality=92); print("photo_unique.jpg")
