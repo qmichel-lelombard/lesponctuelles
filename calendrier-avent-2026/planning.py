@@ -28,7 +28,7 @@ PLANNING = [
     'jour16',                             # 16 Jian 1-2 | La voie du glaive 1-3 (voir COMPOSITIONS)
     {'serie': ['9782808212588', '9782803676767']},                                   # 17 Mitsuo 2, 1
     'jour18',                             # 18 M.A.D. 1-3 | Sherlock Holmes contre Arsène Lupin 1-2 (voir COMPOSITIONS)
-    ['9782808218078', '9782808216821'],   # 19 Pro gamer 2 + Dinodyssée 3
+    'jour19',                             # 19 Pro gamer 1-2 | Dinodyssée 1-3 (voir COMPOSITIONS)
     ['9782808216760'],                    # 20 Alpha 21 – Caméléon
     ['9782808216937'],                    # 21 Les Enfants de la Résistance 10 – La guerre n'est pas finie
     ['9782808215121', '9782808214421'],   # 22 Aylin 2 + Elsbeth 2
@@ -63,6 +63,13 @@ COMPOSITIONS = {
         'books': [('9782808217071', -5, 1.0, 5), ('9782808211413', -2, 1.0, 4),
                   ('9782808215008', 3, 1.02, 3), ('9782808212144', 6, 1.02, 2), ('9782808211192', 9, 1.02, 1)],
         'dy': [20, 20, -15, -15, -15],       # Jian plus bas, La voie du glaive plus haut
+        'steps': [0.35, 0.95, 0.32, 0.32], 'h': 460, 'y': 600, 'cx': 590,
+    },
+    # même mise en page que le jour 16 : Pro gamer 2 devant, 1 derrière | Dinodyssée 3, puis 2 et 1 derrière
+    'jour19': {
+        'books': [('9782808218078', -5, 1.0, 5), ('9782808216784', -2, 1.0, 4),
+                  ('9782808216821', 3, 1.02, 3), ('9782808214933', 6, 1.02, 2), ('9782808212496', 9, 1.02, 1)],
+        'dy': [20, 20, -15, -15, -15],
         'steps': [0.35, 0.95, 0.32, 0.32], 'h': 460, 'y': 600, 'cx': 590,
     },
     # même mise en page que le jour 16 : M.A.D. 3 devant, 2 et 1 derrière | Holmes vs Lupin 2, puis 1 derrière

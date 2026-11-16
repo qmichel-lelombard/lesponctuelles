@@ -2,19 +2,48 @@
   "theme": "rouge",
   "layout": {
     "y": 600,
-    "h": 520,
-    "overlap": 0.1,
-    "cx": 540
+    "h": 460,
+    "steps": [
+      0.35,
+      0.95,
+      0.32,
+      0.32
+    ],
+    "cx": 590
   },
   "books": [
     {
       "img": "../assets/couvertures/9782808218078-pro-gamer-2-ma-vie-de-dragon.jpg",
-      "angle": -3
+      "angle": -5,
+      "z": 5,
+      "dy": 20
+    },
+    {
+      "img": "../assets/couvertures/9782808216784-pro-gamer-1.jpg",
+      "angle": -2,
+      "z": 4,
+      "dy": 20
     },
     {
       "img": "../assets/couvertures/9782808216821-dinodyssee-3-l-algue-miraculeuse.jpg",
       "angle": 3,
-      "scale": 1.02
+      "z": 3,
+      "scale": 1.02,
+      "dy": -15
+    },
+    {
+      "img": "../assets/couvertures/9782808214933-dinodyssee-2-la-montagne-de-feu.jpg",
+      "angle": 6,
+      "z": 2,
+      "scale": 1.02,
+      "dy": -15
+    },
+    {
+      "img": "../assets/couvertures/9782808212496-dinodyssee-1-les-copains-d-abord.jpg",
+      "angle": 9,
+      "z": 1,
+      "scale": 1.02,
+      "dy": -15
     }
   ],
   "date": {
