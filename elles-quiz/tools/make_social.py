@@ -111,12 +111,16 @@ im.convert("RGB").save("social/carrousel_8_fais-le-test.jpg", quality=92); print
 
 # ---------- Image unique : décor d'origine sans le diner (tools/make_bg_sans_diner.py), les Elles posées au sol
 im = veil(cover("social/_fond_sans_diner.png", (.5, .25)), bottom=235, start=.66)
-g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 800); gx, gy = (W - g.width) // 2, 192
+g = fit(Image.open("img/elles-groupe.webp").convert("RGBA"), 900, 860); gx, gy = (W - g.width) // 2, 200
 halo(im, (255, 79, 147), (160, 250, 920, 880)); logo(im)
 sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))                           # ombre de contact au sol
 ImageDraw.Draw(sh).ellipse((gx - 30, gy + g.height - 95, gx + g.width + 30, gy + g.height + 20), fill=(30, 8, 50, 150))
 im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(26)))
 paste(im, g, gx, gy)
+# les textes passent devant les Elles : une ombre douce derrière le titre garde sa lisibilité
+ts = Image.new("RGBA", (W, H), (0, 0, 0, 0)); title(ImageDraw.Draw(ts), 1003, 88, .88)
+dark = Image.new("RGBA", (W, H), (24, 10, 52, 255)); dark.putalpha(ts.split()[3].filter(ImageFilter.GaussianBlur(14)).point(lambda v: min(255, int(v * 1.9))))
+im.alpha_composite(dark)
 d = ImageDraw.Draw(im, "RGBA")
 title(d, 1003, 88, .88)
 center(d, 1178, "Fais le test", F(fred, 36), (255, 255, 255))
