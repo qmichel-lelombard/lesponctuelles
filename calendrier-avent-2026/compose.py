@@ -33,11 +33,23 @@ def prerendered(path, body_h):
     W, H = src.width + 2 * pad, src.height + pad
     canvas = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     if not own_shadow:
-        sh = Image.new('L', (W, H), 0)
-        ImageDraw.Draw(sh).ellipse((pad + bx0 - bw * .15, pad * 0 + by1 - bw * .06,
-                                    pad + bx0 + bw * .95, by1 + bw * .03), fill=255)
-        sh = sh.filter(ImageFilter.GaussianBlur(bw * .05))
-        shadow = Image.new('RGBA', (W, H), (40, 30, 20, 0)); shadow.putalpha(sh.point(lambda v: int(v * .32)))
+        # ombre qui suit le bord inférieur réel du livre (souvent incliné) :
+        # ombre de contact serrée + ombre portée vers l'arrière-gauche, comme sur le mockup PSD
+        sa = np.asarray(src.getchannel('A')) > 200
+        cols = np.nonzero(sa.any(axis=0))[0][::2]
+        edge = [(pad + x, float(np.nonzero(sa[:, x])[0].max())) for x in cols]
+        lowest = max(y for _, y in edge)
+        edge = [(x, y) for x, y in edge if y > lowest - .2 * src.height]   # ignore les colonnes du bord (antialias)
+        dx, dy = -bw * .22, bw * .045
+        cast = Image.new('L', (W, H), 0)
+        ImageDraw.Draw(cast).polygon(edge + [(x + dx, y + dy) for x, y in reversed(edge)], fill=255)
+        cast = cast.filter(ImageFilter.GaussianBlur(bw * .04))
+        contact = Image.new('L', (W, H), 0)
+        ImageDraw.Draw(contact).line([(x, y + 1) for x, y in edge], fill=255, width=max(2, round(bw * .012)))
+        contact = contact.filter(ImageFilter.GaussianBlur(max(1.5, bw * .008)))
+        al_sh = np.maximum(np.asarray(cast, float) * .25, np.asarray(contact, float) * .5)
+        shadow = Image.new('RGBA', (W, H), (40, 30, 20, 0))
+        shadow.putalpha(Image.fromarray(al_sh.clip(0, 255).astype('uint8')))
         canvas.alpha_composite(shadow)
     canvas.alpha_composite(src, (pad, 0))
     body = Image.new('L', (W, H), 0); body.paste(src.getchannel('A').point(lambda v: 255 if v > 200 else 0), (pad, 0))
