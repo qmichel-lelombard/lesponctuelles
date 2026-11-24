@@ -31,7 +31,7 @@ PLANNING = [
     'jour19',                             # 19 Pro gamer 1-2 | Dinodyssée 1-3 (voir COMPOSITIONS)
     {'serie': ['9782808216760', '9782808214438', '9782808212472']},                  # 20 Alpha 21, 20, 19
     {'serie': ['9782808216937', '9782808210966', '9782808204880']},                  # 21 Les Enfants de la Résistance 10, 9, 8
-    ['9782808215121', '9782808214421'],   # 22 Aylin 2 + Elsbeth 2
+    'jour22',                             # 22 Aylin 1-2 | Elsbeth 1-2 (voir COMPOSITIONS)
     ['9782808218740'],                    # 23 Ducobu 30 – Duco... Bouh !
     ['9782808211260'],                    # 24 Lonesome Dove partie 1
 ]
@@ -71,6 +71,13 @@ COMPOSITIONS = {
                   ('9782808216821', 3, 1.02, 3), ('9782808214933', 6, 1.02, 2), ('9782808212496', 9, 1.02, 1)],
         'dy': [20, 20, -15, -15, -15],
         'steps': [0.35, 0.80, 0.32, 0.32], 'h': 460, 'y': 600, 'cx': 568,   # Dinodyssée glissé sous Pro gamer
+    },
+    # même mise en page que le jour 16 : Aylin 2 devant, 1 derrière | Elsbeth 2, puis 1 derrière
+    'jour22': {
+        'books': [('9782808215121', -5, 1.0, 4), ('9782808212793', -2, 1.0, 3),
+                  ('9782808214421', 3, 1.02, 2), ('9782808211635', 6, 1.02, 1)],
+        'dy': [20, 20, -15, -15],
+        'steps': [0.35, 0.95, 0.35], 'h': 460, 'y': 600, 'cx': 560,
     },
     # même mise en page que le jour 16 : M.A.D. 3 devant, 2 et 1 derrière | Holmes vs Lupin 2, puis 1 derrière
     'jour18': {

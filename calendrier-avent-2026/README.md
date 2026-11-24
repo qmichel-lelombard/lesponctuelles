@@ -38,6 +38,7 @@ Compositions sur mesure : dictionnaire `COMPOSITIONS` de `planning.py` (angle, �
 Jour 16 : Jian 2 devant (-5°), Jian 1 derrière à sa droite (-2°) | La voie du glaive 3, 2, 1 à droite (+3°, +6°, +9°).
 Jour 18 : même mise en page – M.A.D. 3, 2, 1 (-5°, -2°, +1°) | Holmes vs Lupin 2, 1 (+3°, +6°).
 Jour 19 : même mise en page – Pro gamer 2, 1 (-5°, -2°) | Dinodyssée 3, 2, 1 (+3°, +6°, +9°).
+Jour 22 : même mise en page – Aylin 2, 1 (-5°, -2°) | Elsbeth 2, 1 (+3°, +6°).
 
 Versions alternatives : liste `VARIANTES` de `planning.py` (ex. `jour14b` : Resurrection Hill, Little Tulip, New York Cannibals – collection Signé Boucq/Charyn ; `jour15b` : Un Noël à Paris 2 devant, 1 derrière)..
 

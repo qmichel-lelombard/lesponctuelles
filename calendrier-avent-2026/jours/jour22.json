@@ -2,19 +2,40 @@
   "theme": "rouge",
   "layout": {
     "y": 600,
-    "h": 520,
-    "overlap": 0.1,
-    "cx": 540
+    "h": 460,
+    "steps": [
+      0.35,
+      0.95,
+      0.35
+    ],
+    "cx": 560
   },
   "books": [
     {
       "img": "../assets/couvertures/9782808215121-aylin-2-l-elfe-perdu.jpg",
-      "angle": -3
+      "angle": -5,
+      "z": 4,
+      "dy": 20
+    },
+    {
+      "img": "../assets/couvertures/9782808212793-aylin-1-le-secret-des-elfes.jpg",
+      "angle": -2,
+      "z": 3,
+      "dy": 20
     },
     {
       "img": "../assets/couvertures/9782808214421-elsbeth-2.jpg",
       "angle": 3,
-      "scale": 1.02
+      "z": 2,
+      "scale": 1.02,
+      "dy": -15
+    },
+    {
+      "img": "../assets/couvertures/9782808211635-elsbeth-1-la-malediction-du-beau-silence.jpg",
+      "angle": 6,
+      "z": 1,
+      "scale": 1.02,
+      "dy": -15
     }
   ],
   "date": {
