@@ -32,7 +32,7 @@ PLANNING = [
     {'serie': ['9782808216760', '9782808214438', '9782808212472']},                  # 20 Alpha 21, 20, 19
     {'serie': ['9782808216937', '9782808210966', '9782808204880']},                  # 21 Les Enfants de la Résistance 10, 9, 8
     'jour22',                             # 22 Aylin 1-2 | Elsbeth 1-2 (voir COMPOSITIONS)
-    ['9782808218740'],                    # 23 Ducobu 30 – Duco... Bouh !
+    {'serie': ['9782808218740', '9782808214940', '9782808213080']},                  # 23 Ducobu 30, 29, 28
     ['9782808211260'],                    # 24 Lonesome Dove partie 1
 ]
 THEMES = ['rouge', 'jaune', 'bleu']

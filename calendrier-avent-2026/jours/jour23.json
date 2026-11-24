@@ -3,13 +3,21 @@
   "layout": {
     "y": 600,
     "h": 520,
-    "overlap": 0.1,
+    "overlap": 0.6,
     "cx": 540
   },
   "books": [
     {
       "img": "../assets/couvertures/9782808218740-ducobu-30-duco-bouh.jpg",
-      "scale": 1.1
+      "angle": -5
+    },
+    {
+      "img": "../assets/couvertures/9782808214940-ducobu-29-dernier-de-cordee.jpg",
+      "angle": -2
+    },
+    {
+      "img": "../assets/couvertures/9782808213080-ducobu-28-en-vert-et-contre-tous.jpg",
+      "angle": 1
     }
   ],
   "date": {
