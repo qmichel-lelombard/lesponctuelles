@@ -1,0 +1,3536 @@
+{
+ "plugin": {
+  "version": "5.10.1",
+  "date": "Thu, 26 Nov 2026 15:33:14 +0000"
+ },
+ "redirects": [
+  {
+   "id": 1,
+   "url": "/on-mange-ou-ce-soir-1/",
+   "match_url": "/on-mange-ou-ce-soir-1",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 0,
+   "enabled": true
+  },
+  {
+   "id": 2,
+   "url": "/chouchou-on-fait-quoi-ce-week-end-2-29-30-avril/",
+   "match_url": "/chouchou-on-fait-quoi-ce-week-end-2-29-30-avril",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 1,
+   "enabled": true
+  },
+  {
+   "id": 3,
+   "url": "/un-apres-midi-au-parc-les-jardins-dannevoie/",
+   "match_url": "/un-apres-midi-au-parc-les-jardins-dannevoie",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 2,
+   "enabled": true
+  },
+  {
+   "id": 4,
+   "url": "/mes-jeux-preferes-pour-mettre-lambiance-des-lapero/",
+   "match_url": "/mes-jeux-preferes-pour-mettre-lambiance-des-lapero",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 3,
+   "enabled": true
+  },
+  {
+   "id": 5,
+   "url": "/dix-createurs-ou-artisans-belges-qui-embellissent-le-quotidien/",
+   "match_url": "/dix-createurs-ou-artisans-belges-qui-embellissent-le-quotidien",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 4,
+   "enabled": true
+  },
+  {
+   "id": 721,
+   "url": "/",
+   "match_url": "/",
+   "match_data": {
+    "source": {
+     "flag_query": "exact",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 720,
+   "enabled": true
+  },
+  {
+   "id": 722,
+   "url": "/page-daccueil/",
+   "match_url": "/page-daccueil",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 721,
+   "enabled": true
+  },
+  {
+   "id": 723,
+   "url": "/about/",
+   "match_url": "/about",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/qui-sommes-nous/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 722,
+   "enabled": true
+  },
+  {
+   "id": 724,
+   "url": "/nous-contacter/",
+   "match_url": "/nous-contacter",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/contact/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 723,
+   "enabled": true
+  },
+  {
+   "id": 725,
+   "url": "/newsletter/",
+   "match_url": "/newsletter",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/club-des-lectrices/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 724,
+   "enabled": true
+  },
+  {
+   "id": 726,
+   "url": "/boutique/",
+   "match_url": "/boutique",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/boutique/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 725,
+   "enabled": true
+  },
+  {
+   "id": 727,
+   "url": "/panier/",
+   "match_url": "/panier",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/panier/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 726,
+   "enabled": true
+  },
+  {
+   "id": 728,
+   "url": "/commander/",
+   "match_url": "/commander",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/commander/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 727,
+   "enabled": true
+  },
+  {
+   "id": 729,
+   "url": "/mon-compte/",
+   "match_url": "/mon-compte",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/mon-compte/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 728,
+   "enabled": true
+  },
+  {
+   "id": 730,
+   "url": "/produit/carnet-ponctuel/",
+   "match_url": "/produit/carnet-ponctuel",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/carnet-ponctuel/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 729,
+   "enabled": true
+  },
+  {
+   "id": 731,
+   "url": "/produit/le-pins-i-like-big-books-i-cannot-lie/",
+   "match_url": "/produit/le-pins-i-like-big-books-i-cannot-lie",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/le-pins-i-like-big-books-i-cannot-lie/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 730,
+   "enabled": true
+  },
+  {
+   "id": 732,
+   "url": "/produit/le-starter-kit-de-la-lectrice-ponctuelle/",
+   "match_url": "/produit/le-starter-kit-de-la-lectrice-ponctuelle",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/le-starter-kit-de-la-lectrice-ponctuelle/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 731,
+   "enabled": true
+  },
+  {
+   "id": 733,
+   "url": "/produit/les-stickers-ponctuels/",
+   "match_url": "/produit/les-stickers-ponctuels",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/les-stickers-ponctuels/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 732,
+   "enabled": true
+  },
+  {
+   "id": 734,
+   "url": "/produit/cabas-de-plage-une-plage-a-soi/",
+   "match_url": "/produit/cabas-de-plage-une-plage-a-soi",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/cabas-de-plage-une-plage-a-soi/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 733,
+   "enabled": true
+  },
+  {
+   "id": 735,
+   "url": "/produit/cartes-postales-feministes/",
+   "match_url": "/produit/cartes-postales-feministes",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/cartes-postales-feministes/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 734,
+   "enabled": true
+  },
+  {
+   "id": 736,
+   "url": "/produit/le-pins-a-female-writer/",
+   "match_url": "/produit/le-pins-a-female-writer",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/le-pins-a-female-writer/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 735,
+   "enabled": true
+  },
+  {
+   "id": 737,
+   "url": "/produit/la-simple-box-des-lectrices-ponctuelles-edition-7/",
+   "match_url": "/produit/la-simple-box-des-lectrices-ponctuelles-edition-7",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/la-simple-box-des-lectrices-ponctuelles-edition-7/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 736,
+   "enabled": true
+  },
+  {
+   "id": 738,
+   "url": "/produit/la-double-box-des-lectrices-ponctuelles-edition-7/",
+   "match_url": "/produit/la-double-box-des-lectrices-ponctuelles-edition-7",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/produit/la-double-box-des-lectrices-ponctuelles-edition-7/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 737,
+   "enabled": true
+  },
+  {
+   "id": 739,
+   "url": "/du-sable-entre-les-pages/",
+   "match_url": "/du-sable-entre-les-pages",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/du-sable-entre-les-pages/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 738,
+   "enabled": true
+  },
+  {
+   "id": 740,
+   "url": "/la-bd-quebecoise-nattend-que-vous-1-michel-rabagliati/",
+   "match_url": "/la-bd-quebecoise-nattend-que-vous-1-michel-rabagliati",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/la-bd-quebecoise-nattend-que-vous-1-michel-rabagliati/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 739,
+   "enabled": true
+  },
+  {
+   "id": 741,
+   "url": "/la-bd-quebecoise-nattend-que-vous-2-isabelle-arsenault-et-zviane/",
+   "match_url": "/la-bd-quebecoise-nattend-que-vous-2-isabelle-arsenault-et-zviane",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/la-bd-quebecoise-nattend-que-vous-2-isabelle-arsenault-et-zviane/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 740,
+   "enabled": true
+  },
+  {
+   "id": 742,
+   "url": "/culottees-parce-que-le-feminisme-a-encore-de-beaux-jours-devant-lui-1/",
+   "match_url": "/culottees-parce-que-le-feminisme-a-encore-de-beaux-jours-devant-lui-1",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/culottees-parce-que-le-feminisme-a-encore-de-beaux-jours-devant-lui-1/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 741,
+   "enabled": true
+  },
+  {
+   "id": 743,
+   "url": "/les-soleils-du-9e-art-ou-comment-prolonger-lete-en-bd/",
+   "match_url": "/les-soleils-du-9e-art-ou-comment-prolonger-lete-en-bd",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/les-soleils-du-9e-art-ou-comment-prolonger-lete-en-bd/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 742,
+   "enabled": true
+  },
+  {
+   "id": 744,
+   "url": "/gallmeister-des-pepites-de-litterature-americaine/",
+   "match_url": "/gallmeister-des-pepites-de-litterature-americaine",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/gallmeister-des-pepites-de-litterature-americaine/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 743,
+   "enabled": true
+  },
+  {
+   "id": 745,
+   "url": "/mes-podcasts-favoris/",
+   "match_url": "/mes-podcasts-favoris",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/mes-podcasts-favoris/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 744,
+   "enabled": true
+  },
+  {
+   "id": 746,
+   "url": "/de-limportance-des-librairies-independantes-1-2/",
+   "match_url": "/de-limportance-des-librairies-independantes-1-2",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/de-limportance-des-librairies-independantes-1-2/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 745,
+   "enabled": true
+  },
+  {
+   "id": 747,
+   "url": "/de-limportance-des-librairies-independantes-2-2/",
+   "match_url": "/de-limportance-des-librairies-independantes-2-2",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/de-limportance-des-librairies-independantes-2-2/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 746,
+   "enabled": true
+  },
+  {
+   "id": 748,
+   "url": "/entre-les-pages-de-kim-verbeke/",
+   "match_url": "/entre-les-pages-de-kim-verbeke",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-de-kim-verbeke/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 747,
+   "enabled": true
+  },
+  {
+   "id": 749,
+   "url": "/entre-les-pages-de-lauranne-van-naemen/",
+   "match_url": "/entre-les-pages-de-lauranne-van-naemen",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-de-lauranne-van-naemen/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 748,
+   "enabled": true
+  },
+  {
+   "id": 750,
+   "url": "/entre-les-pages-de-lou/",
+   "match_url": "/entre-les-pages-de-lou",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-de-lou/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 749,
+   "enabled": true
+  },
+  {
+   "id": 751,
+   "url": "/entre-les-pages-de-elodie-deceuninck/",
+   "match_url": "/entre-les-pages-de-elodie-deceuninck",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-de-elodie-deceuninck/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 750,
+   "enabled": true
+  },
+  {
+   "id": 752,
+   "url": "/lectures-hivernales-coups-de-coeur/",
+   "match_url": "/lectures-hivernales-coups-de-coeur",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/lectures-hivernales-coups-de-coeur/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 751,
+   "enabled": true
+  },
+  {
+   "id": 753,
+   "url": "/entre-les-pages-coline-pierre/",
+   "match_url": "/entre-les-pages-coline-pierre",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-coline-pierre/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 752,
+   "enabled": true
+  },
+  {
+   "id": 754,
+   "url": "/club-des-lectrices-ponctuelles/",
+   "match_url": "/club-des-lectrices-ponctuelles",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/club-des-lectrices-ponctuelles/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 753,
+   "enabled": true
+  },
+  {
+   "id": 755,
+   "url": "/entre-les-pages-des-ponctuelles/",
+   "match_url": "/entre-les-pages-des-ponctuelles",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-des-ponctuelles/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 754,
+   "enabled": true
+  },
+  {
+   "id": 756,
+   "url": "/decouvrir-la-litterature-quebecoise-en-10-ouvrages/",
+   "match_url": "/decouvrir-la-litterature-quebecoise-en-10-ouvrages",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/decouvrir-la-litterature-quebecoise-en-10-ouvrages/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 755,
+   "enabled": true
+  },
+  {
+   "id": 757,
+   "url": "/nos-lectures-feministes-de-lete-a-decouvrir-cet-automne/",
+   "match_url": "/nos-lectures-feministes-de-lete-a-decouvrir-cet-automne",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/nos-lectures-feministes-de-lete-a-decouvrir-cet-automne/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 756,
+   "enabled": true
+  },
+  {
+   "id": 758,
+   "url": "/entre-les-pages-de-titiou-lecoq/",
+   "match_url": "/entre-les-pages-de-titiou-lecoq",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-de-titiou-lecoq/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 757,
+   "enabled": true
+  },
+  {
+   "id": 759,
+   "url": "/entre-les-pages-de-myriam-leroy/",
+   "match_url": "/entre-les-pages-de-myriam-leroy",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/entre-les-pages-de-myriam-leroy/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 758,
+   "enabled": true
+  },
+  {
+   "id": 760,
+   "url": "/sous-la-plume-de-myriam-leroy/",
+   "match_url": "/sous-la-plume-de-myriam-leroy",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/sous-la-plume-de-myriam-leroy/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 759,
+   "enabled": true
+  },
+  {
+   "id": 761,
+   "url": "/passa-porta-festival-entretien-avec-ysaline-parisis/",
+   "match_url": "/passa-porta-festival-entretien-avec-ysaline-parisis",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/passa-porta-festival-entretien-avec-ysaline-parisis/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 760,
+   "enabled": true
+  },
+  {
+   "id": 762,
+   "url": "/le-club-des-lectrices-ponctuelles-edition-belge/",
+   "match_url": "/le-club-des-lectrices-ponctuelles-edition-belge",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/le-club-des-lectrices-ponctuelles-edition-belge/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 761,
+   "enabled": true
+  },
+  {
+   "id": 763,
+   "url": "/sur-mange-ou-ce-soir-1/",
+   "match_url": "/sur-mange-ou-ce-soir-1",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 762,
+   "enabled": true
+  },
+  {
+   "id": 764,
+   "url": "/53/",
+   "match_url": "/53",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 763,
+   "enabled": true
+  },
+  {
+   "id": 765,
+   "url": "/amazing-gone-girl/",
+   "match_url": "/amazing-gone-girl",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 764,
+   "enabled": true
+  },
+  {
+   "id": 766,
+   "url": "/samba-le-nouveau-bijou-deric-toledano-olivier-nakache/",
+   "match_url": "/samba-le-nouveau-bijou-deric-toledano-olivier-nakache",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 765,
+   "enabled": true
+  },
+  {
+   "id": 767,
+   "url": "/david-foenkinos-plume-talentueuse-de-la-rentree-mortuaire/",
+   "match_url": "/david-foenkinos-plume-talentueuse-de-la-rentree-mortuaire",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 766,
+   "enabled": true
+  },
+  {
+   "id": 768,
+   "url": "/la-french-touch/",
+   "match_url": "/la-french-touch",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 767,
+   "enabled": true
+  },
+  {
+   "id": 769,
+   "url": "/nos-etoiles-contraires-un-film-mielleux-et-convenu/",
+   "match_url": "/nos-etoiles-contraires-un-film-mielleux-et-convenu",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 768,
+   "enabled": true
+  },
+  {
+   "id": 770,
+   "url": "/la-verite-sur-laffaire-harry-quebert-votre-prochain-policier/",
+   "match_url": "/la-verite-sur-laffaire-harry-quebert-votre-prochain-policier",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 769,
+   "enabled": true
+  },
+  {
+   "id": 771,
+   "url": "/montreal1-on-dort-chez-toi-ou-chez-moi/",
+   "match_url": "/montreal1-on-dort-chez-toi-ou-chez-moi",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 770,
+   "enabled": true
+  },
+  {
+   "id": 772,
+   "url": "/un-long-weekend-dans-la-ville-lumiere-3-exposition-harry-potter/",
+   "match_url": "/un-long-weekend-dans-la-ville-lumiere-3-exposition-harry-potter",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 771,
+   "enabled": true
+  },
+  {
+   "id": 773,
+   "url": "/les-minions-vous-rendront-ils-banana/",
+   "match_url": "/les-minions-vous-rendront-ils-banana",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 772,
+   "enabled": true
+  },
+  {
+   "id": 774,
+   "url": "/parade-a-cafe-litteraire-to-be/",
+   "match_url": "/parade-a-cafe-litteraire-to-be",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 773,
+   "enabled": true
+  },
+  {
+   "id": 775,
+   "url": "/un-ete-a-rome-cest-ici-que-les-romains-sempoignerent/",
+   "match_url": "/un-ete-a-rome-cest-ici-que-les-romains-sempoignerent",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 774,
+   "enabled": true
+  },
+  {
+   "id": 776,
+   "url": "/on-mange-ou-ce-soir-2-takumi/",
+   "match_url": "/on-mange-ou-ce-soir-2-takumi",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 775,
+   "enabled": true
+  },
+  {
+   "id": 777,
+   "url": "/charlie-flaire-quebec-fota15/",
+   "match_url": "/charlie-flaire-quebec-fota15",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 776,
+   "enabled": true
+  },
+  {
+   "id": 778,
+   "url": "/les-equinoxes-de-pedrosa-la-capture-dun-instant/",
+   "match_url": "/les-equinoxes-de-pedrosa-la-capture-dun-instant",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 777,
+   "enabled": true
+  },
+  {
+   "id": 779,
+   "url": "/paris-capitale-des-plaisirs/",
+   "match_url": "/paris-capitale-des-plaisirs",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 778,
+   "enabled": true
+  },
+  {
+   "id": 780,
+   "url": "/a-la-recherche-du-paris-perdu/",
+   "match_url": "/a-la-recherche-du-paris-perdu",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 779,
+   "enabled": true
+  },
+  {
+   "id": 781,
+   "url": "/les-saintes-cheries-un-cocon-a-paris/",
+   "match_url": "/les-saintes-cheries-un-cocon-a-paris",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 780,
+   "enabled": true
+  },
+  {
+   "id": 782,
+   "url": "/medor-le-trimestriel-belge-qui-a-de-la-gueule/",
+   "match_url": "/medor-le-trimestriel-belge-qui-a-de-la-gueule",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 781,
+   "enabled": true
+  },
+  {
+   "id": 783,
+   "url": "/le-tiroir-de-lou-un-paradis-sans-fond/",
+   "match_url": "/le-tiroir-de-lou-un-paradis-sans-fond",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 782,
+   "enabled": true
+  },
+  {
+   "id": 784,
+   "url": "/un-samedi-soir-a-lopera/",
+   "match_url": "/un-samedi-soir-a-lopera",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 783,
+   "enabled": true
+  },
+  {
+   "id": 785,
+   "url": "/corica-comptoirs-dor-noir/",
+   "match_url": "/corica-comptoirs-dor-noir",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 784,
+   "enabled": true
+  },
+  {
+   "id": 786,
+   "url": "/padoue-laisse-les-gondoles-a-venise/",
+   "match_url": "/padoue-laisse-les-gondoles-a-venise",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 785,
+   "enabled": true
+  },
+  {
+   "id": 787,
+   "url": "/le-livre-des-baltimore-vaut-il-harry-quebert/",
+   "match_url": "/le-livre-des-baltimore-vaut-il-harry-quebert",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 786,
+   "enabled": true
+  },
+  {
+   "id": 788,
+   "url": "/venise-carnet-de-voyage-dune-celibataire/",
+   "match_url": "/venise-carnet-de-voyage-dune-celibataire",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 787,
+   "enabled": true
+  },
+  {
+   "id": 789,
+   "url": "/on-est-c-o-c-o-de-leur-donuts/",
+   "match_url": "/on-est-c-o-c-o-de-leur-donuts",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 788,
+   "enabled": true
+  },
+  {
+   "id": 790,
+   "url": "/beatrice-benedict-et-coco-decouvrit-lopera/",
+   "match_url": "/beatrice-benedict-et-coco-decouvrit-lopera",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 789,
+   "enabled": true
+  },
+  {
+   "id": 791,
+   "url": "/macaroni-une-bd-al-dente/",
+   "match_url": "/macaroni-une-bd-al-dente",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 790,
+   "enabled": true
+  },
+  {
+   "id": 792,
+   "url": "/quand-gand-se-pare-de-ses-plus-belles-fleurs/",
+   "match_url": "/quand-gand-se-pare-de-ses-plus-belles-fleurs",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 791,
+   "enabled": true
+  },
+  {
+   "id": 793,
+   "url": "/the-place-to-c-1-charleroi-soffre-son-premier-festival-du-livre/",
+   "match_url": "/the-place-to-c-1-charleroi-soffre-son-premier-festival-du-livre",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 792,
+   "enabled": true
+  },
+  {
+   "id": 794,
+   "url": "/the-place-to-c-2-6001-is-the-new-1060-le-marche-de-createurs-carrement-carolo/",
+   "match_url": "/the-place-to-c-2-6001-is-the-new-1060-le-marche-de-createurs-carrement-carolo",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 793,
+   "enabled": true
+  },
+  {
+   "id": 795,
+   "url": "/theplacetoc-rose-charbon/",
+   "match_url": "/theplacetoc-rose-charbon",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 794,
+   "enabled": true
+  },
+  {
+   "id": 796,
+   "url": "/made-in-charlyking-theplacetoc/",
+   "match_url": "/made-in-charlyking-theplacetoc",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 795,
+   "enabled": true
+  },
+  {
+   "id": 797,
+   "url": "/robes-fresques-et-chemises-au-momu-danvers/",
+   "match_url": "/robes-fresques-et-chemises-au-momu-danvers",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 796,
+   "enabled": true
+  },
+  {
+   "id": 798,
+   "url": "/gand-le-manhattan-du-moyen-age-1/",
+   "match_url": "/gand-le-manhattan-du-moyen-age-1",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 797,
+   "enabled": true
+  },
+  {
+   "id": 799,
+   "url": "/gand-est-ce-quon-part-2/",
+   "match_url": "/gand-est-ce-quon-part-2",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 798,
+   "enabled": true
+  },
+  {
+   "id": 800,
+   "url": "/chouchou-on-fait-quoi-ce-week-end/",
+   "match_url": "/chouchou-on-fait-quoi-ce-week-end",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 799,
+   "enabled": true
+  },
+  {
+   "id": 801,
+   "url": "/les-animaux-fantastiques-lumos-a-deux-baguettes/",
+   "match_url": "/les-animaux-fantastiques-lumos-a-deux-baguettes",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 800,
+   "enabled": true
+  },
+  {
+   "id": 802,
+   "url": "/le-fabuleux-mois-de-decembre/",
+   "match_url": "/le-fabuleux-mois-de-decembre",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 801,
+   "enabled": true
+  },
+  {
+   "id": 803,
+   "url": "/vaiana-une-nouvelle-perle-dans-le-coquillage-disney/",
+   "match_url": "/vaiana-une-nouvelle-perle-dans-le-coquillage-disney",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 802,
+   "enabled": true
+  },
+  {
+   "id": 804,
+   "url": "/quand-le-coup-de-coeur-se-joue-jazzy-1-la-la-land/",
+   "match_url": "/quand-le-coup-de-coeur-se-joue-jazzy-1-la-la-land",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 803,
+   "enabled": true
+  },
+  {
+   "id": 805,
+   "url": "/tout-ce-que-jaurais-voulu-savoir-avant-darriver-a-grenade/",
+   "match_url": "/tout-ce-que-jaurais-voulu-savoir-avant-darriver-a-grenade",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 804,
+   "enabled": true
+  },
+  {
+   "id": 806,
+   "url": "/the-art-of-banksy-this-is-not-a-article-opportunity/",
+   "match_url": "/the-art-of-banksy-this-is-not-a-article-opportunity",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 805,
+   "enabled": true
+  },
+  {
+   "id": 807,
+   "url": "/beauty-and-the-beast-5-raisons-de-decouvrir-cette-adaptation-sans-epines/",
+   "match_url": "/beauty-and-the-beast-5-raisons-de-decouvrir-cette-adaptation-sans-epines",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 806,
+   "enabled": true
+  },
+  {
+   "id": 808,
+   "url": "/cheerz-a-la-vie/",
+   "match_url": "/cheerz-a-la-vie",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 807,
+   "enabled": true
+  },
+  {
+   "id": 809,
+   "url": "/the-world-of-steve-mccurry-lemotion-dans-lobjectif/",
+   "match_url": "/the-world-of-steve-mccurry-lemotion-dans-lobjectif",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 808,
+   "enabled": true
+  },
+  {
+   "id": 810,
+   "url": "/le-touquet-lelegance-iodee/",
+   "match_url": "/le-touquet-lelegance-iodee",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 809,
+   "enabled": true
+  },
+  {
+   "id": 811,
+   "url": "/la-simply-you-box-sur-le-feu-nos-avis-a-chaud/",
+   "match_url": "/la-simply-you-box-sur-le-feu-nos-avis-a-chaud",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 810,
+   "enabled": true
+  },
+  {
+   "id": 812,
+   "url": "/quoi-faire-a-bruxelles-week-end-2-29-30-avril/",
+   "match_url": "/quoi-faire-a-bruxelles-week-end-2-29-30-avril",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 811,
+   "enabled": true
+  },
+  {
+   "id": 813,
+   "url": "/chouchou-on-fait-quoi-ce-week-end-3-5-7-avril/",
+   "match_url": "/chouchou-on-fait-quoi-ce-week-end-3-5-7-avril",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 812,
+   "enabled": true
+  },
+  {
+   "id": 814,
+   "url": "/le-bonheur-en-somme/",
+   "match_url": "/le-bonheur-en-somme",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 813,
+   "enabled": true
+  },
+  {
+   "id": 815,
+   "url": "/un-week-end-a-charleroi/",
+   "match_url": "/un-week-end-a-charleroi",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 814,
+   "enabled": true
+  },
+  {
+   "id": 816,
+   "url": "/bordeaux-en-24h/",
+   "match_url": "/bordeaux-en-24h",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 815,
+   "enabled": true
+  },
+  {
+   "id": 817,
+   "url": "/un-ete-entre-perigord-et-dordogne/",
+   "match_url": "/un-ete-entre-perigord-et-dordogne",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 816,
+   "enabled": true
+  },
+  {
+   "id": 818,
+   "url": "/mourir-denvie-de-parcourir-lisbonne-et-ses-environs-en-30-cliches/",
+   "match_url": "/mourir-denvie-de-parcourir-lisbonne-et-ses-environs-en-30-cliches",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 817,
+   "enabled": true
+  },
+  {
+   "id": 819,
+   "url": "/petits-bonheurs-quotidiens/",
+   "match_url": "/petits-bonheurs-quotidiens",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 818,
+   "enabled": true
+  },
+  {
+   "id": 820,
+   "url": "/top-10-les-incontournables-du-montenegro/",
+   "match_url": "/top-10-les-incontournables-du-montenegro",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 819,
+   "enabled": true
+  },
+  {
+   "id": 821,
+   "url": "/faire-le-deuil-de-son-ete-en-musique/",
+   "match_url": "/faire-le-deuil-de-son-ete-en-musique",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 820,
+   "enabled": true
+  },
+  {
+   "id": 822,
+   "url": "/preparer-au-mieux-son-voyage-au-montenegro/",
+   "match_url": "/preparer-au-mieux-son-voyage-au-montenegro",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 821,
+   "enabled": true
+  },
+  {
+   "id": 823,
+   "url": "/la-culture-a-petits-prix-cest-possible/",
+   "match_url": "/la-culture-a-petits-prix-cest-possible",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 822,
+   "enabled": true
+  },
+  {
+   "id": 824,
+   "url": "/ralentir-en-musique/",
+   "match_url": "/ralentir-en-musique",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 823,
+   "enabled": true
+  },
+  {
+   "id": 825,
+   "url": "/les-cabanes-de-rensiwez-une-parenthese-idyllique-en-belgique/",
+   "match_url": "/les-cabanes-de-rensiwez-une-parenthese-idyllique-en-belgique",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 824,
+   "enabled": true
+  },
+  {
+   "id": 826,
+   "url": "/notre-programme-ideal-pour-la-foire-du-livre-de-bruxelles/",
+   "match_url": "/notre-programme-ideal-pour-la-foire-du-livre-de-bruxelles",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 825,
+   "enabled": true
+  },
+  {
+   "id": 827,
+   "url": "/7-series-completement-addictives/",
+   "match_url": "/7-series-completement-addictives",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 826,
+   "enabled": true
+  },
+  {
+   "id": 828,
+   "url": "/la-playlist-feel-good-qui-vous-filera-la-patate/",
+   "match_url": "/la-playlist-feel-good-qui-vous-filera-la-patate",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 827,
+   "enabled": true
+  },
+  {
+   "id": 829,
+   "url": "/les-indispensables-pour-debuter-la-couture/",
+   "match_url": "/les-indispensables-pour-debuter-la-couture",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 828,
+   "enabled": true
+  },
+  {
+   "id": 830,
+   "url": "/10-jeux-de-societe-indispensables/",
+   "match_url": "/10-jeux-de-societe-indispensables",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 829,
+   "enabled": true
+  },
+  {
+   "id": 831,
+   "url": "/3-idees-de-recettes-pour-petit-dejeuner/",
+   "match_url": "/3-idees-de-recettes-pour-petit-dejeuner",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 830,
+   "enabled": true
+  },
+  {
+   "id": 832,
+   "url": "/2-les-petits-bonheurs-du-quotidien/",
+   "match_url": "/2-les-petits-bonheurs-du-quotidien",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 831,
+   "enabled": true
+  },
+  {
+   "id": 833,
+   "url": "/les-meilleurs-patrons-pour-couturier·ere·s-debutant·e·s-et-les-sites-de-tissus/",
+   "match_url": "/les-meilleurs-patrons-pour-couturier%c2%b7ere%c2%b7s-debutant%c2%b7e%c2%b7s-et-les-sites-de-tissus",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 832,
+   "enabled": true
+  },
+  {
+   "id": 834,
+   "url": "/dix-createurs-belges-qui-embellissent-le-quotidien/",
+   "match_url": "/dix-createurs-belges-qui-embellissent-le-quotidien",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 833,
+   "enabled": true
+  },
+  {
+   "id": 835,
+   "url": "/mes-jeux-apero-preferes-pour-un-peu-dambiance/",
+   "match_url": "/mes-jeux-apero-preferes-pour-un-peu-dambiance",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 834,
+   "enabled": true
+  },
+  {
+   "id": 836,
+   "url": "/on-a-teste-le-brunch-club-de-lete-par-brussels-kitchen/",
+   "match_url": "/on-a-teste-le-brunch-club-de-lete-par-brussels-kitchen",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 835,
+   "enabled": true
+  },
+  {
+   "id": 837,
+   "url": "/jardins-dannevoie-un-apres-midi-au-parc/",
+   "match_url": "/jardins-dannevoie-un-apres-midi-au-parc",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 836,
+   "enabled": true
+  },
+  {
+   "id": 838,
+   "url": "/le-chant-des-etoiles/",
+   "match_url": "/le-chant-des-etoiles",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 837,
+   "enabled": true
+  },
+  {
+   "id": 839,
+   "url": "/boentje-cafe-lincontournable-adresse-zero-dechet/",
+   "match_url": "/boentje-cafe-lincontournable-adresse-zero-dechet",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 838,
+   "enabled": true
+  },
+  {
+   "id": 840,
+   "url": "/5-idees-recues-sur-la-couture/",
+   "match_url": "/5-idees-recues-sur-la-couture",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 839,
+   "enabled": true
+  },
+  {
+   "id": 841,
+   "url": "/activites-amsterdam/",
+   "match_url": "/activites-amsterdam",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 840,
+   "enabled": true
+  },
+  {
+   "id": 842,
+   "url": "/nos-bonnes-adresses-a-amsterdam-par-quartier/",
+   "match_url": "/nos-bonnes-adresses-a-amsterdam-par-quartier",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 841,
+   "enabled": true
+  },
+  {
+   "id": 843,
+   "url": "/the-dautomne/",
+   "match_url": "/the-dautomne",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 842,
+   "enabled": true
+  },
+  {
+   "id": 844,
+   "url": "/bougies-belges/",
+   "match_url": "/bougies-belges",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 843,
+   "enabled": true
+  },
+  {
+   "id": 845,
+   "url": "/hotel-vedette-profondeville/",
+   "match_url": "/hotel-vedette-profondeville",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 844,
+   "enabled": true
+  },
+  {
+   "id": 846,
+   "url": "/coudre-des-tenues-de-demoiselles-d-honneur/",
+   "match_url": "/coudre-des-tenues-de-demoiselles-d-honneur",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 845,
+   "enabled": true
+  },
+  {
+   "id": 847,
+   "url": "/3-series-a-binge-watcher-durgence/",
+   "match_url": "/3-series-a-binge-watcher-durgence",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 846,
+   "enabled": true
+  },
+  {
+   "id": 848,
+   "url": "/11-incontournables-a-decouvrir-en-toscane/",
+   "match_url": "/11-incontournables-a-decouvrir-en-toscane",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "",
+   "regex": false,
+   "group_id": 1,
+   "position": 847,
+   "enabled": true
+  },
+  {
+   "id": 849,
+   "url": "/category/culture/le-club-des-lectrices-ponctuelles/",
+   "match_url": "/category/culture/le-club-des-lectrices-ponctuelles",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/le-club-des-lectrices-ponctuelles/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 133,
+   "enabled": true
+  },
+  {
+   "id": 850,
+   "url": "/category/le-plat-pays/bruxelles/",
+   "match_url": "/category/le-plat-pays/bruxelles",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/bruxelles/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 134,
+   "enabled": true
+  },
+  {
+   "id": 851,
+   "url": "/category/coco-charlie/",
+   "match_url": "/category/coco-charlie",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/coco-charlie/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 135,
+   "enabled": true
+  },
+  {
+   "id": 852,
+   "url": "/category/culture/",
+   "match_url": "/category/culture",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/culture/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 136,
+   "enabled": true
+  },
+  {
+   "id": 853,
+   "url": "/category/lifestyle/favoris/",
+   "match_url": "/category/lifestyle/favoris",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/favoris/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 137,
+   "enabled": true
+  },
+  {
+   "id": 854,
+   "url": "/category/culture/la-bedetheque/",
+   "match_url": "/category/culture/la-bedetheque",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/la-bedetheque/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 138,
+   "enabled": true
+  },
+  {
+   "id": 855,
+   "url": "/category/culture/la-bibliotheque/",
+   "match_url": "/category/culture/la-bibliotheque",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/la-bibliotheque/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 139,
+   "enabled": true
+  },
+  {
+   "id": 856,
+   "url": "/category/culture/la-mediatheque/",
+   "match_url": "/category/culture/la-mediatheque",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/la-mediatheque/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 140,
+   "enabled": true
+  },
+  {
+   "id": 857,
+   "url": "/category/le-plat-pays/",
+   "match_url": "/category/le-plat-pays",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/le-plat-pays/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 141,
+   "enabled": true
+  },
+  {
+   "id": 858,
+   "url": "/category/lifestyle/",
+   "match_url": "/category/lifestyle",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/lifestyle/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 142,
+   "enabled": true
+  },
+  {
+   "id": 859,
+   "url": "/category/culture/la-mediatheque/podcasts/",
+   "match_url": "/category/culture/la-mediatheque/podcasts",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/category/podcasts/"
+   },
+   "match_type": "url",
+   "title": "Catégorie",
+   "regex": false,
+   "group_id": 1,
+   "position": 143,
+   "enabled": true
+  },
+  {
+   "id": 860,
+   "url": "^/(category|tag)/.*",
+   "match_url": "regex",
+   "match_data": {
+    "source": {
+     "flag_query": "exact",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": true
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "Catégories et étiquettes sans équivalent -&gt; blog",
+   "regex": true,
+   "group_id": 1,
+   "position": 9000,
+   "enabled": true
+  },
+  {
+   "id": 861,
+   "url": "^/(?!wp-admin|wp-login\\.php|wp-json|wp-content|wp-includes|wp-cron\\.php|xmlrpc\\.php|robots\\.txt|favicon\\.ico|ads\\.txt|\\.well-known|(?:admin|login|dashboard)/?(?:\\?|$)|\\?(?:rest_route|jetpack|for=jetpack|wc-api|wc-ajax|mailpoet_|na=|nm=|nltr=)).*",
+   "match_url": "regex",
+   "match_data": {
+    "source": {
+     "flag_query": "exact",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": true
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/"
+   },
+   "match_type": "url",
+   "title": "ATTRAPE-TOUT : tout le reste -&gt; lesponctuelles.be (hors admin/API/fichiers)",
+   "regex": true,
+   "group_id": 1,
+   "position": 9999,
+   "enabled": true
+  },
+  {
+   "id": 862,
+   "url": "/blog/",
+   "match_url": "/blog",
+   "match_data": {
+    "source": {
+     "flag_query": "pass",
+     "flag_case": true,
+     "flag_trailing": true,
+     "flag_regex": false
+    }
+   },
+   "action_code": 301,
+   "action_type": "url",
+   "action_data": {
+    "url": "https://lesponctuelles.be/blog/"
+   },
+   "match_type": "url",
+   "title": "Blog",
+   "regex": false,
+   "group_id": 1,
+   "position": 146,
+   "enabled": true
+  }
+ ]
+}
