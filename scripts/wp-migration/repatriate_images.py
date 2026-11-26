@@ -63,16 +63,25 @@ def download(session, source, path, pause):
 
 def upload(session, dest, auth, filename, data):
     content_type = mimetypes.guess_type(filename)[0] or "application/octet-stream"
-    resp = session.post(
-        f"{dest}/wp-json/wp/v2/media",
-        headers={
-            "Content-Disposition": f'attachment; filename="{ascii_filename(filename)}"',
-            "Content-Type": content_type,
-        },
-        data=data,
-        auth=auth,
-        timeout=300,
-    )
+    resp = None
+    for attempt in range(4):
+        try:
+            resp = session.post(
+                f"{dest}/wp-json/wp/v2/media",
+                headers={
+                    "Content-Disposition": f'attachment; filename="{ascii_filename(filename)}"',
+                    "Content-Type": content_type,
+                },
+                data=data,
+                auth=auth,
+                timeout=300,
+            )
+            break
+        except requests.exceptions.RequestException as exc:
+            print(f"    upload connection error ({type(exc).__name__}), retrying in 30s", flush=True)
+            time.sleep(30)
+    if resp is None:
+        return None, "connection failed after retries"
     if resp.status_code not in (200, 201):
         return None, f"{resp.status_code} {resp.text[:200]}"
     text = resp.text
