@@ -56,9 +56,13 @@ class Rewriter:
         self.id_map = {}
 
     def entry_for(self, path):
-        path = unquote(path)
-        entry = self.state.get(path) or self.state.get(SIZE_SUFFIX.sub("", path))
-        return entry if entry and "id" in entry else None
+        # State keys may hold the path as written in the post (percent-encoded) or decoded.
+        for candidate in (path, unquote(path)):
+            for key in (candidate, SIZE_SUFFIX.sub("", candidate)):
+                entry = self.state.get(key)
+                if entry and "id" in entry:
+                    return entry
+        return None
 
     @staticmethod
     def same_ratio_sizes(entry):
@@ -81,7 +85,7 @@ class Rewriter:
             return int(float(params["w"][0]) * zoom)
         match = SIZE_SUFFIX.search(path)
         entry = self.entry_for(path)
-        if match and entry and entry.get("original") != unquote(path):
+        if match and entry and entry.get("original") not in (path, unquote(path)):
             return int(match.group(1))
         return None
 
@@ -106,7 +110,7 @@ class Rewriter:
         parts = urlsplit(html.unescape(url))
         if "attachment_id=" in parts.query:
             return None
-        path = parts.path.rstrip("/") or "/"
+        path = unquote(parts.path).rstrip("/") or "/"
         dated = re.match(r"^/\d{4}/\d{2}/\d{2}(/.+)$", path)
         for candidate in filter(None, [path, dated.group(1) if dated else None]):
             if candidate in self.link_map:
