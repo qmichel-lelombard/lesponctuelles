@@ -47,7 +47,7 @@ def ascii_filename(filename):
 
 
 def download(session, source, path, pause):
-    url = source + quote(path)
+    url = source + quote(path, safe="/%")
     delay = 20
     for _ in range(6):
         resp = session.get(url, timeout=120)
